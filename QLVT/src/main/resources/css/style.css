@@ -1,0 +1,14 @@
+.btn-login{
+    -fx-background-color: #C8BBEA;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+}
+.btn-login:hover{
+    -fx-background-color:rgb(122, 82, 193);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+}
+
+.pn-login:hover{
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+}
+
