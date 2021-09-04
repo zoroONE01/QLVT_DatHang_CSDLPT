@@ -1,4 +1,4 @@
-package com.mycompany.mavenproject2;
+package com.mycompany.QLVT;
 
 import java.io.IOException;
 import javafx.fxml.FXML;

@@ -1,7 +1,7 @@
-package com.mycompany.mavenproject2.controller;
+package com.mycompany.QLVT.controller;
 
-import com.mycompany.mavenproject2.model.NumberModel;
-import com.mycompany.mavenproject2.service.NumberService;
+import com.mycompany.QLVT.model.NumberModel;
+import com.mycompany.QLVT.service.NumberService;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;

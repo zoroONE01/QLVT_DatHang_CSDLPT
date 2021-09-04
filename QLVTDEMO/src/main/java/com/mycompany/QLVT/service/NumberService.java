@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.mavenproject2.service;
+package com.mycompany.QLVT.service;
 
-import com.mycompany.mavenproject2.dao.NumberDao;
+import com.mycompany.QLVT.dao.NumberDao;
 
 /**
  *

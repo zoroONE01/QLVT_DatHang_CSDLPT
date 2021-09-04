@@ -1,4 +1,4 @@
-package com.mycompany.mavenproject2;
+package com.mycompany.QLVT;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

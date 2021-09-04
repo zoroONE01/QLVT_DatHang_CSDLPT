@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.mavenproject2.model;
+package com.mycompany.QLVT.model;
 
 /**
  *
