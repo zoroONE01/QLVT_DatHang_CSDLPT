@@ -1,14 +1,39 @@
-.btn-login{
+.root{
+    -fx-font-family: "Calibri";
+    -fx-background-color: #fff;
+}
+
+.tilte{
+    -fx-font-weight: 700;
+    -fx-font-size: 32;
+}
+
+.pn-login{
+    
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+
+.tf-login {
+    -fx-background-color: #fff;
+    -fx-border-color: #ccc;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-font-size: 14;
+}
+
+.btn-login {
     -fx-background-color: #C8BBEA;
     -fx-border-radius: 20px;
     -fx-background-radius: 20px;
+    -fx-font-weight: 700;
+    -fx-font-size: 14;
 }
+
 .btn-login:hover{
     -fx-background-color:rgb(122, 82, 193);
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
 }
 
-.pn-login:hover{
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
-}
 

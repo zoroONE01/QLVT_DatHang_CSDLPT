@@ -1,8 +1,8 @@
-com\mycompany\mavenproject2\App.class
-com\mycompany\mavenproject2\dao\NumberDao.class
-com\mycompany\mavenproject2\controller\DemoFXMlController.class
 FXMLController.class
-com\mycompany\mavenproject2\service\NumberService.class
-com\mycompany\mavenproject2\PrimaryController.class
-com\mycompany\mavenproject2\SecondaryController.class
-com\mycompany\mavenproject2\model\NumberModel.class
+com\mycompany\QLVT\controller\DemoFXMlController.class
+com\mycompany\QLVT\dao\NumberDao.class
+com\mycompany\QLVT\PrimaryController.class
+com\mycompany\QLVT\App.class
+com\mycompany\QLVT\model\NumberModel.class
+com\mycompany\QLVT\service\NumberService.class
+com\mycompany\QLVT\SecondaryController.class
