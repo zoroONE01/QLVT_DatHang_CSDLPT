@@ -1,0 +1,8 @@
+com\mycompany\mavenproject2\App.class
+com\mycompany\mavenproject2\dao\NumberDao.class
+com\mycompany\mavenproject2\controller\DemoFXMlController.class
+FXMLController.class
+com\mycompany\mavenproject2\service\NumberService.class
+com\mycompany\mavenproject2\PrimaryController.class
+com\mycompany\mavenproject2\SecondaryController.class
+com\mycompany\mavenproject2\model\NumberModel.class
