@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.BorderPane?>
 
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.mycompany.mavenproject2.controller.DemoFXMlController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.mycompany.QLVT.controller.DemoFXMlController">
    <children>
       <Button fx:id="increaseButton" layoutX="200.0" layoutY="158.0" mnemonicParsing="false" onAction="#increaseNumber" prefHeight="25.0" prefWidth="65.0" text="Increase" />
       <Label layoutX="137.0" layoutY="104.0" text="Counter" />

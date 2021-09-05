@@ -12,6 +12,6 @@ public class PrimaryController {
     @FXML
     private void switchToSecondary() throws IOException {
        // App.setRoot("../../../fxml/FXML");
-       App.setRoot("./DemoController/demoFXML");
+       App.setRoot("../../../fxml/login");
     }
 }

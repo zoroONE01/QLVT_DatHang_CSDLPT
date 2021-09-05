@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.mycompany.QLVT.controller.DemoFXMlController">
+   <children>
+      <Button fx:id="increaseButton" layoutX="200.0" layoutY="158.0" mnemonicParsing="false" onAction="#increaseNumber" prefHeight="25.0" prefWidth="65.0" text="Increase" />
+      <Label layoutX="137.0" layoutY="104.0" text="Counter" />
+      <TextField fx:id="numberField" layoutX="200.0" layoutY="100.0" />
+      <Button fx:id="decreaseButton" layoutX="290.0" layoutY="158.0" mnemonicParsing="false" onAction="#decreaseNumber" text="Decrease" />
+      <BorderPane layoutX="37.0" layoutY="213.0" prefHeight="170.0" prefWidth="200.0" />
+   </children>
+</AnchorPane>
