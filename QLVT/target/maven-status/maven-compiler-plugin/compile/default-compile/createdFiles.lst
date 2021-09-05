@@ -1,9 +1,12 @@
+com\mycompany\QLVT\model\NhanVienTableModel.class
 com\mycompany\QLVT\controller\LoginController.class
+com\mycompany\QLVT\Entity\ChiNhanh.class
 FXMLController.class
 com\mycompany\QLVT\controller\DemoFXMlController.class
 com\mycompany\QLVT\dao\NumberDao.class
-com\mycompany\QLVT\PrimaryController.class
+com\mycompany\QLVT\Entity\NhanVienTest.class
+com\mycompany\QLVT\controller\NhanVienViewController.class
 com\mycompany\QLVT\App.class
 com\mycompany\QLVT\model\NumberModel.class
 com\mycompany\QLVT\service\NumberService.class
-com\mycompany\QLVT\SecondaryController.class
+com\mycompany\QLVT\Entity\NhanVien.class

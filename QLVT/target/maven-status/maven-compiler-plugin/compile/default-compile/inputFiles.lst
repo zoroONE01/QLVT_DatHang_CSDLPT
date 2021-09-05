@@ -1,8 +1,12 @@
-E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\App.java
-E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\model\NumberModel.java
-E:\du an git\QLVT\src\main\java\FXMLController.java
-E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\SecondaryController.java
-E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\controller\DemoFXMlController.java
-E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\dao\NumberDao.java
-E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\service\NumberService.java
-E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\PrimaryController.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Entity\NhanVien.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\controller\DemoFXMlController.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\service\NumberService.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\FXMLController.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\controller\NhanVienViewController.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Entity\NhanVienTest.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\controller\LoginController.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\dao\NumberDao.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Entity\ChiNhanh.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\App.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\model\NhanVienTableModel.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\model\NumberModel.java
