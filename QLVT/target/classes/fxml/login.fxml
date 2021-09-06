@@ -4,16 +4,15 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 <FlowPane fx:id="btLogin" alignment="CENTER" hgap="40.0" minHeight="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="650.0" prefWidth="800.0" stylesheets="@../css/style.css" vgap="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.QLVT.controller.LoginController">
    <children>
@@ -21,14 +20,38 @@
          <children>
             <VBox alignment="CENTER" fillWidth="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="330.0" prefWidth="300.0" spacing="10.0" style="-fx-background-color: #ffff;" styleClass="pn-login" stylesheets="@../css/style.css">
                <children>
-                  <Label prefHeight="37.0" prefWidth="89.0" styleClass="tilte" stylesheets="@../css/style.css" text="LOGIN" textFill="#7852bf" VBox.vgrow="ALWAYS">
-                     <font>
-                        <Font name="Calibri" size="30.0" />
-                     </font>
+                  <AnchorPane prefHeight="40.0" prefWidth="80.0">
+                     <children>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="6.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <image>
+                              <Image url="@../img/icons8_states_40px.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="54.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="0.0">
+                           <image>
+                              <Image url="@../img/icons8_q_20px.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="64.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <image>
+                              <Image url="@../img/icons8_l_20px.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="74.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="40.0">
+                           <image>
+                              <Image url="@../img/icons8_v_20px.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="84.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <image>
+                              <Image url="@../img/icons8_t_20px.png" />
+                           </image>
+                        </ImageView>
+                     </children>
                      <VBox.margin>
-                        <Insets bottom="15.0" top="30.0" />
+                        <Insets bottom="20.0" top="30.0" />
                      </VBox.margin>
-                  </Label>
+                  </AnchorPane>
                   <ComboBox fx:id="cbbLocation" prefHeight="50.0" prefWidth="250.0" promptText="Locaiton" styleClass="tf-login" stylesheets="@../css/style.css" VBox.vgrow="ALWAYS">
                      <padding>
                         <Insets left="5.0" right="5.0" />
@@ -52,7 +75,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <VBox.margin>
-                        <Insets bottom="30.0" top="10.0" />
+                        <Insets bottom="30.0" />
                      </VBox.margin>
                   </JFXButton>
                </children>
