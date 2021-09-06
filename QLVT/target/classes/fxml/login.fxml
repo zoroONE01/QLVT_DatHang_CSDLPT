@@ -15,13 +15,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<FlowPane fx:id="btLogin" alignment="CENTER" hgap="40.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="400.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="650.0" prefWidth="800.0" stylesheets="@../css/style.css" vgap="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.QLVT.controller.LoginController">
+<FlowPane fx:id="btLogin" alignment="CENTER" hgap="40.0" minHeight="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="650.0" prefWidth="800.0" stylesheets="@../css/style.css" vgap="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.QLVT.controller.LoginController">
    <children>
       <StackPane>
          <children>
             <VBox alignment="CENTER" fillWidth="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="330.0" prefWidth="300.0" spacing="10.0" style="-fx-background-color: #ffff;" styleClass="pn-login" stylesheets="@../css/style.css">
                <children>
-                  <Label prefHeight="37.0" prefWidth="89.0" styleClass="tilte" stylesheets="@../css/style.css" text="LOGIN" textFill="#7a52c1" VBox.vgrow="ALWAYS">
+                  <Label prefHeight="37.0" prefWidth="89.0" styleClass="tilte" stylesheets="@../css/style.css" text="LOGIN" textFill="#7852bf" VBox.vgrow="ALWAYS">
                      <font>
                         <Font name="Calibri" size="30.0" />
                      </font>
@@ -32,11 +32,13 @@
                   <ComboBox fx:id="cbbLocation" prefHeight="50.0" prefWidth="250.0" promptText="Locaiton" styleClass="tf-login" stylesheets="@../css/style.css" VBox.vgrow="ALWAYS">
                      <padding>
                         <Insets left="5.0" right="5.0" />
-                     </padding></ComboBox>
+                     </padding>
+                  </ComboBox>
                   <TextField fx:id="tfUsername" prefHeight="50.0" prefWidth="250.0" promptText="Username" styleClass="tf-login" stylesheets="@../css/style.css" VBox.vgrow="ALWAYS">
                      <padding>
                         <Insets left="12.0" right="12.0" />
-                     </padding></TextField>
+                     </padding>
+                  </TextField>
                   <PasswordField fx:id="tfPassword" prefHeight="50.0" prefWidth="250.0" promptText="Password" styleClass="tf-login" stylesheets="@../css/style.css" VBox.vgrow="ALWAYS">
                      <opaqueInsets>
                         <Insets />

@@ -1,0 +1,15 @@
+.pn-main{
+    /*    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );*/
+}
+
+
+.btn-slidebar{
+    -fx-background-color:#fff;
+    -fx-background-radius: 5px;
+    -fx-font-weight: 700;
+}
+
+.btn-slidebar:hover{
+    -fx-background-color: #7A52C1;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+}
