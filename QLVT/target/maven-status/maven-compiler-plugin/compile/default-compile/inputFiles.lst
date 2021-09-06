@@ -1,12 +1,22 @@
-D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Entity\NhanVien.java
-D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\controller\DemoFXMlController.java
-D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\service\NumberService.java
-D:\Workspace\java-application\QLVT\QLVT\src\main\java\FXMLController.java
-D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\controller\NhanVienViewController.java
-D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Entity\NhanVienTest.java
-D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\controller\LoginController.java
-D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\dao\NumberDao.java
-D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Entity\ChiNhanh.java
-D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\App.java
-D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\model\NhanVienTableModel.java
-D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\model\NumberModel.java
+E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\App.java
+E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\model\NumberModel.java
+E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\controller\LoginController.java
+E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\dao\PhanManhDAO.java
+E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\service\NumberService.java
+E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\Entity\NhanVien.java
+E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\Entity\PhanManh.java
+E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\dao\GenericDAO.java
+E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\dao\LoginDAO.java
+E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\Entity\Login.java
+E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\Entity\ChiNhanh.java
+E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\Entity\NhanVienTest.java
+E:\du an git\QLVT\src\main\java\FXMLController.java
+E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\controller\DemoFXMlController.java
+E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\controller\NhanVienViewController.java
+E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\dao\AbstractDAO.java
+E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\dao\NumberDao.java
+E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\Mapper\RowMapper.java
+E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\model\NhanVienTableModel.java
+E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\Mapper\LoginMapper.java
+E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\Mapper\PhanManhMapper.java
+E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\Utils\DBConnectUtil.java

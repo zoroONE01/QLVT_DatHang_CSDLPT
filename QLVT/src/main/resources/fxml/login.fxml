@@ -2,7 +2,6 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -21,7 +20,7 @@
          <children>
             <VBox alignment="CENTER" fillWidth="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="330.0" prefWidth="300.0" spacing="10.0" style="-fx-background-color: #ffff;" styleClass="pn-login" stylesheets="@../css/style.css">
                <children>
-                  <Label prefHeight="37.0" prefWidth="89.0" styleClass="tilte" stylesheets="@../css/style.css" text="LOGIN" textFill="#7a52c1" VBox.vgrow="ALWAYS">
+                  <Label prefHeight="47.0" prefWidth="124.0" styleClass="tilte" stylesheets="@../css/style.css" text="LOGIN" textFill="#7a52c1" VBox.vgrow="ALWAYS">
                      <font>
                         <Font name="Calibri" size="30.0" />
                      </font>
@@ -29,7 +28,7 @@
                         <Insets bottom="15.0" top="30.0" />
                      </VBox.margin>
                   </Label>
-                  <ComboBox fx:id="cbbLocation" prefHeight="50.0" prefWidth="250.0" promptText="Locaiton" styleClass="tf-login" stylesheets="@../css/style.css" VBox.vgrow="ALWAYS">
+                  <ComboBox fx:id="cbbLocation" prefHeight="50.0" prefWidth="250.0" styleClass="tf-login" stylesheets="@../css/style.css" VBox.vgrow="ALWAYS">
                      <padding>
                         <Insets left="5.0" right="5.0" />
                      </padding></ComboBox>
@@ -45,10 +44,10 @@
                         <Insets left="12.0" right="12.0" />
                      </padding>
                   </PasswordField>
-                  <JFXButton alignment="CENTER" prefHeight="50.0" prefWidth="250.0" styleClass="btn-login" stylesheets="@../css/style.css" text="LOGIN" textFill="WHITE">
-                     <cursor>
+                  <JFXButton fx:id="btnLogin" alignment="CENTER" onAction="#loginAction" prefHeight="50.0" prefWidth="250.0" styleClass="btn-login" stylesheets="@../css/style.css" text="LOGIN" textFill="WHITE">
+<!--                     <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor>
+                     </cursor>-->
                      <VBox.margin>
                         <Insets bottom="30.0" top="10.0" />
                      </VBox.margin>
