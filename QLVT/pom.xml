@@ -40,9 +40,7 @@
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.4</version>
-                <configuration>
-                    <mainClass>com.mycompany.mavenproject2.App</mainClass>
-                </configuration>
+               
                 <executions>
                     <execution>
                         <!-- Default configuration for running -->
