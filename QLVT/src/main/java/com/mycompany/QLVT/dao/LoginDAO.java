@@ -19,7 +19,9 @@ public class LoginDAO extends AbstractDAO<Login>{
     public Login findOne(String tenLogin)
             {   
                 List<Login> list=new ArrayList<>();
+                
                 list= queryProcedure("{call SP_DANGNHAP(?)}",new LoginMapper(), tenLogin);
+               
                 return list.isEmpty() ? null:list.get(0);
             }
 }

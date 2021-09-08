@@ -20,5 +20,6 @@ public interface GenericDAO<T> {
     void update(String sql, Object... parameters);
 
     int insert(String sql, Object... parameters);
-
+    
+    
 }

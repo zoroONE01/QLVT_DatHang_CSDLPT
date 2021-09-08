@@ -47,7 +47,7 @@
                      </padding>
                   </PasswordField>
                   <JFXButton fx:id="btnLogin" alignment="CENTER" onAction="#loginAction" prefHeight="50.0" prefWidth="250.0" styleClass="btn-login" stylesheets="@../css/style.css" text="LOGIN" textFill="WHITE">
-<!--                     <cursor>
+<!--                  <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>-->
                      <VBox.margin>

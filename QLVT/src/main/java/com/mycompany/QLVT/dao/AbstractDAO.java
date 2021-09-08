@@ -135,7 +135,8 @@ public class AbstractDAO<T> implements GenericDAO<T> {
                     statement.setDate(index, (java.sql.Date) parameter);
                 } else if (parameter instanceof Double) {
                     statement.setDouble(index, (Double) parameter);
-                } else {
+                } else 
+                {
                     statement.setNull(index, Types.NULL);
                 }
                 // đừng để dữ liệu null ==>xử lí đầu vào trước khi truy vấn                           

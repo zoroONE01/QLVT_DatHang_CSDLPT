@@ -16,6 +16,8 @@ import java.util.List;
  * @author MinhTo
  */
 public class NhanVienService {
+    
+    
      private NhanVienDao nhanVienDao;
        
     
@@ -23,7 +25,8 @@ public class NhanVienService {
         nhanVienDao=new NhanVienDao();
     }
       public List<NhanVien> findAll()
-            {
+            {   
+                
                 return nhanVienDao.findAll();
             }
     public NhanVien findOne(NhanVien nv)
@@ -39,7 +42,7 @@ public class NhanVienService {
             {
                 return nhanVienDao.delete(nv);
             }
-           public int update(NhanVien nv)
+      public int update(NhanVien nv)
             {
                 return nhanVienDao.save(nv);
             }

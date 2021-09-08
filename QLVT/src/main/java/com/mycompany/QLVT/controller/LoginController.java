@@ -78,7 +78,10 @@ public class LoginController {
         //show danh sach chi nhanh
 
         DBConnectUtil.chiNhanhSelected = "";
+        
+        
         PhanManhDAO phanManhDAO = new PhanManhDAO();
+        
         List<PhanManh> listPhanManh = new ArrayList<>();
 
         listPhanManh = phanManhDAO.findAll();
