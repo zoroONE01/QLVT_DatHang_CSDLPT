@@ -32,5 +32,7 @@ public abstract class ActionListenerCommand {
         return type;
     }
 
-    public abstract void execute();
+
+    public abstract boolean execute();
+
 }

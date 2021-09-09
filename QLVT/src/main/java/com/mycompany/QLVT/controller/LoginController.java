@@ -8,6 +8,32 @@ package com.mycompany.QLVT.controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
+import com.mycompany.QLVT.Entity.Login;
+import com.mycompany.QLVT.Entity.PhanManh;
+import com.mycompany.QLVT.Utils.DBConnectUtil;
+import com.mycompany.QLVT.dao.LoginDAO;
+import com.mycompany.QLVT.dao.PhanManhDAO;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
 import com.mycompany.QLVT.App;
 import com.mycompany.QLVT.Entity.Login;
 import com.mycompany.QLVT.Entity.PhanManh;
@@ -15,12 +41,7 @@ import com.mycompany.QLVT.Utils.DBConnectUtil;
 import com.mycompany.QLVT.dao.AbstractDAO;
 import com.mycompany.QLVT.dao.LoginDAO;
 import com.mycompany.QLVT.dao.PhanManhDAO;
-import com.sun.scenario.effect.impl.Renderer;
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import javafx.application.Platform;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -80,6 +101,7 @@ public class LoginController {
             DBConnectUtil.getConnection();
             LoginDAO loginDAO = new LoginDAO();
             Login login = loginDAO.findOne(userName);
+
 //            System.out.println(login);
             if (login != null) {
                 MainController mainController = new MainController();
@@ -116,6 +138,7 @@ public class LoginController {
 //            Alert alert = new Alert(AlertType.ERROR);
 //            alert.setContentText("Username hoặc password không hợp lệ");
 //            alert.show();
+
         }
 
     }
@@ -124,7 +147,10 @@ public class LoginController {
     void initialize() {
         //show danh sach chi nhanh
         DBConnectUtil.chiNhanhSelected = "";
+        
+        
         PhanManhDAO phanManhDAO = new PhanManhDAO();
+        
         List<PhanManh> listPhanManh = new ArrayList<>();
 
         listPhanManh = phanManhDAO.findAll();

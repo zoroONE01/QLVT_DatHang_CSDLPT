@@ -16,6 +16,8 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,7 +28,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -73,9 +77,38 @@ public class MainController {
 
     @FXML
     private StackPane pnWorkspace;
+    @FXML
+    private AnchorPane pnNhanVien;
+
+    @FXML
+    private VBox pnMenuBar;
+
+    @FXML
+    private JFXButton btAdd;
+
+    @FXML
+    private JFXButton btEdit;
+
+    @FXML
+    private JFXButton btDelete;
+
+    @FXML
+    private JFXButton btSave;
+
+    @FXML
+    private JFXButton btUndo;
+
+    @FXML
+    private JFXButton btReload;
+
+    @FXML
+    private JFXButton btChangeLocation;
 
     public MainController() {
     }
+
+    @FXML
+    private AnchorPane pnMain;
 
     @FXML
     void showUserInfo(ActionEvent event) {
@@ -103,7 +136,7 @@ public class MainController {
                     LoginController loginController = new LoginController();
                     Parent root = null;
                     try {
-                        root = FXMLLoader.load(getClass().getResource("../../../../fxml/Login.fxml"));
+                        root = FXMLLoader.load(getClass().getResource("../../../../fxml/login.fxml"));
                     } catch (IOException ex) {
                         Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -118,6 +151,58 @@ public class MainController {
                 noti.show();
             }
         });
+    }
+
+    private void initButtonMenuBar() {
+
+        final ToggleGroup group = new ToggleGroup();
+        tgbtDashboard.setToggleGroup(group);
+        tgbtNhanVien.setToggleGroup(group);
+        tgbtDonDatHang.setToggleGroup(group);
+        tgbtVatTu.setToggleGroup(group);
+        tgbtKho.setToggleGroup(group);
+
+        tgbtKho.selectedProperty().addListener(((observable, oldValue, newValue) -> {
+            try {
+                initWorkspace("Kho");
+            } catch (IOException ex) {
+                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            lbTitle.setText("Kho");
+        }));
+        tgbtDashboard.selectedProperty().addListener(((observable, oldValue, newValue) -> {
+//            try {
+//                initWorkspace("Dashboard");
+//            } catch (IOException ex) {
+//                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+            lbTitle.setText("Dashboard");
+        }));
+        tgbtNhanVien.selectedProperty().addListener(((observable, oldValue, newValue) -> {
+//            try {
+//                initWorkspace("NhanVien");
+//            } catch (IOException ex) {
+//                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+            lbTitle.setText("Nhân Viên");
+        }));
+        tgbtDonDatHang.selectedProperty().addListener(((observable, oldValue, newValue) -> {
+//            try {
+//                initWorkspace("DonDatHang");
+//            } catch (IOException ex) {
+//                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+            lbTitle.setText("Đơn Đặt Hàng");
+        }));
+        tgbtVatTu.selectedProperty().addListener(((observable, oldValue, newValue) -> {
+//            try {
+//                initWorkspace("VatTu");
+//            } catch (IOException ex) {
+//                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+            lbTitle.setText("Vật Tư");
+        }));
+        tgbtDashboard.setSelected(true);
     }
 
     private void initClock() {
@@ -141,16 +226,20 @@ public class MainController {
         });
     }
 
-    private void initWorkspace() throws IOException {
-
-        AnchorPane newPane = FXMLLoader.load(getClass().getResource("../../../../fxml/Kho.fxml"));
+    private void initWorkspace(String fxml) throws IOException {
+        pnWorkspace.getChildren().clear();
+        StackPane newPane = FXMLLoader.load(getClass().getResource("../../../../fxml/" + fxml + ".fxml"));
         pnWorkspace.getChildren().add(newPane);
     }
 
     @FXML
+
     void initialize() throws IOException {
         btUserInfo.setText(DBConnectUtil.username);
         initClock();
-        initWorkspace();
+        initButtonMenuBar();
+//
+//            AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("../../../../fxml/NhanVienTableView.fxml"));
+//            pnWorkspace.getChildren().add(anchorPane);
     }
 }

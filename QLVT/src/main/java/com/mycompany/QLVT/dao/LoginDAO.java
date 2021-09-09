@@ -14,6 +14,7 @@ import java.util.List;
  *
  * @author MinhTo
  */
+
 public class LoginDAO extends AbstractDAO<Login> {
 
     public Login findOne(String tenLogin) {

@@ -66,11 +66,11 @@ public class DBConnectUtil {
         // If there is no connection in the container, get a connection from the connection pool to ThreadLocal
         if (conn == null || conn.isClosed()) {
             if (chiNhanhSelected.equals(chiNhanh1)) {
-//                try {
+                try {
                     conn = DriverManager.getConnection(url1, username, password);
-//                } catch (SQLException e) {
-//                    e.printStackTrace();
-//                }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             } else if (chiNhanhSelected.equals(chiNhanh2)) {
                 conn = DriverManager.getConnection(url2, username, password);
             } else if (chiNhanhSelected.equals(chiNhanh3)) {

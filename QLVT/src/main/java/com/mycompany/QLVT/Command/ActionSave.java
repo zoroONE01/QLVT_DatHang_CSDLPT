@@ -7,6 +7,7 @@ package com.mycompany.QLVT.Command;
 
 import com.mycompany.QLVT.Entity.NhanVien;
 import com.mycompany.QLVT.service.NhanVienService;
+import com.mycompany.QLVT.service.NhanVienServiceTest;
 
 /**
  *
@@ -24,12 +25,15 @@ public class ActionSave extends ActionListenerCommand{
      
      
     @Override
-    public void execute() {
+    public boolean execute() {
      //  NhanVien nv=nhanVienService.findOne(nhanVien);
-       if(nhanVienService.save(nhanVien)!=-1)
+        nhanVienService.save(nhanVien);
+        if(nhanVienService.findOne(nhanVien.getMaNhanVien())!=null)
             {
                 backup(nhanVien);
+                return true;
             }
+        return false;
     }
 
       

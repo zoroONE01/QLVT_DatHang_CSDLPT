@@ -16,14 +16,14 @@ public class NhanVien {
     private String ten;
     private String diaChi;
     private String ngaySinh;
-    private int luong;
+    private float luong;
     private String maCN;
-    private int trangThai;
+    private int trangThai=0;
 
     public NhanVien() {
     }
 
-    public NhanVien(int maNhanVien, String ho, String ten, String diaChi, String ngaySinh, int luong, String maCN, int trangThai) {
+    public NhanVien(int maNhanVien, String ho, String ten, String diaChi, String ngaySinh, float luong, String maCN) {
         this.maNhanVien = maNhanVien;
         this.ho = ho;
         this.ten = ten;
@@ -31,7 +31,7 @@ public class NhanVien {
         this.ngaySinh = ngaySinh;
         this.luong = luong;
         this.maCN = maCN;
-        this.trangThai = trangThai;
+        
     }
 
     public String getTen() {
@@ -75,11 +75,11 @@ public class NhanVien {
         this.ngaySinh = ngaySinh;
     }
 
-    public int getLuong() {
+    public float getLuong() {
         return luong;
     }
 
-    public void setLuong(int luong) {
+    public void setLuong(float luong) {
         this.luong = luong;
     }
 

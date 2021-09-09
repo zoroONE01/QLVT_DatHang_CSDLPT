@@ -5,29 +5,46 @@
  */
 package com.mycompany.QLVT.controller;
 
+import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableView;
 
 /**
  * FXML Controller class
  *
- * @author MinhTo
+ * @author zoroONE01
  */
-public class NhanVienViewController implements Initializable {
+public class KhoDetailController implements Initializable {
 
     /**
      * Initializes the controller class.
      */
-    
     @FXML
-    private TableView<?> NhanVienView;
+    private JFXTextField tfMaKho;
+
+    @FXML
+    private JFXTextField tfDiaChi;
+
+    @FXML
+    private JFXTextField tfTenKho;
+
+    @FXML
+    private JFXTextField tfChiNhanh;
+
+    private String maKho;
+
+    public KhoDetailController(String maKho) {
+        this.maKho = maKho;
+    }
+
+    public KhoDetailController() {
+    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // hello
-    }    
-    
+        
+    }
+
 }

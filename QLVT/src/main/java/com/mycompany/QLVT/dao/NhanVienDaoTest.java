@@ -14,17 +14,17 @@ import java.util.List;
  *
  * @author MinhTo
  */
-public class NhanVienDao {
+public class NhanVienDaoTest {
 
-    NhanVien nv = new NhanVien(0, "Minh0", "To", "DangVanLanh", "15-50-2000", 2000, "CN1", 1);
-    NhanVien nv1 = new NhanVien(1, "Minh1", "To", "DangVanLanh", "15-50-2000", 2000, "CN1", 1);
-    NhanVien nv2 = new NhanVien(2, "Minh2", "To", "DangVanLanh", "15-50-2000", 2000, "CN1", 1);
-    NhanVien nv3 = new NhanVien(3, "Minh3", "To", "DangVanLanh", "15-50-2000", 2000, "CN1", 1);
-    NhanVien nv4 = new NhanVien(4, "Minh4", "To", "DangVanLanh", "15-50-2000", 2000, "CN1", 1);
+    NhanVien nv = new NhanVien(0, "Minh0", "To", "DangVanLanh", "15-50-2000", 2000, "CN1");
+    NhanVien nv1 = new NhanVien(1, "Minh1", "To", "DangVanLanh", "15-50-2000", 2000, "CN1");
+    NhanVien nv2 = new NhanVien(2, "Minh2", "To", "DangVanLanh", "15-50-2000", 2000, "CN1");
+    NhanVien nv3 = new NhanVien(3, "Minh3", "To", "DangVanLanh", "15-50-2000", 2000, "CN1");
+    NhanVien nv4 = new NhanVien(4, "Minh4", "To", "DangVanLanh", "15-50-2000", 2000, "CN1");
     ArrayList<NhanVien> nhanVienList;
     HashMap<Integer, NhanVien> mapNhanVien;
 
-    public NhanVienDao() {
+    public NhanVienDaoTest() {
         nhanVienList = new ArrayList<>();
         mapNhanVien = new HashMap<>();
         nhanVienList.add(nv);
