@@ -50,7 +50,7 @@ public class DBConnectUtil {
     public static String chiNhanh2 = "Chi Nhánh 2";
     public static String chiNhanh3 = "Chi Nhánh 3";
 
-    public static String chiNhanhSelected="";
+    public static String chiNhanhSelected;
 
     static {
         try {

@@ -24,6 +24,7 @@ public class LoginMapper implements RowMapper<Login> {
             login.setTenNhanVien(rs.getString("hoten"));
             login.setGroup(rs.getString("tennhom"));
             login.setUsernameDB(String.valueOf(rs.getInt("manv")));
+            System.out.println(login.getUsernameDB());
             return login;
         } catch (SQLException ex) {
             Logger.getLogger(LoginMapper.class.getName()).log(Level.SEVERE, null, ex);

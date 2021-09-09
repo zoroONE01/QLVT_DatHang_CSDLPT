@@ -177,7 +177,7 @@ public class NhanVienController {
                 NhanVien nhanVien = event.getRowValue();
                 System.out.println(event.getTablePosition().getColumn());
                  System.out.println(event.getTablePosition().getRow());
-                 event.getTableColumn()
+                // event.getTableColumn()
                 nhanVien.setTen(event.getNewValue());
             }
         });
@@ -336,7 +336,7 @@ public class NhanVienController {
     }
 
     @FXML
-    void themAction(ActionEvent event) {
+    void addAction(ActionEvent event) {
         NhanVien nvien = new NhanVien(15, "Minh", "Tiến", "DangVanLanh", "2000-5-15", 2000, "CN1");
 
         boolean rs = executeCommand(new ActionSave(nhanVienService, nvien, "add"));
@@ -352,12 +352,12 @@ public class NhanVienController {
     }
 
     @FXML
-    void luuAction(ActionEvent event) {
+    void saveAction(ActionEvent event) {
 
     }
 
     @FXML
-    void xoaAction(ActionEvent event) {
+    void deleteAction(ActionEvent event) {
 
         NhanVien nv = nhanVienTableModel.getCurrentNhanVien();
         boolean rs = executeCommand(new ActionDelete(nhanVienService, nv, "delete"));

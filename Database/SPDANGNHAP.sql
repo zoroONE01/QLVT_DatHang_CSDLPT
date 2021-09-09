@@ -9,7 +9,7 @@ SELECT DN.sid, DN.loginname,U.name FROM master.sys.syslogins DN,sys.sysusers U w
 USE QLVT
 go
 --LẤY RA MÃ NHÂN VIÊN(SYS.SYSUSERS), HỌ TÊN(BẢNG NHÂN VIÊN), TÊN NHÓM(NHÓM QUYỀN)  sys.sysusers
-alter procedure SP_DANGNHAP  @TENLOGIN NVARCHAR(50), @MANV int output, @HOTEN nvarchar(50) output, @TENNHOM varchar(20) output
+create procedure SP_DANGNHAP  @TENLOGIN NVARCHAR(50), @MANV int output, @HOTEN nvarchar(50) output, @TENNHOM varchar(20) output
 as 
 DECLARE @TENUSER nvarchar(10) --MUỐN BIẾT TÊN USER THÌ DỰA VÀO LOGIN, BIẾT TÊN NHOMS DỰA VÀO GROUPID, muốn biết group id dựa vào MEMBERUID trong bảng sysmember
 select @TENUSER=NAME FROM sys.sysusers where sid=SUSER_SID(@TENLOGIN) --lấy ra SID của login name

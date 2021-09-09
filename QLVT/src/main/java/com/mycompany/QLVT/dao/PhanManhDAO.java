@@ -14,12 +14,10 @@ import java.util.List;
  *
  * @author MinhTo
  */
-public class PhanManhDAO extends AbstractDAO<PhanManh>{
-    
-   public List<PhanManh> findAll()
-           {
-               return (List<PhanManh>) query("Select * from V_DS_PHANMANH",new PhanManhMapper());
-           }
-   
- 
+public class PhanManhDAO extends AbstractDAO<PhanManh> {
+
+    public List<PhanManh> findAll() {
+        return (List<PhanManh>) query("Select * from V_DS_PHANMANH", new PhanManhMapper());
+    }
+
 }

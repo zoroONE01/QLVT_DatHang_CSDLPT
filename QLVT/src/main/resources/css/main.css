@@ -10,6 +10,6 @@
 }
 
 .btn-slidebar:hover{
-    -fx-background-color: #7A52C1;
+    -fx-background-color:  linear-gradient(from 25% 25% to 100% 100%, #7819A5, #C767E6);
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
 }

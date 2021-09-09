@@ -14,14 +14,15 @@ import java.util.List;
  *
  * @author MinhTo
  */
-public class LoginDAO extends AbstractDAO<Login>{
-    
-    public Login findOne(String tenLogin)
-            {   
-                List<Login> list=new ArrayList<>();
-                
-                list= queryProcedure("{call SP_DANGNHAP(?)}",new LoginMapper(), tenLogin);
-               
-                return list.isEmpty() ? null:list.get(0);
-            }
+
+public class LoginDAO extends AbstractDAO<Login> {
+
+    public Login findOne(String tenLogin) {
+        List<Login> list = new ArrayList<>();
+        list = queryProcedure("{call SP_DANGNHAP(?)}", new LoginMapper(), tenLogin);
+//        for (Login login : list) {
+//            System.out.println(login.getUsernameDB());
+//        }
+        return list.isEmpty() ? null : list.get(0);
+    }
 }

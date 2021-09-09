@@ -6,16 +6,17 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.TilePane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="450.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
+<<<<<<< HEAD
       <AnchorPane layoutX="54.0" layoutY="7.0" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #7819A5, #C767E6); -fx-background-radius: 0 0 20 20; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label alignment="CENTER" layoutX="65.0" layoutY="14.0" text="Nhập Sinh Viên" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
@@ -38,8 +39,36 @@
          </children>
       </TilePane>
       <VBox fx:id="pnMenuBar" alignment="CENTER" fillWidth="false" layoutX="883.0" layoutY="17.0" prefWidth="50.0" spacing="10.0" style="-fx-background-color: #fff; -fx-background-radius: 10; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );;" AnchorPane.bottomAnchor="110.0" AnchorPane.rightAnchor="15.0">
+=======
+      <Label prefHeight="30.0" prefWidth="535.0" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #7819A5, #C767E6); -fx-background-radius: 20; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );" text="Nhân Viên" textFill="WHITE" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="10.0">
+         <font>
+            <Font name="Calibri Bold" size="20.0" />
+         </font>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </Label>
+      <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="15.0" layoutY="60.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="60.0">
+         <content>
+            <TilePane alignment="CENTER" hgap="30.0" style="-fx-background-color: #fff;" vgap="30.0">
+               <children>
+                  <JFXTextField fx:id="tfMaNV" focusColor="#c767e6" labelFloat="true" promptText="Mã Nhân Viên" />
+                  <JFXTextField fx:id="tfHoVaTenDem" focusColor="#c767e6" labelFloat="true" promptText="Họ Và Tên Đệm" />
+                  <JFXTextField fx:id="tfTen" focusColor="#c767e6" labelFloat="true" promptText="Tên" />
+                  <JFXDatePicker fx:id="dpkNgaySinh" defaultColor="#c767e6" promptText="Ngày Sinh" />
+                  <JFXTextField fx:id="tfLuong" focusColor="#c767e6" labelFloat="true" promptText="Lương" />
+                  <JFXTextField fx:id="tfDiaChi" focusColor="#c767e6" labelFloat="true" promptText="Địa Chỉ" />
+               </children>
+               <padding>
+                  <Insets bottom="20.0" top="20.0" />
+               </padding>
+            </TilePane>
+         </content>
+      </ScrollPane>
+      <HBox alignment="CENTER" layoutX="349.0" layoutY="10.0" prefHeight="40.0" spacing="10.0" style="-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 ); -fx-background-color: #fff; -fx-background-radius: 30;" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="5.0">
+>>>>>>> f20b8131c3ed2fb8f2e7582040190adea3a4fd95
          <children>
-            <JFXButton fx:id="btAccept" layoutX="16.0" layoutY="20.0" prefHeight="30.0" prefWidth="30.0" text=" ">
+            <JFXButton fx:id="btAccept" prefHeight="30.0" prefWidth="30.0" text=" ">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -54,7 +83,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXButton fx:id="btEdit" layoutX="16.0" layoutY="140.0" prefHeight="30.0" prefWidth="30.0" text=" ">
+            <JFXButton fx:id="btEdit" prefHeight="30.0" prefWidth="30.0" text=" ">
                <graphic>
                   <ImageView fx:id="btCancel" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -71,8 +100,8 @@
             </JFXButton>
          </children>
          <padding>
-            <Insets bottom="10.0" top="10.0" />
+            <Insets left="10.0" right="10.0" />
          </padding>
-      </VBox>
+      </HBox>
    </children>
 </AnchorPane>

@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import javafx.stage.StageStyle;
 
 /**
  * JavaFX App
@@ -15,13 +14,18 @@ import javafx.stage.StageStyle;
 public class App extends Application {
 
     private static Scene scene;
-
+    
+    
     @Override
     public void start(Stage stage) throws IOException {
 
-//      scene = new Scene(loadFXML("login"));
+
+      //scene = new Scene(loadFXML("login"));
+
         stage.setMinWidth(400);
-        stage.setMinHeight(650);
+        stage.setMinHeight(450);
+        stage.setMaxHeight(450);
+        stage.setMaxWidth(750);
         scene = new Scene(loadFXML("login"));
         stage.setScene(scene);
         stage.show();
