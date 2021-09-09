@@ -11,19 +11,22 @@ package com.mycompany.QLVT.Entity;
  */
 public class NhanVien {
     private int maNhanVien;
+   
     private String ho;
+    private String ten;
     private String diaChi;
     private String ngaySinh;
     private int luong;
     private String maCN;
-    private String trangThai;
+    private int trangThai;
 
     public NhanVien() {
     }
 
-    public NhanVien(int maNhanVien, String ho, String diaChi, String ngaySinh, int luong, String maCN, String trangThai) {
+    public NhanVien(int maNhanVien, String ho, String ten, String diaChi, String ngaySinh, int luong, String maCN, int trangThai) {
         this.maNhanVien = maNhanVien;
         this.ho = ho;
+        this.ten = ten;
         this.diaChi = diaChi;
         this.ngaySinh = ngaySinh;
         this.luong = luong;
@@ -31,6 +34,15 @@ public class NhanVien {
         this.trangThai = trangThai;
     }
 
+    public String getTen() {
+        return ten;
+    }
+
+    public void setTen(String ten) {
+        this.ten = ten;
+    }
+
+ 
     public int getMaNhanVien() {
         return maNhanVien;
     }
@@ -79,11 +91,11 @@ public class NhanVien {
         this.maCN = maCN;
     }
 
-    public String getTrangThai() {
+    public int getTrangThai() {
         return trangThai;
     }
 
-    public void setTrangThai(String trangThai) {
+    public void setTrangThai(int trangThai) {
         this.trangThai = trangThai;
     }
     

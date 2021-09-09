@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import javafx.stage.StageStyle;
 
 /**
  * JavaFX App
@@ -15,22 +14,29 @@ import javafx.stage.StageStyle;
 public class App extends Application {
 
     private static Scene scene;
-
+    
+    
     @Override
     public void start(Stage stage) throws IOException {
+
+//        scene = new Scene(loadFXML("login"));
         stage.setMinWidth(400);
-        stage.setMinHeight(650);
-        scene = new Scene(loadFXML("main"));
+        stage.setMinHeight(450);
+        stage.setMaxHeight(450);
+        stage.setMaxWidth(750);
+        scene = new Scene(loadFXML("Login"));
         stage.setScene(scene);
         stage.show();
         
     }
 
-    static void setRoot(String fxml) throws IOException {
+    public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
+//        System.out.println("../../../fxml/" + fxml + ".fxml");
+//          System.out.println("../../fxml/" + fxml + ".fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("../../../fxml/" + fxml + ".fxml"));
         return fxmlLoader.load();//return Root node(Parent node)
     }
