@@ -33,6 +33,8 @@
             <JFXDatePicker fx:id="dpkNgaySinh" defaultColor="#c767e6" promptText="Ngày Sinh" />
             <JFXTextField fx:id="tfLuong" focusColor="#c767e6" labelFloat="true" promptText="Lương" />
             <JFXTextField fx:id="tfDiaChi" focusColor="#c767e6" labelFloat="true" promptText="Địa Chỉ" />
+             <JFXTextField fx:id="tfMaCN" focusColor="#c767e6" labelFloat="true" promptText="Mã CN" />
+            <JFXTextField fx:id="tfTrangThai" focusColor="#c767e6" labelFloat="true" promptText="Trạng Thái" />
          </children>
       </TilePane>
       <VBox fx:id="pnMenuBar" alignment="CENTER" fillWidth="false" layoutX="883.0" layoutY="17.0" prefWidth="50.0" spacing="10.0" style="-fx-background-color: #fff; -fx-background-radius: 10; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );;" AnchorPane.bottomAnchor="110.0" AnchorPane.rightAnchor="15.0">

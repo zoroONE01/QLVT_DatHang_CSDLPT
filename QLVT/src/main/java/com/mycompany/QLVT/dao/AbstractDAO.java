@@ -125,7 +125,10 @@ public class AbstractDAO<T> implements GenericDAO<T> {
                     statement.setString(index, (String) parameter);
                 } else if (parameter instanceof Integer) {
                     statement.setInt(index, (Integer) parameter);
-                } else if (parameter instanceof Long) {
+                } else if (parameter instanceof Float) {
+                    statement.setFloat(index, (Float) parameter);
+                } 
+                else if (parameter instanceof Long) {
                     statement.setLong(index, (Long) parameter);
                     
                 } else if (parameter instanceof Timestamp) {
@@ -149,11 +152,11 @@ public class AbstractDAO<T> implements GenericDAO<T> {
     @Override
     public void update(String sql, Object... parameters) {
         Connection connection = null;
-        PreparedStatement statement = null;
+        CallableStatement statement = null;
         try {
             connection = getConnection();
             connection.setAutoCommit(false);
-            statement = connection.prepareStatement(sql);
+            statement = connection.prepareCall(sql);
             setParameter(statement, parameters);
             statement.executeUpdate();
             connection.commit();
@@ -181,7 +184,7 @@ public class AbstractDAO<T> implements GenericDAO<T> {
     }
 
     @Override
-    public int insert(String sql, Object... parameters) {
+    public boolean insert(String sql, Object... parameters) {
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -200,7 +203,7 @@ public class AbstractDAO<T> implements GenericDAO<T> {
                 id = resultSet.getInt(1);
             }
             connection.commit();
-            return id;
+            return true;
         } catch (SQLException e) {
             if (connection != null) {
                 try {
@@ -224,7 +227,7 @@ public class AbstractDAO<T> implements GenericDAO<T> {
                 e2.printStackTrace();
             }
         }
-        return -1;
+        return false;
     }
 
  

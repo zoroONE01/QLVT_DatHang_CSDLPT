@@ -12,23 +12,25 @@ import com.mycompany.QLVT.Entity.NhanVien;
  * @author MinhTo
  */
 public abstract class ActionListenerCommand {
+
     NhanVien backupNhanVien;
-   private String type;
+    private String type;
 
     public ActionListenerCommand(String type) {
         this.type = type;
     }
-    
-    public void backup(NhanVien nv)
-            {
-                this.backupNhanVien=nv;
-            }
-    public NhanVien undo()
-            {
-                return this.backupNhanVien;
-            }
-    public String getType(){
-    return type;
+
+    public void backup(NhanVien nv) {
+        this.backupNhanVien = nv;
     }
-    public abstract void execute();
+
+    public NhanVien undo() {
+        return this.backupNhanVien;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public abstract boolean execute();
 }

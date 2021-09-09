@@ -6,44 +6,37 @@
 package com.mycompany.QLVT.service;
 
 import com.mycompany.QLVT.Entity.NhanVien;
-import com.mycompany.QLVT.dao.NhanVienDao;
-import java.util.ArrayList;
-import java.util.Arrays;
+import com.mycompany.QLVT.dao.NhanVienDAO;
 import java.util.List;
 
 /**
  *
  * @author MinhTo
  */
-public class NhanVienService {
+public class NhanVienService{
+    NhanVienDAO nhanVienDAO=new NhanVienDAO();
     
-    
-     private NhanVienDao nhanVienDao;
-       
-    
-     public NhanVienService() {
-        nhanVienDao=new NhanVienDao();
-    }
-      public List<NhanVien> findAll()
-            {   
-                
-                return nhanVienDao.findAll();
-            }
-    public NhanVien findOne(NhanVien nv)
-            {       
-                return nhanVienDao.find(nv);
-            }
-      public int save(NhanVien nv)
-            {
-                NhanVien nvNew=new NhanVien(nv.getMaNhanVien(), nv.getHo(), nv.getTen(), nv.getDiaChi(), nv.getNgaySinh(), nv.getLuong(), nv.getMaCN(), nv.getTrangThai());
-                return nhanVienDao.save(nvNew);
-            }
-      public boolean delete(NhanVien nv)
-            {
-                return nhanVienDao.delete(nv);
-            }
-      public int update(NhanVien nv)
-            {
-                return nhanVienDao.save(nv);
-            }
+   public List<NhanVien> findAll()
+           {
+               return nhanVienDAO.findAll();
+           }
+   
+     public NhanVien findOne(int id)
+           {
+               return nhanVienDAO.findOne(id);
+           }
+     
+       public void delete(int id)
+           {
+               nhanVienDAO.delete(id);
+           }
+          
+       public void save(NhanVien nv)
+           {
+               nhanVienDAO.save(nv);
+           }
+       public void update(NhanVien nv)
+           {
+               nhanVienDAO.update(nv);
+           }
 }

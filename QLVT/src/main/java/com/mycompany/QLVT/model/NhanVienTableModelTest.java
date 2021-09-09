@@ -16,12 +16,12 @@ import javafx.collections.ObservableList;
  *
  * @author MinhTo
  */
-public class NhanVienTableModel {
+public class NhanVienTableModelTest {
     private final ObservableList<NhanVien> nhanVienList=FXCollections.observableArrayList();
     
     private final ObjectProperty<NhanVien> currentNhanVien=new SimpleObjectProperty<>(null);
     
-    public NhanVienTableModel() {
+    public NhanVienTableModelTest() {
     }
     
     public void setNhanVienList(List<NhanVien> list) {
@@ -46,4 +46,5 @@ public class NhanVienTableModel {
     {
         currentNhanVien.get();
     }
+    
 }

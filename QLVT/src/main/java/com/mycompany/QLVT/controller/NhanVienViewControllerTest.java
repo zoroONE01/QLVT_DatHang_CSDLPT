@@ -10,8 +10,8 @@ import com.mycompany.QLVT.Command.ActionHistory;
 import com.mycompany.QLVT.Command.ActionListenerCommand;
 import com.mycompany.QLVT.Command.ActionSave;
 import com.mycompany.QLVT.Entity.NhanVien;
-import com.mycompany.QLVT.model.NhanVienTableModel;
-import com.mycompany.QLVT.service.NhanVienService;
+import com.mycompany.QLVT.model.NhanVienTableModelTest;
+import com.mycompany.QLVT.service.NhanVienServiceTest;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +39,7 @@ import javafx.util.converter.IntegerStringConverter;
  *
  * @author MinhTo
  */
-public class NhanVienViewController implements Initializable {
+public class NhanVienViewControllerTest implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -82,15 +82,15 @@ public class NhanVienViewController implements Initializable {
     @FXML
     private Button xoaBTN;
 
-    private NhanVienTableModel nhanVienTableModel;
+    private NhanVienTableModelTest nhanVienTableModel;
 
     private ActionHistory history = new ActionHistory();
 
-    private NhanVienService nhanVienService = new NhanVienService();
+    private NhanVienServiceTest nhanVienService = new NhanVienServiceTest();
     static int index = 1;
     private NhanVien nhanVienBeforeSave = new NhanVien();
 
-    public void initModel(NhanVienTableModel nhanVienTableModel) {// ensure model is only set once:
+    public void initModel(NhanVienTableModelTest nhanVienTableModel) {// ensure model is only set once:
         if (this.nhanVienTableModel != null) {
             throw new IllegalStateException("Model can only be initialized once");
         }
@@ -229,7 +229,7 @@ public class NhanVienViewController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // hello
         System.out.println("Ban");
-        NhanVienTableModel model = new NhanVienTableModel();
+        NhanVienTableModelTest model = new NhanVienTableModelTest();
         List<NhanVien> list = new ArrayList<>();
         list = nhanVienService.findAll();
         model.setNhanVienList(list);
@@ -254,93 +254,93 @@ public class NhanVienViewController implements Initializable {
         });
     }
 
-    @FXML
-    void hoanTacAction(ActionEvent event) {
-
-        undo();
-        System.out.println(nhanVienService.findAll().size());
-        nhanVienTable.getItems().clear();
-        nhanVienTableModel.setNhanVienList(nhanVienService.findAll());
-
-        nhanVienTable.refresh();
-
-    }
-
-    @FXML
-    void luuAction(ActionEvent event) {
-        NhanVien nv = nhanVienTableModel.getCurrentNhanVien();
-        NhanVien nvNew = new NhanVien(nv.getMaNhanVien(), nv.getHo(), nv.getTen(), nv.getDiaChi(), nv.getNgaySinh(), nv.getLuong(), nv.getMaCN(), nv.getTrangThai());
-        System.out.println(nvNew.getHo() + " " + nvNew.getTen());
-        executeCommand(new ActionSave(nhanVienService, nhanVienBeforeSave, "save"));
-        System.out.println(nhanVienService.findAll().size());
-
-        nhanVienTable.getItems().clear();
-
-        nhanVienTableModel.setNhanVienList(nhanVienService.findAll());
-        nhanVienTable.refresh();
-
-    }
-
-    @FXML
-    void themAction(ActionEvent event) {
-        NhanVien nvien = new NhanVien(index++, "Minh0", "To", "DangVanLanh", "15-50-2000", 2000, "CN1", 1);
-
-        executeCommand(new ActionSave(nhanVienService, nvien, "add"));
-        System.out.println(nhanVienService.findAll().size());
-
-        nhanVienTable.getItems().clear();
-        nhanVienTableModel.setNhanVienList(nhanVienService.findAll());
-        nhanVienTable.refresh();
-        // System.out.println(nhanVien.getHo()+" "+nhanVien.getMaNhanVien()+"  "+nhanVien.getTen());
-    }
-
-    @FXML
-    void xoaAction(ActionEvent event) {
-
-        NhanVien nv = nhanVienTableModel.getCurrentNhanVien();
-        executeCommand(new ActionDelete(nhanVienService, nv, "delete"));
-        System.out.println(nhanVienService.findAll().size());
-
-        nhanVienTable.getItems().clear();
-
-        nhanVienTableModel.setNhanVienList(nhanVienService.findAll());
-        nhanVienTable.refresh();
-    }
-
-    private void executeCommand(ActionListenerCommand command) {
-        command.execute();
-        history.push(command);
-
-    }
-
-    private int undo() {
-
-        if (history.getHistory().isEmpty()) {
-            return -1;
-        }
-
-        ActionListenerCommand command = history.pop();
-
-        if (command != null && command.getType().equals("save")) {
-            NhanVien nv = command.undo();
-            if (nv != null) {
-                nhanVienService.save(nv);
-                return 0;
-            }
-        } else if (command != null && command.getType().equals("delete")) {
-            NhanVien nv = command.undo();
-            if (nv != null) {
-                nhanVienService.save(nv);
-                return 0;
-            }
-        } else if (command != null && command.getType().equals("add")) {
-            NhanVien nv = command.undo();
-            if (nv != null) {
-                nhanVienService.delete(nv);
-                return 0;
-            }
-        }
-        return 1;
-    }
+//    @FXML
+//    void hoanTacAction(ActionEvent event) {
+//
+//        undo();
+//        System.out.println(nhanVienService.findAll().size());
+//        nhanVienTable.getItems().clear();
+//        nhanVienTableModel.setNhanVienList(nhanVienService.findAll());
+//
+//        nhanVienTable.refresh();
+//
+//    }
+//
+//    @FXML
+//    void luuAction(ActionEvent event) {
+//        NhanVien nv = nhanVienTableModel.getCurrentNhanVien();
+//        NhanVien nvNew = new NhanVien(nv.getMaNhanVien(), nv.getHo(), nv.getTen(), nv.getDiaChi(), nv.getNgaySinh(), nv.getLuong(), nv.getMaCN());
+//        System.out.println(nvNew.getHo() + " " + nvNew.getTen());
+//        executeCommand(new ActionSave(nhanVienService, nhanVienBeforeSave, "save"));
+//        System.out.println(nhanVienService.findAll().size());
+//
+//        nhanVienTable.getItems().clear();
+//
+//        nhanVienTableModel.setNhanVienList(nhanVienService.findAll());
+//        nhanVienTable.refresh();
+//
+//    }
+//
+//    @FXML
+//    void themAction(ActionEvent event) {
+//        NhanVien nvien = new NhanVien(index++, "Minh0", "To", "DangVanLanh", "15-50-2000", 2000, "CN1");
+//
+//        executeCommand(new ActionSave(nhanVienService, nvien, "add"));
+//        System.out.println(nhanVienService.findAll().size());
+//
+//        nhanVienTable.getItems().clear();
+//        nhanVienTableModel.setNhanVienList(nhanVienService.findAll());
+//        nhanVienTable.refresh();
+//        // System.out.println(nhanVien.getHo()+" "+nhanVien.getMaNhanVien()+"  "+nhanVien.getTen());
+//    }
+//
+//    @FXML
+//    void xoaAction(ActionEvent event) {
+//
+//        NhanVien nv = nhanVienTableModel.getCurrentNhanVien();
+//        executeCommand(new ActionDelete(nhanVienService, nv, "delete"));
+//        System.out.println(nhanVienService.findAll().size());
+//
+//        nhanVienTable.getItems().clear();
+//
+//        nhanVienTableModel.setNhanVienList(nhanVienService.findAll());
+//        nhanVienTable.refresh();
+//    }
+//
+//    private void executeCommand(ActionListenerCommand command) {
+//        command.execute();
+//        history.push(command);
+//
+//    }
+//
+//    private int undo() {
+//
+//        if (history.getHistory().isEmpty()) {
+//            return -1;
+//        }
+//
+//        ActionListenerCommand command = history.pop();
+//
+//        if (command != null && command.getType().equals("save")) {
+//            NhanVien nv = command.undo();
+//            if (nv != null) {
+//                nhanVienService.save(nv);
+//                return 0;
+//            }
+//        } else if (command != null && command.getType().equals("delete")) {
+//            NhanVien nv = command.undo();
+//            if (nv != null) {
+//                nhanVienService.save(nv);
+//                return 0;
+//            }
+//        } else if (command != null && command.getType().equals("add")) {
+//            NhanVien nv = command.undo();
+//            if (nv != null) {
+//                nhanVienService.delete(nv);
+//                return 0;
+//            }
+//        }
+//        return 1;
+//    }
 
 }

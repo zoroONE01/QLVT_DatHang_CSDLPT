@@ -6,15 +6,19 @@
 package com.mycompany.QLVT.controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.mycompany.QLVT.App;
 import com.mycompany.QLVT.Entity.Login;
 import com.mycompany.QLVT.Entity.PhanManh;
 import com.mycompany.QLVT.Utils.DBConnectUtil;
 import com.mycompany.QLVT.dao.AbstractDAO;
 import com.mycompany.QLVT.dao.LoginDAO;
 import com.mycompany.QLVT.dao.PhanManhDAO;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -63,11 +67,14 @@ public class LoginController {
             Login login = loginDAO.findOne(userName);
            Alert alert = new Alert(AlertType.INFORMATION);
            alert.setContentText("Tên: " + login.getTenNhanVien() + "/n Nhóm: " + login.getGroup() + "Mã nhân viên: " + login.getUsernameDB());
-          alert.show();
+           App.setRoot("main");
+           alert.show();
         } catch (SQLException e) {
               Alert alert = new Alert(AlertType.INFORMATION);
             alert.setContentText("Username hoặc password không hợp lệ");
              alert.show();
+        } catch (IOException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
        
 

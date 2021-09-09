@@ -7,17 +7,17 @@ package com.mycompany.QLVT.Command;
 
 import com.mycompany.QLVT.Entity.NhanVien;
 import com.mycompany.QLVT.service.NhanVienService;
-import com.mycompany.QLVT.service.NhanVienServiceTest;
+import java.awt.event.ActionListener;
 
 /**
  *
  * @author MinhTo
  */
-public class ActionDelete extends ActionListenerCommand{
+public class ActionEdit extends ActionListenerCommand{
     NhanVienService nhanVienService;
     NhanVien nhanVien;
 
-    public ActionDelete(NhanVienService nhanVienService, NhanVien nhanVien, String type) {
+    public ActionEdit(NhanVienService nhanVienService, NhanVien nhanVien, String type) {
         super(type);
         this.nhanVienService = nhanVienService;
         this.nhanVien = nhanVien;
@@ -26,15 +26,13 @@ public class ActionDelete extends ActionListenerCommand{
     @Override
     public boolean execute() {
         NhanVien nv=nhanVienService.findOne(nhanVien.getMaNhanVien());
-        nhanVienService.delete(nhanVien.getMaNhanVien());
-        if(nhanVienService.findOne(nhanVien.getMaNhanVien())==null)
+        nhanVienService.update(nhanVien);
+        if(nhanVienService.findOne(nhanVien.getMaNhanVien())!=null)
             {
                 backup(nv);
                 return true;
             }
-         return false;
+        return false;
     }
-
-    
     
 }

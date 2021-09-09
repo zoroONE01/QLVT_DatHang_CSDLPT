@@ -19,9 +19,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-//        scene = new Scene(loadFXML("login"));
-
-
+//      scene = new Scene(loadFXML("login"));
         stage.setMinWidth(400);
         stage.setMinHeight(650);
         scene = new Scene(loadFXML("login"));
@@ -30,7 +28,7 @@ public class App extends Application {
         
     }
 
-    static void setRoot(String fxml) throws IOException {
+    public static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
 

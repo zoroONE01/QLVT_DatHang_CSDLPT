@@ -109,7 +109,7 @@ public class ValidationRegEx {
         }
 
     }
-
+    
     public static boolean validationMoneyRegex(String money) {
         Pattern pattern = Pattern.compile(moneyRegex);
         Matcher matcher = pattern.matcher(money);
