@@ -39,10 +39,10 @@ import javafx.util.Duration;
 public class MainController {
 
     @FXML
-    private ResourceBundle resources;
+    private StackPane pnStackPane;
 
     @FXML
-    private URL location;
+    private JFXButton btUserInfo;
 
     @FXML
     private Label lbTitle;
@@ -72,63 +72,7 @@ public class MainController {
     private ToggleButton tgbtDonDatHang;
 
     @FXML
-    private AnchorPane workspace;
-
-    @FXML
-    private AnchorPane pnNhanVien;
-
-    @FXML
-    private VBox pnMenuBar;
-
-    @FXML
-    private JFXButton btAdd;
-
-    @FXML
-    private JFXButton btEdit;
-
-    @FXML
-    private JFXButton btDelete;
-
-    @FXML
-    private JFXButton btSave;
-
-    @FXML
-    private JFXButton btUndo;
-
-    @FXML
-    private JFXButton btReload;
-
-    @FXML
-    private JFXButton btChangeLocation;
-
-    @FXML
-    private TableView<?> tbvListNV;
-
-    @FXML
-    private TableColumn<?, ?> maNV;
-
-    @FXML
-    private TableColumn<?, ?> ho;
-
-    @FXML
-    private TableColumn<?, ?> ten;
-
-    @FXML
-    private TableColumn<?, ?> ngaySinh;
-
-    @FXML
-    private TableColumn<?, ?> luong;
-
-    @FXML
-    private TableColumn<?, ?> diaChi;
-
-    @FXML
-    private TableColumn<?, ?> diaChi1;
-
-    @FXML
-    private JFXButton btUserInfo;
-    @FXML
-    private StackPane pnStackPane;
+    private StackPane pnWorkspace;
 
     public MainController() {
     }
@@ -146,6 +90,8 @@ public class MainController {
                 Image image2 = new Image(getClass().getResourceAsStream("../../../../img/logout_rounded_left_20px.png"));
                 JFXButton btClose = new JFXButton(null, new ImageView(image1));
                 JFXButton btLogout = new JFXButton(null, new ImageView(image2));
+                btClose.setButtonType(JFXButton.ButtonType.RAISED);
+                btLogout.setButtonType(JFXButton.ButtonType.RAISED);
                 btClose.setCursor(Cursor.HAND);
                 btLogout.setCursor(Cursor.HAND);
                 btClose.setOnAction((ActionEvent event1) -> {
@@ -174,11 +120,6 @@ public class MainController {
         });
     }
 
-    @FXML
-    void showAddForm(ActionEvent event) {
-
-    }
-
     private void initClock() {
         Platform.runLater(new Runnable() {
             @Override
@@ -200,9 +141,16 @@ public class MainController {
         });
     }
 
+    private void initWorkspace() throws IOException {
+
+        AnchorPane newPane = FXMLLoader.load(getClass().getResource("../../../../fxml/Kho.fxml"));
+        pnWorkspace.getChildren().add(newPane);
+    }
+
     @FXML
-    void initialize() {
+    void initialize() throws IOException {
         btUserInfo.setText(DBConnectUtil.username);
         initClock();
+        initWorkspace();
     }
 }

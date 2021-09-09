@@ -13,12 +13,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane fx:id="pnNhanVien" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.QLVT.controller.KhoController">
+<AnchorPane fx:id="pnKho" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.QLVT.controller.KhoController">
    <children>
       <VBox fx:id="pnMenuBar" alignment="CENTER" fillWidth="false" layoutX="873.0" layoutY="7.0" prefWidth="50.0" spacing="10.0" style="-fx-background-color: #fff; -fx-background-radius: 10; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );;" AnchorPane.bottomAnchor="110.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <JFXButton fx:id="btAdd" layoutX="16.0" layoutY="20.0" onAction="#showAddForm" prefHeight="30.0" prefWidth="30.0" text=" ">
+            <JFXButton fx:id="btAdd" layoutX="16.0" layoutY="20.0" prefHeight="30.0" prefWidth="30.0" text=" ">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -33,7 +32,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXButton fx:id="btEdit" layoutX="16.0" layoutY="140.0" onAction="#showEditForm" prefHeight="30.0" prefWidth="30.0" text=" ">
+            <JFXButton fx:id="btEdit" layoutX="16.0" layoutY="140.0" prefHeight="30.0" prefWidth="30.0" text=" ">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -48,7 +47,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </JFXButton>
-            <JFXButton fx:id="btDelete" layoutX="16.0" layoutY="180.0" onAction="#deleteItem" prefHeight="30.0" prefWidth="30.0" text=" ">
+            <JFXButton fx:id="btDelete" layoutX="16.0" layoutY="180.0" prefHeight="30.0" prefWidth="30.0" text=" ">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
