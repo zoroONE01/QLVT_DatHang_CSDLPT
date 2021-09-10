@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\App.java
 E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\model\NumberModel.java
 E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\Utils\ValidationRegEx.java
@@ -38,3 +39,45 @@ E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\model\NhanVienTableModel.java
 E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\Command\ActionDelete.java
 E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\Mapper\PhanManhMapper.java
 E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\Utils\DBConnectUtil.java
+=======
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\controller\KhoController.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Entity\NhanVienTest.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\dao\GenericDAO.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Mapper\LoginMapper.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\service\NhanVienServiceTest.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\App.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Utils\DBConnectUtil.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Entity\Login.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Entity\NhanVien.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Entity\PhanManh.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\dao\NhanVienDAO.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Command\ActionListenerCommand.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\dao\NhanVienDaoTest.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Command\ActionDelete.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Mapper\RowMapper.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Utils\FomaterDate.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Command\ActionSave.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\controller\NhanVienController.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\dao\LoginDAO.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\controller\MainController.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Entity\Clock.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\NewFXPreloader.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\FXMLController.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\controller\LoginController.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\dao\NumberDao.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Mapper\PhanManhMapper.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\dao\PhanManhDAO.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Utils\ValidationRegEx.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\service\NhanVienService.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\controller\NhanVienViewControllerTest.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\controller\DemoFXMlController.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\service\NumberService.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\model\NhanVienTableModelTest.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Command\ActionEdit.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Entity\ChiNhanh.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\model\NhanVienTableModel.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Command\ActionHistory.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\dao\AbstractDAO.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Mapper\NhanVienMapper.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\model\NumberModel.java
+>>>>>>> 49315200d4389259fc40f356766f8df2e95f9cf6

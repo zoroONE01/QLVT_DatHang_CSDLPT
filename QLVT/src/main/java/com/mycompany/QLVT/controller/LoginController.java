@@ -127,6 +127,7 @@ public class LoginController {
                     Image image = new Image(getClass().getResourceAsStream("../../../../img/icons8_checkmark_20px.png"));
                     JFXButton button = new JFXButton(null, new ImageView(image));
                     button.setCursor(Cursor.HAND);
+                    button.setButtonType(JFXButton.ButtonType.RAISED);
                     button.setOnAction((ActionEvent event1) -> {
                         noti.close();
                     });

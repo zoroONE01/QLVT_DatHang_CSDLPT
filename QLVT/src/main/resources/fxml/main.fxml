@@ -18,7 +18,7 @@
             <children>
                 <AnchorPane style="-fx-background-color: #fff;" stylesheets="@../css/main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <children>
-                        <Group layoutX="352.0" layoutY="29.0" AnchorPane.rightAnchor="230.0">
+                        <Group layoutX="352.0" layoutY="29.0" AnchorPane.rightAnchor="230.0" AnchorPane.topAnchor="30.0">
                             <children>
                                 <AnchorPane layoutX="365.0" layoutY="12.0" prefHeight="35.0" prefWidth="180.0" style="-fx-background-color: #fff; -fx-background-radius: 0 20 20 0; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );">
                                     <children>
@@ -62,7 +62,7 @@
                         </Group>
                     </children>
                 </AnchorPane>
-                <AnchorPane fx:id="pnNavBar" layoutY="10.0" prefHeight="620.0" prefWidth="150.0" style="-fx-background-color: #fff; -fx-background-radius: 0 15 20 0; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );;" styleClass="pn-main" stylesheets="@../css/main.css" AnchorPane.bottomAnchor="15.0" AnchorPane.topAnchor="15.0">
+                <AnchorPane fx:id="pnNavBar" layoutY="10.0" prefHeight="620.0" prefWidth="150.0" style="-fx-background-color: #fff; -fx-background-radius: 0 10 10 0; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );" styleClass="pn-main" stylesheets="@../css/main.css" AnchorPane.bottomAnchor="15.0" AnchorPane.topAnchor="15.0">
                     <children>
                         <AnchorPane layoutX="35.0" layoutY="14.0" prefHeight="40.0" prefWidth="80.0" AnchorPane.topAnchor="30.0">
                             <children>
@@ -93,6 +93,7 @@
                                 </ImageView>
                             </children>
                         </AnchorPane>
+
                         <VBox layoutX="15.0" layoutY="110.0" prefWidth="120.0" spacing="10.0" AnchorPane.topAnchor="110.0">
                             <children>
                                 <ToggleButton fx:id="tgbtDashboard" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="35.0" prefWidth="124.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Dashboard" textFill="#bbbbbb">
@@ -112,7 +113,7 @@
                                     <padding>
                                         <Insets left="6.0" top="7.0" />
                                     </padding>
-<!--                                    <cursor>
+                                    <!--                                    <cursor>
                                         <Cursor fx:constant="HAND" />
                                     </cursor>-->
                                 </ToggleButton>
@@ -210,4 +211,5 @@
             </children>
         </AnchorPane>
     </children>
+
 </StackPane>

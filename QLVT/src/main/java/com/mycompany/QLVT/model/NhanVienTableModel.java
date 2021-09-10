@@ -17,16 +17,18 @@ import javafx.collections.ObservableList;
  * @author MinhTo
  */
 public class NhanVienTableModel {
-    private final ObservableList<NhanVien> nhanVienList=FXCollections.observableArrayList();
-    
-    private final ObjectProperty<NhanVien> currentNhanVien=new SimpleObjectProperty<>(null);
-    
+
+    private final ObservableList<NhanVien> nhanVienList = FXCollections.observableArrayList();
+
+    private final ObjectProperty<NhanVien> currentNhanVien = new SimpleObjectProperty<>(null);
+
     public NhanVienTableModel() {
     }
-    
+
     public void setNhanVienList(List<NhanVien> list) {
         nhanVienList.addAll(list);
     }
+
     public ObservableList<NhanVien> getNhanVienList() {
         return nhanVienList;
     }
@@ -34,16 +36,16 @@ public class NhanVienTableModel {
     public ObjectProperty<NhanVien> getCurrentNhanVienProperty() {
         return currentNhanVien;
     }
-    
-     public NhanVien getCurrentNhanVien(){
+
+    public NhanVien getCurrentNhanVien() {
         return currentNhanVien.get();
     }
-    public final void setCurrentNhanVien(NhanVien nhanVien)
-    {
+
+    public final void setCurrentNhanVien(NhanVien nhanVien) {
         currentNhanVien.set(nhanVien);
     }
-    public final void getCurrentNhanVien(NhanVien nhanVien)
-    {
+
+    public final void getCurrentNhanVien(NhanVien nhanVien) {
         currentNhanVien.get();
     }
 }

@@ -16,6 +16,8 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,7 +28,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -39,10 +43,10 @@ import javafx.util.Duration;
 public class MainController {
 
     @FXML
-    private ResourceBundle resources;
+    private StackPane pnStackPane;
 
     @FXML
-    private URL location;
+    private JFXButton btUserInfo;
 
     @FXML
     private Label lbTitle;
@@ -73,7 +77,6 @@ public class MainController {
 
     @FXML
     private StackPane pnWorkspace;
-
     @FXML
     private AnchorPane pnNhanVien;
 
@@ -101,19 +104,12 @@ public class MainController {
     @FXML
     private JFXButton btChangeLocation;
 
-  
-
-    @FXML
-    private JFXButton btUserInfo;
-    @FXML
-    private StackPane pnStackPane;
-
     public MainController() {
     }
-    
+
     @FXML
     private AnchorPane pnMain;
-        
+
     @FXML
     void showUserInfo(ActionEvent event) {
         Platform.runLater(new Runnable() {
@@ -127,6 +123,8 @@ public class MainController {
                 Image image2 = new Image(getClass().getResourceAsStream("../../../../img/logout_rounded_left_20px.png"));
                 JFXButton btClose = new JFXButton(null, new ImageView(image1));
                 JFXButton btLogout = new JFXButton(null, new ImageView(image2));
+                btClose.setButtonType(JFXButton.ButtonType.RAISED);
+                btLogout.setButtonType(JFXButton.ButtonType.RAISED);
                 btClose.setCursor(Cursor.HAND);
                 btLogout.setCursor(Cursor.HAND);
                 btClose.setOnAction((ActionEvent event1) -> {
@@ -155,9 +153,56 @@ public class MainController {
         });
     }
 
-    @FXML
-    void showAddForm(ActionEvent event) {
+    private void initButtonMenuBar() {
 
+        final ToggleGroup group = new ToggleGroup();
+        tgbtDashboard.setToggleGroup(group);
+        tgbtNhanVien.setToggleGroup(group);
+        tgbtDonDatHang.setToggleGroup(group);
+        tgbtVatTu.setToggleGroup(group);
+        tgbtKho.setToggleGroup(group);
+
+        tgbtKho.selectedProperty().addListener(((observable, oldValue, newValue) -> {
+            try {
+                initWorkspace("Kho");
+            } catch (IOException ex) {
+                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            lbTitle.setText("Kho");
+        }));
+        tgbtDashboard.selectedProperty().addListener(((observable, oldValue, newValue) -> {
+//            try {
+//                initWorkspace("Dashboard");
+//            } catch (IOException ex) {
+//                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+            lbTitle.setText("Dashboard");
+        }));
+        tgbtNhanVien.selectedProperty().addListener(((observable, oldValue, newValue) -> {
+//            try {
+//                initWorkspace("NhanVien");
+//            } catch (IOException ex) {
+//                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+            lbTitle.setText("Nhân Viên");
+        }));
+        tgbtDonDatHang.selectedProperty().addListener(((observable, oldValue, newValue) -> {
+//            try {
+//                initWorkspace("DonDatHang");
+//            } catch (IOException ex) {
+//                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+            lbTitle.setText("Đơn Đặt Hàng");
+        }));
+        tgbtVatTu.selectedProperty().addListener(((observable, oldValue, newValue) -> {
+//            try {
+//                initWorkspace("VatTu");
+//            } catch (IOException ex) {
+//                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+            lbTitle.setText("Vật Tư");
+        }));
+        tgbtDashboard.setSelected(true);
     }
 
     private void initClock() {
@@ -181,16 +226,20 @@ public class MainController {
         });
     }
 
+    private void initWorkspace(String fxml) throws IOException {
+        pnWorkspace.getChildren().clear();
+        StackPane newPane = FXMLLoader.load(getClass().getResource("../../../../fxml/" + fxml + ".fxml"));
+        pnWorkspace.getChildren().add(newPane);
+    }
+
     @FXML
-    void initialize() {
-        try {
-            btUserInfo.setText(DBConnectUtil.username);
-            initClock();
-           
-            AnchorPane anchorPane=FXMLLoader.load(getClass().getResource("../../../../fxml/NhanVienTableView.fxml"));
-            pnWorkspace.getChildren().add(anchorPane);
-        } catch (IOException ex) {
-            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
+    void initialize() throws IOException {
+        btUserInfo.setText(DBConnectUtil.username);
+        initClock();
+        initButtonMenuBar();
+//
+//            AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("../../../../fxml/NhanVienTableView.fxml"));
+//            pnWorkspace.getChildren().add(anchorPane);
     }
 }
