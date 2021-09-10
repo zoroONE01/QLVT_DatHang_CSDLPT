@@ -3,6 +3,7 @@ package com.mycompany.QLVT.controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
+import com.mycompany.QLVT.App;
 import com.mycompany.QLVT.Utils.DBConnectUtil;
 import java.io.IOException;
 import java.net.URL;
@@ -163,12 +164,12 @@ public class MainController {
         tgbtKho.setToggleGroup(group);
 
         tgbtKho.selectedProperty().addListener(((observable, oldValue, newValue) -> {
-            try {
-                initWorkspace("Kho");
-            } catch (IOException ex) {
-                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            lbTitle.setText("Kho");
+//            try {
+//                initWorkspace("Kho");
+//            } catch (IOException ex) {
+//                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+           lbTitle.setText("Kho");
         }));
         tgbtDashboard.selectedProperty().addListener(((observable, oldValue, newValue) -> {
 //            try {
@@ -179,11 +180,14 @@ public class MainController {
             lbTitle.setText("Dashboard");
         }));
         tgbtNhanVien.selectedProperty().addListener(((observable, oldValue, newValue) -> {
-//            try {
-//                initWorkspace("NhanVien");
-//            } catch (IOException ex) {
-//                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
-//            }
+            try {
+                initWorkspace("NhanVienTableView");
+//                pnWorkspace.getChildren().clear();
+//               Parent parrent= App.loadFXML("NhanVienTableView");
+//               pnWorkspace.getChildren().add(parrent);
+            } catch (IOException ex) {
+                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+            }
             lbTitle.setText("Nhân Viên");
         }));
         tgbtDonDatHang.selectedProperty().addListener(((observable, oldValue, newValue) -> {
@@ -228,8 +232,8 @@ public class MainController {
 
     private void initWorkspace(String fxml) throws IOException {
         pnWorkspace.getChildren().clear();
-        StackPane newPane = FXMLLoader.load(getClass().getResource("../../../../fxml/" + fxml + ".fxml"));
-        pnWorkspace.getChildren().add(newPane);
+        Parent parrent = FXMLLoader.load(getClass().getResource("../../../../fxml/" + fxml + ".fxml"));
+        pnWorkspace.getChildren().add(parrent);
     }
 
     @FXML
