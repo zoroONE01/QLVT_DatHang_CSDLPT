@@ -228,7 +228,7 @@ public class MainController {
 
     private void initWorkspace(String fxml) throws IOException {
         pnWorkspace.getChildren().clear();
-        StackPane newPane = FXMLLoader.load(getClass().getResource("../../../../fxml/" + fxml + ".fxml"));
+        AnchorPane newPane = FXMLLoader.load(getClass().getResource("../../../../fxml/" + fxml + ".fxml"));
         pnWorkspace.getChildren().add(newPane);
     }
 

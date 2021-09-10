@@ -8,6 +8,7 @@ package com.mycompany.QLVT.controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import com.mycompany.QLVT.Entity.Login;
 import com.mycompany.QLVT.Entity.PhanManh;
 import com.mycompany.QLVT.Utils.DBConnectUtil;
@@ -140,7 +141,6 @@ public class LoginController {
 //            alert.show();
 
         }
-
     }
 
     @FXML

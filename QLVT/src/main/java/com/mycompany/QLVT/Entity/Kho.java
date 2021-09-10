@@ -10,6 +10,7 @@ package com.mycompany.QLVT.Entity;
  * @author zoroONE01
  */
 public class Kho {
+
     private String maKho;
     private String tenKho;
     private String diaChi;
@@ -25,6 +26,20 @@ public class Kho {
         this.diaChi = diaChi;
         this.maCN = maCN;
         this.tenCN = tenCN;
+    }
+
+    public Kho(String maKho, String tenKho, String diaChi, String maCN) {
+        this.maKho = maKho;
+        this.tenKho = tenKho;
+        this.diaChi = diaChi;
+        this.maCN = maCN;
+    }
+
+    public void setAll(String maKho, String tenKho, String diaChi, String maCN) {
+        this.maKho = maKho;
+        this.tenKho = tenKho;
+        this.diaChi = diaChi;
+        this.maCN = maCN;
     }
 
     public String getMaKho() {
@@ -67,6 +82,4 @@ public class Kho {
         this.tenCN = tenCN;
     }
 
-   
-    
 }
