@@ -5,7 +5,6 @@
  */
 package com.mycompany.QLVT.dao;
 
-
 import com.mycompany.QLVT.Mapper.RowMapper;
 import com.mycompany.QLVT.Utils.DBConnectUtil;
 import java.sql.CallableStatement;
@@ -52,12 +51,12 @@ public class AbstractDAO<T> implements GenericDAO<T> {
 
             setParameter(statement, parameters);
 
-            resultSet = statement.executeQuery();   
+            resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 results.add(rowMapper.mapRow(resultSet));
             }
             return results;
-            
+
         } catch (SQLException ex) {
             System.out.println("SQL error  " + ex.getMessage());
             return null;
@@ -73,11 +72,11 @@ public class AbstractDAO<T> implements GenericDAO<T> {
                     resultSet.close();
                 }
             } catch (SQLException e) {
-                System.out.println("SQL error  " + e.getMessage());
+                System.out.println("Close connection exception " + e.getMessage());
             }
         }
     }
-    
+
     public <T> List<T> queryProcedure(String sql, RowMapper<T> rowMapper, Object... parameters) {
         List<T> results = new ArrayList<>();
         Connection connection = null;
@@ -89,19 +88,19 @@ public class AbstractDAO<T> implements GenericDAO<T> {
 
             setParameter(statement, parameters);
 
-            resultSet = statement.executeQuery();   
+            resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 results.add(rowMapper.mapRow(resultSet));
             }
             return results;
-            
+
         } catch (SQLException ex) {
             System.out.println("SQL error  " + ex.getMessage());
             return null;
         } finally {
             try {
                 if (connection != null) {
-                    connection.close();
+                    DBConnectUtil.close();
                 }
                 if (statement != null) {
                     statement.close();
@@ -110,13 +109,49 @@ public class AbstractDAO<T> implements GenericDAO<T> {
                     resultSet.close();
                 }
             } catch (SQLException e) {
-                System.out.println("SQL error  " + e.getMessage());
+                System.out.println("Close connection exception" + e.getMessage());
             }
         }
     }
+    // lấy kết quả true false trả về từ procedure
+    public int queryReturnOfProcedure(String sql, Object... parameters) {
+        Connection connection = null;
+        CallableStatement statement = null;
+        ResultSet resultSet = null;
+        try {
+            connection = getConnection();
+            statement = connection.prepareCall(sql);
+            setParameter(statement, parameters);
+            resultSet = statement.executeQuery();
+            if(resultSet.next())
+            {  
+                return resultSet.getInt(1);
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println("SQL error  " + ex.getMessage());
+            return 0;
+        } finally {
+            try {
+                if (connection != null) {
+                    DBConnectUtil.close();
+                }
+                if (statement != null) {
+                    statement.close();
+                }
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Close connection exception" + e.getMessage());
+            }
+        }
+        return 0;
+    }
+
     private void setParameter(PreparedStatement statement, Object... parameters) {
         try {
-            
+
             for (int i = 0; i < parameters.length; i++) {
                 Object parameter = parameters[i];
                 int index = i + 1;
@@ -127,10 +162,9 @@ public class AbstractDAO<T> implements GenericDAO<T> {
                     statement.setInt(index, (Integer) parameter);
                 } else if (parameter instanceof Float) {
                     statement.setFloat(index, (Float) parameter);
-                } 
-                else if (parameter instanceof Long) {
+                } else if (parameter instanceof Long) {
                     statement.setLong(index, (Long) parameter);
-                    
+
                 } else if (parameter instanceof Timestamp) {
                     statement.setTimestamp(index, (Timestamp) parameter);
                 } else if (parameter instanceof java.sql.Date) {
@@ -138,8 +172,7 @@ public class AbstractDAO<T> implements GenericDAO<T> {
                     statement.setDate(index, (java.sql.Date) parameter);
                 } else if (parameter instanceof Double) {
                     statement.setDouble(index, (Double) parameter);
-                } else 
-                {
+                } else {
                     statement.setNull(index, Types.NULL);
                 }
                 // đừng để dữ liệu null ==>xử lí đầu vào trước khi truy vấn                           
@@ -150,7 +183,7 @@ public class AbstractDAO<T> implements GenericDAO<T> {
     }
 
     @Override
-    public void update(String sql, Object... parameters) {
+    public int update(String sql, Object... parameters) {
         Connection connection = null;
         CallableStatement statement = null;
         try {
@@ -158,8 +191,13 @@ public class AbstractDAO<T> implements GenericDAO<T> {
             connection.setAutoCommit(false);
             statement = connection.prepareCall(sql);
             setParameter(statement, parameters);
-            statement.executeUpdate();
-            connection.commit();
+            int affectRow = statement.executeUpdate();
+             System.out.println("update effectedRow: " + affectRow);
+            if (affectRow > 0) {
+                connection.commit();
+                return affectRow;
+            }
+
         } catch (SQLException e) {
             if (connection != null) {
                 try {
@@ -172,7 +210,7 @@ public class AbstractDAO<T> implements GenericDAO<T> {
         } finally {
             try {
                 if (connection != null) {
-                    connection.close();
+                    DBConnectUtil.close();
                 }
                 if (statement != null) {
                     statement.close();
@@ -181,29 +219,27 @@ public class AbstractDAO<T> implements GenericDAO<T> {
                 e2.printStackTrace();
             }
         }
+        return 0;
     }
 
     @Override
-    public boolean insert(String sql, Object... parameters) {
+    public int insert(String sql, Object... parameters) {
         Connection connection = null;
-        PreparedStatement statement = null;
+        CallableStatement statement = null;
         ResultSet resultSet = null;
         try {
-            int id = -1;
             connection = getConnection();
             connection.setAutoCommit(false);
-            String[] arrAuto = {"id"};
-            statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            statement = connection.prepareCall(sql);
             setParameter(statement, parameters);//gan tham so truy van
-
             int affectRow = statement.executeUpdate();
-            System.out.println("effectedRow: " + affectRow);
-            resultSet = statement.getGeneratedKeys();
-            if (resultSet.next()) {
-                id = resultSet.getInt(1);
+          //  System.out.println("insert effectedRow: " + affectRow);
+            //resultSet = statement.executeQuery();
+            if (affectRow>0) {
+                connection.commit();
+                return 1;
             }
-            connection.commit();
-            return true;
+
         } catch (SQLException e) {
             if (connection != null) {
                 try {
@@ -215,7 +251,7 @@ public class AbstractDAO<T> implements GenericDAO<T> {
         } finally {
             try {
                 if (connection != null) {
-                    connection.close();
+                    DBConnectUtil.close();
                 }
                 if (statement != null) {
                     statement.close();
@@ -227,8 +263,7 @@ public class AbstractDAO<T> implements GenericDAO<T> {
                 e2.printStackTrace();
             }
         }
-        return false;
+        return 0;
     }
 
- 
 }

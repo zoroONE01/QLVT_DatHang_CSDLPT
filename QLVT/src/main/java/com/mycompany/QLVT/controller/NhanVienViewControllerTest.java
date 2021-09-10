@@ -8,7 +8,7 @@ package com.mycompany.QLVT.controller;
 import com.mycompany.QLVT.Command.ActionDelete;
 import com.mycompany.QLVT.Command.ActionHistory;
 import com.mycompany.QLVT.Command.ActionListenerCommand;
-import com.mycompany.QLVT.Command.ActionSave;
+import com.mycompany.QLVT.Command.ActionAdd;
 import com.mycompany.QLVT.Entity.NhanVien;
 import com.mycompany.QLVT.model.NhanVienTableModelTest;
 import com.mycompany.QLVT.service.NhanVienServiceTest;
@@ -200,7 +200,7 @@ public class NhanVienViewControllerTest implements Initializable {
 //              dialog.getDialogPane().getButtonTypes().add(okButtonType);
 //              Optional<ButtonType> result = dialog.showAndWait();
 //                if (result.isPresent() && result.get() == ButtonType.OK) {
-//                   // executeCommand(new ActionSave(newValue));
+//                   // executeCommand(new ActionAdd(newValue));
 //                }
         });
 
@@ -271,7 +271,7 @@ public class NhanVienViewControllerTest implements Initializable {
 //        NhanVien nv = nhanVienTableModel.getCurrentNhanVien();
 //        NhanVien nvNew = new NhanVien(nv.getMaNhanVien(), nv.getHo(), nv.getTen(), nv.getDiaChi(), nv.getNgaySinh(), nv.getLuong(), nv.getMaCN());
 //        System.out.println(nvNew.getHo() + " " + nvNew.getTen());
-//        executeCommand(new ActionSave(nhanVienService, nhanVienBeforeSave, "save"));
+//        executeCommand(new ActionAdd(nhanVienService, nhanVienBeforeSave, "save"));
 //        System.out.println(nhanVienService.findAll().size());
 //
 //        nhanVienTable.getItems().clear();
@@ -285,7 +285,7 @@ public class NhanVienViewControllerTest implements Initializable {
 //    void themAction(ActionEvent event) {
 //        NhanVien nvien = new NhanVien(index++, "Minh0", "To", "DangVanLanh", "15-50-2000", 2000, "CN1");
 //
-//        executeCommand(new ActionSave(nhanVienService, nvien, "add"));
+//        executeCommand(new ActionAdd(nhanVienService, nvien, "add"));
 //        System.out.println(nhanVienService.findAll().size());
 //
 //        nhanVienTable.getItems().clear();

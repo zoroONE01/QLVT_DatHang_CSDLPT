@@ -25,11 +25,11 @@ public class ActionDelete extends ActionListenerCommand{
     
     @Override
     public boolean execute() {
-        NhanVien nv=nhanVienService.findOne(nhanVien.getMaNhanVien());
-        nhanVienService.delete(nhanVien.getMaNhanVien());
-        if(nhanVienService.findOne(nhanVien.getMaNhanVien())==null)
+       // NhanVien nv=nhanVienService.findOne(nhanVien.getMaNhanVien());
+        int rs=nhanVienService.delete(nhanVien.getMaNhanVien());
+         if(rs>0)
             {
-                backup(nv);
+                backup(nhanVien);
                 return true;
             }
          return false;

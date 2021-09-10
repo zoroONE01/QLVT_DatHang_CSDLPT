@@ -15,6 +15,7 @@ E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\NewFXPreloader.java
 E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\controller\LoginController.java
 E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\controller\NhanVienController.java
 E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\dao\PhanManhDAO.java
+E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\Command\ActionAdd.java
 E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\Entity\PhanManh.java
 E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\dao\GenericDAO.java
 E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\dao\LoginDAO.java
@@ -30,7 +31,6 @@ E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\controller\DemoFXMlController
 E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\dao\AbstractDAO.java
 E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\dao\NumberDao.java
 E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\controller\KhoController.java
-E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\Command\ActionSave.java
 E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\Entity\Clock.java
 E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\model\NhanVienTableModelTest.java
 E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\service\NhanVienService.java

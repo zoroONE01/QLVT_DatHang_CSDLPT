@@ -17,9 +17,9 @@ public interface GenericDAO<T> {
 
     <T> List<T> query(String sql, RowMapper<T> mapper, Object... paramater);
 
-    void update(String sql, Object... parameters);
+    int update(String sql, Object... parameters);
 
-    boolean insert(String sql, Object... parameters);
+   int insert(String sql, Object... parameters);
     
     
 }

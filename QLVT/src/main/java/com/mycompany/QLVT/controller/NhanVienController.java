@@ -10,16 +10,12 @@ import com.mycompany.QLVT.Command.ActionDelete;
 import com.mycompany.QLVT.Command.ActionEdit;
 import com.mycompany.QLVT.Command.ActionHistory;
 import com.mycompany.QLVT.Command.ActionListenerCommand;
-import com.mycompany.QLVT.Command.ActionSave;
+import com.mycompany.QLVT.Command.ActionAdd;
 import com.mycompany.QLVT.Entity.NhanVien;
-import static com.mycompany.QLVT.controller.NhanVienViewControllerTest.index;
 import com.mycompany.QLVT.model.NhanVienTableModel;
-import com.mycompany.QLVT.model.NhanVienTableModelTest;
 import com.mycompany.QLVT.service.NhanVienService;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -176,7 +172,7 @@ public class NhanVienController {
             public void handle(TableColumn.CellEditEvent<NhanVien, String> event) {
                 NhanVien nhanVien = event.getRowValue();
                 System.out.println(event.getTablePosition().getColumn());
-                 System.out.println(event.getTablePosition().getRow());
+                System.out.println(event.getTablePosition().getRow());
                 // event.getTableColumn()
                 nhanVien.setTen(event.getNewValue());
             }
@@ -248,7 +244,7 @@ public class NhanVienController {
 //              dialog.getDialogPane().getButtonTypes().add(okButtonType);
 //              Optional<ButtonType> result = dialog.showAndWait();
 //                if (result.isPresent() && result.get() == ButtonType.OK) {
-//                   // executeCommand(new ActionSave(newValue));
+//                   // executeCommand(new ActionAdd(newValue));
 //                }
         });
 
@@ -309,7 +305,6 @@ public class NhanVienController {
         System.out.println(nhanVienService.findAll().size());
         tbvListNV.getItems().clear();
         nhanVienTableModel.setNhanVienList(nhanVienService.findAll());
-
         tbvListNV.refresh();
 
     }
@@ -317,9 +312,6 @@ public class NhanVienController {
     @FXML
     void editAction(ActionEvent event) {
         //valid form
-        
-        
-        
         NhanVien nv = nhanVienTableModel.getCurrentNhanVien();
         NhanVien nvNew = new NhanVien(nv.getMaNhanVien(), nv.getHo(), nv.getTen(), nv.getDiaChi(), nv.getNgaySinh(), nv.getLuong(), nv.getMaCN());
         System.out.println(nvNew.getHo() + " " + nvNew.getTen());
@@ -337,17 +329,18 @@ public class NhanVienController {
 
     @FXML
     void addAction(ActionEvent event) {
-        NhanVien nvien = new NhanVien(15, "Minh", "Tiến", "DangVanLanh", "2000-5-15", 2000, "CN1");
+        NhanVien nvien = new NhanVien(15, "Minh", "Tiến", "DangVanLanh", "2000-5-15", 7000000, "CN1");
 
-        boolean rs = executeCommand(new ActionSave(nhanVienService, nvien, "add"));
+        boolean rs = executeCommand(new ActionAdd(nhanVienService, nvien, "add"));
 
         if (rs) {
             System.out.println(nhanVienService.findAll().size());
-
             tbvListNV.getItems().clear();
             nhanVienTableModel.setNhanVienList(nhanVienService.findAll());
             tbvListNV.refresh();
             // System.out.println(nhanVien.getHo()+" "+nhanVien.getMaNhanVien()+"  "+nhanVien.getTen());
+        } else {
+            System.out.println("Nhan vien bi trung");
         }
     }
 
@@ -389,17 +382,24 @@ public class NhanVienController {
 
         ActionListenerCommand command = history.pop();
 
-        if (command != null && command.getType().equals("save")) {
+//        if (command != null && command.getType().equals("save")) {
+//            NhanVien nv = command.undo();
+//            if (nv != null) {
+//                nhanVienService.delete(nv.getMaNhanVien());
+//                return 0;
+//            }
+//        } 
+        if (command != null && command.getType().equals("delete")) {
             NhanVien nv = command.undo();
             if (nv != null) {
-                nhanVienService.save(nv);
-                return 0;
-            }
-        } else if (command != null && command.getType().equals("delete")) {
-            NhanVien nv = command.undo();
-            if (nv != null) {
-                nhanVienService.save(nv);
-                return 0;
+                if (nhanVienService.findOne(nv.getMaNhanVien())!=null) {
+                    nhanVienService.update(nv); //cap nhat trang thai
+                    return 0;
+                } else 
+                {
+                    nhanVienService.save(nv); //thêm mới
+                    return 0;
+                }
             }
         } else if (command != null && command.getType().equals("add")) {
             NhanVien nv = command.undo();
@@ -407,11 +407,10 @@ public class NhanVienController {
                 nhanVienService.delete(nv.getMaNhanVien());
                 return 0;
             }
-        }
-        else if (command != null && command.getType().equals("edit")) {
+        } else if (command != null && command.getType().equals("edit")) {
             NhanVien nv = command.undo();
             if (nv != null) {
-                nhanVienService.save(nv);
+                nhanVienService.update(nv);
                 return 0;
             }
         }

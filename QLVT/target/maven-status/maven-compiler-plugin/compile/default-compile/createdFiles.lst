@@ -18,7 +18,6 @@ com\mycompany\QLVT\controller\NhanVienController.class
 com\mycompany\QLVT\controller\KhoController.class
 com\mycompany\QLVT\controller\LoginController$1.class
 com\mycompany\QLVT\App.class
-com\mycompany\QLVT\Command\ActionSave.class
 com\mycompany\QLVT\controller\NhanVienController$4.class
 com\mycompany\QLVT\controller\NhanVienViewControllerTest$10.class
 com\mycompany\QLVT\model\NhanVienTableModelTest.class
@@ -30,6 +29,7 @@ com\mycompany\QLVT\controller\NhanVienController$3.class
 com\mycompany\QLVT\controller\NhanVienViewControllerTest$2.class
 com\mycompany\QLVT\Entity\PhanManh.class
 com\mycompany\QLVT\Utils\FomaterDate.class
+com\mycompany\QLVT\Command\ActionAdd.class
 com\mycompany\QLVT\controller\LoginController.class
 com\mycompany\QLVT\Command\ActionListenerCommand.class
 com\mycompany\QLVT\dao\NumberDao.class
