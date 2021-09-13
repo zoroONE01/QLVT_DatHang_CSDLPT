@@ -21,6 +21,10 @@ public class ActionHistory {
             {
                 return history.pop();
             }
+        public ActionListenerCommand peek()
+            {
+                return history.peek();
+            }
 
     public Stack<ActionListenerCommand> getHistory() {
         return history;

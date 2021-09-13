@@ -22,7 +22,7 @@ public class PhanManhMapper implements RowMapper<PhanManh>{
        PhanManh phanManh=new PhanManh();
         try {
             phanManh.setName(rs.getString("tencn"));
-            phanManh.setServer(rs.getString("tenserver"));
+            phanManh.setSubscriberServer(rs.getString("tenserver"));
             return phanManh;
         } catch (SQLException ex) {
             Logger.getLogger(PhanManhMapper.class.getName()).log(Level.SEVERE, null, ex);

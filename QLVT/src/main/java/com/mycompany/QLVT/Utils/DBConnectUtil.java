@@ -5,6 +5,7 @@
  */
 package com.mycompany.QLVT.Utils;
 
+import com.mycompany.QLVT.Entity.PhanManh;
 import java.math.MathContext;
 import java.sql.Connection;
 import java.util.Map;
@@ -17,6 +18,7 @@ import java.util.Stack;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.List;
 
 public class DBConnectUtil {
 
@@ -46,12 +48,12 @@ public class DBConnectUtil {
     public static String myUserDB;
      public static String username = "";
     public static String password = "";
-    public static String chiNhanh1 = "Chi Nhánh 1";
-    public static String chiNhanh2 = "Chi Nhánh 2";
-    public static String chiNhanh3 = "Chi Nhánh 3";
-
+    public static String subcriberServer1= "MINHTO-PC\\MTSITE1";
+    public static String subcriberServer2 = "MINHTO-PC\\MTSITE2";   
+    public static String subcriberServer3 = "";
+    public static List<PhanManh> listPhanManh;
     public static String chiNhanhSelected;
-
+    public static String subcriberCurrent;
     static {
         try {
             Class.forName(driver);
@@ -65,13 +67,15 @@ public class DBConnectUtil {
         Connection conn = tl.get();
         // If there is no connection in the container, get a connection from the connection pool to ThreadLocal
         if (conn == null || conn.isClosed()) {
-            if (chiNhanhSelected.equals(chiNhanh1)) {
+            if (subcriberCurrent.equals(subcriberServer1)) {
                 conn = DriverManager.getConnection(url1, username, password);
-            } else if (chiNhanhSelected.equals(chiNhanh2)) {
+            } else if (subcriberCurrent.equals(subcriberServer2)) {
                 conn = DriverManager.getConnection(url2, username, password);
-            } else if (chiNhanhSelected.equals(chiNhanh3)) {
-                conn = DriverManager.getConnection(url3, username, password);
-            } else if (chiNhanhSelected.equals("")) {
+            } 
+//            else if (chiNhanhSelected.equals(chiNhanh3)) {
+//                conn = DriverManager.getConnection(url3, username, password);
+//            } 
+            else if (subcriberCurrent.equals("")) {
                 conn = DriverManager.getConnection(url, usernameMain, passwordMain);
             }
             tl.set(conn);

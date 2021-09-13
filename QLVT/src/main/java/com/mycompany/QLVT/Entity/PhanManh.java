@@ -11,22 +11,24 @@ package com.mycompany.QLVT.Entity;
  */
 public class PhanManh {
     String name;
-    String server;
+    String subscriberServer;
     public String getName() {
         return name;
     }
 
-    public String getServer() {
-        return server;
+    public String getSubscriberServer() {
+        return subscriberServer;
     }
 
-    public void setServer(String server) {
-        this.server = server;
+    public void setSubscriberServer(String subscriberServer) {
+        this.subscriberServer = subscriberServer;
     }
+
+    
 
     public PhanManh(String name, String server) {
         this.name = name;
-        this.server = server;
+        this.subscriberServer = server;
     }
 
     public void setName(String name) {

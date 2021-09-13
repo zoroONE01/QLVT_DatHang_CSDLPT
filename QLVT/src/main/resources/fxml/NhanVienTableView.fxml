@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
@@ -10,11 +14,13 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="pnNhanVien" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.QLVT.controller.NhanVienController">
    <children>
-      <VBox fx:id="pnMenuBar" alignment="CENTER" fillWidth="false" layoutX="873.0" layoutY="7.0" prefWidth="50.0" spacing="10.0" style="-fx-background-color: #fff; -fx-background-radius: 10; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );;" AnchorPane.bottomAnchor="110.0" AnchorPane.rightAnchor="0.0">
+      <VBox fx:id="pnMenuBar" alignment="CENTER" fillWidth="false" layoutX="873.0" layoutY="7.0" prefWidth="50.0" spacing="10.0" style="-fx-background-color: #fff; -fx-background-radius: 10; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );;" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
          <children>
             <JFXButton fx:id="btAdd" layoutX="16.0" layoutY="20.0" onAction="#addAction" prefHeight="30.0" prefWidth="30.0" text=" ">
                <graphic>
@@ -93,7 +99,7 @@
                </padding>
             </JFXButton>
             <Separator layoutX="25.0" layoutY="140.0" prefWidth="20.0" />
-            <JFXButton fx:id="btChangeLocation" layoutX="16.0" layoutY="193.0" prefHeight="30.0" prefWidth="30.0" text=" ">
+            <JFXButton fx:id="btCreateAC" layoutX="16.0" layoutY="193.0" onAction="#createAccountAction" prefHeight="30.0" prefWidth="30.0" text=" ">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -105,7 +111,7 @@
                   <Insets left="10.0" />
                </padding>
             </JFXButton>
-            <JFXButton fx:id="btCreAcc" layoutX="16.0" layoutY="286.0" prefHeight="30.0" prefWidth="30.0" text=" ">
+            <JFXButton fx:id="btChangeLocation" layoutX="16.0" layoutY="286.0" onAction="#changeLocationAction" prefHeight="30.0" prefWidth="30.0" text=" ">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -122,7 +128,7 @@
             <Insets bottom="10.0" top="10.0" />
          </padding>
       </VBox>
-      <TableView fx:id="tbvListNV" layoutX="14.0" layoutY="9.0" prefHeight="536.0" prefWidth="845.0" style="-fx-background-radius: 0 0 10 10; -fx-background-color: #fff; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="0.0">
+      <TableView fx:id="tbvListNV" layoutX="14.0" layoutY="40.0" prefHeight="261.0" prefWidth="857.0" style="-fx-background-radius: 0 0 10 10; -fx-background-color: #fff; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );" AnchorPane.bottomAnchor="235.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="53.0" AnchorPane.topAnchor="40.0">
          <columns>
             <TableColumn fx:id="maNV" prefWidth="75.0" text="Mã NV" />
             <TableColumn fx:id="ho" prefWidth="75.0" text="Họ" />
@@ -157,5 +163,67 @@
             </ContextMenu>
          </contextMenu>
       </TableView>
+      <AnchorPane fx:id="pnNhanVienDetail" layoutX="257.0" layoutY="321.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="219.0" prefWidth="595.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="257.0" AnchorPane.rightAnchor="58.0">
+         <children>
+            <Label alignment="CENTER" layoutY="-1.0" prefHeight="30.0" prefWidth="321.0" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #7819A5, #C767E6); -fx-background-radius: 20; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );" text="Chi Tiết Nhân Viên" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-1.0">
+               <font>
+                  <Font name="Calibri Bold" size="20.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
+            <HBox alignment="CENTER" layoutX="15.0" layoutY="50.0" prefHeight="162.0" prefWidth="595.0" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefWidth="150.0" spacing="20.0">
+                     <children>
+                        <JFXTextField fx:id="tfMaNV" focusColor="#c767e6" labelFloat="true" promptText="Mã Nhân Viên">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin></JFXTextField>
+                        <JFXTextField fx:id="tfHoVaTenDem" focusColor="#c767e6" labelFloat="true" promptText="Họ Và Tên Đệm">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font></JFXTextField>
+                        <JFXTextField fx:id="tfTen" focusColor="#c767e6" labelFloat="true" promptText="Tên">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font></JFXTextField>
+                        <JFXTextField fx:id="tfChiNhanh" focusColor="#c767e6" labelFloat="true" layoutX="10.0" layoutY="103.0" promptText="Chi Nhánh">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font></JFXTextField>
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="205.0" prefWidth="162.0" spacing="20.0">
+                     <children>
+                        <JFXDatePicker fx:id="dpkNgaySinh" defaultColor="#c767e6" promptText="Ngày Sinh" />
+                        <JFXTextField fx:id="tfLuong" focusColor="#c767e6" labelFloat="true" promptText="Lương">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font></JFXTextField>
+                        <JFXTextField fx:id="tfDiaChi" focusColor="#c767e6" labelFloat="true" promptText="Địa Chỉ">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font></JFXTextField>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+      <JFXComboBox fx:id="cbbChiNhanh" layoutX="534.0" layoutY="8.0" onAction="#changeChiNhanh" prefHeight="25.0" prefWidth="318.0" AnchorPane.rightAnchor="58.0" AnchorPane.topAnchor="8.0" />
+      <Label fx:id="lbChuyenChiNhanh" alignment="CENTER" layoutX="14.0" layoutY="327.0" prefHeight="30.0" prefWidth="220.0" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #7819A5, #C767E6); -fx-background-radius: 20; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );" text="Chuyển Chi Nhánh" textFill="WHITE" AnchorPane.bottomAnchor="179.0" AnchorPane.leftAnchor="14.0">
+         <font>
+            <Font name="Calibri Bold" size="20.0" />
+         </font>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </Label>
+      <JFXComboBox fx:id="cbbChangeLocation" layoutX="42.0" layoutY="379.0" prefHeight="30.0" prefWidth="162.0" AnchorPane.bottomAnchor="127.0" AnchorPane.leftAnchor="42.0" />
    </children>
 </AnchorPane>

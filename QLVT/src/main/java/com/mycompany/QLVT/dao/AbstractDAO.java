@@ -193,18 +193,60 @@ public class AbstractDAO<T> implements GenericDAO<T> {
             setParameter(statement, parameters);
             int affectRow = statement.executeUpdate();
              System.out.println("update effectedRow: " + affectRow);
-            if (affectRow > 0) {
+            if (affectRow > 0)
+            {
                 connection.commit();
                 return affectRow;
             }
-
         } catch (SQLException e) {
             if (connection != null) {
                 try {
-                    System.out.println(e.getMessage());
+                    System.out.println(e.getMessage());    
                     connection.rollback();
                 } catch (SQLException e1) {
                     e1.printStackTrace();
+                }
+            }
+        } finally {
+            try {
+                if (connection != null) {
+                    DBConnectUtil.close();
+                }
+                if (statement != null) {
+                    statement.close();
+                }
+            } catch (SQLException e2) {
+                e2.printStackTrace();
+            }
+        }
+        return 0;
+    }
+    //thuc thi procedure update va bat loi procedure
+    public int updateProcedure(String sql, Object... parameters) {
+        Connection connection = null;
+        CallableStatement statement = null;
+        try {
+            connection = getConnection();
+            statement = connection.prepareCall(sql);
+            setParameter(statement, parameters);
+             boolean rs=statement.execute();
+             if(rs==false)
+             {   
+              //  connection.commit();
+                 return statement.getUpdateCount();
+             }
+
+        } catch (SQLException e) {
+            if (connection != null) {
+               // try 
+                {
+                    System.out.println(e.getMessage());
+                    System.out.println(e.getCause());
+                    //connection.rollback();
+                }
+                //catch (SQLException e1) 
+                {
+                    //e1.printStackTrace();
                 }
             }
         } finally {
