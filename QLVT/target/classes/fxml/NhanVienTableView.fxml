@@ -68,7 +68,7 @@
                   <Insets />
                </VBox.margin>
             </JFXButton>
-            <JFXButton fx:id="btUndo" layoutX="10.0" layoutY="10.0" prefHeight="30.0" prefWidth="30.0" text=" ">
+            <JFXButton fx:id="btUndo" layoutX="10.0" layoutY="10.0" onAction="#hoanTacAction" prefHeight="30.0" prefWidth="30.0" text=" ">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>

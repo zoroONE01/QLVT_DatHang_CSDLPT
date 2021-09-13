@@ -3,6 +3,7 @@ package com.mycompany.QLVT.controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
+import com.mycompany.QLVT.App;
 import com.mycompany.QLVT.Utils.DBConnectUtil;
 import java.io.IOException;
 import java.net.URL;
@@ -21,6 +22,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -43,7 +45,7 @@ import javafx.util.Duration;
 public class MainController {
 
     @FXML
-    private StackPane pnStackPane;
+    private StackPane pnMain;
 
     @FXML
     private JFXButton btUserInfo;
@@ -71,44 +73,18 @@ public class MainController {
 
     @FXML
     private ToggleButton tgbtVatTu;
-
+    
     @FXML
     private ToggleButton tgbtDonDatHang;
 
     @FXML
-    private StackPane pnWorkspace;
-    @FXML
-    private AnchorPane pnNhanVien;
-
-    @FXML
-    private VBox pnMenuBar;
-
-    @FXML
-    private JFXButton btAdd;
-
-    @FXML
-    private JFXButton btEdit;
-
-    @FXML
-    private JFXButton btDelete;
-
-    @FXML
-    private JFXButton btSave;
-
-    @FXML
-    private JFXButton btUndo;
-
-    @FXML
-    private JFXButton btReload;
-
-    @FXML
-    private JFXButton btChangeLocation;
+    private AnchorPane pnWorkspace;
 
     public MainController() {
     }
-
-    @FXML
-    private AnchorPane pnMain;
+//
+//    @FXML
+//    private AnchorPane pnMain;
 
     @FXML
     void showUserInfo(ActionEvent event) {
@@ -118,13 +94,13 @@ public class MainController {
                 JFXDialogLayout content = new JFXDialogLayout();
                 content.setHeading(new Text("Thông Tin Tài Khoản"));
                 content.setBody(new Text("User: " + DBConnectUtil.myUserDB + "\nHọ và tên: " + DBConnectUtil.myName + "\nNhóm quyền: " + DBConnectUtil.myGroup));
-                JFXDialog noti = new JFXDialog(pnStackPane, content, JFXDialog.DialogTransition.CENTER);
+                JFXDialog noti = new JFXDialog(pnMain, content, JFXDialog.DialogTransition.CENTER);
                 Image image1 = new Image(getClass().getResourceAsStream("../../../../img/icons8_checkmark_20px.png"));
                 Image image2 = new Image(getClass().getResourceAsStream("../../../../img/logout_rounded_left_20px.png"));
                 JFXButton btClose = new JFXButton(null, new ImageView(image1));
                 JFXButton btLogout = new JFXButton(null, new ImageView(image2));
-                btClose.setButtonType(JFXButton.ButtonType.RAISED);
-                btLogout.setButtonType(JFXButton.ButtonType.RAISED);
+                btClose.setButtonType(JFXButton.ButtonType.FLAT);
+                btLogout.setButtonType(JFXButton.ButtonType.FLAT);
                 btClose.setCursor(Cursor.HAND);
                 btLogout.setCursor(Cursor.HAND);
                 btClose.setOnAction((ActionEvent event1) -> {
@@ -180,7 +156,10 @@ public class MainController {
         }));
         tgbtNhanVien.selectedProperty().addListener(((observable, oldValue, newValue) -> {
 //            try {
-//                initWorkspace("NhanVien");
+//                initWorkspace("NhanVienTableView");
+////                pnWorkspace.getChildren().clear();
+////               Parent parrent= App.loadFXML("NhanVienTableView");
+////               pnWorkspace.getChildren().add(parrent);
 //            } catch (IOException ex) {
 //                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
 //            }
@@ -228,8 +207,13 @@ public class MainController {
 
     private void initWorkspace(String fxml) throws IOException {
         pnWorkspace.getChildren().clear();
-        AnchorPane newPane = FXMLLoader.load(getClass().getResource("../../../../fxml/" + fxml + ".fxml"));
-        pnWorkspace.getChildren().add(newPane);
+        Parent parrent = FXMLLoader.load(getClass().getResource("../../../../fxml/" + fxml + ".fxml"));
+        AnchorPane.setTopAnchor(parrent, 0.0);
+        AnchorPane.setRightAnchor(parrent, 0.0);
+        AnchorPane.setBottomAnchor(parrent, 0.0);
+        AnchorPane.setLeftAnchor(parrent, 0.0);
+        pnWorkspace.getChildren().add(parrent);
+
     }
 
     @FXML
@@ -238,8 +222,5 @@ public class MainController {
         btUserInfo.setText(DBConnectUtil.username);
         initClock();
         initButtonMenuBar();
-//
-//            AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("../../../../fxml/NhanVienTableView.fxml"));
-//            pnWorkspace.getChildren().add(anchorPane);
     }
 }

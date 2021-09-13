@@ -47,6 +47,8 @@
     -fx-border-color:linear-gradient(from 25% 25% to 100% 100%, #7819A5, #C767E6);
     -fx-border-width:2.0; 
 }
+
+
 /*.table-row-cell:highlighted {
     -fx-background-color: #7819A5;
     -fx-background-radius: 15px;

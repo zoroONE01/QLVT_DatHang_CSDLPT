@@ -6,19 +6,24 @@
 package com.mycompany.QLVT.dao;
 
 import com.mycompany.QLVT.Entity.Kho;
-import com.mycompany.QLVT.Entity.NhanVien;
 import com.mycompany.QLVT.Mapper.KhoMapper;
-import com.mycompany.QLVT.Mapper.NhanVienMapper;
 import java.util.List;
 
 /**
  *
  * @author zoroONE01
  */
-public class KhoDAO extends AbstractDAO<Kho>{
+public class KhoDAO extends AbstractDAO<Kho> {
+
     public List<Kho> findAll() {
         return queryProcedure("exec spShowKho", new KhoMapper());
     }
+
+    public int checkExist(String value, String type) {
+        return queryReturnOfProcedure("{call spCheckID(?,?)}", value, type);
+    }
+
+    
 
     public Kho findOne(String id) {
         List<Kho> listKho = queryProcedure("{call spSearchKho(?)}", new KhoMapper(), id);
@@ -30,11 +35,12 @@ public class KhoDAO extends AbstractDAO<Kho>{
     }
 
     public void save(Kho kho) {
-    insert("{call spInsertKho(?,?,?,?)}", kho.getMaKho(),kho.getTenKho(),kho.getDiaChi(),kho.getMaCN());
+        insert("{call spInsertKho(?,?,?,?)}", kho.getMaKho(), kho.getTenKho(), kho.getDiaChi(), kho.getMaCN());
 
     }
+
     public void update(Kho kho) {
-    update("{call spUpdateKho(?,?,?,?,?,?,?)}", kho.getMaKho(),kho.getTenKho(),kho.getDiaChi(),kho.getMaCN());
+        update("{call spUpdateKho(?,?,?)}", kho.getMaKho(), kho.getTenKho(), kho.getDiaChi());
 
     }
 }

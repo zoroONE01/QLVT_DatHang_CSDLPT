@@ -13,29 +13,36 @@ import com.mycompany.QLVT.service.NhanVienServiceTest;
  *
  * @author MinhTo
  */
-public class ActionSave extends ActionListenerCommand{
-      NhanVienService nhanVienService;
-      NhanVien nhanVien;
+public class ActionAdd extends ActionListenerCommand {
 
-    public ActionSave(NhanVienService nhanVienService, NhanVien nhanVien, String type) {
+    NhanVienService nhanVienService;
+    NhanVien nhanVien;
+
+    public ActionAdd(NhanVienService nhanVienService, NhanVien nhanVien, String type) {
         super(type);
         this.nhanVienService = nhanVienService;
         this.nhanVien = nhanVien;
     }
-     
-     
+
     @Override
     public boolean execute() {
-     //  NhanVien nv=nhanVienService.findOne(nhanVien);
-        nhanVienService.save(nhanVien);
-        if(nhanVienService.findOne(nhanVien.getMaNhanVien())!=null)
-            {
+      int nv = nhanVienService.isExist(nhanVien.getMaNhanVien());
+        if (nv==0) 
+        {
+            int rs=nhanVienService.save(nhanVien);
+            if (rs>0){
                 backup(nhanVien);
                 return true;
-            }
+            } 
+        }
+//        else{
+//         nhanVienService.update(nhanVien);
+//            if(nhanVienService.findOne(nhanVien.getMaNhanVien())!=null)
+//            {
+//                backup(nv);
+//                return true;
+//            }
+//        }
         return false;
     }
-
-      
-    
 }

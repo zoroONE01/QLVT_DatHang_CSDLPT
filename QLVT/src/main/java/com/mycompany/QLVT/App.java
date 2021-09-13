@@ -26,7 +26,7 @@ public class App extends Application {
         stage.setMinHeight(450);
         stage.setMaxHeight(450);
         stage.setMaxWidth(750);
-        scene = new Scene(loadFXML("login"));
+        scene = new Scene(loadFXML("Login"));
         stage.setScene(scene);
         stage.show();
         
@@ -36,7 +36,7 @@ public class App extends Application {
         scene.setRoot(loadFXML(fxml));
     }
 
-    private static Parent loadFXML(String fxml) throws IOException {
+    public static Parent loadFXML(String fxml) throws IOException {
 //        System.out.println("../../../fxml/" + fxml + ".fxml");
 //          System.out.println("../../fxml/" + fxml + ".fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("../../../fxml/" + fxml + ".fxml"));

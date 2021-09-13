@@ -27,7 +27,53 @@ public class ValidationRegEx {
     private static final String moneyRegex = "^[0-9]{1,8}";
     private static final String numberRegex = "^[0-9]{1,3}";
 
+    //Kho
+    public static final String maKho = "^[a-zA-Z0-9]{4}$";
+    public static final String tenKho = "^[\\sa-zA-Z0-9_.,-/]{1,30}$";
+    public static final String diaChi = "^[\\sa-zA-Z0-9_.,-/]{1,100}$";
+    public static final String maCN = "^[a-zA-Z0-9_.-]{10}$";
+
     public static Pattern patternTiengVietRegex = Pattern.compile(tiengVietRegex);
+
+    public static boolean valMaKho(String value) {
+        Pattern patter = Pattern.compile(maKho);
+        Matcher match = patter.matcher(removeAscent(value));
+        return match.matches();
+    }
+
+    public static boolean valTenKho(String value) {
+        Pattern patter = Pattern.compile(tenKho);
+        Matcher match = patter.matcher(removeAscent(value));
+        return match.matches();
+    }
+
+    public static boolean valDiaChi(String value) {
+        Pattern patter = Pattern.compile(diaChi);
+        Matcher match = patter.matcher(removeAscent(value));
+        return match.matches();
+    }
+//VatTu
+    public static final String maVT = "^[a-zA-Z0-9]{4}$";
+    public static final String tenVT = "^[\\sa-zA-Z0-9_.,-/]{1,30}$";
+    public static final String DVT = "^[\\sa-zA-Z0-9_.,-/]{1,15}$";
+
+    public static boolean valMaVT(String value) {
+        Pattern patter = Pattern.compile(maVT);
+        Matcher match = patter.matcher(removeAscent(value));
+        return match.matches();
+    }
+
+    public static boolean valTenVT(String value) {
+        Pattern patter = Pattern.compile(tenVT);
+        Matcher match = patter.matcher(removeAscent(value));
+        return match.matches();
+    }
+
+    public static boolean valDVT(String value) {
+        Pattern patter = Pattern.compile(DVT);
+        Matcher match = patter.matcher(removeAscent(value));
+        return match.matches();
+    }
 
     public static boolean validationSDT(String sdt) {
         Pattern patter = Pattern.compile(SDTRegex);
@@ -75,6 +121,23 @@ public class ValidationRegEx {
         return matcher.matches();
     }
 
+    public static String removeAscent(String str) {
+        return str.replaceAll("[àáạảãâầấậẩẫăằắặẳẵ]", "a")
+                .replaceAll("[èéẹẻẽêềếệểễ]", "e")
+                .replaceAll("[ìíịỉĩ]", "i")
+                .replaceAll("[òóọỏõôồốộổỗơờớợởỡ]", "o")
+                .replaceAll("[ùúụủũưừứựửữ]", "u")
+                .replaceAll("[ỳýỵỷỹ]", "y")
+                .replaceAll("[đ]", "d")
+                .replaceAll("[ÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴ]", "A")
+                .replaceAll("[ÈÉẸẺẼÊỀẾỆỂỄ]", "E")
+                .replaceAll("[ÌÍỊỈĨ]", "I")
+                .replaceAll("[ÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠ]", "O")
+                .replaceAll("[ÙÚỤỦŨƯỪỨỰỬỮ]", "U")
+                .replaceAll("[ỲÝỴỶỸ]", "Y")
+                .replaceAll("[Đ]", "D");
+    }
+
     public static String convertTiengVietFormat(String text) {
         String[] listText = text.split("\\s");
         StringBuilder str = new StringBuilder();
@@ -109,7 +172,7 @@ public class ValidationRegEx {
         }
 
     }
-    
+
     public static boolean validationMoneyRegex(String money) {
         Pattern pattern = Pattern.compile(moneyRegex);
         Matcher matcher = pattern.matcher(money);

@@ -26,14 +26,18 @@ public class NhanVienService{
                return nhanVienDAO.findOne(id);
            }
      
-       public void delete(int id)
+       public int delete(int id)
            {
-               nhanVienDAO.delete(id);
+               return nhanVienDAO.delete(id);
            }
           
-       public void save(NhanVien nv)
+       public int isExist(int id)
+       {
+           return nhanVienDAO.isExist(id);
+       }
+       public int save(NhanVien nv)
            {
-               nhanVienDAO.save(nv);
+               return nhanVienDAO.save(nv);
            }
        public void update(NhanVien nv)
            {

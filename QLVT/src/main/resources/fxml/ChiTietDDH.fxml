@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<StackPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: #fff;">
+         <children>
+            <Label alignment="TOP_RIGHT" layoutX="277.0" layoutY="2.0" text="Mon, Ngày 12/09/2021" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="141.0" layoutY="37.0" text="Đơn Đặt Hàng" AnchorPane.topAnchor="40.0">
+               <font>
+                  <Font name="Calibri Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="TOP_RIGHT" layoutX="326.0" layoutY="22.0" text="10:00:00 AM" AnchorPane.rightAnchor="0.0">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+            </Label>
+            <Label text="Số:" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font name="Calibri Bold" size="14.0" />
+               </font>
+            </Label>
+            <JFXTreeTableView layoutX="12.0" layoutY="100.0" prefHeight="309.0" prefWidth="400.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="110.0">
+               <columns>
+                  <TreeTableColumn prefWidth="75.0" text="Column X" />
+                  <TreeTableColumn prefWidth="75.0" text="Column X" />
+                  <TreeTableColumn prefWidth="75.0" text="Column X" />
+                  <TreeTableColumn prefWidth="75.0" text="Column X" />
+               </columns>
+               <columnResizePolicy>
+                  <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </JFXTreeTableView>
+            <Label layoutY="74.0" text="Nhà Cung Cấp:" AnchorPane.topAnchor="80.0">
+               <font>
+                  <Font name="Calibri Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="19.0" layoutY="-1.0" text="09201091" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="91.0" layoutY="70.0" text="Công ty vật liệu xây dựng Bông Cá Mồi" AnchorPane.topAnchor="80.0">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+            </Label>
+            <VBox layoutX="7.0" layoutY="446.0" prefWidth="170.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="440.0">
+               <children>
+                  <Label layoutX="10.0" layoutY="10.0" text="[1] Nguyễn Thị Diễm Bông" wrapText="true">
+                     <font>
+                        <Font name="Calibri" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="27.0" text="[CN1] Chi Nhánh 1 TP. HCM" wrapText="true">
+                     <font>
+                        <Font name="Calibri" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox layoutX="272.0" layoutY="446.0" prefWidth="170.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="440.0">
+               <children>
+                  <Label layoutX="10.0" layoutY="10.0" text="[GV1] Gò Vấp 1" wrapText="true">
+                     <font>
+                        <Font name="Calibri" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="27.0" text="[CN1] Chi Nhánh 1 TP. HCM" wrapText="true">
+                     <font>
+                        <Font name="Calibri" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <Label alignment="CENTER" layoutY="421.0" prefWidth="170.0" text="Nhân Viên Đặt Hàng" AnchorPane.leftAnchor="0.0">
+               <font>
+                  <Font name="Calibri Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="230.0" layoutY="421.0" prefWidth="170.0" text="Kho Nhận Hàng" AnchorPane.rightAnchor="0.0">
+               <font>
+                  <Font name="Calibri Bold" size="14.0" />
+               </font>
+            </Label>
+            <ImageView fitWidth="150.0" opacity="0.2" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-30.0" AnchorPane.leftAnchor="10.0">
+               <image>
+                  <Image url="@../img/confirmed-stemp.png" />
+               </image>
+            </ImageView>
+            <ImageView fitWidth="150.0" layoutX="10.0" layoutY="390.0" opacity="0.2" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0">
+               <image>
+                  <Image url="@../img/approved-stamp.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

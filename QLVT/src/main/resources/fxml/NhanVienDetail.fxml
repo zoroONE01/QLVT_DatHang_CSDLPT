@@ -10,33 +10,33 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="210.0" prefWidth="350.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Label alignment="CENTER" layoutX="15.0" layoutY="-1.0" prefHeight="30.0" prefWidth="535.0" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #7819A5, #C767E6); -fx-background-radius: 20; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );" text="Chi Tiết Nhân Viên" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <font>
-            <Font name="Calibri Bold" size="20.0" />
-         </font>
-         <padding>
-            <Insets left="20.0" />
-         </padding>
-      </Label>
-      <HBox alignment="CENTER" layoutX="15.0" layoutY="50.0" prefHeight="200.0" prefWidth="300.0" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
-         <children>
-            <VBox alignment="TOP_CENTER" prefWidth="150.0" spacing="20.0">
-               <children>
-                  <JFXTextField fx:id="tfMaNV" focusColor="#c767e6" labelFloat="true" promptText="Mã Nhân Viên" />
-                  <JFXTextField fx:id="tfHoVaTenDem" focusColor="#c767e6" labelFloat="true" promptText="Họ Và Tên Đệm" />
-                  <JFXTextField fx:id="tfTen" focusColor="#c767e6" labelFloat="true" promptText="Tên" />
-                  <JFXTextField fx:id="tfTen1" focusColor="#c767e6" labelFloat="true" layoutX="10.0" layoutY="103.0" promptText="Chi Nhánh" />
-               </children>
-            </VBox>
-            <VBox alignment="TOP_CENTER" prefWidth="150.0" spacing="20.0">
-               <children>
-                  <JFXDatePicker fx:id="dpkNgaySinh" defaultColor="#c767e6" promptText="Ngày Sinh" />
-                  <JFXTextField fx:id="tfLuong" focusColor="#c767e6" labelFloat="true" promptText="Lương" />
-                  <JFXTextField fx:id="tfDiaChi" focusColor="#c767e6" labelFloat="true" promptText="Địa Chỉ" />
-               </children>
-            </VBox>
-         </children>
-      </HBox>
-   </children>
+    <children>
+        <Label alignment="CENTER" layoutX="15.0" layoutY="-1.0" prefHeight="30.0" prefWidth="535.0" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #7819A5, #C767E6); -fx-background-radius: 20; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );" text="Chi Tiết Nhân Viên" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <font>
+                <Font name="Calibri Bold" size="20.0" />
+            </font>
+            <padding>
+                <Insets left="20.0" />
+            </padding>
+        </Label>
+        <HBox alignment="CENTER" layoutX="15.0" layoutY="50.0" prefHeight="200.0" prefWidth="300.0" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
+            <children>
+                <VBox alignment="TOP_CENTER" prefWidth="150.0" spacing="20.0">
+                    <children>
+                        <JFXTextField fx:id="tfMaNV" focusColor="#c767e6" labelFloat="true" promptText="Mã Nhân Viên" />
+                        <JFXTextField fx:id="tfHoVaTenDem" focusColor="#c767e6" labelFloat="true" promptText="Họ Và Tên Đệm" />
+                        <JFXTextField fx:id="tfTen" focusColor="#c767e6" labelFloat="true" promptText="Tên" />
+                        <JFXTextField fx:id="tfTen1" focusColor="#c767e6" labelFloat="true" layoutX="10.0" layoutY="103.0" promptText="Chi Nhánh" />
+                    </children>
+                </VBox>
+                <VBox alignment="TOP_CENTER" prefWidth="150.0" spacing="20.0">
+                    <children>
+                        <JFXDatePicker fx:id="dpkNgaySinh" defaultColor="#c767e6" promptText="Ngày Sinh" />
+                        <JFXTextField fx:id="tfLuong" focusColor="#c767e6" labelFloat="true" promptText="Lương" />
+                        <JFXTextField fx:id="tfDiaChi" focusColor="#c767e6" labelFloat="true" promptText="Địa Chỉ" />
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+    </children>
 </AnchorPane>

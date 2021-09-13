@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="pnStackPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.QLVT.controller.MainController">
+<StackPane fx:id="pnMain" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.QLVT.controller.MainController">
     <children>
-        <AnchorPane minHeight="550.0" minWidth="740.0" prefHeight="650.0" prefWidth="1100.0" style="-fx-background-color: transparent;">
+        <AnchorPane prefHeight="650.0" prefWidth="1100.0" style="-fx-background-color: transparent;">
             <children>
                 <AnchorPane style="-fx-background-color: #fff;" stylesheets="@../css/main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <children>
@@ -205,9 +205,7 @@
                         </VBox>
                     </children>
                 </AnchorPane>
-                <StackPane fx:id="pnWorkspace" layoutX="160.0" layoutY="96.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="165.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="100.0">
-                 
-                </StackPane>
+            <AnchorPane fx:id="pnWorkspace" layoutX="165.0" layoutY="100.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="165.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="100.0" />
             </children>
         </AnchorPane>
     </children>

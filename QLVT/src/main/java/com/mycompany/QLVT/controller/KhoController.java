@@ -8,6 +8,7 @@ package com.mycompany.QLVT.controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
+import com.mycompany.QLVT.App;
 import com.mycompany.QLVT.Entity.Kho;
 import com.mycompany.QLVT.model.KhoTableModel;
 import com.mycompany.QLVT.service.KhoService;
@@ -24,6 +25,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -36,6 +39,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
@@ -88,7 +92,9 @@ public class KhoController implements Initializable {
 
     private ObservableList<Kho> listKho;
 
-    private Kho kho;
+    private ImageView icLoading;
+
+    public Kho kho;
 
     @FXML
     void showAddFrom(ActionEvent event) {
@@ -100,6 +106,7 @@ public class KhoController implements Initializable {
                 Parent root = null;
                 KhoDetailController khoDetailController = new KhoDetailController();
                 try {
+//                    System.out.println(new FXMLLoader(getClass().getResource("../../../../fxml/KhoDetail.fxml")));
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../../../fxml/KhoDetail.fxml"));
                     fxmlLoader.setController(khoDetailController);
                     root = (Parent) fxmlLoader.load();
@@ -112,20 +119,27 @@ public class KhoController implements Initializable {
                 Image image1 = new Image(getClass().getResourceAsStream("../../../../img/delete_20px.png"));
                 Image image2 = new Image(getClass().getResourceAsStream("../../../../img/icons8_checkmark_20px.png"));
                 JFXButton btClose = new JFXButton(null, new ImageView(image1));
-                JFXButton btAdd = new JFXButton(null, new ImageView(image2));
-                btClose.setButtonType(JFXButton.ButtonType.RAISED);
-                btAdd.setButtonType(JFXButton.ButtonType.RAISED);
+                JFXButton btAccept = new JFXButton(null, new ImageView(image2));
+                btClose.setButtonType(JFXButton.ButtonType.FLAT);
+                btAccept.setButtonType(JFXButton.ButtonType.FLAT);
                 btClose.setCursor(Cursor.HAND);
-                btAdd.setCursor(Cursor.HAND);
+                btAccept.setCursor(Cursor.HAND);
                 btClose.setOnAction((ActionEvent event1) -> {
                     noti.close();
                 });
-                btAdd.setOnAction((ActionEvent event1) -> {
+                btAccept.setOnAction((ActionEvent event1) -> {
+                    content.setBody(icLoading);
+                    String error = khoDetailController.addKho();
+                    if (error == "") {
+                        noti.setContent(content);
+                        noti.close();
+                        initTableKho();
 
-//                    khoDetailController.addKho();
+                    } else {
+                        content.setBody(new Text(error));
+                    }
                 });
-                content.setActions(btAdd, btClose);
-//                content.setActions(btClose);
+                content.setActions(btAccept, btClose);
                 noti.show();
             }
         });
@@ -153,20 +167,25 @@ public class KhoController implements Initializable {
                 Image image1 = new Image(getClass().getResourceAsStream("../../../../img/delete_20px.png"));
                 Image image2 = new Image(getClass().getResourceAsStream("../../../../img/icons8_checkmark_20px.png"));
                 JFXButton btClose = new JFXButton(null, new ImageView(image1));
-                JFXButton btAdd = new JFXButton(null, new ImageView(image2));
-                btClose.setButtonType(JFXButton.ButtonType.RAISED);
-                btAdd.setButtonType(JFXButton.ButtonType.RAISED);
+                JFXButton btAccept = new JFXButton(null, new ImageView(image2));
+                btClose.setButtonType(JFXButton.ButtonType.FLAT);
+                btAccept.setButtonType(JFXButton.ButtonType.FLAT);
                 btClose.setCursor(Cursor.HAND);
-                btAdd.setCursor(Cursor.HAND);
+                btAccept.setCursor(Cursor.HAND);
                 btClose.setOnAction((ActionEvent event1) -> {
                     noti.close();
                 });
-                btAdd.setOnAction((ActionEvent event1) -> {
-
-//                    khoDetailController.addKho();
+                btAccept.setOnAction((ActionEvent event1) -> {
+                    content.setBody(icLoading);
+                    String error = khoDetailController.deleleKho(kho);
+                    if (error == "") {
+                        noti.close();
+                        initTableKho();
+                    } else {
+                        content.setBody(new Text(error));
+                    }
                 });
-                content.setActions(btAdd, btClose);
-//                content.setActions(btClose);
+                content.setActions(btAccept, btClose);
                 noti.show();
             }
         });
@@ -194,23 +213,33 @@ public class KhoController implements Initializable {
                 Image image1 = new Image(getClass().getResourceAsStream("../../../../img/delete_20px.png"));
                 Image image2 = new Image(getClass().getResourceAsStream("../../../../img/icons8_checkmark_20px.png"));
                 JFXButton btClose = new JFXButton(null, new ImageView(image1));
-                JFXButton btAdd = new JFXButton(null, new ImageView(image2));
-                btClose.setButtonType(JFXButton.ButtonType.RAISED);
-                btAdd.setButtonType(JFXButton.ButtonType.RAISED);
+                JFXButton btAccept = new JFXButton(null, new ImageView(image2));
+                btClose.setButtonType(JFXButton.ButtonType.FLAT);
+                btAccept.setButtonType(JFXButton.ButtonType.FLAT);
                 btClose.setCursor(Cursor.HAND);
-                btAdd.setCursor(Cursor.HAND);
+                btAccept.setCursor(Cursor.HAND);
                 btClose.setOnAction((ActionEvent event1) -> {
                     noti.close();
                 });
-                btAdd.setOnAction((ActionEvent event1) -> {
-
-//                    khoDetailController.addKho();
+                btAccept.setOnAction((ActionEvent event1) -> {
+                    content.setBody(icLoading);
+                    String error = khoDetailController.updateKho(kho);
+                    if (error == "") {
+                        noti.close();
+                        initTableKho();
+                    } else {
+                        content.setBody(new Text(error));
+                    }
                 });
-                content.setActions(btAdd, btClose);
-//                content.setActions(btClose);
+                content.setActions(btAccept, btClose);
                 noti.show();
             }
         });
+    }
+
+    @FXML
+    void reloadTable(ActionEvent event) {
+        initTableKho();
     }
 
     public void initTableKho() {
@@ -235,6 +264,7 @@ public class KhoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         initTableKho();
+        icLoading = new ImageView(new Image(getClass().getResourceAsStream("../../../../img/loading.gif"), 40, 40, false, true));
         btEdit.setDisable(true);
         btDelete.setDisable(true);
     }
