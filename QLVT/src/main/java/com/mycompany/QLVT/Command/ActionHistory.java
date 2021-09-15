@@ -12,22 +12,23 @@ import java.util.Stack;
  * @author MinhTo
  */
 public class ActionHistory {
-   private Stack<ActionListenerCommand> history=new Stack<>();
-    public void push(ActionListenerCommand command)
-            {
-                    history.push(command);
-            }
-    public ActionListenerCommand pop()
-            {
-                return history.pop();
-            }
-        public ActionListenerCommand peek()
-            {
-                return history.peek();
-            }
+
+    private Stack<ActionListenerCommand> history = new Stack<>();
+
+    public void push(ActionListenerCommand command) {
+        history.push(command);
+    }
+
+    public ActionListenerCommand pop() {
+        return history.pop();
+    }
+
+    public ActionListenerCommand peek() {
+        return history.peek();
+    }
 
     public Stack<ActionListenerCommand> getHistory() {
         return history;
     }
-    
+
 }

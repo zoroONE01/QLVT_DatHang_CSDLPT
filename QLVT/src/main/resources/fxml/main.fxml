@@ -4,7 +4,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="pnStackPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.QLVT.controller.MainController">
+<StackPane fx:id="pnMain" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.QLVT.controller.MainController">
     <children>
-        <AnchorPane minHeight="550.0" minWidth="740.0" prefHeight="650.0" prefWidth="1100.0" style="-fx-background-color: transparent;">
+        <AnchorPane prefHeight="650.0" prefWidth="1100.0" style="-fx-background-color: transparent;">
             <children>
                 <AnchorPane style="-fx-background-color: #fff;" stylesheets="@../css/main.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <children>
@@ -96,118 +96,86 @@
 
                         <VBox layoutX="15.0" layoutY="110.0" prefWidth="120.0" spacing="10.0" AnchorPane.topAnchor="110.0">
                             <children>
-                                <ToggleButton fx:id="tgbtDashboard" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="35.0" prefWidth="124.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Dashboard" textFill="#bbbbbb">
-                                    <graphic>
+                        <RadioButton fx:id="btDashboard" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="35.0" prefWidth="124.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Dashboard" textFill="#bbbbbb">
+                           <font>
+                              <Font name="Calibri Bold" size="14.0" />
+                           </font>
+                           <graphic>
                                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
                                                 <Image url="@../img/icons8_dashboard_layout_20px_2.png" />
                                             </image>
                                         </ImageView>
-                                    </graphic>
-                                    <font>
-                                        <Font name="Calibri" size="14.0" />
-                                    </font>
-                                    <VBox.margin>
-                                        <Insets />
-                                    </VBox.margin>
-                                    <padding>
-                                        <Insets left="6.0" top="7.0" />
-                                    </padding>
-                                    <!--                                    <cursor>
-                                        <Cursor fx:constant="HAND" />
-                                    </cursor>-->
-                                </ToggleButton>
-                                <ToggleButton fx:id="tgbtNhanVien" alignment="TOP_LEFT" layoutX="10.0" layoutY="235.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="124.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Nhân Viên" textFill="#bbbbbb">
-                                    <graphic>
+                           </graphic>
+                           <padding>
+                              <Insets left="6.0" top="7.0" />
+                           </padding>
+                        </RadioButton>
+                        <RadioButton fx:id="btNhanVien" alignment="TOP_LEFT" layoutX="10.0" layoutY="235.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="124.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Nhân Viên" textFill="#bbbbbb">
+                           <font>
+                              <Font name="Calibri Bold" size="14.0" />
+                           </font>
+                           <graphic>
                                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
                                                 <Image url="@../img/icons8_member_20px.png" />
                                             </image>
                                         </ImageView>
-                                    </graphic>
-                                    <font>
-                                        <Font name="Calibri" size="14.0" />
-                                    </font>
-                                    <VBox.margin>
-                                        <Insets />
-                                    </VBox.margin>
-                                    <padding>
-                                        <Insets left="6.0" top="7.0" />
-                                    </padding>
-                                    <!--                           <cursor>
-                                       <Cursor fx:constant="HAND" />
-                                    </cursor>-->
-                                </ToggleButton>
-                                <ToggleButton fx:id="tgbtKho" alignment="TOP_LEFT" layoutX="10.0" layoutY="280.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="124.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Kho" textFill="#bbbbbb">
-                                    <graphic>
+                           </graphic>
+                           <padding>
+                              <Insets left="6.0" top="7.0" />
+                           </padding>
+                        </RadioButton>
+                        <RadioButton fx:id="btKho" alignment="TOP_LEFT" layoutX="10.0" layoutY="280.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="124.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Kho" textFill="#bbbbbb">
+                           <font>
+                              <Font name="Calibri Bold" size="14.0" />
+                           </font>
+                           <graphic>
                                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
                                                 <Image url="@../img/icons8_warehouse_20px.png" />
                                             </image>
                                         </ImageView>
-                                    </graphic>
-                                    <font>
-                                        <Font name="Calibri" size="14.0" />
-                                    </font>
-                                    <VBox.margin>
-                                        <Insets />
-                                    </VBox.margin>
-                                    <padding>
-                                        <Insets left="6.0" top="7.0" />
-                                    </padding>
-                                    <!--                           <cursor>
-                                       <Cursor fx:constant="HAND" />
-                                    </cursor>-->
-                                </ToggleButton>
-                                <ToggleButton fx:id="tgbtVatTu" alignment="TOP_LEFT" layoutX="10.0" layoutY="325.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="124.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Vật Tư" textFill="#bbbbbb">
-                                    <graphic>
+                           </graphic>
+                           <padding>
+                              <Insets left="6.0" top="7.0" />
+                           </padding>
+                        </RadioButton>
+                        <RadioButton fx:id="btVatTu" alignment="TOP_LEFT" layoutX="10.0" layoutY="325.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="124.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Vật Tư" textFill="#bbbbbb">
+                           <font>
+                              <Font name="Calibri Bold" size="14.0" />
+                           </font>
+                           <graphic>
                                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
                                                 <Image url="@../img/icons8_layers_20px.png" />
                                             </image>
                                         </ImageView>
-                                    </graphic>
-                                    <font>
-                                        <Font name="Calibri" size="14.0" />
-                                    </font>
-                                    <VBox.margin>
-                                        <Insets />
-                                    </VBox.margin>
-                                    <padding>
-                                        <Insets left="6.0" top="7.0" />
-                                    </padding>
-                                    <!--                           <cursor>
-                                       <Cursor fx:constant="HAND" />
-                                    </cursor>-->
-                                </ToggleButton>
-                                <ToggleButton fx:id="tgbtDonDatHang" alignment="TOP_LEFT" layoutX="10.0" layoutY="370.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="124.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Đơn Đặt Hàng" textFill="#bbbbbb">
-                                    <graphic>
+                           </graphic>
+                           <padding>
+                              <Insets left="6.0" top="7.0" />
+                           </padding>
+                        </RadioButton>
+                        <RadioButton fx:id="btDonDatHang" alignment="TOP_LEFT" layoutX="10.0" layoutY="370.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="124.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Đơn Đặt Hàng" textFill="#bbbbbb">
+                           <font>
+                              <Font name="Calibri Bold" size="14.0" />
+                           </font>
+                           <graphic>
                                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
                                                 <Image url="@../img/icons8_purchase_order_20px_1.png" />
                                             </image>
                                         </ImageView>
-                                    </graphic>
-                                    <font>
-                                        <Font name="Calibri" size="14.0" />
-                                    </font>
-                                    <VBox.margin>
-                                        <Insets />
-                                    </VBox.margin>
-                                    <padding>
-                                        <Insets left="6.0" top="7.0" />
-                                    </padding>
-                                    <!--                           <cursor>
-                                       <Cursor fx:constant="HAND" />
-                                    </cursor>-->
-                                </ToggleButton>
+                           </graphic>
+                           <padding>
+                              <Insets left="6.0" top="7.0" />
+                           </padding>
+                        </RadioButton>
                             </children>
                         </VBox>
                     </children>
                 </AnchorPane>
-                <StackPane fx:id="pnWorkspace" layoutX="160.0" layoutY="96.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="165.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="100.0">
-                 
-                </StackPane>
+            <AnchorPane fx:id="pnWorkspace" layoutX="165.0" layoutY="100.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="165.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="100.0" />
             </children>
         </AnchorPane>
     </children>

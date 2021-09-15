@@ -8,6 +8,7 @@ package com.mycompany.QLVT.controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import com.mycompany.QLVT.Entity.Login;
 import com.mycompany.QLVT.Entity.PhanManh;
 import com.mycompany.QLVT.Utils.DBConnectUtil;
@@ -129,7 +130,7 @@ public class LoginController {
                     Image image = new Image(getClass().getResourceAsStream("../../../../img/icons8_checkmark_20px.png"));
                     JFXButton button = new JFXButton(null, new ImageView(image));
                     button.setCursor(Cursor.HAND);
-                    button.setButtonType(JFXButton.ButtonType.RAISED);
+                    button.setButtonType(JFXButton.ButtonType.FLAT);
                     button.setOnAction((ActionEvent event1) -> {
                         noti.close();
                     });
@@ -142,7 +143,6 @@ public class LoginController {
 //            alert.show();
 
         }
-
     }
 
     @FXML

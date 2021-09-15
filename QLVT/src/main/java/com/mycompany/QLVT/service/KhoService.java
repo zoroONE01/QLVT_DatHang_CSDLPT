@@ -20,12 +20,16 @@ public class KhoService {
         return khoDAO.findOne(id);
     }
 
+    public int checkExist(String value, String type) {
+        return khoDAO.checkExist(value, type);
+    }
+
     public void delete(String id) {
         khoDAO.delete(id);
     }
 
-    public void save(Kho kho) {
-        khoDAO.save(kho);
+    public void insert(Kho kho) {
+        khoDAO.insert(kho);
     }
 
     public void update(Kho kho) {

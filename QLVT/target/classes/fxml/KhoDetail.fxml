@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="350.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="155.0" prefWidth="350.0" style="-fx-background-color: #fff;" stylesheets="@../css/text-input.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label alignment="CENTER" layoutX="15.0" layoutY="-1.0" prefHeight="30.0" prefWidth="535.0" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #7819A5, #C767E6); -fx-background-radius: 20; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );" text="Chi Tiết Kho" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Label fx:id="lbTitle" alignment="CENTER" layoutX="15.0" layoutY="-1.0" prefHeight="30.0" prefWidth="535.0" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #7819A5, #C767E6); -fx-background-radius: 20; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );" text="Chi Tiết Kho" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <font>
             <Font name="Calibri Bold" size="20.0" />
          </font>
@@ -18,19 +18,25 @@
             <Insets left="20.0" />
          </padding>
       </Label>
-      <HBox alignment="CENTER" layoutX="15.0" layoutY="50.0" prefHeight="100.0" prefWidth="300.0" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
+      <HBox alignment="CENTER" layoutX="15.0" layoutY="50.0" prefHeight="100.0" prefWidth="300.0" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
          <children>
-            <VBox alignment="TOP_CENTER" prefWidth="150.0" spacing="20.0">
+            <VBox alignment="TOP_CENTER" prefWidth="150.0" spacing="30.0">
                <children>
                   <JFXTextField fx:id="tfMaKho" focusColor="#c767e6" labelFloat="true" promptText="Mã Kho" />
                   <JFXTextField fx:id="tfDiaChi" focusColor="#c767e6" labelFloat="true" layoutX="10.0" layoutY="103.0" promptText="Địa Chỉ" />
                </children>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
             </VBox>
-            <VBox alignment="TOP_CENTER" prefWidth="150.0" spacing="20.0">
+            <VBox alignment="TOP_CENTER" prefWidth="150.0" spacing="30.0">
                <children>
                   <JFXTextField fx:id="tfTenKho" focusColor="#c767e6" labelFloat="true" promptText="Tên Kho" />
-                  <JFXTextField fx:id="tfChiNhanh" focusColor="#c767e6" labelFloat="true" promptText="Chi Nhánh" />
+                  <JFXTextField fx:id="tfChiNhanh" editable="false" focusColor="#c767e6" labelFloat="true" promptText="Chi Nhánh" />
                </children>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
             </VBox>
          </children>
       </HBox>

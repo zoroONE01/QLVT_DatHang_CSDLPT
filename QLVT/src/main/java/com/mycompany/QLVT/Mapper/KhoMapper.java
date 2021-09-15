@@ -31,7 +31,7 @@ public class KhoMapper implements RowMapper<Kho> {
             return kho;
         } catch (SQLException ex) {
             System.out.println("");
-            Logger.getLogger(NhanVienMapper.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(KhoMapper.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }

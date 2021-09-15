@@ -26,7 +26,7 @@ public class App extends Application {
         stage.setMinHeight(450);
         stage.setMaxHeight(450);
         stage.setMaxWidth(750);
-        scene = new Scene(loadFXML("login"));
+        scene = new Scene(loadFXML("Login"));
         stage.setScene(scene);
         stage.show();
         
