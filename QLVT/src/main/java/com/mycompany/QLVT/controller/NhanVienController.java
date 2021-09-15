@@ -22,6 +22,7 @@ import com.mycompany.QLVT.Entity.PhanManh;
 import com.mycompany.QLVT.Utils.DBConnectUtil;
 import com.mycompany.QLVT.Utils.FomaterDate;
 import com.mycompany.QLVT.Utils.ValidationRegEx;
+import com.mycompany.QLVT.dao.NhanVienDAO;
 import com.mycompany.QLVT.dao.PhanManhDAO;
 import com.mycompany.QLVT.model.ChiNhanhModel;
 import com.mycompany.QLVT.model.NhanVienTableModel;
@@ -356,6 +357,10 @@ public class NhanVienController {
 
     @FXML
     void initialize() {
+        
+        NhanVienDAO nhan=new NhanVienDAO();
+       
+       nhan.testSP(7);
         //Không cho chỉnh sửa thuộc tính nhân viên và chi nhánh
 //        tfMaNV.setDisable(true);
         tfChiNhanh.setDisable(true);
@@ -636,6 +641,8 @@ public class NhanVienController {
             if (nv != null) {
                 if (nhanVienService.findOne(nv.getMaNhanVien()) != null) {
                     nhanVienService.update(nv); //cap nhat trang thai
+                     history.pop();
+
                     return 1;
                 } else {
                     if (nhanVienService.save(nv) > 0) {

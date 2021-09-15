@@ -42,6 +42,7 @@ com\mycompany\QLVT\dao\NumberDao.class
 com\mycompany\QLVT\dao\NhanVienDAO.class
 com\mycompany\QLVT\dao\NhanVienDaoTest.class
 com\mycompany\QLVT\controller\NhanVienViewControllerTest$1.class
+com\mycompany\QLVT\Report\TestReport.class
 com\mycompany\QLVT\dao\AbstractDAO.class
 com\mycompany\QLVT\model\ChiNhanhModel.class
 com\mycompany\QLVT\controller\NhanVienController$2.class
