@@ -7,6 +7,9 @@ package com.mycompany.QLVT.Utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
@@ -44,14 +47,34 @@ public class FomaterDate {
         }
         return null;
 }   
-}
-//    public static void main(String[] args) throws ParseException {
-//        String ns="2000-02-30 5:30:30";
+    
+    public static String convertLocalDateToString(LocalDate datetime)
+            {
+                DateTimeFormatter dateTimeFormatter= DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                String fomatterDateTime=datetime.format(dateTimeFormatter);
+                return fomatterDateTime;
+            }
+      public static LocalDate convertStringToLocalDate(String datetime)
+            {
+                DateTimeFormatter dateTimeFormatter= DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                LocalDate localDateTime=LocalDate.parse(datetime,dateTimeFormatter);
+                return localDateTime;
+            }
+
+    public static void main(String[] args) throws ParseException {
+        String ns="2000-02-26 05:30";
+//        LocalDateTime localDateTime=convertStringToLocalDate(ns);
+//        System.out.println(localDateTime);
+//        System.out.println(convertLocalDateToString(localDateTime));
+
+
+
 //        java.sql.Date d=new java.sql.Date())
 //        Date date=null;
 //        date=FomaterDate.convertStringToDate(ns);
-//        JDateChooser dateChooser=new JDateChooser(date);
-//        System.out.println(dateChooser.getDate());
-//        
-//        }
+//        JDateCser dateChooser=new JDateChooser(date);
+//        Systehoom.out.println(dateChooser.getDate());
+        
+        }
+    }
 

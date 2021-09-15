@@ -28,8 +28,8 @@ public class KhoService {
         khoDAO.delete(id);
     }
 
-    public void save(Kho kho) {
-        khoDAO.save(kho);
+    public void insert(Kho kho) {
+        khoDAO.insert(kho);
     }
 
     public void update(Kho kho) {

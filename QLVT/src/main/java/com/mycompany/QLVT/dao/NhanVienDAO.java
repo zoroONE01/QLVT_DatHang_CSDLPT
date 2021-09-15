@@ -24,6 +24,10 @@ public class NhanVienDAO extends AbstractDAO<NhanVien> {
         return queryProcedure("exec SP_DSNhanVien", new NhanVienMapper());
     }
 
+    public List<NhanVien> findAllOtherSite() {
+        return queryProcedure("exec LINK1.QLVT.DBO.SP_DSNhanVien", new NhanVienMapper());
+    }
+
     public NhanVien findOne(int id) {
         List<NhanVien> listNV = queryProcedure("{call SP_LayNhanVien(?)}", new NhanVienMapper(), id);
         return listNV.isEmpty() ? null : listNV.get(0);
@@ -43,21 +47,25 @@ public class NhanVienDAO extends AbstractDAO<NhanVien> {
 //            }
 //        }, id, "NhanVien");
 //        return listNV.isEmpty() ? 0 : listNV.get(1);
-    int b=queryReturnOfProcedure("{call SP_CHECK_TRACUU(?,?)}", id, "NhanVien");
-    return b;
+        int b = queryReturnOfProcedure("{call SP_CHECK_TRACUU(?,?)}", id, "NhanVien");
+        return b;
     }
 
     public int delete(int id) {
-        return update("{call SP_XOA_NHANVIEN(?)}", id);
+        return updateProcedure("{call SP_XOA_NHANVIEN(?)}", id);
     }
 
     public int save(NhanVien nv) {
-      return insert("{call SP_Them_NhanVien(?,?,?,?,?,?,?)}", nv.getMaNhanVien(), nv.getHo(), nv.getTen(), nv.getDiaChi(), nv.getNgaySinh(), nv.getLuong(), nv.getMaCN());
-     
+        return insert("{call SP_Them_NhanVien(?,?,?,?,?,?,?)}", nv.getMaNhanVien(), nv.getHo(), nv.getTen(), nv.getDiaChi(), nv.getNgaySinh(), nv.getLuong(), nv.getMaCN());
+
     }
 
-    public void update(NhanVien nv) {
-        update("{call SP_CapNhat_NhanVien(?,?,?,?,?,?,?,?)}", nv.getMaNhanVien(), nv.getHo(), nv.getTen(), nv.getDiaChi(), nv.getNgaySinh(), nv.getLuong(), nv.getMaCN(),nv.getTrangThai());
+    public int update(NhanVien nv) {
+        return update("{call SP_CapNhat_NhanVien(?,?,?,?,?,?,?,?)}", nv.getMaNhanVien(), nv.getHo(), nv.getTen(), nv.getDiaChi(), nv.getNgaySinh(), nv.getLuong(), nv.getMaCN(), nv.getTrangThai());
 
+    }
+
+    public int chuyenChiNhanh(int id, String maChiNhanhNew) {
+        return updateProcedure("{call SP_ChuyenChiNhanh(?,?)}", id, maChiNhanhNew);
     }
 }

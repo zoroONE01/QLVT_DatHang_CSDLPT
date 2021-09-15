@@ -10,8 +10,8 @@ package com.mycompany.QLVT.Entity;
  * @author MinhTo
  */
 public class NhanVien {
+    
     private int maNhanVien;
-   
     private String ho;
     private String ten;
     private String diaChi;

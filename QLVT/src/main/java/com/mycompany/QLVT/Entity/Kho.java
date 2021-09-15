@@ -82,4 +82,9 @@ public class Kho {
         this.tenCN = tenCN;
     }
 
+    @Override
+    public String toString() {
+        return "Kho{" + "maKho=" + maKho + ", tenKho=" + tenKho + ", diaChi=" + diaChi + ", maCN=" + maCN + ", tenCN=" + tenCN + '}';
+    }
+
 }

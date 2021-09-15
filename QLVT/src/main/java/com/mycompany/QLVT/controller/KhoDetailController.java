@@ -6,20 +6,21 @@
 package com.mycompany.QLVT.controller;
 
 import com.jfoenix.controls.JFXTextField;
+import com.mycompany.QLVT.Command.KhoCommand;
+import com.mycompany.QLVT.Command.KhoInsert;
 import com.mycompany.QLVT.Entity.Kho;
 import com.mycompany.QLVT.Utils.DBConnectUtil;
 import com.mycompany.QLVT.Utils.ValidationRegEx;
-import com.mycompany.QLVT.dao.KhoDAO;
+import com.mycompany.QLVT.model.KhoTableModel;
 import com.mycompany.QLVT.service.KhoService;
-import java.io.File;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextFormatter;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**
@@ -46,9 +47,7 @@ public class KhoDetailController implements Initializable {
 
     @FXML
     private JFXTextField tfChiNhanh;
-    
 
-    
     public KhoDetailController() {
     }
 
@@ -149,9 +148,29 @@ public class KhoDetailController implements Initializable {
         if (error != "") {
             return error;
         }
+        String tenCN = "";
+        if (tfChiNhanh.getText().equals("CN1")) {
+            tenCN = "Chi nhánh 1 TP HCM";
+        }
+        if (tfChiNhanh.getText().equals("CN2")) {
+            tenCN = "Chi nhánh 2 TP HCM";
+        }
+        Kho kho = new Kho(tfMaKho.getText(), tfTenKho.getText(), tfDiaChi.getText(), tfChiNhanh.getText(), tenCN);
         KhoService sevice = new KhoService();
         int checkMaKho = sevice.checkExist(tfMaKho.getText(), "MAKHO");
         int checkTenKho = sevice.checkExist(tfTenKho.getText(), "TENKHO");
+        for (Kho k : KhoController.list) {
+            if (kho.getMaKho().equals(k.getMaKho())) {
+                checkMaKho = 1;
+                break;
+            }
+        }
+        for (Kho k : KhoController.list) {
+            if (kho.getTenKho().equals(k.getTenKho())) {
+                checkTenKho = 1;
+                break;
+            }
+        }
         if (checkMaKho == 1) {
             tfMaKho.pseudoClassStateChanged(
                     PseudoClass.getPseudoClass("error"), true);
@@ -173,8 +192,7 @@ public class KhoDetailController implements Initializable {
             error += "\tTên Kho đã tồn tại trên chi nhánh khác\n";
         }
         if (checkMaKho == 0 && checkTenKho == 0) {
-            Kho kho = new Kho(tfMaKho.getText(), tfTenKho.getText(), tfDiaChi.getText(), tfChiNhanh.getText());
-            sevice.save(kho);
+            KhoController.list = MainController.khoCommandHistory.addInsertCommand(KhoController.list, kho);
             error = "";
         }
         return error;
@@ -193,10 +211,16 @@ public class KhoDetailController implements Initializable {
         }
         KhoService service = new KhoService();
         int checkTenKho = 0;
-        if (tfTenKho.getText() != kho.getTenKho()) {
+        if (!tfTenKho.getText().equals(kho.getTenKho())) {
             checkTenKho = service.checkExist(tfTenKho.getText(), "TENKHO");
+            for (Kho k : KhoController.list) {
+                if (tfTenKho.getText().equals(k.getTenKho())) {
+                    checkTenKho = 1;
+                    break;
+                }
+            }
         }
-        
+
         if (checkTenKho == 1) {
             tfTenKho.pseudoClassStateChanged(
                     PseudoClass.getPseudoClass("error"), true);
@@ -208,8 +232,11 @@ public class KhoDetailController implements Initializable {
             error += "\tTên Kho đã tồn tại trên chi nhánh khác\n";
         }
         if (checkTenKho == 0) {
-            kho = new Kho(tfMaKho.getText(), tfTenKho.getText(), tfDiaChi.getText(), tfChiNhanh.getText());
-            service.update(kho);
+            Kho k = new Kho(tfMaKho.getText(), tfTenKho.getText(), tfDiaChi.getText(), tfChiNhanh.getText(), kho.getTenCN());
+//            System.out.println(kho.toString());
+//            System.out.println(k.toString());
+//            System.out.println(KhoController.list.indexOf(kho));
+            KhoController.list = MainController.khoCommandHistory.addUpdateCommand(KhoController.list, kho, k);
             error = "";
         }
         return error;
@@ -238,7 +265,7 @@ public class KhoDetailController implements Initializable {
             error = "\tKHÔNG THỂ XÓA KHO\n" + error;
             return error;
         }
-        service.delete(kho.getMaKho());
+        KhoController.list = MainController.khoCommandHistory.addDeleleCommand(KhoController.list, kho);
         error = "";
         return error;
     }
@@ -270,7 +297,7 @@ public class KhoDetailController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         initTfInput();
-        
+
     }
 
 }

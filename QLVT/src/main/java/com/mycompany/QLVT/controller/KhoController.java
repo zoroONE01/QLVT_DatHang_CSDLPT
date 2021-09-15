@@ -8,8 +8,13 @@ package com.mycompany.QLVT.controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
+import com.jfoenix.controls.JFXListView;
 import com.mycompany.QLVT.App;
+import com.mycompany.QLVT.Command.KhoCommand;
+import com.mycompany.QLVT.Command.KhoMemento;
 import com.mycompany.QLVT.Entity.Kho;
+import static com.mycompany.QLVT.controller.MainController.khoCommandHistory;
+import com.mycompany.QLVT.model.KhoCommandModel;
 import com.mycompany.QLVT.model.KhoTableModel;
 import com.mycompany.QLVT.service.KhoService;
 import java.io.IOException;
@@ -19,6 +24,8 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
+import javafx.beans.InvalidationListener;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -55,6 +62,9 @@ public class KhoController implements Initializable {
     private AnchorPane pnKho;
 
     @FXML
+    private JFXListView<String> lvHistoryCommand;
+
+    @FXML
     private VBox pnMenuBar;
 
     @FXML
@@ -71,6 +81,9 @@ public class KhoController implements Initializable {
 
     @FXML
     private JFXButton btUndo;
+
+    @FXML
+    private JFXButton btRedo;
 
     @FXML
     private JFXButton btReload;
@@ -92,9 +105,15 @@ public class KhoController implements Initializable {
 
     private ObservableList<Kho> listKho;
 
+    public static List<Kho> list;
+
     private ImageView icLoading;
 
     public Kho kho;
+
+    public KhoTableModel khoTableModel;
+
+    public KhoCommandModel khoCommandModel;
 
     @FXML
     void showAddFrom(ActionEvent event) {
@@ -106,7 +125,6 @@ public class KhoController implements Initializable {
                 Parent root = null;
                 KhoDetailController khoDetailController = new KhoDetailController();
                 try {
-//                    System.out.println(new FXMLLoader(getClass().getResource("../../../../fxml/KhoDetail.fxml")));
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../../../fxml/KhoDetail.fxml"));
                     fxmlLoader.setController(khoDetailController);
                     root = (Parent) fxmlLoader.load();
@@ -131,10 +149,9 @@ public class KhoController implements Initializable {
                     content.setBody(icLoading);
                     String error = khoDetailController.addKho();
                     if (error == "") {
-                        noti.setContent(content);
                         noti.close();
                         initTableKho();
-
+                        initListCommandHistory();
                     } else {
                         content.setBody(new Text(error));
                     }
@@ -176,11 +193,12 @@ public class KhoController implements Initializable {
                     noti.close();
                 });
                 btAccept.setOnAction((ActionEvent event1) -> {
-                    content.setBody(icLoading);
+//                    content.setBody(icLoading);
                     String error = khoDetailController.deleleKho(kho);
                     if (error == "") {
                         noti.close();
                         initTableKho();
+                        initListCommandHistory();
                     } else {
                         content.setBody(new Text(error));
                     }
@@ -222,11 +240,12 @@ public class KhoController implements Initializable {
                     noti.close();
                 });
                 btAccept.setOnAction((ActionEvent event1) -> {
-                    content.setBody(icLoading);
+//                    content.setBody(icLoading);
                     String error = khoDetailController.updateKho(kho);
                     if (error == "") {
                         noti.close();
                         initTableKho();
+                        initListCommandHistory();
                     } else {
                         content.setBody(new Text(error));
                     }
@@ -239,18 +258,75 @@ public class KhoController implements Initializable {
 
     @FXML
     void reloadTable(ActionEvent event) {
-        initTableKho();
+        if (!MainController.khoCommandHistory.isDatabaseStackEmpty()) {
+//            Platform.runLater(() -> {
+            StackPane parentStackPane = (StackPane) ((Node) event.getTarget()).getScene().getRoot();
+            JFXDialogLayout content = new JFXDialogLayout();
+            content.setHeading(new Text("Thông Báo"));
+            content.setBody(new Text("Dữ liệu thay đổi chưa được lưu.\nTiếp tục thao tác mà không lưu thay đổi?"));
+            JFXDialog noti = new JFXDialog(parentStackPane, content, JFXDialog.DialogTransition.CENTER);
+            Image image1 = new Image(getClass().getResourceAsStream("../../../../img/delete_20px.png"));
+            Image image2 = new Image(getClass().getResourceAsStream("../../../../img/icons8_checkmark_20px.png"));
+            JFXButton btClose = new JFXButton(null, new ImageView(image1));
+            JFXButton btAccept = new JFXButton(null, new ImageView(image2));
+            btClose.setButtonType(JFXButton.ButtonType.FLAT);
+            btAccept.setButtonType(JFXButton.ButtonType.FLAT);
+            btClose.setCursor(Cursor.HAND);
+            btAccept.setCursor(Cursor.HAND);
+            btClose.setOnAction((ActionEvent event1) -> {
+                noti.close();
+            });
+            btAccept.setOnAction((ActionEvent event1) -> {
+                noti.close();
+                MainController.khoCommandHistory.clearAllStack();
+                initTableKhoFromDatabase();
+            });
+            content.setActions(btAccept, btClose);
+            noti.show();
+//            });
+        } else {
+            initTableKhoFromDatabase();
+        }
     }
 
-    public void initTableKho() {
+    @FXML
+    void undoCommand(ActionEvent event) {
+        if (!MainController.khoCommandHistory.isModelStackEmpty()) {
+            list = MainController.khoCommandHistory.undo();
+            initTableKho();
+            initListCommandHistory();
+        }
+
+    }
+
+    @FXML
+    void redoCommand(ActionEvent event) {
+        if (!MainController.khoCommandHistory.isSubStackEmpty()) {
+            list = MainController.khoCommandHistory.redo();
+            initTableKho();
+            initListCommandHistory();
+        }
+    }
+
+    @FXML
+    void saveOnDatabase(ActionEvent event) {
+        MainController.khoCommandHistory.ExectueAllToDatebase();
+        initListCommandHistory();
+    }
+
+    public void initTableKhoFromDatabase() {
         clMaKho.setCellValueFactory(new PropertyValueFactory<>("maKho"));
         clTenKho.setCellValueFactory(new PropertyValueFactory<>("tenKho"));
         clDiaChi.setCellValueFactory(new PropertyValueFactory<>("diaChi"));
         clChiNhanh.setCellValueFactory(new PropertyValueFactory<>("TenCN"));
-        KhoTableModel model = new KhoTableModel();
-        List<Kho> list = new KhoService().findAll();
-        model.setKhoList(list);
-        tbDSKho.setItems(model.getKhoList());
+        khoTableModel = new KhoTableModel();
+        if (MainController.khoCommandHistory.isDatabaseStackEmpty()) {
+            list = new KhoService().findAll();
+        } else {
+            list = MainController.khoCommandHistory.getModelStack().peek().getList();
+        }
+        khoTableModel.setKhoList(list);
+        tbDSKho.setItems(khoTableModel.getKhoList());
         tbDSKho.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 btEdit.setDisable(false);
@@ -259,14 +335,43 @@ public class KhoController implements Initializable {
                 kho = tbDSKho.getItems().get(index);
             }
         });
+        initListCommandHistory();
+    }
+
+    public void initTableKho() {
+        tbDSKho.getItems().clear();
+        khoTableModel.setKhoList(list);
+    }
+
+    public void initListCommandHistory() {
+        khoCommandModel = new KhoCommandModel();
+        khoCommandModel.setCommandList(MainController.khoCommandHistory.getModelStack());
+        lvHistoryCommand.setItems(khoCommandModel.getCommandList());
+        if (!MainController.khoCommandHistory.isModelStackEmpty()) {
+            btUndo.setDisable(false);
+            btSave.setDisable(false);
+        } else {
+            btUndo.setDisable(true);
+            btSave.setDisable(true);
+        }
+        if (!MainController.khoCommandHistory.isSubStackEmpty()) {
+            btRedo.setDisable(false);
+        } else {
+            btRedo.setDisable(true);
+        }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        initTableKho();
-        icLoading = new ImageView(new Image(getClass().getResourceAsStream("../../../../img/loading.gif"), 40, 40, false, true));
+        lvHistoryCommand.setDisable(true);
         btEdit.setDisable(true);
         btDelete.setDisable(true);
+        btSave.setDisable(true);
+        btUndo.setDisable(true);
+        btRedo.setDisable(true);
+        initTableKhoFromDatabase();
+        icLoading = new ImageView(new Image(getClass().getResourceAsStream("../../../../img/loading.gif"), 40, 40, false, true));
+
     }
 
 }

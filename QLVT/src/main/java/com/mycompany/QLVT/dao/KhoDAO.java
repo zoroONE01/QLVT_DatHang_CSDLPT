@@ -34,7 +34,7 @@ public class KhoDAO extends AbstractDAO<Kho> {
         update("{call spDeleteKho(?)}", id);
     }
 
-    public void save(Kho kho) {
+    public void insert(Kho kho) {
         insert("{call spInsertKho(?,?,?,?)}", kho.getMaKho(), kho.getTenKho(), kho.getDiaChi(), kho.getMaCN());
 
     }
