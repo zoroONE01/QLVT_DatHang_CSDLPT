@@ -85,21 +85,22 @@ public class LoginController {
 
     @FXML
     private JFXButton btLogin;
-    
+
     PhanManhDAO phanManhDAO;
+
     PhanManh phanManhCurrent;
+
     @FXML
     void loginAction(ActionEvent event) throws IOException {
         // lay du lieu input username and pass
         String userName = tfUsername.getText();
         String password = tfPassword.getText();
-        String chiNhanh = cbbLocation.getValue();
-        phanManhCurrent= DBConnectUtil.listPhanManh.get(cbbLocation.getSelectionModel().getSelectedIndex());
+        DBConnectUtil.phanManhCurrent = DBConnectUtil.listPhanManh.get(cbbLocation.getSelectionModel().getSelectedIndex());
         //ràng buộc
-        DBConnectUtil.chiNhanhSelected = chiNhanh;
+//      DBConnectUtil.chiNhanhSelected = chiNhanh;
         DBConnectUtil.username = userName;
         DBConnectUtil.password = password;
-        DBConnectUtil.subcriberCurrent=phanManhCurrent.getSubscriberServer();
+        DBConnectUtil.chiNhanhMain = DBConnectUtil.phanManhCurrent.getName();
         try {
 
             DBConnectUtil.getConnection();
@@ -147,10 +148,10 @@ public class LoginController {
 
     @FXML
     void initialize() {
+
         //show danh sach chi nhanh
         phanManhDAO = new PhanManhDAO();
-       DBConnectUtil.subcriberCurrent = "";
-       DBConnectUtil.listPhanManh = phanManhDAO.findAll();
+        DBConnectUtil.listPhanManh = phanManhDAO.findAll();
         // hien thi du lieu len combobox
         for (PhanManh p : DBConnectUtil.listPhanManh) {
             cbbLocation.getItems().add(p.getName());

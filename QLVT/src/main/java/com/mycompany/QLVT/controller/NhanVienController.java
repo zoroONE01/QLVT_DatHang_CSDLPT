@@ -22,13 +22,17 @@ import com.mycompany.QLVT.Entity.PhanManh;
 import com.mycompany.QLVT.Utils.DBConnectUtil;
 import com.mycompany.QLVT.Utils.FomaterDate;
 import com.mycompany.QLVT.Utils.ValidationRegEx;
+import com.mycompany.QLVT.dao.NhanVienDAO;
 import com.mycompany.QLVT.dao.PhanManhDAO;
 import com.mycompany.QLVT.model.ChiNhanhModel;
 import com.mycompany.QLVT.model.NhanVienTableModel;
 import com.mycompany.QLVT.service.NhanVienService;
+import java.sql.SQLException;
 import java.time.DateTimeException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
@@ -177,6 +181,11 @@ public class NhanVienController {
 
     @FXML
     private JFXTextField tfDiaChi;
+    
+    //REPORT
+        @FXML
+    private JFXButton btnReportDSNV;
+
 
     private ActionHistory history = new ActionHistory();
     private NhanVienTableModel nhanVienTableModel;
@@ -330,7 +339,7 @@ public class NhanVienController {
         for (PhanManh pm : chiNhanhModel.getList()) {
             cbbChiNhanh.getItems().add(pm.getName());
         }
-        cbbChiNhanh.getSelectionModel().select(DBConnectUtil.chiNhanhSelected);
+        cbbChiNhanh.getSelectionModel().select(DBConnectUtil.phanManhCurrent.getName());
 
         //chuyen Chi nhanh cua nhan vien
         // List<PhanManh> listChiNhanhChange=phanManhDAO.findAll();
@@ -339,7 +348,7 @@ public class NhanVienController {
             cbbChangeLocation.getItems().add(pm.getName());
         }
 
-        cbbChangeLocation.getSelectionModel().select(DBConnectUtil.chiNhanhSelected);
+        cbbChangeLocation.getSelectionModel().select(DBConnectUtil.phanManhCurrent.getName());
     }
 
     public void initModelChiTiet() {
@@ -356,12 +365,16 @@ public class NhanVienController {
 
     @FXML
     void initialize() {
+
+//        NhanVienDAO nhan = new NhanVienDAO();
+//        
+//        nhan.testSP(7);
         //Không cho chỉnh sửa thuộc tính nhân viên và chi nhánh
 //        tfMaNV.setDisable(true);
         tfChiNhanh.setDisable(true);
-        if (DBConnectUtil.chiNhanhSelected.contains("Chi Nhánh 1")) {
+        if (DBConnectUtil.phanManhCurrent.getName().contains("Chi Nhánh 1")) {
             tfChiNhanh.setText("CN1");
-        } else if (DBConnectUtil.chiNhanhSelected.contains("Chi Nhánh 2")) {
+        } else if (DBConnectUtil.phanManhCurrent.getName().contains("Chi Nhánh 2")) {
             tfChiNhanh.setText("CN2");
         }
         //kiểm tra quyền
@@ -410,6 +423,11 @@ public class NhanVienController {
         initModelChiTiet();
 
     }
+    //ACTION
+      @FXML
+    void actionReportDSNV(ActionEvent event) {
+        
+    }
 
     @FXML
     void createAccountAction(ActionEvent event) {
@@ -419,13 +437,15 @@ public class NhanVienController {
     @FXML //để show dư liêu chi nhánh khác
     void changeChiNhanh(ActionEvent event) {
         System.out.println("đổi chi nhánh khác");
-        List<NhanVien> list = new ArrayList<>();
-        if (!cbbChiNhanh.getValue().equals(DBConnectUtil.chiNhanhSelected)) {
-            list = new ArrayList<>();
-            list = nhanVienService.findAllOthersite();
-        } else {
-            list = nhanVienService.findAll();
+        if (!cbbChiNhanh.getValue().equals(DBConnectUtil.phanManhCurrent.getName())) {
+            try {
+                DBConnectUtil.phanManhCurrent = DBConnectUtil.listPhanManh.get(cbbChiNhanh.getSelectionModel().getSelectedIndex());
+                DBConnectUtil.getConnection();
+            } catch (SQLException ex) {
+                System.out.println("Không thể kết nối tới server mới");
+            }
         }
+
         refresh();
     }
 
@@ -453,8 +473,10 @@ public class NhanVienController {
     @FXML
     void changeLocationAction(ActionEvent event) {
         //lấy ra chi nhánh cần chuyển;
+
+        StackPane st = (StackPane) pnNhanVien.getParent().getParent().getParent();
         String chiNhanhNew = cbbChangeLocation.getSelectionModel().getSelectedItem();
-        if (!chiNhanhNew.equals(DBConnectUtil.chiNhanhSelected)) {
+        if (!chiNhanhNew.equals(DBConnectUtil.phanManhCurrent.getName())) {
             // xử lí logic chuyển chi nhánh
             int rs = nhanVienService.chuyenChiNhanh(Integer.valueOf(tfMaNV.getText()), chiNhanhNew);
             if (rs > 0) {
@@ -462,7 +484,7 @@ public class NhanVienController {
                 JFXDialogLayout content = new JFXDialogLayout();
                 content.setHeading(new Text("Thông Báo"));
                 content.setBody(new Text("Chuyển chi nhánh thành công"));
-                JFXDialog noti = new JFXDialog((StackPane) pnNhanVien.getParent(), content, JFXDialog.DialogTransition.CENTER);
+                JFXDialog noti = new JFXDialog(st, content, JFXDialog.DialogTransition.CENTER);
                 Image image = new Image(getClass().getResourceAsStream("../../../../img/icons8_checkmark_20px.png"));
                 JFXButton button = new JFXButton(null, new ImageView(image));
                 button.setCursor(Cursor.HAND);
@@ -484,10 +506,11 @@ public class NhanVienController {
     }
 
     public void messageDialog(String body) {
+        StackPane st = (StackPane) pnNhanVien.getParent().getParent().getParent();
         JFXDialogLayout content = new JFXDialogLayout();
         content.setHeading(new Text("Thong bao"));
         content.setBody(new Text(body));
-        JFXDialog noti = new JFXDialog((StackPane) pnNhanVien.getParent(), content, JFXDialog.DialogTransition.CENTER);
+        JFXDialog noti = new JFXDialog(st, content, JFXDialog.DialogTransition.CENTER);
         Image image = new Image(getClass().getResourceAsStream("../../../../img/icons8_checkmark_20px.png"));
         JFXButton button = new JFXButton(null, new ImageView(image));
         button.setCursor(Cursor.HAND);
@@ -636,6 +659,8 @@ public class NhanVienController {
             if (nv != null) {
                 if (nhanVienService.findOne(nv.getMaNhanVien()) != null) {
                     nhanVienService.update(nv); //cap nhat trang thai
+                    history.pop();
+
                     return 1;
                 } else {
                     if (nhanVienService.save(nv) > 0) {

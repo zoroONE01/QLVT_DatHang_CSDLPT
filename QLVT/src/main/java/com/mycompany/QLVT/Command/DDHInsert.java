@@ -48,7 +48,7 @@ public class DDHInsert extends DDHCommand {
 
     @Override
     public void exectteToDatabase() {
-        DDHService service = new DDHService();
-        service.insert(donDatHang);
+//        DDHService service = new DDHService();
+//        service.insert(donDatHang);
     }
 }

@@ -48,8 +48,8 @@ public class DDHDelete extends DDHCommand {
 
     @Override
     public void exectteToDatabase() {
-        DDHService service = new DDHService();
-        service.delete(donDatHang.getMaDDH());
+//        DDHService service = new DDHService();
+//        service.delete(donDatHang.getMaDDH());
     }
 
 }

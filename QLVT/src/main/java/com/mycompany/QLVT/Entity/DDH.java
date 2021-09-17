@@ -16,30 +16,48 @@ public class DDH {
     private String Ngay;
     private String NCC;
     private int maNV;
-    private String hoTenNV;
+    private String ho;
+    private String ten;
     private String maKho;
+    private String tenKho;
+    private String maNVHoTen;
+    private String maKhoTenKho;
 
-    public DDH(String MaDDH, String Ngay, String NCC, int maNV, String hoTenNV, String maKho) {
+    public DDH() {
+    }
+
+    public DDH(String MaDDH, String Ngay, String NCC, int maNV, String ho, String ten, String maKho, String tenKho, String maNVHoTen, String maKhoTenKho) {
         this.MaDDH = MaDDH;
         this.Ngay = Ngay;
         this.NCC = NCC;
         this.maNV = maNV;
-        this.hoTenNV = hoTenNV;
+        this.ho = ho;
+        this.ten = ten;
         this.maKho = maKho;
+        this.tenKho = tenKho;
+        this.maNVHoTen = maNVHoTen;
+        this.maKhoTenKho = maKhoTenKho;
     }
 
-    
-
-    public DDH(String MaDDH, String Ngay, String NCC, String maKho) {
+    public DDH(String MaDDH, String Ngay, String NCC, int maNV, String maKho) {
         this.MaDDH = MaDDH;
         this.Ngay = Ngay;
         this.NCC = NCC;
+        this.maNV = maNV;
         this.maKho = maKho;
-        this.maNV = Integer.parseInt(DBConnectUtil.myUserDB);
-        this.hoTenNV = DBConnectUtil.myName;
     }
 
-    public DDH() {
+    public DDH(String MaDDH, String Ngay, String NCC, int maNV, String ho, String ten, String maKho, String tenKho) {
+        this.MaDDH = MaDDH;
+        this.Ngay = Ngay;
+        this.NCC = NCC;
+        this.maNV = maNV;
+        this.ho = ho;
+        this.ten = ten;
+        this.maKho = maKho;
+        this.tenKho = tenKho;
+        this.maNVHoTen = "[" + maNV + "] " + ho + " " + ten;
+        this.maKhoTenKho = "[" + maKho + "] " + tenKho;
     }
 
     public String getMaDDH() {
@@ -74,6 +92,22 @@ public class DDH {
         this.maNV = maNV;
     }
 
+    public String getHo() {
+        return ho;
+    }
+
+    public void setHo(String ho) {
+        this.ho = ho;
+    }
+
+    public String getTen() {
+        return ten;
+    }
+
+    public void setTen(String ten) {
+        this.ten = ten;
+    }
+
     public String getMaKho() {
         return maKho;
     }
@@ -82,19 +116,39 @@ public class DDH {
         this.maKho = maKho;
     }
 
-    public String getHoTenNV() {
-        return hoTenNV;
+    public String getTenKho() {
+        return tenKho;
     }
 
-    public void setHoTenNV(String hoTenNV) {
-        this.hoTenNV = hoTenNV;
+    public void setTenKho(String tenKho) {
+        this.tenKho = tenKho;
+    }
+
+    public String getMaNVHoTen() {
+        return maNVHoTen;
+    }
+
+    public void setMaNVHoTen() {
+        this.maNVHoTen = "[" + maNV + "] " + ho + " " + ten;
+    }
+
+    public String getMaKhoTenKho() {
+        return maKhoTenKho;
+    }
+
+    public void setMaKhoTenKho() {
+        this.maKhoTenKho = "[" + maKho + "] " + tenKho;
     }
 
     @Override
     public String toString() {
-        return "DDH{" + "MaDDH=" + MaDDH + ", Ngay=" + Ngay + ", NCC=" + NCC + ", maNV=" + maNV + ", hoTenNV=" + hoTenNV + ", maKho=" + maKho + '}';
+        return "DDH{" + "MaDDH=" + MaDDH + ", Ngay=" + Ngay + ", NCC=" + NCC + ", maNV=" + maNV + ", ho=" + ho + ", ten=" + ten + ", maKho=" + maKho + ", tenKho=" + tenKho + ", maNVHoTen=" + maNVHoTen + ", maKhoTenKho=" + maKhoTenKho + '}';
     }
+    
 
     
-    
 }
+
+    
+
+    

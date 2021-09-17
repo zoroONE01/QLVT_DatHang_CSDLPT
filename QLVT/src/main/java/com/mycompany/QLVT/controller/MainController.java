@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXRadioButton;
 import com.mycompany.QLVT.App;
+import com.mycompany.QLVT.Command.DDHCommandHistory;
 import com.mycompany.QLVT.Command.KhoCommandHistory;
 import com.mycompany.QLVT.Command.VatTuCommandHistory;
 import com.mycompany.QLVT.Utils.DBConnectUtil;
@@ -85,6 +86,7 @@ public class MainController {
 
     public static KhoCommandHistory khoCommandHistory;
     public static VatTuCommandHistory vatTuCommandHistory;
+    public static DDHCommandHistory DDHCommandHistory;
     public final String tabDashboard = "RadioButton[id=btDashboard, styleClass=radio-button btn-slidebar]'Dashboard'";
     public final String tabNhanVien = "RadioButton[id=btNhanVien, styleClass=btn-slidebar toggle-button]'Nhân Viên'";
     public final String tabKho = "RadioButton[id=btKho, styleClass=btn-slidebar toggle-button]'Kho'";
@@ -94,6 +96,7 @@ public class MainController {
     public MainController() {
         khoCommandHistory = new KhoCommandHistory();
         vatTuCommandHistory = new VatTuCommandHistory();
+        DDHCommandHistory = new DDHCommandHistory();
     }
 //
 //    @FXML

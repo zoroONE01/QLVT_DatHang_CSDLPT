@@ -309,10 +309,16 @@ public class KhoController implements Initializable {
         clMaKho.setCellValueFactory(new PropertyValueFactory<>("maKho"));
         clTenKho.setCellValueFactory(new PropertyValueFactory<>("tenKho"));
         clDiaChi.setCellValueFactory(new PropertyValueFactory<>("diaChi"));
-        clChiNhanh.setCellValueFactory(new PropertyValueFactory<>("TenCN"));
+        clChiNhanh.setCellValueFactory(new PropertyValueFactory<>("tenCN"));
         khoTableModel = new KhoTableModel();
         if (MainController.khoCommandHistory.isCommandStackEmpty()) {
-            list = new KhoService().findAll(DBConnectUtil.chiNhanhSelected);
+            System.out.println(DBConnectUtil.phanManhCurrent.getName());
+            if (DBConnectUtil.phanManhCurrent.getName().equals("Chi Nhánh 1")) {
+                list = new KhoService().findAll("CN1");
+            }
+            if (DBConnectUtil.phanManhCurrent.getName().equals("Chi Nhánh 2")) {
+                list = new KhoService().findAll("CN2");
+            }
         } else {
             list = MainController.khoCommandHistory.getCommandStack().peek().getList();
         }

@@ -5,7 +5,7 @@
  */
 package com.mycompany.QLVT.Command;
 
-import com.mycompany.QLVT.Entity.VatTu;
+import com.mycompany.QLVT.Entity.DDH;
 import java.util.List;
 import java.util.Stack;
 
@@ -15,50 +15,50 @@ import java.util.Stack;
  */
 public class DDHCommandHistory {
 
-    private final Stack<VatTuCommand> commandStack = new Stack<>();
-//    private final Stack<VatTuCommand> databaseStack = new Stack<>();
-    private final Stack<VatTuCommand> subStack = new Stack<>();
+    private final Stack<DDHCommand> commandStack = new Stack<>();
+//    private final Stack<DDHCommand> databaseStack = new Stack<>();
+    private final Stack<DDHCommand> subStack = new Stack<>();
 //    private int undoRedoPointer = 0;
 
-    public Stack<VatTuCommand> getSubStack() {
+    public Stack<DDHCommand> getSubStack() {
         return subStack;
     }
 
-    public Stack<VatTuCommand> getCommandStack() {
+    public Stack<DDHCommand> getCommandStack() {
         return commandStack;
     }
 
-//    public Stack<VatTuCommand> getDatabaseStack() {
+//    public Stack<DDHCommand> getDatabaseStack() {
 //        return databaseStack;
 //    }
 
-    public List<VatTu> addInsertCommand(List<VatTu> currentList, VatTu vatTu) {
+    public List<DDH> addInsertCommand(List<DDH> currentList, DDH donDatHang) {
 //        deleteElementsAfterPointer(undoRedoPointer);
-        VatTuCommand command = new VatTuInsert(currentList, vatTu);
+        DDHCommand command = new DDHInsert(currentList, donDatHang);
         command.execute();
         commandStack.push(command);
 //        undoRedoPointer++;
-//        databaseStack.push(new VatTuDatabaseInsert(vatTu));
+//        databaseStack.push(new DDHDatabaseInsert(DDH));
         return command.getList();
     }
 
-    public List<VatTu> addDeleleCommand(List<VatTu> currentList, VatTu vatTu) {
+    public List<DDH> addDeleleCommand(List<DDH> currentList, DDH donDatHang) {
 //        deleteElementsAfterPointer(undoRedoPointer);
-        VatTuCommand command = new VatTuDelete(currentList, vatTu);
+        DDHCommand command = new DDHDelete(currentList, donDatHang);
         command.execute();
         commandStack.push(command);
 //        undoRedoPointer++;
-//        databaseStack.push(new VatTuDatabaseDelete(vatTu));
+//        databaseStack.push(new DDHDatabaseDelete(DDH));
         return command.getList();
     }
 
-    public List<VatTu> addUpdateCommand(List<VatTu> currentList, VatTu oldVatTu, VatTu newVatTu) {
+    public List<DDH> addUpdateCommand(List<DDH> currentList, DDH oldDDH, DDH newDDH) {
 //        deleteElementsAfterPointer(undoRedoPointer);
-        VatTuCommand command = new VatTuUpdate(currentList, oldVatTu, newVatTu);
+        DDHCommand command = new DDHUpdate(currentList, oldDDH, newDDH);
         command.execute();
         commandStack.push(command);
 //        undoRedoPointer++;
-//        databaseStack.push(new VatTuDatabaseUpdate(newVatTu));
+//        databaseStack.push(new DDHDatabaseUpdate(newDDH));
         return command.getList();
     }
 
@@ -70,21 +70,21 @@ public class DDHCommandHistory {
 //            commandStack.remove(i);
 //        }
 //    }
-    public List<VatTu> undo() {
-        VatTuCommand command = commandStack.pop();
+    public List<DDH> undo() {
+        DDHCommand command = commandStack.pop();
         subStack.push(command);
 //        subStack.push(databaseStack.pop());
         command.unExecute();
         return command.getList();
     }
 
-    public List<VatTu> redo() {
+    public List<DDH> redo() {
 //        if (undoRedoPointer == 0) {
 //            return null;
 //        }
 //        undoRedoPointer--;
 //        databaseStack.push(subStack.pop());
-        VatTuCommand command = subStack.pop();
+        DDHCommand command = subStack.pop();
         commandStack.push(command);
         command.execute();
 //        command.execute();
@@ -96,8 +96,8 @@ public class DDHCommandHistory {
         if (commandStack.isEmpty()) {
             return;
         }
-        commandStack.forEach(vtCommand -> {
-            vtCommand.exectteToDatabase();
+        commandStack.forEach(ddhCommand -> {
+            ddhCommand.exectteToDatabase();
         });
         clearAllStack();
     }

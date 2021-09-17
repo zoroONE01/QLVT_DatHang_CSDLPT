@@ -26,7 +26,12 @@ public class DDHMapper implements RowMapper<DDH> {
             donDatHang.setNgay(FomaterDate.convertDateToString(rs.getDate(2)));
             donDatHang.setNCC(rs.getString(3));
             donDatHang.setMaNV(rs.getInt(4));
-            donDatHang.setMaKho(rs.getString(5));
+            donDatHang.setHo(rs.getString(5));
+            donDatHang.setTen(rs.getString(6));
+            donDatHang.setMaKho(rs.getString(7));
+            donDatHang.setTenKho(rs.getString(8));
+            donDatHang.setMaNVHoTen();
+            donDatHang.setMaKhoTenKho();
             return donDatHang;
         } catch (SQLException e) {
             Logger.getLogger(DDHMapper.class.getName()).log(Level.SEVERE, null, e);

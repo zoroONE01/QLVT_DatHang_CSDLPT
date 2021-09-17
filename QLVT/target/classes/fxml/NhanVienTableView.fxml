@@ -128,7 +128,7 @@
             <Insets bottom="10.0" top="10.0" />
          </padding>
       </VBox>
-      <TableView fx:id="tbvListNV" layoutX="14.0" layoutY="40.0" prefHeight="261.0" prefWidth="857.0" style="-fx-background-radius: 0 0 10 10; -fx-background-color: #fff; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );" AnchorPane.bottomAnchor="235.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="53.0" AnchorPane.topAnchor="40.0">
+      <TableView fx:id="tbvListNV" layoutX="14.0" layoutY="40.0" prefHeight="261.0" prefWidth="857.0" style="-fx-background-radius: 0 0 10 10; -fx-background-color: #fff; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );" stylesheets="@../css/table-view.css" AnchorPane.bottomAnchor="235.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="53.0" AnchorPane.topAnchor="40.0">
          <columns>
             <TableColumn fx:id="maNV" prefWidth="75.0" text="Mã NV" />
             <TableColumn fx:id="ho" prefWidth="75.0" text="Họ" />
@@ -225,5 +225,6 @@
          </padding>
       </Label>
       <JFXComboBox fx:id="cbbChangeLocation" layoutX="42.0" layoutY="379.0" prefHeight="30.0" prefWidth="162.0" AnchorPane.bottomAnchor="127.0" AnchorPane.leftAnchor="42.0" />
+      <JFXButton fx:id="btnReportDSNV" layoutX="36.0" layoutY="8.0" onAction="#actionReportDSNV" text="ReportDSNV" />
    </children>
 </AnchorPane>

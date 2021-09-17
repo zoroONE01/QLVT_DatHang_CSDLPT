@@ -54,7 +54,7 @@ public class DDHUpdate extends DDHCommand {
 
     @Override
     public void exectteToDatabase() {
-        DDHService service = new DDHService();
-        service.update(newDDH);
+//        DDHService service = new DDHService();
+//        service.update(newDDH);
     }
 }
