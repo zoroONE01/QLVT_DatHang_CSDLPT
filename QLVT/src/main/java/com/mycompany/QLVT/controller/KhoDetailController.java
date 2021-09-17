@@ -87,10 +87,10 @@ public class KhoDetailController implements Initializable {
                 PseudoClass.getPseudoClass("error"), true);
         tfTenKho.pseudoClassStateChanged(
                 PseudoClass.getPseudoClass("error"), true);
-        if (DBConnectUtil.chiNhanhSelected.equals("Chi Nhánh 1")) {
+        if (DBConnectUtil.phanManhCurrent.getName().equals("Chi Nhánh 1")) {
             tfChiNhanh.setText("CN1");
         }
-        if (DBConnectUtil.chiNhanhSelected.equals("Chi Nhánh 2")) {
+        if (DBConnectUtil.phanManhCurrent.getName().equals("Chi Nhánh 2")) {
             tfChiNhanh.setText("CN2");
         }
         lbTitle.setText("Thêm Kho Mới");

@@ -152,8 +152,8 @@ public class TestReport {
 
       System.out.println("Compiling Report Design ...");
       try {Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-           Connection con = (Connection) DriverManager.getConnection("jdbc:sqlserver://MINHTO-PC\\MTSITE2;databaseName=QLVT", "cn2", "sa");
-          JasperReport jr = JasperCompileManager.compileReport("src\\main\\java\\com\\mycompany\\QLVT\\Report\\report3.jrxml");
+           Connection con = (Connection) DriverManager.getConnection("jdbc:sqlserver://MINHTO-PC\\MTSITE1;databaseName=QLVT", "HTKN", "sa");
+          JasperReport jr = JasperCompileManager.compileReport("src\\main\\java\\com\\mycompany\\QLVT\\Report\\report2.jrxml");
 
             JasperPrint jp = JasperFillManager.fillReport(jr, new HashMap(), con);
 //

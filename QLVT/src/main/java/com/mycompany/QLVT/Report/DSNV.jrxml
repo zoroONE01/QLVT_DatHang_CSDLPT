@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5ba2112b-e064-4c8a-bc76-3ad222492b32">
+    <property name="ireport.zoom" value="1.5"/>
+    <property name="ireport.x" value="7"/>
+    <property name="ireport.y" value="0"/>
+    <style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+    <style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+    <style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+    <style name="Detail" fontName="Arial" fontSize="12"/>
+    <queryString language="SQL">
+		<![CDATA[select MANV,HO,TEN,DIACHI,NGAYSINH,LUONG,MACN from NhanVien nv ORDER BY TEN,HO ASC]]>
+    </queryString>
+    <field name="MANV" class="java.lang.Integer"/>
+    <field name="HO" class="java.lang.String"/>
+    <field name="TEN" class="java.lang.String"/>
+    <field name="DIACHI" class="java.lang.String"/>
+    <field name="NGAYSINH" class="java.sql.Timestamp"/>
+    <field name="LUONG" class="java.lang.Double"/>
+    <field name="MACN" class="java.lang.String"/>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+  
+    <title>
+        <band height="70" splitType="Stretch">
+            <staticText>
+                <reportElement style="Title" x="138" y="13" width="295" height="33" uuid="e9678fc8-694a-438b-af0f-419760d06cea"/>
+                <textElement textAlignment="Justified" verticalAlignment="Middle">
+                    <font size="24" isItalic="true"/>
+                </textElement>
+                <text><![CDATA[Danh sách nhân viên]]></text>
+            </staticText>
+        </band>
+    </title>
+    <pageHeader>
+        <band splitType="Stretch"/>
+    </pageHeader>
+    <columnHeader>
+        <band height="36" splitType="Stretch">
+            <line>
+                <reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="9f1b843a-6340-4708-97d3-39243409b329"/>
+                <graphicElement>
+                    <pen lineWidth="0.5" lineColor="#999999"/>
+                </graphicElement>
+            </line>
+            <staticText>
+                <reportElement style="Column header" x="0" y="19" width="57" height="15" uuid="9a36c9b0-c0c9-4a53-b6dc-8dc29fac17a6"/>
+                <text><![CDATA[MANV]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="Column header" x="57" y="19" width="81" height="15" uuid="7c39acc6-d322-480b-b4bd-c19b66957f19"/>
+                <text><![CDATA[HO]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="Column header" x="138" y="19" width="69" height="15" uuid="b2261f41-aedb-44b7-847f-7142967659e1"/>
+                <text><![CDATA[TEN]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="Column header" x="207" y="19" width="108" height="15" uuid="ad1814a9-5421-4bfc-8d81-989d0d6eae35"/>
+                <text><![CDATA[DIACHI]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="Column header" x="315" y="19" width="80" height="15" uuid="334cbe88-23e6-43e3-b364-4f852efa4b02"/>
+                <text><![CDATA[NGAYSINH]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="Column header" x="395" y="19" width="88" height="15" uuid="d90f1d01-18dc-45f2-86b9-18fc40bf8df7"/>
+                <text><![CDATA[LUONG]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="Column header" x="483" y="19" width="69" height="15" uuid="294153a9-64be-4bb0-8803-1d483c3bb61c"/>
+                <text><![CDATA[MACN]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="45" splitType="Stretch">
+            <line>
+                <reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="bbc939f2-ec8e-4118-93b5-c9ec0bc9b444"/>
+                <graphicElement>
+                    <pen lineWidth="0.5" lineColor="#999999"/>
+                </graphicElement>
+            </line>
+            <textField>
+                <reportElement style="Detail" x="0" y="0" width="57" height="15" uuid="78476b0d-3120-4dd3-942f-de6ba6f9b67c"/>
+                <textFieldExpression><![CDATA[$F{MANV}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement style="Detail" x="57" y="0" width="81" height="15" uuid="2fc5e13e-80e6-4387-bf61-5944ed13c710"/>
+                <textFieldExpression><![CDATA[$F{HO}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement style="Detail" x="207" y="0" width="108" height="15" uuid="afa1755f-9114-40a2-be84-74200a9efa9a"/>
+                <textFieldExpression><![CDATA[$F{DIACHI}]]></textFieldExpression>
+            </textField>
+            <textField pattern="yyyy-MM-dd">
+                <reportElement style="Detail" x="315" y="0" width="80" height="15" uuid="4a27e186-7e39-45ad-aac1-4ba4513c2f49">
+                    <property name="net.sf.jasperreports.export.xls.pattern" value="yyyy-MM-dd"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{NGAYSINH}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement style="Detail" x="395" y="0" width="88" height="15" uuid="1d0ccd1f-a5f9-4c77-9027-f427c4a0fee9"/>
+                <textFieldExpression><![CDATA[$F{LUONG}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement style="Detail" x="138" y="0" width="69" height="15" uuid="71e994db-8e34-404d-b441-4ef7c8d7d723"/>
+                <textFieldExpression><![CDATA[$F{TEN}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement style="Detail" x="483" y="1" width="69" height="15" uuid="aece2071-a833-474a-b088-fd0627c00762"/>
+                <textFieldExpression><![CDATA[$F{MACN}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+    <columnFooter>
+        <band height="45" splitType="Stretch">
+            <line>
+                <reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="cb081d4c-ab79-461e-92ab-f9f2232762ee"/>
+                <graphicElement>
+                    <pen lineWidth="0.5" lineColor="#999999"/>
+                </graphicElement>
+            </line>
+        </band>
+    </columnFooter>
+    <pageFooter>
+        <band height="20" splitType="Stretch">
+            <textField>
+                <reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="9f04fe4c-fac4-4c07-ae52-e8a0cc87242b"/>
+                <textElement textAlignment="Right">
+                    <font size="10" isBold="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+            </textField>
+            <textField evaluationTime="Report">
+                <reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="f52cdaed-2dd7-418d-9412-cd1b5da6a3ec"/>
+                <textElement>
+                    <font size="10" isBold="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+            </textField>
+            <textField pattern="yyyy-MM-dd" >
+                <reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="575d62cb-b066-45c6-951c-6011f475e28d"/>
+                <textElement>
+                    <font size="10" isBold="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageFooter>
+    <summary>
+        <band splitType="Stretch"/>
+    </summary>
+</jasperReport>
