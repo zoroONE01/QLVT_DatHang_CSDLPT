@@ -12,8 +12,8 @@ public class KhoService {
 
     KhoDAO khoDAO = new KhoDAO();
 
-    public List<Kho> findAll() {
-        return khoDAO.findAll();
+    public List<Kho> findAll(String id) {
+        return khoDAO.findAll(id);
     }
 
     public Kho findOne(String id) {

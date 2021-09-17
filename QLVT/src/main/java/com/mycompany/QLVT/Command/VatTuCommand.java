@@ -5,40 +5,39 @@
  */
 package com.mycompany.QLVT.Command;
 
-import com.mycompany.QLVT.Entity.Kho;
-import java.util.AbstractList;
+import com.mycompany.QLVT.Entity.VatTu;
 import java.util.List;
 
 /**
  *
  * @author zoroONE01
  */
-public abstract class KhoCommand {
+public abstract class VatTuCommand {
 
-    protected List<Kho> list;
-    protected List<Kho> listBackup;
+    protected List<VatTu> list;
+    protected List<VatTu> listBackup;
 
-    public KhoCommand() {
+    public VatTuCommand() {
     }
 
-    public KhoCommand(List<Kho> list) {
+    public VatTuCommand(List<VatTu> list) {
         this.list = list;
 //        this.listBackup = list;
     }
 
-    public List<Kho> getList() {
+    public List<VatTu> getList() {
         return list;
     }
 
-    public void setList(List<Kho> list) {
+    public void setList(List<VatTu> list) {
         this.list = list;
     }
 
-    public List<Kho> getListBackup() {
+    public List<VatTu> getListBackup() {
         return listBackup;
     }
 
-    public void setListBackup(List<Kho> listBackup) {
+    public void setListBackup(List<VatTu> listBackup) {
         this.listBackup = listBackup;
     }
 
@@ -47,7 +46,7 @@ public abstract class KhoCommand {
 
     public abstract void execute();
 
-    public abstract void executoToDataBase();
+    public abstract void exectteToDatabase();
 
     public abstract void unExecute();
 

@@ -9,11 +9,8 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXListView;
-import com.mycompany.QLVT.App;
-import com.mycompany.QLVT.Command.KhoCommand;
-import com.mycompany.QLVT.Command.KhoMemento;
 import com.mycompany.QLVT.Entity.Kho;
-import static com.mycompany.QLVT.controller.MainController.khoCommandHistory;
+import com.mycompany.QLVT.Utils.DBConnectUtil;
 import com.mycompany.QLVT.model.KhoCommandModel;
 import com.mycompany.QLVT.model.KhoTableModel;
 import com.mycompany.QLVT.service.KhoService;
@@ -24,20 +21,14 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
-import javafx.beans.InvalidationListener;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -258,7 +249,7 @@ public class KhoController implements Initializable {
 
     @FXML
     void reloadTable(ActionEvent event) {
-        if (!MainController.khoCommandHistory.isDatabaseStackEmpty()) {
+        if (!MainController.khoCommandHistory.isCommandStackEmpty()) {
 //            Platform.runLater(() -> {
             StackPane parentStackPane = (StackPane) ((Node) event.getTarget()).getScene().getRoot();
             JFXDialogLayout content = new JFXDialogLayout();
@@ -291,7 +282,7 @@ public class KhoController implements Initializable {
 
     @FXML
     void undoCommand(ActionEvent event) {
-        if (!MainController.khoCommandHistory.isModelStackEmpty()) {
+        if (!MainController.khoCommandHistory.isCommandStackEmpty()) {
             list = MainController.khoCommandHistory.undo();
             initTableKho();
             initListCommandHistory();
@@ -320,10 +311,10 @@ public class KhoController implements Initializable {
         clDiaChi.setCellValueFactory(new PropertyValueFactory<>("diaChi"));
         clChiNhanh.setCellValueFactory(new PropertyValueFactory<>("TenCN"));
         khoTableModel = new KhoTableModel();
-        if (MainController.khoCommandHistory.isDatabaseStackEmpty()) {
-            list = new KhoService().findAll();
+        if (MainController.khoCommandHistory.isCommandStackEmpty()) {
+            list = new KhoService().findAll(DBConnectUtil.chiNhanhSelected);
         } else {
-            list = MainController.khoCommandHistory.getModelStack().peek().getList();
+            list = MainController.khoCommandHistory.getCommandStack().peek().getList();
         }
         khoTableModel.setKhoList(list);
         tbDSKho.setItems(khoTableModel.getKhoList());
@@ -345,9 +336,9 @@ public class KhoController implements Initializable {
 
     public void initListCommandHistory() {
         khoCommandModel = new KhoCommandModel();
-        khoCommandModel.setCommandList(MainController.khoCommandHistory.getModelStack());
+        khoCommandModel.setCommandList(MainController.khoCommandHistory.getCommandStack());
         lvHistoryCommand.setItems(khoCommandModel.getCommandList());
-        if (!MainController.khoCommandHistory.isModelStackEmpty()) {
+        if (!MainController.khoCommandHistory.isCommandStackEmpty()) {
             btUndo.setDisable(false);
             btSave.setDisable(false);
         } else {
@@ -370,8 +361,7 @@ public class KhoController implements Initializable {
         btUndo.setDisable(true);
         btRedo.setDisable(true);
         initTableKhoFromDatabase();
-        icLoading = new ImageView(new Image(getClass().getResourceAsStream("../../../../img/loading.gif"), 40, 40, false, true));
-
+//        icLoading = new ImageView(new Image(getClass().getResourceAsStream("../../../../img/loading.gif"), 40, 40, false, true));
     }
 
 }

@@ -8,7 +8,9 @@ package com.mycompany.QLVT.controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
+import com.jfoenix.controls.JFXListView;
 import com.mycompany.QLVT.Entity.VatTu;
+import com.mycompany.QLVT.model.VatTuCommandModel;
 import com.mycompany.QLVT.model.VatTuTableModel;
 import com.mycompany.QLVT.service.VatTuService;
 import java.io.IOException;
@@ -45,6 +47,24 @@ public class VatTuController implements Initializable {
      * Initializes the controller class.
      */
     @FXML
+    private JFXListView<String> lvHistoryCommand;
+
+    @FXML
+    private TableView<VatTu> tbDSVT;
+
+    @FXML
+    private TableColumn<VatTu, String> clMaVT;
+
+    @FXML
+    private TableColumn<VatTu, String> clTenVT;
+
+    @FXML
+    private TableColumn<VatTu, String> clDVT;
+    
+    @FXML
+    private TableColumn<VatTu, String> clSoLuongTon;
+    
+    @FXML
     private JFXButton btAdd;
 
     @FXML
@@ -60,30 +80,22 @@ public class VatTuController implements Initializable {
     private JFXButton btUndo;
 
     @FXML
+    private JFXButton btRedo;
+
+    @FXML
     private JFXButton btReload;
 
-    @FXML
-    private TableView<VatTu> tbDSVT;
-
-    @FXML
-    private TableColumn<VatTu, String> clMaVT;
-
-    @FXML
-    private TableColumn<VatTu, String> clTenVT;
-
-    @FXML
-    private TableColumn<VatTu, String> clDVT;
-
     private ObservableList<VatTu> listVatTu;
+
+    public static List<VatTu> list;
 
     private ImageView icLoading;
 
     public VatTu vatTu;
 
-    @FXML
-    void reloadTable(ActionEvent event) {
+    public VatTuTableModel vatTuTableModel;
 
-    }
+    public VatTuCommandModel vatTuCommandModel;
 
     @FXML
     void showAddFrom(ActionEvent event) {
@@ -95,7 +107,6 @@ public class VatTuController implements Initializable {
                 Parent root = null;
                 VatTuDetailController vatTuDetailController = new VatTuDetailController();
                 try {
-//                    System.out.println(new FXMLLoader(getClass().getResource("../../../../fxml/KhoDetail.fxml")));
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../../../fxml/VatTuDetail.fxml"));
                     fxmlLoader.setController(vatTuDetailController);
                     root = (Parent) fxmlLoader.load();
@@ -120,10 +131,9 @@ public class VatTuController implements Initializable {
                     content.setBody(icLoading);
                     String error = vatTuDetailController.addVatTu();
                     if (error == "") {
-                        noti.setContent(content);
                         noti.close();
-                        initTableVatTu();
-
+                        initTable();
+                        initListCommandHistory();
                     } else {
                         content.setBody(new Text(error));
                     }
@@ -136,22 +146,169 @@ public class VatTuController implements Initializable {
 
     @FXML
     void showDeleteForm(ActionEvent event) {
-
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                StackPane parentStackPane = (StackPane) ((Node) event.getTarget()).getScene().getRoot();
+                JFXDialogLayout content = new JFXDialogLayout();
+                Parent root = null;
+                VatTuDetailController vatTuDetailController = new VatTuDetailController();
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../../../fxml/VatTuDetail.fxml"));
+                    fxmlLoader.setController(vatTuDetailController);
+                    root = (Parent) fxmlLoader.load();
+                    vatTuDetailController.initDelele(vatTu);
+                } catch (IOException ex) {
+                    Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                content.setHeading(root);
+                JFXDialog noti = new JFXDialog(parentStackPane, content, JFXDialog.DialogTransition.CENTER);
+                Image image1 = new Image(getClass().getResourceAsStream("../../../../img/delete_20px.png"));
+                Image image2 = new Image(getClass().getResourceAsStream("../../../../img/icons8_checkmark_20px.png"));
+                JFXButton btClose = new JFXButton(null, new ImageView(image1));
+                JFXButton btAccept = new JFXButton(null, new ImageView(image2));
+                btClose.setButtonType(JFXButton.ButtonType.FLAT);
+                btAccept.setButtonType(JFXButton.ButtonType.FLAT);
+                btClose.setCursor(Cursor.HAND);
+                btAccept.setCursor(Cursor.HAND);
+                btClose.setOnAction((ActionEvent event1) -> {
+                    noti.close();
+                });
+                btAccept.setOnAction((ActionEvent event1) -> {
+//                    content.setBody(icLoading);
+                    String error = vatTuDetailController.deleleVatTu(vatTu);
+                    if (error == "") {
+                        noti.close();
+                        initTable();
+                        initListCommandHistory();
+                    } else {
+                        content.setBody(new Text(error));
+                    }
+                });
+                content.setActions(btAccept, btClose);
+                noti.show();
+            }
+        });
     }
 
     @FXML
     void showEditForm(ActionEvent event) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                StackPane parentStackPane = (StackPane) ((Node) event.getTarget()).getScene().getRoot();
+                JFXDialogLayout content = new JFXDialogLayout();
+                Parent root = null;
+                VatTuDetailController VatTuDetailController = new VatTuDetailController();
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../../../fxml/VatTuDetail.fxml"));
+                    fxmlLoader.setController(VatTuDetailController);
+                    root = (Parent) fxmlLoader.load();
+                    VatTuDetailController.initUpdate(vatTu);
+                } catch (IOException ex) {
+                    Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                content.setHeading(root);
+                JFXDialog noti = new JFXDialog(parentStackPane, content, JFXDialog.DialogTransition.CENTER);
+                Image image1 = new Image(getClass().getResourceAsStream("../../../../img/delete_20px.png"));
+                Image image2 = new Image(getClass().getResourceAsStream("../../../../img/icons8_checkmark_20px.png"));
+                JFXButton btClose = new JFXButton(null, new ImageView(image1));
+                JFXButton btAccept = new JFXButton(null, new ImageView(image2));
+                btClose.setButtonType(JFXButton.ButtonType.FLAT);
+                btAccept.setButtonType(JFXButton.ButtonType.FLAT);
+                btClose.setCursor(Cursor.HAND);
+                btAccept.setCursor(Cursor.HAND);
+                btClose.setOnAction((ActionEvent event1) -> {
+                    noti.close();
+                });
+                btAccept.setOnAction((ActionEvent event1) -> {
+//                    content.setBody(icLoading);
+                    String error = VatTuDetailController.updateVatTu(vatTu);
+                    if (error == "") {
+                        noti.close();
+                        initTable();
+                        initListCommandHistory();
+                    } else {
+                        content.setBody(new Text(error));
+                    }
+                });
+                content.setActions(btAccept, btClose);
+                noti.show();
+            }
+        });
+    }
+
+    @FXML
+    void reloadTable(ActionEvent event) {
+        if (!MainController.vatTuCommandHistory.isCommandStackEmpty()) {
+//            Platform.runLater(() -> {
+            StackPane parentStackPane = (StackPane) ((Node) event.getTarget()).getScene().getRoot();
+            JFXDialogLayout content = new JFXDialogLayout();
+            content.setHeading(new Text("Thông Báo"));
+            content.setBody(new Text("Dữ liệu thay đổi chưa được lưu.\nTiếp tục thao tác mà không lưu thay đổi?"));
+            JFXDialog noti = new JFXDialog(parentStackPane, content, JFXDialog.DialogTransition.CENTER);
+            Image image1 = new Image(getClass().getResourceAsStream("../../../../img/delete_20px.png"));
+            Image image2 = new Image(getClass().getResourceAsStream("../../../../img/icons8_checkmark_20px.png"));
+            JFXButton btClose = new JFXButton(null, new ImageView(image1));
+            JFXButton btAccept = new JFXButton(null, new ImageView(image2));
+            btClose.setButtonType(JFXButton.ButtonType.FLAT);
+            btAccept.setButtonType(JFXButton.ButtonType.FLAT);
+            btClose.setCursor(Cursor.HAND);
+            btAccept.setCursor(Cursor.HAND);
+            btClose.setOnAction((ActionEvent event1) -> {
+                noti.close();
+            });
+            btAccept.setOnAction((ActionEvent event1) -> {
+                noti.close();
+                MainController.vatTuCommandHistory.clearAllStack();
+                initTableFromDatabase();
+            });
+            content.setActions(btAccept, btClose);
+            noti.show();
+//            });
+        } else {
+            initTableFromDatabase();
+        }
+    }
+
+    @FXML
+    void undoCommand(ActionEvent event) {
+        if (!MainController.vatTuCommandHistory.isCommandStackEmpty()) {
+            list = MainController.vatTuCommandHistory.undo();
+            initTable();
+            initListCommandHistory();
+        }
 
     }
 
-    public void initTableVatTu() {
+    @FXML
+    void redoCommand(ActionEvent event) {
+        if (!MainController.vatTuCommandHistory.isSubStackEmpty()) {
+            list = MainController.vatTuCommandHistory.redo();
+            initTable();
+            initListCommandHistory();
+        }
+    }
+
+    @FXML
+    void saveOnDatabase(ActionEvent event) {
+        MainController.vatTuCommandHistory.ExectueAllToDatebase();
+        initListCommandHistory();
+    }
+
+    public void initTableFromDatabase() {
         clMaVT.setCellValueFactory(new PropertyValueFactory<>("maVT"));
         clTenVT.setCellValueFactory(new PropertyValueFactory<>("tenVT"));
         clDVT.setCellValueFactory(new PropertyValueFactory<>("DVT"));
-        VatTuTableModel model = new VatTuTableModel();
-        List<VatTu> list = new VatTuService().findAll();
-        model.setVatTuList(list);
-        tbDSVT.setItems(model.getVatTuList());
+        clSoLuongTon.setCellValueFactory(new PropertyValueFactory<>("soLuongTon"));
+        vatTuTableModel = new VatTuTableModel();
+        if (MainController.vatTuCommandHistory.isCommandStackEmpty()) {
+            list = new VatTuService().findAll();
+        } else {
+            list = MainController.vatTuCommandHistory.getCommandStack().peek().getList();
+        }
+        vatTuTableModel.setVatTuList(list);
+        tbDSVT.setItems(vatTuTableModel.getVatTuList());
         tbDSVT.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 btEdit.setDisable(false);
@@ -160,11 +317,43 @@ public class VatTuController implements Initializable {
                 vatTu = tbDSVT.getItems().get(index);
             }
         });
+        initListCommandHistory();
+    }
+
+    public void initTable() {
+        tbDSVT.getItems().clear();
+        vatTuTableModel.setVatTuList(list);
+    }
+
+    public void initListCommandHistory() {
+        vatTuCommandModel = new VatTuCommandModel();
+        vatTuCommandModel.setCommandList(MainController.vatTuCommandHistory.getCommandStack());
+        lvHistoryCommand.setItems(vatTuCommandModel.getCommandList());
+        if (!MainController.vatTuCommandHistory.isCommandStackEmpty()) {
+            btUndo.setDisable(false);
+            btSave.setDisable(false);
+        } else {
+            btUndo.setDisable(true);
+            btSave.setDisable(true);
+        }
+        if (!MainController.vatTuCommandHistory.isSubStackEmpty()) {
+            btRedo.setDisable(false);
+        } else {
+            btRedo.setDisable(true);
+        }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        lvHistoryCommand.setDisable(true);
+        btEdit.setDisable(true);
+        btDelete.setDisable(true);
+        btSave.setDisable(true);
+        btUndo.setDisable(true);
+        btRedo.setDisable(true);
+        initTableFromDatabase();
+//        icLoading = new ImageView(new Image(getClass().getResourceAsStream("../../../../img/loading.gif"), 40, 40, false, true));
+
     }
 
 }

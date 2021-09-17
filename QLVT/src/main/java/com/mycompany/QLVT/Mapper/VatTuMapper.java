@@ -24,6 +24,8 @@ public class VatTuMapper implements RowMapper<VatTu> {
             vatTu.setMaVT(rs.getString(1));
             vatTu.setTenVT(rs.getString(2));
             vatTu.setDVT(rs.getString(3));
+            vatTu.setSoLuongTon(rs.getInt(4));
+            return vatTu;
         } catch (SQLException e) {
             Logger.getLogger(VatTuMapper.class.getName()).log(Level.SEVERE, null, e);
         }

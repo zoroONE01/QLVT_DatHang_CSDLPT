@@ -101,8 +101,8 @@ public class KhoDetailController implements Initializable {
         tfTenKho.setText(kho.getTenKho());
         tfDiaChi.setText(kho.getDiaChi());
         tfChiNhanh.setText(kho.getMaCN());
-        tfMaKho.setEditable(false);
-        tfChiNhanh.setEditable(false);
+        tfMaKho.setDisable(true);
+        tfChiNhanh.setDisable(true);
         tfTenKho.setTextFormatter(new TextFormatter<>(change -> {
             if (ValidationRegEx.removeAscent(change.getText()).matches("[\\sa-zA-Z0-9_.,-/]")) {
                 return change; //if change is a number
@@ -127,10 +127,10 @@ public class KhoDetailController implements Initializable {
         tfTenKho.setText(kho.getTenKho());
         tfDiaChi.setText(kho.getDiaChi());
         tfChiNhanh.setText(kho.getMaCN());
-        tfMaKho.setEditable(false);
-        tfTenKho.setEditable(false);
-        tfDiaChi.setEditable(false);
-        tfChiNhanh.setEditable(false);
+        tfMaKho.setDisable(true);
+        tfTenKho.setDisable(true);
+        tfDiaChi.setDisable(true);
+        tfChiNhanh.setDisable(true);
 
     }
 
@@ -297,7 +297,7 @@ public class KhoDetailController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         initTfInput();
-
+        tfChiNhanh.setDisable(true);
     }
 
 }

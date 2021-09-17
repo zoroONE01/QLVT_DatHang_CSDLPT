@@ -6,6 +6,7 @@
 package com.mycompany.QLVT.Command;
 
 import com.mycompany.QLVT.Entity.Kho;
+import com.mycompany.QLVT.service.KhoService;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,5 +51,11 @@ public class KhoUpdate extends KhoCommand {
     @Override
     public String toString() {
         return "Update " + oldKho.getMaKho();
+    }
+
+    @Override
+    public void executoToDataBase() {
+        KhoService service = new KhoService();
+        service.update(newKho);
     }
 }

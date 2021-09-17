@@ -14,7 +14,7 @@ import javafx.fxml.Initializable;
  *
  * @author zoroONE01
  */
-public class DonDatHangController implements Initializable {
+public class DDHVatTuController implements Initializable {
 
     /**
      * Initializes the controller class.

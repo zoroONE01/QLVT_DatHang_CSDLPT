@@ -5,8 +5,8 @@
  */
 package com.mycompany.QLVT.Command;
 
-import com.mycompany.QLVT.Entity.Kho;
-import com.mycompany.QLVT.service.KhoService;
+import com.mycompany.QLVT.Entity.DDH;
+import com.mycompany.QLVT.service.DDHService;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,26 +14,26 @@ import java.util.List;
  *
  * @author zoroONE01
  */
-public class KhoDelete extends KhoCommand {
+public class DDHDelete extends DDHCommand {
 
-    private Kho kho;
+    private DDH donDatHang;
 
-    public KhoDelete() {
+    public DDHDelete() {
         super();
     }
 
-    public KhoDelete(List<Kho> currentList, Kho kho) {
+    public DDHDelete(List<DDH> currentList, DDH donDatHang) {
         super(currentList);
-        this.kho = kho;
+        this.donDatHang = donDatHang;
     }
 
     @Override
     public void execute() {
         listBackup = new ArrayList<>();
-        list.forEach(k -> {
-            listBackup.add(k);
+        list.forEach(ddh -> {
+            listBackup.add(ddh);
         });
-        list.remove(kho);
+        list.remove(donDatHang);
     }
 
     @Override
@@ -43,13 +43,13 @@ public class KhoDelete extends KhoCommand {
 
     @Override
     public String toString() {
-        return "Delete " + kho.getMaKho();
+        return "Delete " + donDatHang.getMaDDH();
     }
 
     @Override
-    public void executoToDataBase() {
-        KhoService service = new KhoService();
-        service.delete(kho.getMaKho());
+    public void exectteToDatabase() {
+        DDHService service = new DDHService();
+        service.delete(donDatHang.getMaDDH());
     }
 
 }

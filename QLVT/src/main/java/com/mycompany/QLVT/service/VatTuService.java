@@ -36,8 +36,8 @@ public class VatTuService {
         vatTuDAO.delete(id);
     }
 
-    public void save(VatTu vatTu) {
-        vatTuDAO.save(vatTu);
+    public void insert(VatTu vatTu) {
+        vatTuDAO.insert(vatTu);
     }
 
     public void update(VatTu vatTu) {

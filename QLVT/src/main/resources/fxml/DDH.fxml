@@ -14,9 +14,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="pnKho" prefHeight="535.0" prefWidth="920.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.QLVT.controller.KhoController">
+<AnchorPane prefHeight="535.0" prefWidth="920.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.QLVT.controller.DDHController">
    <children>
-      <AnchorPane prefWidth="140.0" style="-fx-background-color: #fff; -fx-background-radius: 0 10 10 0; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="30.0">
+      <AnchorPane layoutX="20.0" layoutY="20.0" prefWidth="140.0" style="-fx-background-color: #fff; -fx-background-radius: 0 10 10 0; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="39.0">
          <children>
             <JFXListView fx:id="lvHistoryCommand" layoutX="16.0" layoutY="31.0" style="-fx-border-color: #fff;" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0" />
             <VBox alignment="CENTER" opacity="0.5" prefHeight="140.0" prefWidth="25.0" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #7819A5, #C767E6); -fx-background-radius: 5 0 0 5;" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0">
@@ -60,7 +60,19 @@
             </VBox>
          </children>
       </AnchorPane>
-      <VBox fx:id="pnMenuBar" alignment="CENTER" fillWidth="false" layoutX="873.0" layoutY="7.0" prefWidth="50.0" spacing="10.0" style="-fx-background-color: #fff; -fx-background-radius: 10; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );;" AnchorPane.bottomAnchor="110.0" AnchorPane.rightAnchor="0.0">
+      <TableView fx:id="tbDSDDH" layoutX="14.0" layoutY="9.0" prefHeight="535.0" stylesheets="@../css/table-view.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="0.0">
+         <columns>
+            <TableColumn fx:id="clMaDDH" minWidth="120.0" prefWidth="-1.0" text="Mã Đơn Đặt Hàng" />
+            <TableColumn fx:id="clNCC" minWidth="120.0" prefWidth="-1.0" text="Nhà Cung Cấp" />
+            <TableColumn fx:id="clNgay" minWidth="120.0" prefWidth="-1.0" text="Ngày" />
+            <TableColumn fx:id="clKho" minWidth="120.0" prefWidth="-1.0" text="Kho" />
+            <TableColumn fx:id="clNhanVien" minWidth="120.0" prefWidth="-1.0" text="Nhân Viên Đặt Hàng" />
+         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <VBox alignment="CENTER" fillWidth="false" layoutX="893.0" layoutY="27.0" prefWidth="50.0" spacing="10.0" style="-fx-background-color: #fff; -fx-background-radius: 10; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );;" AnchorPane.bottomAnchor="110.0" AnchorPane.rightAnchor="0.0">
          <children>
             <JFXButton fx:id="btAdd" layoutX="16.0" layoutY="20.0" onAction="#showAddFrom" prefHeight="30.0" prefWidth="30.0" text=" ">
                <graphic>
@@ -176,16 +188,5 @@
             <Insets bottom="10.0" top="10.0" />
          </padding>
       </VBox>
-      <TableView fx:id="tbDSKho" stylesheets="@../css/table-view.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="0.0">
-         <columns>
-            <TableColumn fx:id="clMaKho" minWidth="150.0" prefWidth="-1.0" text="Mã Kho" />
-            <TableColumn fx:id="clTenKho" minWidth="150.0" prefWidth="-1.0" text="Tên Kho" />
-            <TableColumn fx:id="clDiaChi" minWidth="150.0" prefWidth="-1.0" text="Địa Chỉ" />
-            <TableColumn fx:id="clChiNhanh" minWidth="150.0" prefWidth="-1.0" text="Chi Nhánh" />
-         </columns>
-         <columnResizePolicy>
-            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-         </columnResizePolicy>
-      </TableView>
    </children>
 </AnchorPane>

@@ -5,8 +5,8 @@
  */
 package com.mycompany.QLVT.Command;
 
-import com.mycompany.QLVT.Entity.Kho;
-import com.mycompany.QLVT.service.KhoService;
+import com.mycompany.QLVT.Entity.VatTu;
+import com.mycompany.QLVT.service.VatTuService;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,26 +14,26 @@ import java.util.List;
  *
  * @author zoroONE01
  */
-public class KhoDelete extends KhoCommand {
+public class VatTuDelete extends VatTuCommand {
 
-    private Kho kho;
+    private VatTu vatTu;
 
-    public KhoDelete() {
+    public VatTuDelete() {
         super();
     }
 
-    public KhoDelete(List<Kho> currentList, Kho kho) {
+    public VatTuDelete(List<VatTu> currentList, VatTu vatTu) {
         super(currentList);
-        this.kho = kho;
+        this.vatTu = vatTu;
     }
 
     @Override
     public void execute() {
         listBackup = new ArrayList<>();
-        list.forEach(k -> {
-            listBackup.add(k);
+        list.forEach(vt -> {
+            listBackup.add(vt);
         });
-        list.remove(kho);
+        list.remove(vatTu);
     }
 
     @Override
@@ -43,13 +43,13 @@ public class KhoDelete extends KhoCommand {
 
     @Override
     public String toString() {
-        return "Delete " + kho.getMaKho();
+        return "Delete " + vatTu.getMaVT();
     }
 
     @Override
-    public void executoToDataBase() {
-        KhoService service = new KhoService();
-        service.delete(kho.getMaKho());
+    public void exectteToDatabase() {
+        VatTuService service = new VatTuService();
+        service.delete(vatTu.getMaVT());
     }
 
 }

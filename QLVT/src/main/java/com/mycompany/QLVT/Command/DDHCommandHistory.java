@@ -5,62 +5,60 @@
  */
 package com.mycompany.QLVT.Command;
 
-import com.mycompany.QLVT.Entity.Kho;
-import java.util.LinkedHashMap;
+import com.mycompany.QLVT.Entity.VatTu;
 import java.util.List;
-import java.util.Map;
 import java.util.Stack;
 
 /**
  *
  * @author zoroONE01
  */
-public class KhoCommandHistory {
+public class DDHCommandHistory {
 
-    private final Stack<KhoCommand> commandStack = new Stack<>();
-//    private final Stack<KhoCommand> databaseStack = new Stack<>();
-    private final Stack<KhoCommand> subStack = new Stack<>();
+    private final Stack<VatTuCommand> commandStack = new Stack<>();
+//    private final Stack<VatTuCommand> databaseStack = new Stack<>();
+    private final Stack<VatTuCommand> subStack = new Stack<>();
+//    private int undoRedoPointer = 0;
 
-
-    public Stack<KhoCommand> getSubStack() {
+    public Stack<VatTuCommand> getSubStack() {
         return subStack;
     }
 
-    public Stack<KhoCommand> getCommandStack() {
+    public Stack<VatTuCommand> getCommandStack() {
         return commandStack;
     }
 
-//    public Stack<KhoCommand> getDatabaseStack() {
+//    public Stack<VatTuCommand> getDatabaseStack() {
 //        return databaseStack;
 //    }
 
-    public List<Kho> addInsertCommand(List<Kho> currentList, Kho kho) {
+    public List<VatTu> addInsertCommand(List<VatTu> currentList, VatTu vatTu) {
 //        deleteElementsAfterPointer(undoRedoPointer);
-        KhoCommand command = new KhoInsert(currentList, kho);
+        VatTuCommand command = new VatTuInsert(currentList, vatTu);
         command.execute();
         commandStack.push(command);
 //        undoRedoPointer++;
-//        databaseStack.push(new KhoDatabaseInsert(kho));
+//        databaseStack.push(new VatTuDatabaseInsert(vatTu));
         return command.getList();
     }
 
-    public List<Kho> addDeleleCommand(List<Kho> currentList, Kho kho) {
+    public List<VatTu> addDeleleCommand(List<VatTu> currentList, VatTu vatTu) {
 //        deleteElementsAfterPointer(undoRedoPointer);
-        KhoCommand command = new KhoDelete(currentList, kho);
+        VatTuCommand command = new VatTuDelete(currentList, vatTu);
         command.execute();
         commandStack.push(command);
 //        undoRedoPointer++;
-//        databaseStack.push(new KhoDatabaseDelete(kho));
+//        databaseStack.push(new VatTuDatabaseDelete(vatTu));
         return command.getList();
     }
 
-    public List<Kho> addUpdateCommand(List<Kho> currentList, Kho oldKho, Kho newKho) {
+    public List<VatTu> addUpdateCommand(List<VatTu> currentList, VatTu oldVatTu, VatTu newVatTu) {
 //        deleteElementsAfterPointer(undoRedoPointer);
-        KhoCommand command = new KhoUpdate(currentList, oldKho, newKho);
+        VatTuCommand command = new VatTuUpdate(currentList, oldVatTu, newVatTu);
         command.execute();
         commandStack.push(command);
 //        undoRedoPointer++;
-//        databaseStack.push(new KhoDatabaseUpdate(newKho));
+//        databaseStack.push(new VatTuDatabaseUpdate(newVatTu));
         return command.getList();
     }
 
@@ -72,21 +70,21 @@ public class KhoCommandHistory {
 //            commandStack.remove(i);
 //        }
 //    }
-    public List<Kho> undo() {
-        KhoCommand command = commandStack.pop();
+    public List<VatTu> undo() {
+        VatTuCommand command = commandStack.pop();
         subStack.push(command);
 //        subStack.push(databaseStack.pop());
         command.unExecute();
         return command.getList();
     }
 
-    public List<Kho> redo() {
+    public List<VatTu> redo() {
 //        if (undoRedoPointer == 0) {
 //            return null;
 //        }
 //        undoRedoPointer--;
 //        databaseStack.push(subStack.pop());
-        KhoCommand command = subStack.pop();
+        VatTuCommand command = subStack.pop();
         commandStack.push(command);
         command.execute();
 //        command.execute();
@@ -98,8 +96,8 @@ public class KhoCommandHistory {
         if (commandStack.isEmpty()) {
             return;
         }
-        commandStack.forEach(khoCommand -> {
-            khoCommand.executoToDataBase();
+        commandStack.forEach(vtCommand -> {
+            vtCommand.exectteToDatabase();
         });
         clearAllStack();
     }

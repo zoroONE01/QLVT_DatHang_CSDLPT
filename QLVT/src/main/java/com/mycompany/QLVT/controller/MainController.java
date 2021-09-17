@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXRadioButton;
 import com.mycompany.QLVT.App;
 import com.mycompany.QLVT.Command.KhoCommandHistory;
+import com.mycompany.QLVT.Command.VatTuCommandHistory;
 import com.mycompany.QLVT.Utils.DBConnectUtil;
 import java.io.IOException;
 import java.net.URL;
@@ -83,6 +84,7 @@ public class MainController {
     private AnchorPane pnWorkspace;
 
     public static KhoCommandHistory khoCommandHistory;
+    public static VatTuCommandHistory vatTuCommandHistory;
     public final String tabDashboard = "RadioButton[id=btDashboard, styleClass=radio-button btn-slidebar]'Dashboard'";
     public final String tabNhanVien = "RadioButton[id=btNhanVien, styleClass=btn-slidebar toggle-button]'Nhân Viên'";
     public final String tabKho = "RadioButton[id=btKho, styleClass=btn-slidebar toggle-button]'Kho'";
@@ -91,6 +93,7 @@ public class MainController {
 
     public MainController() {
         khoCommandHistory = new KhoCommandHistory();
+        vatTuCommandHistory = new VatTuCommandHistory();
     }
 //
 //    @FXML
@@ -206,19 +209,19 @@ public class MainController {
                     lbTitle.setText("Kho");
                 }
                 if (btVatTu.isSelected()) {
-                    //            try {
-//                initWorkspace("VatTu");
-//            } catch (IOException ex) {
-//                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
-//            }
+                    try {
+                        initWorkspace("VatTu");
+                    } catch (IOException ex) {
+                        Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     lbTitle.setText("Vật Tư");
                 }
                 if (btDonDatHang.isSelected()) {
-                    //            try {
-//                initWorkspace("DonDatHang");
-//            } catch (IOException ex) {
-//                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
-//            }
+                    try {
+                        initWorkspace("DDH");
+                    } catch (IOException ex) {
+                        Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     lbTitle.setText("Đơn Đặt Hàng");
                 }
             }
@@ -232,7 +235,7 @@ public class MainController {
         if (button != null) {
             String btToString = button.toString();
             if (btToString.equals(tabKho)) {
-                return khoCommandHistory.isDatabaseStackEmpty();
+                return khoCommandHistory.isCommandStackEmpty();
             }
         }
         return true;
@@ -254,7 +257,6 @@ public class MainController {
                 );
                 clock.setCycleCount(Animation.INDEFINITE);
                 clock.play();
-
             }
         });
     }

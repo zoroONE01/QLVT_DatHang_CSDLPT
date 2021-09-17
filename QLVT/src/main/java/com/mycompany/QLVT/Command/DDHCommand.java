@@ -5,40 +5,39 @@
  */
 package com.mycompany.QLVT.Command;
 
-import com.mycompany.QLVT.Entity.Kho;
-import java.util.AbstractList;
+import com.mycompany.QLVT.Entity.DDH;
 import java.util.List;
 
 /**
  *
  * @author zoroONE01
  */
-public abstract class KhoCommand {
+public abstract class DDHCommand {
 
-    protected List<Kho> list;
-    protected List<Kho> listBackup;
+    protected List<DDH> list;
+    protected List<DDH> listBackup;
 
-    public KhoCommand() {
+    public DDHCommand() {
     }
 
-    public KhoCommand(List<Kho> list) {
+    public DDHCommand(List<DDH> list) {
         this.list = list;
 //        this.listBackup = list;
     }
 
-    public List<Kho> getList() {
+    public List<DDH> getList() {
         return list;
     }
 
-    public void setList(List<Kho> list) {
+    public void setList(List<DDH> list) {
         this.list = list;
     }
 
-    public List<Kho> getListBackup() {
+    public List<DDH> getListBackup() {
         return listBackup;
     }
 
-    public void setListBackup(List<Kho> listBackup) {
+    public void setListBackup(List<DDH> listBackup) {
         this.listBackup = listBackup;
     }
 
@@ -47,7 +46,7 @@ public abstract class KhoCommand {
 
     public abstract void execute();
 
-    public abstract void executoToDataBase();
+    public abstract void exectteToDatabase();
 
     public abstract void unExecute();
 
