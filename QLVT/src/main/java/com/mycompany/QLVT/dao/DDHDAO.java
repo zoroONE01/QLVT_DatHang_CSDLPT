@@ -5,29 +5,32 @@
  */
 package com.mycompany.QLVT.dao;
 
-import com.mycompany.QLVT.Entity.DonDatHang;
-import com.mycompany.QLVT.Entity.NhanVien;
-import com.mycompany.QLVT.Mapper.DonDatHangMapper;
-import com.mycompany.QLVT.Mapper.NhanVienMapper;
+import com.mycompany.QLVT.Entity.DDH;
+import com.mycompany.QLVT.Mapper.DDHMapper;
 import java.util.List;
 
 /**
  *
  * @author MinhTo
  */
-public class DonDatHangDAO extends AbstractDAO<DonDatHang> {
+public class DDHDAO extends AbstractDAO<DDH> {
 
-    public List<DonDatHang> findAll() {
-        return queryProcedure("{call SP_DS_DHH}", new DonDatHangMapper());
+
+//    public List<DonDatHang> findAll() {
+//        return queryProcedure("{call SP_DS_DHH}", new DonDatHangMapper());
+//            }
+    public List<DDH> findAll() {
+        return queryProcedure("{call SP_DS_DHH}", new DDHMapper());
+
     }
 
-//    public List<DonDatHang> findAllOtherSite() {
+//    public List<DDH> findAllOtherSite() {
 //       // return queryProcedure("exec LINK1.QLVT.DBO.SP_DSNhanVien", new NhanVienMapper());
-//    }
+   
 //
-    public DonDatHang findOne(String ma) {
-        List<DonDatHang> list=queryProcedure("{call SP_Tim_DHH(?)}", new DonDatHangMapper(),ma);
-       return list.isEmpty() ? null : list.get(0);
+    public DDH findOne(String id) {
+        List<DDH> list = queryProcedure("{call SP_Tim_DHH(?)}", new DDHMapper(), id);
+        return list.isEmpty() ? null : list.get(0);
     }
 
     public int isExist(int id) {
@@ -52,13 +55,12 @@ public class DonDatHangDAO extends AbstractDAO<DonDatHang> {
         return updateProcedure("{call SP_XOA_NHANVIEN(?)}", id);
     }
 
-    public int save(DonDatHang nv) {
-      //  return insert("{call SP_CapNhat_DHH(?,?,?)}",nv.getMaDHH(),nv.getNhaCC(),nv.getKho().getMaKho() );
-      return 0;
+    public int insert(DDH ddh) {
+        return insert("{call SP_CapNhat_DHH(?,?,?)}", ddh.getMaDDH(), ddh.getNCC(), ddh.getMaKho());
     }
 
-    public int update(DonDatHang nv) {
-    return insert("{call SP_CapNhat_DHH(?,?,?)}",nv.getMaDHH(),nv.getNhaCC(),nv.getKho().getMaKho() );
+    public int update(DDH ddh) {
+        return insert("{call SP_CapNhat_DHH(?,?,?)}", ddh.getMaDDH(), ddh.getNCC(), ddh.getMaKho());
 
     }
 }

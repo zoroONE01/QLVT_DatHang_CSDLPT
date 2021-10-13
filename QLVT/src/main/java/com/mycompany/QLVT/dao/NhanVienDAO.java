@@ -55,7 +55,7 @@ public class NhanVienDAO extends AbstractDAO<NhanVien> {
         return updateProcedure("{call SP_XOA_NHANVIEN(?)}", id);
     }
 
-    public int save(NhanVien nv) {
+    public int insert(NhanVien nv) {
         return insert("{call SP_Them_NhanVien(?,?,?,?,?,?,?)}", nv.getMaNhanVien(), nv.getHo(), nv.getTen(), nv.getDiaChi(), nv.getNgaySinh(), nv.getLuong(), nv.getMaCN());
 
     }

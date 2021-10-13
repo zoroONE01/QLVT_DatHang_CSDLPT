@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\Utils\ValidationRegEx.java
 E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\Mapper\DonDatHangMapper.java
 E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\Report\TestReport.java
@@ -69,3 +70,88 @@ E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\model\ChiNhanhModel.java
 E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\Entity\Clock.java
 E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\model\NhanVienTableModelTest.java
 E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\Command\KhoCommand.java
+=======
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Command\KhoDelete.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Command\DDHDelete.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\controller\KhoController.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\controller\VatTuController.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Report\TestReport.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Entity\NhanVienTest.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Mapper\LoginMapper.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Command\DDHInsert.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\service\NhanVienServiceTest.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Command\KhoUpdate.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Command\VatTuCommand.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Entity\Login.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Entity\NhanVien.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Mapper\DDHMapper.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Command\ActionListenerCommand.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Entity\Kho.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Command\KhoCommand.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\controller\DDHDetailController.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\dao\NhanVienDaoTest.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Mapper\KhoMapper.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\model\DDHCommandModel.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\model\DDHTableModel.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Mapper\DonDatHangMapper.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\dao\VatTuDAO.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Utils\FomaterDate.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\model\VatTuTableModel.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\controller\NhanVienController.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\dao\LoginDAO.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\NewFXPreloader.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\FXMLController.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\controller\LoginController.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\dao\NumberDao.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Mapper\PhanManhMapper.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\dao\PhanManhDAO.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\service\NhanVienService.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\controller\KhoDetailController.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\controller\NhanVienViewControllerTest.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\controller\DemoFXMlController.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Command\DDHUpdate.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Command\ActionAdd.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Mapper\VatTuMapper.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\service\KhoService.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Command\ActionEdit.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\dao\DDHDAO.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Command\KhoInsert.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Entity\ChiNhanh.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\model\NhanVienTableModel.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Command\ActionHistory.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\model\NumberModel.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\dao\GenericDAO.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\model\VatTuCommandModel.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\dao\KhoDAO.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\model\KhoTableModel.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Entity\DDH.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Entity\VatTu.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\App.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Utils\DBConnectUtil.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\controller\VatTuDetailController.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Command\DDHCommandHistory.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\controller\DDHController.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Entity\PhanManh.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Command\VatTuDelete.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\model\KhoCommandModel.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\dao\NhanVienDAO.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Entity\DonDatHang.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\service\DDHService.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Command\ActionDelete.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Mapper\RowMapper.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\service\VatTuService.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Command\VatTuUpdate.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Report\JasReportGenerator.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\controller\MainController.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Entity\Clock.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\model\ChiNhanhModel.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Utils\ValidationRegEx.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Command\DDHCommand.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\service\NumberService.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Command\VatTuInsert.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Command\KhoCommandHistory.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\model\NhanVienTableModelTest.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Command\VatTuCommandHistory.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\dao\AbstractDAO.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Mapper\NhanVienMapper.java
+>>>>>>> a38015df6c55c2b15e1bc43da30c2e38f2da6263

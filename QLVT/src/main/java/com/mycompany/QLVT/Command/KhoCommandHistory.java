@@ -17,30 +17,30 @@ import java.util.Stack;
  */
 public class KhoCommandHistory {
 
-    private final Stack<KhoCommand> modelStack = new Stack<>();
-    private final Stack<KhoCommand> databaseStack = new Stack<>();
+    private final Stack<KhoCommand> commandStack = new Stack<>();
+//    private final Stack<KhoCommand> databaseStack = new Stack<>();
     private final Stack<KhoCommand> subStack = new Stack<>();
-//    private int undoRedoPointer = 0;
+
 
     public Stack<KhoCommand> getSubStack() {
         return subStack;
     }
 
-    public Stack<KhoCommand> getModelStack() {
-        return modelStack;
+    public Stack<KhoCommand> getCommandStack() {
+        return commandStack;
     }
 
-    public Stack<KhoCommand> getDatabaseStack() {
-        return databaseStack;
-    }
+//    public Stack<KhoCommand> getDatabaseStack() {
+//        return databaseStack;
+//    }
 
     public List<Kho> addInsertCommand(List<Kho> currentList, Kho kho) {
 //        deleteElementsAfterPointer(undoRedoPointer);
         KhoCommand command = new KhoInsert(currentList, kho);
         command.execute();
-        modelStack.push(command);
+        commandStack.push(command);
 //        undoRedoPointer++;
-        databaseStack.push(new KhoDatabaseInsert(kho));
+//        databaseStack.push(new KhoDatabaseInsert(kho));
         return command.getList();
     }
 
@@ -48,9 +48,9 @@ public class KhoCommandHistory {
 //        deleteElementsAfterPointer(undoRedoPointer);
         KhoCommand command = new KhoDelete(currentList, kho);
         command.execute();
-        modelStack.push(command);
+        commandStack.push(command);
 //        undoRedoPointer++;
-        databaseStack.push(new KhoDatabaseDelete(kho));
+//        databaseStack.push(new KhoDatabaseDelete(kho));
         return command.getList();
     }
 
@@ -58,24 +58,24 @@ public class KhoCommandHistory {
 //        deleteElementsAfterPointer(undoRedoPointer);
         KhoCommand command = new KhoUpdate(currentList, oldKho, newKho);
         command.execute();
-        modelStack.push(command);
+        commandStack.push(command);
 //        undoRedoPointer++;
-        databaseStack.push(new KhoDatabaseUpdate(newKho));
+//        databaseStack.push(new KhoDatabaseUpdate(newKho));
         return command.getList();
     }
 
 //    public void deleteElementsAfterPointer(int undoRedoPointer) {
-//        if (modelStack.size() < 1) {
+//        if (commandStack.size() < 1) {
 //            return;
 //        }
-//        for (int i = modelStack.size() - 1; i > undoRedoPointer; i--) {
-//            modelStack.remove(i);
+//        for (int i = commandStack.size() - 1; i > undoRedoPointer; i--) {
+//            commandStack.remove(i);
 //        }
 //    }
     public List<Kho> undo() {
-        KhoCommand command = modelStack.pop();
+        KhoCommand command = commandStack.pop();
         subStack.push(command);
-        subStack.push(databaseStack.pop());
+//        subStack.push(databaseStack.pop());
         command.unExecute();
         return command.getList();
     }
@@ -85,9 +85,9 @@ public class KhoCommandHistory {
 //            return null;
 //        }
 //        undoRedoPointer--;
-        databaseStack.push(subStack.pop());
+//        databaseStack.push(subStack.pop());
         KhoCommand command = subStack.pop();
-        modelStack.push(command);
+        commandStack.push(command);
         command.execute();
 //        command.execute();
 //        databaseStack.push(subStack.pop());
@@ -95,28 +95,28 @@ public class KhoCommandHistory {
     }
 
     public void ExectueAllToDatebase() {
-        if (databaseStack.isEmpty()) {
+        if (commandStack.isEmpty()) {
             return;
         }
-        databaseStack.forEach(khoCommand -> {
-            khoCommand.execute();
+        commandStack.forEach(khoCommand -> {
+            khoCommand.executoToDataBase();
         });
         clearAllStack();
     }
 
     public void clearAllStack() {
-        modelStack.clear();
-        databaseStack.clear();
+        commandStack.clear();
+//        databaseStack.clear();
         subStack.clear();
     }
 
-    public boolean isModelStackEmpty() {
-        return modelStack.isEmpty();
+    public boolean isCommandStackEmpty() {
+        return commandStack.isEmpty();
     }
 
-    public boolean isDatabaseStackEmpty() {
-        return databaseStack.isEmpty();
-    }
+//    public boolean isDatabaseStackEmpty() {
+//        return databaseStack.isEmpty();
+//    }
 
     public boolean isSubStackEmpty() {
         return subStack.isEmpty();

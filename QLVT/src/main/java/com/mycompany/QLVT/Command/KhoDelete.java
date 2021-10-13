@@ -6,6 +6,7 @@
 package com.mycompany.QLVT.Command;
 
 import com.mycompany.QLVT.Entity.Kho;
+import com.mycompany.QLVT.service.KhoService;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +44,12 @@ public class KhoDelete extends KhoCommand {
     @Override
     public String toString() {
         return "Delete " + kho.getMaKho();
+    }
+
+    @Override
+    public void executoToDataBase() {
+        KhoService service = new KhoService();
+        service.delete(kho.getMaKho());
     }
 
 }

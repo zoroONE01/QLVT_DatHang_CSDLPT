@@ -32,7 +32,7 @@
             <VBox alignment="TOP_CENTER" prefWidth="150.0" spacing="30.0">
                <children>
                   <JFXTextField fx:id="tfTenKho" focusColor="#c767e6" labelFloat="true" promptText="Tên Kho" />
-                  <JFXTextField fx:id="tfChiNhanh" editable="false" focusColor="#c767e6" labelFloat="true" promptText="Chi Nhánh" />
+                  <JFXTextField fx:id="tfChiNhanh" focusColor="#c767e6" labelFloat="true" promptText="Chi Nhánh" />
                </children>
                <padding>
                   <Insets top="10.0" />

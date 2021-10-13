@@ -10,9 +10,11 @@ package com.mycompany.QLVT.Entity;
  * @author zoroONE01
  */
 public class VatTu {
+
     private String maVT;
     private String tenVT;
     private String DVT;
+    private int soLuongTon;
 
     public VatTu() {
     }
@@ -21,6 +23,14 @@ public class VatTu {
         this.maVT = maVT;
         this.tenVT = tenVT;
         this.DVT = DVT;
+        this.soLuongTon = 0;
+    }
+
+    public VatTu(String maVT, String tenVT, String DVT, int soLuongTon) {
+        this.maVT = maVT;
+        this.tenVT = tenVT;
+        this.DVT = DVT;
+        this.soLuongTon = soLuongTon;
     }
 
     public String getMaVT() {
@@ -47,10 +57,17 @@ public class VatTu {
         this.DVT = DVT;
     }
 
+    public int getSoLuongTon() {
+        return soLuongTon;
+    }
+
+    public void setSoLuongTon(int soLuongTon) {
+        this.soLuongTon = soLuongTon;
+    }
+
     @Override
     public String toString() {
-        return "VatTu{" + "maVT=" + maVT + ", tenVT=" + tenVT + ", DVT=" + DVT + '}';
+        return "VatTu{" + "maVT=" + maVT + ", tenVT=" + tenVT + ", DVT=" + DVT + ", soLuongTon=" + soLuongTon + '}';
     }
-    
-    
+
 }

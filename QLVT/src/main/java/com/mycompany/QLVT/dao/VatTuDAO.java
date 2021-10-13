@@ -32,13 +32,13 @@ public class VatTuDAO extends AbstractDAO<VatTu> {
         update("{call spDeleteVatTu(?)}", id);
     }
 
-    public void save(VatTu vatTu) {
-        insert("{call spInsertvatTu(?,?,?)}", vatTu.getMaVT(), vatTu.getTenVT(), vatTu.getDVT());
+    public void insert(VatTu vatTu) {
+        insert("{call spInsertVatTu(?,?,?)}", vatTu.getMaVT(), vatTu.getTenVT(), vatTu.getDVT());
 
     }
 
     public void update(VatTu vatTu) {
-        update("{call spUpdatevatTu(?,?,?)}", vatTu.getMaVT(), vatTu.getTenVT(), vatTu.getDVT());
+        update("{call spUpdateVatTu(?,?,?)}", vatTu.getMaVT(), vatTu.getTenVT(), vatTu.getDVT());
 
     }
 }

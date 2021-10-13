@@ -32,6 +32,7 @@
             <VBox alignment="TOP_CENTER" prefWidth="150.0" spacing="30.0">
                <children>
                   <JFXTextField fx:id="tfTenVT" focusColor="#c767e6" labelFloat="true" promptText="Tên Vật Tư" />
+                  <JFXTextField fx:id="tfSoLuongTon" focusColor="#c767e6" labelFloat="true" layoutX="10.0" layoutY="20.0" promptText="Số Lượng Tồn" text="0" />
                </children>
                <padding>
                   <Insets top="10.0" />

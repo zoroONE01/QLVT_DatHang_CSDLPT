@@ -38,7 +38,7 @@ public class NhanVienService {
     }
 
     public int save(NhanVien nv) {
-        return nhanVienDAO.save(nv);
+        return nhanVienDAO.insert(nv);
     }
 
     public void update(NhanVien nv) {

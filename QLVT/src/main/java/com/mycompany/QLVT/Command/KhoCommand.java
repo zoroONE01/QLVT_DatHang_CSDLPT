@@ -42,12 +42,12 @@ public abstract class KhoCommand {
         this.listBackup = listBackup;
     }
 
-    
-
     @Override
     public abstract String toString();
 
     public abstract void execute();
+
+    public abstract void executoToDataBase();
 
     public abstract void unExecute();
 
