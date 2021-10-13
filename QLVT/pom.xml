@@ -8,7 +8,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <jasper.version>6.10.0</jasper.version>
+        <jasper.version>6.17.0</jasper.version>
     </properties>
     <dependencies>
         <dependency>
@@ -22,12 +22,13 @@
             <artifactId>mssql-jdbc</artifactId>
             <version>9.2.1.jre8</version>
         </dependency>
-        <dependency>
+        
+        <!--<dependency>
             <groupId>com.lowagie</groupId>
             <artifactId>itext</artifactId>
             <version>2.1.7</version>
-            <scope>compile</scope>
-        </dependency>
+        </dependency> 
+        -->
         <!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports -->
         <dependency>
             <groupId>net.sf.jasperreports</groupId>
@@ -38,13 +39,22 @@
                     <groupId>org.olap4j</groupId>
                     <artifactId>olap4j</artifactId>
                 </exclusion>
-                <exclusion>
+              <!-- <exclusion>
                     <groupId>com.lowagie</groupId>
                     <artifactId>itext</artifactId>
-                </exclusion>
+                </exclusion> -->
+                      
             </exclusions>
         </dependency>
-           
+        <!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports-fonts -->
+        
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports-fonts</artifactId>
+            <version>6.17.0</version>
+        </dependency>
+       
+  
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>

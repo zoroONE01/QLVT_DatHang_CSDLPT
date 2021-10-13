@@ -49,6 +49,7 @@ E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\model\KhoTableModel.java
 E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\controller\KhoDetailController.java
 E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\Command\ActionEdit.java
 E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\Entity\DonDatHang.java
+E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\service\DonDatHangService.java
 E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\controller\LoginController.java
 E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\controller\NhanVienController.java
 E:\du an git\QLVT\src\main\java\com\mycompany\QLVT\dao\PhanManhDAO.java

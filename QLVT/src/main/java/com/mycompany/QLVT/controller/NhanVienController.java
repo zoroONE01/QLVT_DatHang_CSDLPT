@@ -405,7 +405,6 @@ public class NhanVienController {
         tbvListNV.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         tbvListNV.getColumns().addListener(new ListChangeListener() {
             public boolean suspended = false;
-
             @Override
             public void onChanged(ListChangeListener.Change change) {
                 change.next();
@@ -613,7 +612,6 @@ public class NhanVienController {
     void saveAction(ActionEvent event) {
 
     }
-
     public void refresh() {
         tbvListNV.getItems().clear();
         nhanVienTableModel.setNhanVienList(nhanVienService.findAll());
@@ -660,7 +658,6 @@ public class NhanVienController {
                 if (nhanVienService.findOne(nv.getMaNhanVien()) != null) {
                     nhanVienService.update(nv); //cap nhat trang thai
                     history.pop();
-
                     return 1;
                 } else {
                     if (nhanVienService.save(nv) > 0) {

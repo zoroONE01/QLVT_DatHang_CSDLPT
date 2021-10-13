@@ -52,6 +52,7 @@ com\mycompany\QLVT\Entity\PhanManh.class
 com\mycompany\QLVT\Utils\FomaterDate.class
 com\mycompany\QLVT\Command\ActionAdd.class
 com\mycompany\QLVT\controller\LoginController.class
+com\mycompany\QLVT\service\DonDatHangService.class
 com\mycompany\QLVT\Command\ActionListenerCommand.class
 com\mycompany\QLVT\dao\NumberDao.class
 com\mycompany\QLVT\dao\NhanVienDAO.class

@@ -18,7 +18,7 @@ import java.util.List;
 public class DonDatHangDAO extends AbstractDAO<DonDatHang> {
 
     public List<DonDatHang> findAll() {
-        return queryProcedure("{call SP_DS_DHH(?)}", new DonDatHangMapper());
+        return queryProcedure("{call SP_DS_DHH}", new DonDatHangMapper());
     }
 
 //    public List<DonDatHang> findAllOtherSite() {
