@@ -5,6 +5,9 @@
  */
 package com.mycompany.QLVT.Utils;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,7 +30,7 @@ public class ValidationRegEx {
     private static final String moneyRegex = "^[0-9]{1,8}";
     private static final String numberRegex = "^[0-9]{1,3}";
 
-    //Kho
+//Kho
     public static final String maKho = "^[a-zA-Z0-9]{4}$";
     public static final String tenKho = "^[\\sa-zA-Z0-9_.,-/]{1,30}$";
     public static final String diaChi = "^[\\sa-zA-Z0-9_.,-/]{1,100}$";
@@ -52,10 +55,12 @@ public class ValidationRegEx {
         Matcher match = patter.matcher(removeAscent(value));
         return match.matches();
     }
+//============================================================    
 //VatTu
-    public static final String maVT = "^[a-zA-Z0-9]{4}$";
+    public static final String maVT = "^[\\sa-zA-Z0-9]{1,4}$";
     public static final String tenVT = "^[\\sa-zA-Z0-9_.,-/]{1,30}$";
     public static final String DVT = "^[\\sa-zA-Z0-9_.,-/]{1,15}$";
+    public static final String donGia = "^[0-9,]{3,8}$";
 
     public static boolean valMaVT(String value) {
         Pattern patter = Pattern.compile(maVT);
@@ -75,6 +80,36 @@ public class ValidationRegEx {
         return match.matches();
     }
 
+    public static boolean valDonGia(String value) {
+        Pattern patter = Pattern.compile(donGia);
+        Matcher match = patter.matcher(removeAscent(value));
+        return match.matches();
+    }
+//============================================================
+//Don Dat Hang
+    public static final String maDDH = "^[a-zA-Z0-9]{8}$";
+    public static final String NCC = "^[\\sa-zA-Z0-9_.,-/]{1,100}$";
+    public static final String kho = "^[\\[.*.\\]\\sa-zA-Z0-9_.,-/]{1,100}$";
+
+    public static boolean valMaDDH(String value) {
+        Pattern patter = Pattern.compile(maDDH);
+        Matcher match = patter.matcher(removeAscent(value));
+        return match.matches();
+    }
+
+    public static boolean valKho(String value) {
+        Pattern patter = Pattern.compile(kho);
+        Matcher match = patter.matcher(removeAscent(value.replaceAll("\\[", "")));
+        return match.matches();
+    }
+
+    public static boolean valNCC(String value) {
+        Pattern patter = Pattern.compile(NCC);
+        Matcher match = patter.matcher(removeAscent(value));
+        return match.matches();
+    }
+
+//===================================================================
     public static boolean validationSDT(String sdt) {
         Pattern patter = Pattern.compile(SDTRegex);
         Matcher match = patter.matcher(sdt);
@@ -214,5 +249,11 @@ public class ValidationRegEx {
         String name = "Bui Minh Tơ      nguyễn thanh ttus";
         System.out.println(validationTextRegex(name));
 
+    }
+
+    public static String doubleToStringNoDecimal(double d) {
+        DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(Locale.US);
+        formatter.applyPattern("#,###");
+        return formatter.format(d);
     }
 }

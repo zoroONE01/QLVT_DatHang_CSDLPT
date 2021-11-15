@@ -3,46 +3,36 @@ package com.mycompany.QLVT.controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
-import com.jfoenix.controls.JFXRadioButton;
-import com.mycompany.QLVT.App;
 import com.mycompany.QLVT.Command.DDHCommandHistory;
 import com.mycompany.QLVT.Command.KhoCommandHistory;
 import com.mycompany.QLVT.Command.VatTuCommandHistory;
 import com.mycompany.QLVT.Utils.DBConnectUtil;
 import java.io.IOException;
-import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.Toggle;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -67,7 +57,11 @@ public class MainController {
     private RadioButton btVatTu;
 
     @FXML
-    private RadioButton btDonDatHang;
+    private RadioButton btDatHang;
+
+    @FXML
+    private RadioButton btXuatHang;
+
     @FXML
     private StackPane pnMain;
 
@@ -97,7 +91,8 @@ public class MainController {
     public final String tabNhanVien = "RadioButton[id=btNhanVien, styleClass=btn-slidebar toggle-button]'Nhân Viên'";
     public final String tabKho = "RadioButton[id=btKho, styleClass=btn-slidebar toggle-button]'Kho'";
     public final String tabVatTu = "RadioButton[id=btVatTu, styleClass=btn-slidebar toggle-button]'V?t T?'";
-    public final String tabDonDatHang = "RadioButton[id=btDonDatHang, styleClass=btn-slidebar toggle-button]'??n ??t Hàng'";
+    public final String tabDatHang = "RadioButton[id=btDatHang, styleClass=btn-slidebar toggle-button]'??t Hàng'";
+    public final String tabXuatHang = "RadioButton[id=btXuatHang, styleClass=btn-slidebar toggle-button]'Xu?t Hàng'";
 
     public MainController() {
         khoCommandHistory = new KhoCommandHistory();
@@ -130,7 +125,7 @@ public class MainController {
                 });
                 btLogout.setOnAction((ActionEvent event2) -> {
                     noti.close();
-                    DBConnectUtil.close();
+                    DBConnectUtil.reset();
                     LoginController loginController = new LoginController();
                     Parent root = null;
                     try {
@@ -158,9 +153,10 @@ public class MainController {
         btNhanVien.setToggleGroup(group);
         btKho.setToggleGroup(group);
         btVatTu.setToggleGroup(group);
-        btDonDatHang.setToggleGroup(group);
-        btPhieuNhap.setToggleGroup(group);
-        btBaoCao.setToggleGroup(group);
+
+        btDatHang.setToggleGroup(group);
+        btXuatHang.setToggleGroup(group);
+
         group.selectedToggleProperty().addListener((ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) -> {
             if (newValue != null) {
                 if (saveCheck((RadioButton) oldValue)) {
@@ -184,8 +180,15 @@ public class MainController {
                             oldValue.setSelected(true);
                         });
                         btAccept.setOnAction((ActionEvent event1) -> {
+                            switch (((RadioButton) oldValue).toString()) {
+                                case tabKho:
+                                    khoCommandHistory.clearAllStack();
+                                    break;
+                                case tabVatTu:
+                                    vatTuCommandHistory.clearAllStack();
+                                    break;
+                            }
                             noti.close();
-                            khoCommandHistory.clearAllStack();
                             newValue.setSelected(true);
                         });
                         content.setActions(btAccept, btClose);
@@ -227,13 +230,21 @@ public class MainController {
                     }
                     lbTitle.setText("Vật Tư");
                 }
-                if (btDonDatHang.isSelected()) {
+                if (btDatHang.isSelected()) {
                     try {
                         initWorkspace("DDH");
                     } catch (IOException ex) {
                         Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    lbTitle.setText("Đơn Đặt Hàng");
+                    lbTitle.setText("Đặt Hàng");
+                }
+                if (btXuatHang.isSelected()) {
+//                    try {
+//                        initWorkspace("DDH");
+//                    } catch (IOException ex) {
+//                        Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+//                    }
+                    lbTitle.setText("Xuất Hàng");
                 }
                 if (btPhieuNhap.isSelected()) {
                     try {
@@ -261,8 +272,12 @@ public class MainController {
     public boolean saveCheck(RadioButton button) {
         if (button != null) {
             String btToString = button.toString();
+//            System.out.println(btToString);
             if (btToString.equals(tabKho)) {
                 return khoCommandHistory.isCommandStackEmpty();
+            }
+            if (btToString.equals(tabVatTu)) {
+                return vatTuCommandHistory.isCommandStackEmpty();
             }
         }
         return true;
@@ -312,11 +327,11 @@ public class MainController {
         btKho.getStyleClass().add("toggle-button");
         btVatTu.getStyleClass().remove("radio-button");
         btVatTu.getStyleClass().add("toggle-button");
-        btDonDatHang.getStyleClass().remove("radio-button");
-        btDonDatHang.getStyleClass().add("toggle-button");
-        btPhieuNhap.getStyleClass().remove("radio-button");
-        btPhieuNhap.getStyleClass().add("toggle-button");
-         btBaoCao.getStyleClass().remove("radio-button");
-        btBaoCao.getStyleClass().add("toggle-button");
+
+        btDatHang.getStyleClass().remove("radio-button");
+        btDatHang.getStyleClass().add("toggle-button");
+        btXuatHang.getStyleClass().remove("radio-button");
+        btXuatHang.getStyleClass().add("toggle-button");
+
     }
 }

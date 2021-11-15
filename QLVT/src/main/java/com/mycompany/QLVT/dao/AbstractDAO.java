@@ -48,7 +48,9 @@ public class AbstractDAO<T> implements GenericDAO<T> {
         try {
             connection = getConnection();
             statement = connection.prepareStatement(sql);
+
             setParameter(statement, parameters);
+
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 results.add(rowMapper.mapRow(resultSet));
@@ -122,14 +124,13 @@ public class AbstractDAO<T> implements GenericDAO<T> {
 
             statement = connection.prepareCall(sql);
             setParameter(statement, parameters);
-//            statement.setInt(1, (int) parameters[0]);
-//            statement.registerOutParameter(2, java.sql.Types.INTEGER);
-            // statement.execute
             resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                //System.out.println("tim thấy :" + resultSet.getInt(1) );
+            if(resultSet.next())
+            {  
                 return resultSet.getInt(1);
-            }   
+            }
+            
+
         } catch (SQLException ex) {
             System.out.println("SQL error  " + ex.getMessage());
             return 0;

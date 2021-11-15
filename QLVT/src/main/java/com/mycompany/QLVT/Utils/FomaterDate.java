@@ -8,7 +8,6 @@ package com.mycompany.QLVT.Utils;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
@@ -23,7 +22,7 @@ public class FomaterDate {
 
         //date String có dạng yyyy-MM-dd
         Date date = null;
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         //  SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd "); 
         try {
             date = format.parse(dateString);
@@ -39,7 +38,7 @@ public class FomaterDate {
 
         //date String có dạng yyyy-MM-dd
         try {
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             //  SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd "); 
             String strDate = format.format(date);
             return strDate;

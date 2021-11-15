@@ -5,17 +5,17 @@
  */
 package com.mycompany.QLVT.Entity;
 
-import com.mycompany.QLVT.Utils.DBConnectUtil;
-
 /**
  *
  * @author zoroONE01
  */
 public class DDH {
+
     private String MaDDH;
     private String Ngay;
     private String NCC;
     private int maNV;
+    private String trangThai;
     private String ho;
     private String ten;
     private String maKho;
@@ -26,7 +26,7 @@ public class DDH {
     public DDH() {
     }
 
-    public DDH(String MaDDH, String Ngay, String NCC, int maNV, String ho, String ten, String maKho, String tenKho, String maNVHoTen, String maKhoTenKho) {
+    public DDH(String MaDDH, String Ngay, String NCC, int maNV, String ho, String ten, String maKho, String tenKho, String maNVHoTen, String maKhoTenKho, String trangThai) {
         this.MaDDH = MaDDH;
         this.Ngay = Ngay;
         this.NCC = NCC;
@@ -37,6 +37,7 @@ public class DDH {
         this.tenKho = tenKho;
         this.maNVHoTen = maNVHoTen;
         this.maKhoTenKho = maKhoTenKho;
+        this.trangThai = trangThai;
     }
 
     public DDH(String MaDDH, String Ngay, String NCC, int maNV, String maKho) {
@@ -45,9 +46,10 @@ public class DDH {
         this.NCC = NCC;
         this.maNV = maNV;
         this.maKho = maKho;
+//        this.trangThai = null;
     }
 
-    public DDH(String MaDDH, String Ngay, String NCC, int maNV, String ho, String ten, String maKho, String tenKho) {
+    public DDH(String MaDDH, String Ngay, String NCC, int maNV, String ho, String ten, String maKho, String tenKho, String trangThai) {
         this.MaDDH = MaDDH;
         this.Ngay = Ngay;
         this.NCC = NCC;
@@ -58,6 +60,7 @@ public class DDH {
         this.tenKho = tenKho;
         this.maNVHoTen = "[" + maNV + "] " + ho + " " + ten;
         this.maKhoTenKho = "[" + maKho + "] " + tenKho;
+        this.trangThai = trangThai;
     }
 
     public String getMaDDH() {
@@ -128,6 +131,14 @@ public class DDH {
         return maNVHoTen;
     }
 
+    public String getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(String trangThai) {
+        this.trangThai = trangThai;
+    }
+
     public void setMaNVHoTen() {
         this.maNVHoTen = "[" + maNV + "] " + ho + " " + ten;
     }
@@ -144,11 +155,5 @@ public class DDH {
     public String toString() {
         return "DDH{" + "MaDDH=" + MaDDH + ", Ngay=" + Ngay + ", NCC=" + NCC + ", maNV=" + maNV + ", ho=" + ho + ", ten=" + ten + ", maKho=" + maKho + ", tenKho=" + tenKho + ", maNVHoTen=" + maNVHoTen + ", maKhoTenKho=" + maKhoTenKho + '}';
     }
-    
 
-    
 }
-
-    
-
-    

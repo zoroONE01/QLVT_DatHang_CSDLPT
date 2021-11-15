@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import javafx.scene.image.Image;
 
 /**
  * JavaFX App
@@ -14,22 +15,22 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Scene scene;
-    
-    
+
     @Override
     public void start(Stage stage) throws IOException {
 
-
-      //scene = new Scene(loadFXML("login"));
-
+        //scene = new Scene(loadFXML("login"));
         stage.setMinWidth(400);
         stage.setMinHeight(450);
         stage.setMaxHeight(450);
         stage.setMaxWidth(750);
+//        stage.getIcons().add(new Image(getClass().getResourceAsStream("../../../img/icons8_states_20px")));
         scene = new Scene(loadFXML("Login"));
         stage.setScene(scene);
-        stage.show();
         
+//        stage.setTitle("Wow!! Stackoverflow Icon");
+        stage.show();
+
     }
 
     public static void setRoot(String fxml) throws IOException {

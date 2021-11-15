@@ -98,8 +98,6 @@ public class KhoController implements Initializable {
 
     public static List<Kho> list;
 
-    private ImageView icLoading;
-
     public Kho kho;
 
     public KhoTableModel khoTableModel;
@@ -137,7 +135,6 @@ public class KhoController implements Initializable {
                     noti.close();
                 });
                 btAccept.setOnAction((ActionEvent event1) -> {
-                    content.setBody(icLoading);
                     String error = khoDetailController.addKho();
                     if (error == "") {
                         noti.close();
@@ -184,7 +181,6 @@ public class KhoController implements Initializable {
                     noti.close();
                 });
                 btAccept.setOnAction((ActionEvent event1) -> {
-//                    content.setBody(icLoading);
                     String error = khoDetailController.deleleKho(kho);
                     if (error == "") {
                         noti.close();
@@ -231,7 +227,6 @@ public class KhoController implements Initializable {
                     noti.close();
                 });
                 btAccept.setOnAction((ActionEvent event1) -> {
-//                    content.setBody(icLoading);
                     String error = khoDetailController.updateKho(kho);
                     if (error == "") {
                         noti.close();
@@ -309,16 +304,10 @@ public class KhoController implements Initializable {
         clMaKho.setCellValueFactory(new PropertyValueFactory<>("maKho"));
         clTenKho.setCellValueFactory(new PropertyValueFactory<>("tenKho"));
         clDiaChi.setCellValueFactory(new PropertyValueFactory<>("diaChi"));
-        clChiNhanh.setCellValueFactory(new PropertyValueFactory<>("tenCN"));
+        clChiNhanh.setCellValueFactory(new PropertyValueFactory<>("TenCN"));
         khoTableModel = new KhoTableModel();
         if (MainController.khoCommandHistory.isCommandStackEmpty()) {
-            System.out.println(DBConnectUtil.phanManhCurrent.getName());
-            if (DBConnectUtil.phanManhCurrent.getName().equals("Chi Nhánh 1")) {
-                list = new KhoService().findAll("CN1");
-            }
-            if (DBConnectUtil.phanManhCurrent.getName().equals("Chi Nhánh 2")) {
-                list = new KhoService().findAll("CN2");
-            }
+            list = new KhoService().findAll();
         } else {
             list = MainController.khoCommandHistory.getCommandStack().peek().getList();
         }

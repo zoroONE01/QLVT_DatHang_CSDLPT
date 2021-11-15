@@ -33,34 +33,23 @@ public class DDHDAO extends AbstractDAO<DDH> {
         return list.isEmpty() ? null : list.get(0);
     }
 
-    public int isExist(int id) {
-//        List<Integer> listNV = (List<Integer>) queryProcedure("{call SP_CHECK_TRACUU(?,?)}", new RowMapper<Integer>() {
-//            @Override
-//            public Integer mapRow(ResultSet rs) {
-//                try {
-//                    int i = rs.getInt(1);
-//                    return i;
-//                } catch (SQLException ex) {
-//                    Logger.getLogger(NhanVienDAO.class.getName()).log(Level.SEVERE, null, ex);
-//                    return 0;
-//                }
-//            }
-//        }, id, "NhanVien");
-//        return listNV.isEmpty() ? 0 : listNV.get(1);
-        int b = queryReturnOfProcedure("{call SP_CHECK_TRACUU(?,?)}", id, "DatHang");
-        return b;
+    public int checkExist(String value, String type) {
+        System.out.println(queryReturnOfProcedure("{call spCheckID(?,?)}", value, type));
+        return queryReturnOfProcedure("{call spCheckID(?,?)}", value, type);
     }
 
     public int delete(String id) {
-        return updateProcedure("{call SP_XOA_NHANVIEN(?)}", id);
+        return updateProcedure("{call SP_Xoa_DHH(?)}", id);
     }
 
+    
     public int insert(DDH ddh) {
-        return insert("{call SP_CapNhat_DHH(?,?,?)}", ddh.getMaDDH(), ddh.getNCC(), ddh.getMaKho());
+        System.out.println(ddh.toString());
+        return insert("{call spInsertDDH(?,?,?,?,?)}", ddh.getMaDDH(), ddh.getNgay(), ddh.getNCC(), ddh.getMaNV(), ddh.getMaKho());
     }
 
     public int update(DDH ddh) {
-        return insert("{call SP_CapNhat_DHH(?,?,?)}", ddh.getMaDDH(), ddh.getNCC(), ddh.getMaKho());
-
+        System.out.println(ddh.toString());
+        return updateProcedure("{call SP_CapNhat_DDH(?,?,?)}", ddh.getMaDDH(), ddh.getNCC(), ddh.getMaKho());
     }
 }
