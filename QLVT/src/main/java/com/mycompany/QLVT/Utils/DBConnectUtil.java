@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -32,13 +32,13 @@ public class DBConnectUtil {
 //    private static String password = propertiesUtil.getValue("password", ConfigReader.getPassWordDataBase());
 //
 
-    public static String url = "jdbc:sqlserver://DESKTOP-HFPR9E7\\SITE0;databaseName=QLVT";
+    public static String url = "jdbc:sqlserver://MINHTO-PC\\MINHTOENU;databaseName=QLVT";
     public static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     public static String usernameHTKN = "HTKN";
-    public static String passwordHTKN = "123456";
-    public static String url1 = "jdbc:sqlserver://DESKTOP-HFPR9E7\\SITE1;databaseName=QLVT";
+    public static String passwordHTKN = "sa";
+    public static String url1 = "jdbc:sqlserver://MINHTO-PC\\MTSITE1;databaseName=QLVT";
     public static String driver1 = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    public static String url2 = "jdbc:sqlserver://DESKTOP-HFPR9E7\\SITE2;databaseName=QLVT";
+    public static String url2 = "jdbc:sqlserver://MINHTO-PC\\MTSITE2;databaseName=QLVT";
     public static String driver2 = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 //    public static String url3 = "jdbc:sqlserver://MINHTO-PC\\MTSITE3;databaseName=QLVT";
 //    public static String driver3 = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
@@ -103,7 +103,6 @@ public class DBConnectUtil {
                 ConnectionMain = DriverManager.getConnection(urlCurrent, username, password);
             }
         }
-
         return ConnectionMain;
     }
 

@@ -13,7 +13,7 @@ import com.mycompany.QLVT.service.NhanVienServiceTest;
  *
  * @author MinhTo
  */
-public class ActionDelete extends ActionListenerCommand{
+public class ActionDelete extends ActionListenerCommand<NhanVien>{
     NhanVienService nhanVienService;
     NhanVien nhanVien;
 
@@ -34,6 +34,8 @@ public class ActionDelete extends ActionListenerCommand{
             }
          return false;
     }
+
+  
 
     
     

@@ -14,7 +14,6 @@ import java.util.List;
  *
  * @author MinhTo
  */
-
 public class LoginDAO extends AbstractDAO<Login> {
 
     public Login findOne(String tenLogin) {
@@ -23,6 +22,9 @@ public class LoginDAO extends AbstractDAO<Login> {
 //        for (Login login : list) {
 //            System.out.println(login.getUsernameDB());
 //        }
-        return list.isEmpty() ? null : list.get(0);
+        if (list != null) {
+            return list.isEmpty() ? null : list.get(0);
+        }
+        return null;
     }
 }

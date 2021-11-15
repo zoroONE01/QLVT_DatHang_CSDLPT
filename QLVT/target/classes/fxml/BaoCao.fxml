@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="pnNhanVien" prefHeight="457.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.QLVT.controller.BaoCaoController">
+   <children>
+      <JFXComboBox fx:id="cbbChiNhanh" layoutX="241.0" layoutY="49.0" onAction="#changeChiNhanh" prefHeight="25.0" prefWidth="318.0" AnchorPane.rightAnchor="241.0" AnchorPane.topAnchor="49.0" />
+      <JFXButton fx:id="btnReportDSNV" layoutX="28.0" layoutY="21.0" onAction="#actionReportDSNV" text="Danh sách nhân viên" />
+      <JFXButton fx:id="btnReportDMVT" layoutX="28.0" layoutY="86.0" onAction="#actionReportDMVT" text="Danh mục vật tư" />
+      <JFXButton fx:id="btnReportNhapXuat" layoutX="28.0" layoutY="150.0" onAction="#actionReportNhapXuat" prefHeight="60.0" prefWidth="126.0" text="Chi tiết số lượng – trị giá hàng nhập hoặc xuất " wrapText="true" />
+      <JFXButton fx:id="btnReportNhapHang" layoutX="28.0" layoutY="229.0" onAction="#actionReportNhapHang" prefHeight="52.0" prefWidth="126.0" text="Đơn đặt hàng chưa có phiếu nhập" wrapText="true" />
+      <JFXButton fx:id="btnReportHDNV" layoutX="28.0" layoutY="310.0" onAction="#actionReportHDNV" prefHeight="52.0" prefWidth="126.0" text="Hoạt động nhân viên" wrapText="true" />
+      <Label fx:id="lbChuyenChiNhanh" alignment="CENTER" layoutX="290.0" layoutY="19.0" prefHeight="30.0" prefWidth="220.0" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #7819A5, #C767E6); -fx-background-radius: 20; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );" text="Chuyển Chi Nhánh" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="20.0" />
+         </font>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </Label>
+      <AnchorPane fx:id="pnThongKeCTNX" layoutX="241.0" layoutY="129.0" prefHeight="160.0" prefWidth="318.0" visible="false">
+         <children>
+            <DatePicker fx:id="datePickerFrom" layoutX="72.0" layoutY="42.0" prefHeight="25.0" prefWidth="196.0" />
+            <DatePicker fx:id="datePickerTo" layoutX="72.0" layoutY="88.0" prefHeight="25.0" prefWidth="196.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="pnHDNV" layoutX="203.0" layoutY="99.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="289.0" prefWidth="445.0" style="-fx-background-color: #fff;" stylesheets="@../css/text-input.css">
+         <children>
+            <Label fx:id="lbTitleHDNV" alignment="CENTER" layoutX="15.0" layoutY="-1.0" prefHeight="30.0" prefWidth="535.0" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #7819A5, #C767E6); -fx-background-radius: 20; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );" text="Hoạt động nhân viên" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font name="Calibri Bold" size="20.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
+            <JFXTextField fx:id="tfTenNV_HDNV" focusColor="#c767e6" labelFloat="true" layoutX="259.0" layoutY="65.0" promptText="Tên nhân viên" />
+            <DatePicker fx:id="datePickerFrom_HDNV" layoutX="36.0" layoutY="130.0" prefHeight="30.0" prefWidth="142.0" />
+            <JFXTextField fx:id="tfMaNV_HDNV" focusColor="#c767e6" labelFloat="true" layoutX="36.0" layoutY="65.0" promptText="Mã Nhân viên" />
+            <DatePicker fx:id="datePickerTo_HDNV" layoutX="259.0" layoutY="130.0" prefHeight="30.0" prefWidth="142.0" />
+            <Label layoutX="36.0" layoutY="112.0" text="From">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="259.0" layoutY="112.0" text="To">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

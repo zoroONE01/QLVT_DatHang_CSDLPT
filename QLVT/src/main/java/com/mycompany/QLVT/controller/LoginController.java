@@ -120,6 +120,9 @@ public class LoginController {
 //                App.setRoot("Main");
                 ((Node) (event.getSource())).getScene().getWindow().hide();
             }
+            else{
+                throw new SQLException("user or password invalid");
+            }
         } catch (SQLException e) {
             Platform.runLater(new Runnable() {
                 @Override

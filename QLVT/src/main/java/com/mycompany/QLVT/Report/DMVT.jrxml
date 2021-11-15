@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e0401648-9849-4a0b-8acc-8b8d35333ca9">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="DejaVu Sans" fontSize="16"/>
+	<style name="Column Header" mode="Transparent" forecolor="#190E45" fontName="DejaVu Sans" fontSize="12"/>
+	<style name="Detail" fontSize="12"/>
+	<queryString>
+		<![CDATA[SELECT VT.MAVT,VT.TENVT,VT.MAVT,VT.SOLUONGTON,VT.DVT
+from Vattu VT 
+ORDER BY VT.TENVT ASC]]>
+	</queryString>
+	<field name="MAVT" class="java.lang.String"/>
+	<field name="TENVT" class="java.lang.String"/>
+	<field name="SOLUONGTON" class="java.lang.Integer"/>
+	<field name="DVT" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="42" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="144" y="0" width="288" height="24" forecolor="#181869" uuid="537d3010-d541-4c57-8c9a-ffd5b91b3247"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Danh mục vật tư]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column Header" x="0" y="0" width="144" height="20" uuid="020edaef-e900-4887-b043-cc83b8290d4e"/>
+				<text><![CDATA[Mã vật tư	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column Header" x="144" y="0" width="144" height="20" uuid="bb0f2f4d-7c83-46d4-af43-6f27ccc98b2d"/>
+				<text><![CDATA[Tên vật tư]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column Header" x="432" y="0" width="123" height="20" uuid="43608044-23cf-45bb-a693-120e3f56ae08"/>
+				<text><![CDATA[Đơn vị tính]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column Header" x="291" y="0" width="141" height="20" uuid="c633f1ce-2ef3-4938-b866-4d1e2832758f"/>
+				<text><![CDATA[Số lượng]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="33" splitType="Stretch">
+			<textField>
+				<reportElement style="Detail" x="0" y="0" width="144" height="22" uuid="56ed25e6-6fdf-4d78-b6e1-54bef4e4b119"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MAVT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="144" y="0" width="147" height="20" uuid="e3bcdf4d-af0b-471f-9934-146c631e96d7"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TENVT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="291" y="0" width="141" height="20" uuid="89ddba45-875b-4b92-a7e5-5b2d6ba743ab"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SOLUONGTON}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="432" y="0" width="123" height="20" uuid="9b49e9d1-0efc-454f-bc39-279289a002bd"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DVT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="35" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField evaluationTime="Page">
+				<reportElement x="432" y="24" width="68" height="20" uuid="fc0c2b99-dadf-418f-ac6e-146153c5446f"/>
+				<textFieldExpression><![CDATA[" "+$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="24" width="72" height="20" uuid="7c5c720e-489d-4784-8616-a00a9e99138c"/>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER} + " of"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

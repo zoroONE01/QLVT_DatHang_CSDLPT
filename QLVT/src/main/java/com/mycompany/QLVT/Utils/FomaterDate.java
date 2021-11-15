@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -47,6 +48,20 @@ public class FomaterDate {
         }
         return null;
 }   
+     public static String convertUtilDateToString(java.util.Date date) {
+
+        //date String có dạng yyyy-MM-dd
+        try {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            //  SimpleDateFormat  format = new SimpleDateFormat("yyyy-MM-dd "); 
+           String strDate = format.format(date);
+           
+            return strDate;
+        } catch (Exception e) {
+            System.out.println("Ngay thang khong dung dinh danh");
+        }
+        return null;
+}   
     
     public static String convertLocalDateToString(LocalDate datetime)
             {
@@ -74,7 +89,8 @@ public class FomaterDate {
 //        date=FomaterDate.convertStringToDate(ns);
 //        JDateCser dateChooser=new JDateChooser(date);
 //        Systehoom.out.println(dateChooser.getDate());
-        
+       // Date date=Calendar.getInstance().getTime();
+        System.out.println(convertUtilDateToString(new Date()));
         }
     }
 

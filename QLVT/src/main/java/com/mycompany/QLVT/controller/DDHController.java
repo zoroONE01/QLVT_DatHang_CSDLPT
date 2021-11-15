@@ -302,11 +302,11 @@ public class DDHController implements Initializable {
         clKho.setCellValueFactory(new PropertyValueFactory<>("maKhoTenKho"));
         clNhanVien.setCellValueFactory(new PropertyValueFactory<>("maNVHoTen"));
         DDHTableModel = new DDHTableModel();
-        if (MainController.DDHCommandHistory.isCommandStackEmpty()) {
-            list = new DDHService().findAll();
-        } else {
-            list = MainController.DDHCommandHistory.getCommandStack().peek().getList();
-        }
+//        if (MainController.DDHCommandHistory.isCommandStackEmpty()) {
+//            list = new DDHService().findAll();
+//        } else {
+//            list = MainController.DDHCommandHistory.getCommandStack().peek().getList();
+//        }
         DDHTableModel.setDDHList(list);
         tbDSDDH.setItems(DDHTableModel.getDDHList());
         tbDSDDH.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
@@ -351,7 +351,7 @@ public class DDHController implements Initializable {
         btSave.setDisable(true);
         btUndo.setDisable(true);
         btRedo.setDisable(true);
-        initTableFromDatabase();
+       initTableFromDatabase();
 //        icLoading = new ImageView(new Image(getClass().getResourceAsStream("../../../../img/loading.gif"), 40, 40, false, true));
 
     }

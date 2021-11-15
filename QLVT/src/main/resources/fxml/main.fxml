@@ -94,7 +94,7 @@
                             </children>
                         </AnchorPane>
 
-                        <VBox layoutX="15.0" layoutY="110.0" prefWidth="120.0" spacing="10.0" AnchorPane.topAnchor="110.0">
+                              <VBox layoutX="15.0" layoutY="110.0" prefWidth="120.0" spacing="10.0" AnchorPane.topAnchor="110.0">
                             <children>
                         <RadioButton fx:id="btDashboard" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="35.0" prefWidth="124.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Dashboard" textFill="#bbbbbb">
                            <font>
@@ -166,6 +166,36 @@
                                                 <Image url="@../img/icons8_purchase_order_20px_1.png" />
                                             </image>
                                         </ImageView>
+                           </graphic>
+                           <padding>
+                              <Insets left="6.0" top="7.0" />
+                           </padding>
+                        </RadioButton>
+                        <RadioButton fx:id="btPhieuNhap" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="35.0" prefWidth="124.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Phiếu Nhập" textFill="#bbbbbb">
+                           <font>
+                              <Font name="Calibri Bold" size="14.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/icons8_purchase_order_20px_1.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <padding>
+                              <Insets left="6.0" top="7.0" />
+                           </padding>
+                        </RadioButton>
+                        <RadioButton fx:id="btBaoCao" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="35.0" prefWidth="124.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Báo cáo" textFill="#bbbbbb">
+                           <font>
+                              <Font name="Calibri Bold" size="14.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/icons8_purchase_order_20px_1.png" />
+                                 </image>
+                              </ImageView>
                            </graphic>
                            <padding>
                               <Insets left="6.0" top="7.0" />

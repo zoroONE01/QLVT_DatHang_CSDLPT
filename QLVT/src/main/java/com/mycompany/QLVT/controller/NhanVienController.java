@@ -326,7 +326,6 @@ public class NhanVienController {
         tbvListNV.setOnMouseClicked((event) -> {
             if (event.getClickCount() > 0) {
                 nhanVienBeforeSave = tbvListNV.getSelectionModel().getSelectedItem();
-
             }
         });
 
@@ -347,7 +346,6 @@ public class NhanVienController {
         for (PhanManh pm : chiNhanhModelChange.getList()) {
             cbbChangeLocation.getItems().add(pm.getName());
         }
-
         cbbChangeLocation.getSelectionModel().select(DBConnectUtil.phanManhCurrent.getName());
     }
 
@@ -459,7 +457,7 @@ public class NhanVienController {
     @FXML
     void editAction(ActionEvent event) {
         //valid form
-        NhanVien nv = nhanVienTableModel.getCurrentNhanVien();
+        NhanVien nv = nhanVienTableModel.getCurrentNhanVien();// chưa lấy dữ liệu từ form
         NhanVien nvNew = new NhanVien(nv.getMaNhanVien(), nv.getHo(), nv.getTen(), nv.getDiaChi(), nv.getNgaySinh(), nv.getLuong(), nv.getMaCN());
         System.out.println(nvNew.getHo() + " " + nvNew.getTen());
         boolean rs = executeCommand(new ActionEdit(nhanVienService, nvNew, "edit"));
@@ -538,6 +536,7 @@ public class NhanVienController {
                     || maCNString.isEmpty()) {
                 messageDialog("Infomation is empty");
                 isValidForm = false;
+                 return;
             }
             //check ràng buộc 
             if (String.valueOf(maNVString).length() > 15) {
@@ -643,7 +642,7 @@ public class NhanVienController {
             return -1;
         }
 
-        ActionListenerCommand command = history.peek();
+        ActionListenerCommand<NhanVien> command = history.peek();
 
 //        if (command != null && command.getType().equals("save")) {
 //            NhanVien nv = command.undo();

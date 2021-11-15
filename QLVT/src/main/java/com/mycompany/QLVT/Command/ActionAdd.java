@@ -13,7 +13,7 @@ import com.mycompany.QLVT.service.NhanVienServiceTest;
  *
  * @author MinhTo
  */
-public class ActionAdd extends ActionListenerCommand {
+public class ActionAdd extends ActionListenerCommand<NhanVien> {
 
     NhanVienService nhanVienService;
     NhanVien nhanVien;
@@ -44,5 +44,15 @@ public class ActionAdd extends ActionListenerCommand {
 //            }
 //        }
         return false;
+    }
+
+    @Override
+    public void backup(NhanVien t) {
+      this.nhanVien=t;
+    }
+
+    @Override
+    public NhanVien undo() {
+        return nhanVien;
     }
 }

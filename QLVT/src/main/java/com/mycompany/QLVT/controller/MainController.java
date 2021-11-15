@@ -48,12 +48,17 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class MainController {
-
+        @FXML
+    private RadioButton btNhanVien;
+        
     @FXML
     private RadioButton btDashboard;
 
     @FXML
-    private RadioButton btNhanVien;
+    private RadioButton btBaoCao;
+            
+    @FXML
+    private RadioButton btPhieuNhap;
 
     @FXML
     private RadioButton btKho;
@@ -83,6 +88,7 @@ public class MainController {
 
     @FXML
     private AnchorPane pnWorkspace;
+   
 
     public static KhoCommandHistory khoCommandHistory;
     public static VatTuCommandHistory vatTuCommandHistory;
@@ -128,6 +134,7 @@ public class MainController {
                     LoginController loginController = new LoginController();
                     Parent root = null;
                     try {
+                        System.out.println(getClass().getResource("../../../../fxml/login.fxml"));
                         root = FXMLLoader.load(getClass().getResource("../../../../fxml/login.fxml"));
                     } catch (IOException ex) {
                         Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
@@ -152,7 +159,8 @@ public class MainController {
         btKho.setToggleGroup(group);
         btVatTu.setToggleGroup(group);
         btDonDatHang.setToggleGroup(group);
-
+        btPhieuNhap.setToggleGroup(group);
+        btBaoCao.setToggleGroup(group);
         group.selectedToggleProperty().addListener((ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) -> {
             if (newValue != null) {
                 if (saveCheck((RadioButton) oldValue)) {
@@ -227,6 +235,22 @@ public class MainController {
                     }
                     lbTitle.setText("Đơn Đặt Hàng");
                 }
+                if (btPhieuNhap.isSelected()) {
+                    try {
+                        initWorkspace("NhapHang");
+                    } catch (IOException ex) {
+                        Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    lbTitle.setText("PhieuNhap");
+                }
+                 if (btBaoCao.isSelected()) {
+                    try {
+                        initWorkspace("BaoCao");
+                    } catch (IOException ex) {
+                        Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    lbTitle.setText("Báo Cáo");
+                }
             }
         });
 
@@ -290,5 +314,9 @@ public class MainController {
         btVatTu.getStyleClass().add("toggle-button");
         btDonDatHang.getStyleClass().remove("radio-button");
         btDonDatHang.getStyleClass().add("toggle-button");
+        btPhieuNhap.getStyleClass().remove("radio-button");
+        btPhieuNhap.getStyleClass().add("toggle-button");
+         btBaoCao.getStyleClass().remove("radio-button");
+        btBaoCao.getStyleClass().add("toggle-button");
     }
 }

@@ -69,8 +69,8 @@ public class NhanVienDAO extends AbstractDAO<NhanVien> {
         return updateProcedure("{call SP_ChuyenChiNhanh(?,?)}", id, maChiNhanhNew);
     }
     
-    public int testSP(int i)
-            {
-                return queryReturnOfProcedure("{call test_sp(?,?)}", i);
-            }
+//    public int testSP(int i)
+//            {
+//                return queryReturnOfProcedure("{call test_sp(?,?)}", i);
+//            }
 }

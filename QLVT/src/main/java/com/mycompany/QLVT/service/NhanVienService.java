@@ -38,12 +38,14 @@ public class NhanVienService {
     }
 
     public int save(NhanVien nv) {
+        
         return nhanVienDAO.insert(nv);
     }
 
     public void update(NhanVien nv) {
         nhanVienDAO.update(nv);
     }
+ 
 
     public int chuyenChiNhanh(int id, String maCN) {
         if (maCN.contains("Chi Nhánh 1")) {
