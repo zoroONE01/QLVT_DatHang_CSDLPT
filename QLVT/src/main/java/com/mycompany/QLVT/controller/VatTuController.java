@@ -128,7 +128,6 @@ public class VatTuController implements Initializable {
                     noti.close();
                 });
                 btAccept.setOnAction((ActionEvent event1) -> {
-                    content.setBody(icLoading);
                     String error = vatTuDetailController.addVatTu();
                     if (error == "") {
                         noti.close();
@@ -175,7 +174,6 @@ public class VatTuController implements Initializable {
                     noti.close();
                 });
                 btAccept.setOnAction((ActionEvent event1) -> {
-//                    content.setBody(icLoading);
                     String error = vatTuDetailController.deleleVatTu(vatTu);
                     if (error == "") {
                         noti.close();
@@ -222,7 +220,6 @@ public class VatTuController implements Initializable {
                     noti.close();
                 });
                 btAccept.setOnAction((ActionEvent event1) -> {
-//                    content.setBody(icLoading);
                     String error = VatTuDetailController.updateVatTu(vatTu);
                     if (error == "") {
                         noti.close();

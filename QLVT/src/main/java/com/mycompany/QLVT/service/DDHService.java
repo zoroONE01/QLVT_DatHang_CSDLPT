@@ -6,6 +6,7 @@
 package com.mycompany.QLVT.service;
 
 import com.mycompany.QLVT.Entity.DDH;
+import com.mycompany.QLVT.Entity.ItemVatTu;
 import com.mycompany.QLVT.dao.DDHDAO;
 import java.util.List;
 
@@ -29,15 +30,25 @@ public class DDHService {
         return ddhDAO.delete(id);
     }
 
-    public int isExist(int id) {
-        return ddhDAO.isExist(id);
+    public int checkExist(String value, String type) {
+        return ddhDAO.checkExist(value, type);
     }
 
-    public int insert(DDH ddh) {
-        return ddhDAO.insert(ddh);
+    public void insert(DDH ddh, List<ItemVatTu> listItemVatTu) {
+        CTDDHService ctdddhService = new CTDDHService();
+        ddhDAO.insert(ddh);
+        listItemVatTu.forEach(itemVatTu -> {
+            ctdddhService.insert(ddh, itemVatTu);
+        });
     }
 
-    public void update(DDH ddh) {
+    public void update(DDH ddh, List<ItemVatTu> listItemVatTu) {
+        CTDDHService ctdddhService = new CTDDHService();
         ddhDAO.update(ddh);
+        ctdddhService.delete(ddh.getMaDDH());
+        listItemVatTu.forEach(itemVatTu -> {
+            System.out.println(itemVatTu.toString());
+            ctdddhService.insert(ddh, itemVatTu);
+        });
     }
 }

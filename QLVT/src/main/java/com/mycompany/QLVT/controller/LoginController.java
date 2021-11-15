@@ -148,7 +148,7 @@ public class LoginController {
 
     @FXML
     void initialize() {
-
+        
         //show danh sach chi nhanh
         phanManhDAO = new PhanManhDAO();
         DBConnectUtil.listPhanManh = phanManhDAO.findAll();

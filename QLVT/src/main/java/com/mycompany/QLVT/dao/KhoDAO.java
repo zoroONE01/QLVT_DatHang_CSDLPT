@@ -15,8 +15,8 @@ import java.util.List;
  */
 public class KhoDAO extends AbstractDAO<Kho> {
 
-    public List<Kho> findAll(String id) {
-        return queryProcedure("{call spShowKho(?)}", new KhoMapper(), id);
+    public List<Kho> findAll() {
+        return queryProcedure("{call spShowKho}", new KhoMapper());
     }
 
     public int checkExist(String value, String type) {

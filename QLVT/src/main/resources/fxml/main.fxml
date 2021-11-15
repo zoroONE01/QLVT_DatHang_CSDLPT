@@ -94,9 +94,9 @@
                             </children>
                         </AnchorPane>
 
-                        <VBox layoutX="15.0" layoutY="110.0" prefWidth="120.0" spacing="10.0" AnchorPane.topAnchor="110.0">
+                        <VBox layoutX="15.0" layoutY="110.0" prefWidth="120.0" spacing="10.0" AnchorPane.topAnchor="150.0">
                             <children>
-                        <RadioButton fx:id="btDashboard" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="35.0" prefWidth="124.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Dashboard" textFill="#bbbbbb">
+                        <RadioButton fx:id="btDashboard" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Dashboard" textFill="#bbbbbb">
                            <font>
                               <Font name="Calibri Bold" size="14.0" />
                            </font>
@@ -108,10 +108,10 @@
                                         </ImageView>
                            </graphic>
                            <padding>
-                              <Insets left="6.0" top="7.0" />
+                              <Insets left="15.0" top="7.0" />
                            </padding>
                         </RadioButton>
-                        <RadioButton fx:id="btNhanVien" alignment="TOP_LEFT" layoutX="10.0" layoutY="235.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="124.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Nhân Viên" textFill="#bbbbbb">
+                        <RadioButton fx:id="btNhanVien" alignment="TOP_LEFT" layoutX="10.0" layoutY="235.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Nhân Viên" textFill="#bbbbbb">
                            <font>
                               <Font name="Calibri Bold" size="14.0" />
                            </font>
@@ -123,10 +123,10 @@
                                         </ImageView>
                            </graphic>
                            <padding>
-                              <Insets left="6.0" top="7.0" />
+                              <Insets left="15.0" top="7.0" />
                            </padding>
                         </RadioButton>
-                        <RadioButton fx:id="btKho" alignment="TOP_LEFT" layoutX="10.0" layoutY="280.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="124.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Kho" textFill="#bbbbbb">
+                        <RadioButton fx:id="btKho" alignment="TOP_LEFT" layoutX="10.0" layoutY="280.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Kho" textFill="#bbbbbb">
                            <font>
                               <Font name="Calibri Bold" size="14.0" />
                            </font>
@@ -138,10 +138,10 @@
                                         </ImageView>
                            </graphic>
                            <padding>
-                              <Insets left="6.0" top="7.0" />
+                              <Insets left="15.0" top="7.0" />
                            </padding>
                         </RadioButton>
-                        <RadioButton fx:id="btVatTu" alignment="TOP_LEFT" layoutX="10.0" layoutY="325.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="124.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Vật Tư" textFill="#bbbbbb">
+                        <RadioButton fx:id="btVatTu" alignment="TOP_LEFT" layoutX="10.0" layoutY="325.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Vật Tư" textFill="#bbbbbb">
                            <font>
                               <Font name="Calibri Bold" size="14.0" />
                            </font>
@@ -153,10 +153,10 @@
                                         </ImageView>
                            </graphic>
                            <padding>
-                              <Insets left="6.0" top="7.0" />
+                              <Insets left="15.0" top="7.0" />
                            </padding>
                         </RadioButton>
-                        <RadioButton fx:id="btDonDatHang" alignment="TOP_LEFT" layoutX="10.0" layoutY="370.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="124.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Đơn Đặt Hàng" textFill="#bbbbbb">
+                        <RadioButton fx:id="btDatHang" alignment="TOP_LEFT" layoutX="10.0" layoutY="370.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Đặt Hàng" textFill="#bbbbbb">
                            <font>
                               <Font name="Calibri Bold" size="14.0" />
                            </font>
@@ -168,7 +168,22 @@
                                         </ImageView>
                            </graphic>
                            <padding>
-                              <Insets left="6.0" top="7.0" />
+                              <Insets left="15.0" top="7.0" />
+                           </padding>
+                        </RadioButton>
+                        <RadioButton fx:id="btXuatHang" alignment="TOP_LEFT" layoutX="10.0" layoutY="190.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Xuất Hàng" textFill="#bbbbbb">
+                           <font>
+                              <Font name="Calibri Bold" size="14.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/document_delivery_20px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <padding>
+                              <Insets left="15.0" top="7.0" />
                            </padding>
                         </RadioButton>
                             </children>

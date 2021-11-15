@@ -1,5 +1,7 @@
 D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Command\KhoDelete.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Mapper\CTDDHMapper.java
 D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Command\DDHDelete.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Entity\CTDDH.java
 D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\controller\KhoController.java
 D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\controller\VatTuController.java
 D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Report\TestReport.java
@@ -20,7 +22,7 @@ D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\dao\Nha
 D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Mapper\KhoMapper.java
 D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\model\DDHCommandModel.java
 D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\model\DDHTableModel.java
-D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Mapper\DonDatHangMapper.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\dao\CTDDHDAO.java
 D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\dao\VatTuDAO.java
 D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Utils\FomaterDate.java
 D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\model\VatTuTableModel.java
@@ -47,6 +49,8 @@ D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Entity\
 D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\model\NhanVienTableModel.java
 D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Command\ActionHistory.java
 D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\model\NumberModel.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Entity\ItemVatTu.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\service\CTDDHService.java
 D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\dao\GenericDAO.java
 D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\model\VatTuCommandModel.java
 D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\dao\KhoDAO.java
@@ -54,6 +58,7 @@ D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\model\K
 D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Entity\DDH.java
 D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Entity\VatTu.java
 D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\App.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Utils\FXMLUtils.java
 D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Utils\DBConnectUtil.java
 D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\controller\VatTuDetailController.java
 D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Command\DDHCommandHistory.java
@@ -62,10 +67,10 @@ D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Entity\
 D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Command\VatTuDelete.java
 D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\model\KhoCommandModel.java
 D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\dao\NhanVienDAO.java
-D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Entity\DonDatHang.java
 D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\service\DDHService.java
 D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Command\ActionDelete.java
 D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Mapper\RowMapper.java
+D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\controller\ItemVatTuDDHController.java
 D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\service\VatTuService.java
 D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Command\VatTuUpdate.java
 D:\Workspace\java-application\QLVT\QLVT\src\main\java\com\mycompany\QLVT\Report\JasReportGenerator.java

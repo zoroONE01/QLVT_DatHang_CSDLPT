@@ -21,7 +21,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class DBConnectUtil {
-
+    
     private static ThreadLocal<Connection> tl;
 //    private static PropertiseUtil propertiesUtil = new PropertiseUtil();
 //
@@ -48,14 +48,14 @@ public class DBConnectUtil {
     public static String myUserDB;
     public static String username = "";
     public static String password = "";
-    public static String chiNhanhMain="";
+    public static String chiNhanhMain = "";
 //    public static String subcriberServer1 = "MINHTO-PC\\MTSITE1";
 //    public static String subcriberServer2 = "MINHTO-PC\\MTSITE2";
 
     public static List<PhanManh> listPhanManh;
     public static Connection ConnectionMain;
     public static PhanManh phanManhCurrent;
-
+    
     static {
         try {
             Class.forName(driver);
@@ -66,7 +66,7 @@ public class DBConnectUtil {
             e.printStackTrace();
         }
     }
-
+    
     public static Connection getConnection2() throws SQLException {
 
 //        Connection conn = tl.get();
@@ -88,9 +88,9 @@ public class DBConnectUtil {
 //        return conn;
         return null;
     }
-
+    
     public static Connection getConnection() throws SQLException {
-
+        
         urlCurrent = "jdbc:sqlserver://" + DBConnectUtil.phanManhCurrent.getSubscriberServer() + ";databaseName=QLVT";
 
         // If there is no connection in the container, get a connection from the connection pool to ThreadLocal
@@ -103,18 +103,18 @@ public class DBConnectUtil {
                 ConnectionMain = DriverManager.getConnection(urlCurrent, username, password);
             }
         }
-
+        
         return ConnectionMain;
     }
-
+    
     public static void begin() {
         try {
             getConnection().setAutoCommit(false);
         } catch (SQLException e) {
-
+            
         }
     }
-
+    
     public static void commit() {
         try {
             getConnection().commit();
@@ -122,7 +122,7 @@ public class DBConnectUtil {
             e.printStackTrace();
         }
     }
-
+    
     public static void rollback() {
         try {
             getConnection().rollback();
@@ -130,9 +130,9 @@ public class DBConnectUtil {
             e.printStackTrace();
         }
     }
-
+    
     public static void close() {
-
+        
         try {
             ConnectionMain.close();
             getConnection().close();
@@ -140,5 +140,8 @@ public class DBConnectUtil {
             e.printStackTrace();
         }
     }
-
+    
+    public static void reset() {
+        phanManhCurrent.setName("");
+    }
 }

@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  * @author zoroONE01
  */
 public class DDHMapper implements RowMapper<DDH> {
-
+    
     @Override
     public DDH mapRow(ResultSet rs) {
         try {
@@ -32,11 +32,12 @@ public class DDHMapper implements RowMapper<DDH> {
             donDatHang.setTenKho(rs.getString(8));
             donDatHang.setMaNVHoTen();
             donDatHang.setMaKhoTenKho();
+            donDatHang.setTrangThai(rs.getString(9) == null ? "Chưa nhập hàng" : rs.getString(9));
             return donDatHang;
         } catch (SQLException e) {
             Logger.getLogger(DDHMapper.class.getName()).log(Level.SEVERE, null, e);
         }
         return null;
     }
-
+    
 }
