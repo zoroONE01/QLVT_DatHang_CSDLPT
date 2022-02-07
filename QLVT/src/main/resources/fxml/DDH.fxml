@@ -13,7 +13,7 @@
 
 <AnchorPane prefHeight="535.0" prefWidth="920.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.QLVT.controller.DDHController">
    <children>
-<<<<<<< HEAD
+
       <AnchorPane layoutX="20.0" layoutY="20.0" prefWidth="140.0" style="-fx-background-color: #fff; -fx-background-radius: 0 10 10 0; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="39.0">
          <children>
             <JFXListView fx:id="lvHistoryCommand" layoutX="16.0" layoutY="31.0" style="-fx-border-color: #fff;" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0" />
@@ -59,9 +59,6 @@
          </children>
       </AnchorPane>
       <TableView fx:id="tbDSDDH" layoutX="14.0" layoutY="9.0" prefHeight="366.0" prefWidth="720.0" stylesheets="@../css/table-view.css" AnchorPane.bottomAnchor="169.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="0.0">
-=======
-      <TableView fx:id="tbDSDDH" layoutX="14.0" layoutY="9.0" prefHeight="535.0" stylesheets="@../css/table-view.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="0.0">
->>>>>>> 32d4b2604d5ec18010049764f393248558173104
          <columns>
             <TableColumn fx:id="clMaDDH" minWidth="120.0" prefWidth="-1.0" text="Mã Đơn Đặt Hàng" />
             <TableColumn fx:id="clNCC" minWidth="120.0" prefWidth="-1.0" text="Nhà Cung Cấp" />
@@ -122,7 +119,6 @@
                </cursor>
             </JFXButton>
             <Separator prefWidth="20.0" />
-<<<<<<< HEAD
             <JFXButton fx:id="btSave" onAction="#saveOnDatabase" prefHeight="30.0" prefWidth="30.0" text=" ">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
@@ -157,9 +153,6 @@
                </cursor>
             </JFXButton>
             <JFXButton fx:id="btRedo" layoutX="16.0" layoutY="193.0" onAction="#redoCommand" prefHeight="30.0" prefWidth="30.0" text=" ">
-=======
-            <JFXButton fx:id="btImport" layoutX="10.0" layoutY="10.0" onAction="#undoCommand" prefHeight="30.0" prefWidth="30.0" text=" ">
->>>>>>> 32d4b2604d5ec18010049764f393248558173104
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>

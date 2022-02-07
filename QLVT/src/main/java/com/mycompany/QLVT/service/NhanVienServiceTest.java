@@ -26,24 +26,28 @@ public class NhanVienServiceTest {
     }
       public List<NhanVien> findAll()
             {   
-                
-                return nhanVienDao.findAll();
+                return null;
+                //return nhanVienDao.findAll();
             }
     public NhanVien findOne(NhanVien nv)
             {       
-                return nhanVienDao.find(nv);
+                //return nhanVienDao.find(nv);
+                return null;
             }
       public int save(NhanVien nv)
             {
                 NhanVien nvNew=new NhanVien(nv.getMaNhanVien(), nv.getHo(), nv.getTen(), nv.getDiaChi(), nv.getNgaySinh(), nv.getLuong(), nv.getMaCN());
-                return nhanVienDao.save(nvNew);
+                //return nhanVienDao.save(nvNew);
+                return 0;
             }
       public boolean delete(NhanVien nv)
             {
-                return nhanVienDao.delete(nv);
+                //return nhanVienDao.delete(nv);
+                return false;
             }
       public int update(NhanVien nv)
             {
-                return nhanVienDao.save(nv);
+               // return nhanVienDao.save(nv);
+                return 0;
             }
 }

@@ -31,7 +31,7 @@ public class DBConnectUtil {
 //    private static String username = propertiesUtil.getValue("username", ConfigReader.getAdminUserDataBase());
 //    private static String password = propertiesUtil.getValue("password", ConfigReader.getPassWordDataBase());
 //
-
+    
     public static String url = "jdbc:sqlserver://MINHTO-PC\\MINHTOENU;databaseName=QLVT";
     public static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     public static String usernameHTKN = "HTKN";
@@ -40,8 +40,8 @@ public class DBConnectUtil {
     public static String driver1 = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     public static String url2 = "jdbc:sqlserver://MINHTO-PC\\MTSITE2;databaseName=QLVT";
     public static String driver2 = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-//    public static String url3 = "jdbc:sqlserver://MINHTO-PC\\MTSITE3;databaseName=QLVT";
-//    public static String driver3 = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+//  public static String url3 = "jdbc:sqlserver://MINHTO-PC\\MTSITE3;databaseName=QLVT";
+//  public static String driver3 = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     public static String urlCurrent;
     public static String myGroup;
     public static String myName;
@@ -49,8 +49,8 @@ public class DBConnectUtil {
     public static String username = "";
     public static String password = "";
     public static String chiNhanhMain="";
-//    public static String subcriberServer1 = "MINHTO-PC\\MTSITE1";
-//    public static String subcriberServer2 = "MINHTO-PC\\MTSITE2";
+//  public static String subcriberServer1 = "MINHTO-PC\\MTSITE1";
+//  public static String subcriberServer2 = "MINHTO-PC\\MTSITE2";
 
     public static List<PhanManh> listPhanManh;
     public static Connection ConnectionMain;
@@ -95,11 +95,11 @@ public class DBConnectUtil {
 
         // If there is no connection in the container, get a connection from the connection pool to ThreadLocal
         if (ConnectionMain == null || ConnectionMain.isClosed()) {
-            if (DBConnectUtil.phanManhCurrent.getName().equals("")) {
+            if (DBConnectUtil.phanManhCurrent.getName().equals("")) { //kết nối site chủ tài khoản HTKN
                 ConnectionMain = DriverManager.getConnection(url, usernameHTKN, passwordHTKN);
-            } else if (!DBConnectUtil.phanManhCurrent.getName().equals(chiNhanhMain)) {
+            } else if (!DBConnectUtil.phanManhCurrent.getName().equals(chiNhanhMain)) { //Kết nối site Phân mảnh tài khoản HTKN 
                 ConnectionMain = DriverManager.getConnection(urlCurrent, usernameHTKN, passwordHTKN);
-            } else {
+            } else { //kết nối site ban đầu với tài khoản ban đầu
                 ConnectionMain = DriverManager.getConnection(urlCurrent, username, password);
             }
         }
@@ -129,9 +129,8 @@ public class DBConnectUtil {
             e.printStackTrace();
         }
     }
-
+    
     public static void close() {
-
         try {
             ConnectionMain.close();
             getConnection().close();
@@ -139,5 +138,9 @@ public class DBConnectUtil {
             e.printStackTrace();
         }
     }
+     public static void reset() {
+          phanManhCurrent.setName("");
+    }
+
 
 }

@@ -144,13 +144,13 @@ public class NhanVienViewControllerTest implements Initializable {
         });
         luong.setCellValueFactory(new PropertyValueFactory<>("luong"));
         luong.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-        luong.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<NhanVien, Integer>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<NhanVien, Integer> event) {
-                NhanVien nhanVien = event.getRowValue();
-                nhanVien.setLuong(event.getNewValue());
-            }
-        });
+//        luong.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<NhanVien, Integer>>() {
+//            @Override
+//            public void handle(TableColumn.CellEditEvent<NhanVien, Integer> event) {
+//                NhanVien nhanVien = event.getRowValue();
+//                nhanVien.setLuong(event.getNewValue());
+//            }
+//        });
         ngaySinh.setCellValueFactory(new PropertyValueFactory<NhanVien, String>("ngaySinh"));
         ngaySinh.setCellFactory(TextFieldTableCell.forTableColumn());
         ngaySinh.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<NhanVien, String>>() {

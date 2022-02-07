@@ -9,7 +9,6 @@ package com.mycompany.QLVT.Report;
  *
  * @author MinhTo
  */
-import com.sun.org.apache.bcel.internal.generic.AALOAD;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import net.sf.jasperreports.view.JasperViewer;

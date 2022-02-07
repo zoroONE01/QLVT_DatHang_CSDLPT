@@ -25,7 +25,7 @@ public class App extends Application {
         stage.setMaxHeight(450);
         stage.setMaxWidth(750);
 //        stage.getIcons().add(new Image(getClass().getResourceAsStream("../../../img/icons8_states_20px")));
-        scene = new Scene(loadFXML("Login"));
+        scene = new Scene(loadFXML("login"));
         stage.setScene(scene);
         
 //        stage.setTitle("Wow!! Stackoverflow Icon");

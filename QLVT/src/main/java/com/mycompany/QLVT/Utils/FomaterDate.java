@@ -70,7 +70,7 @@ public class FomaterDate {
             }
       public static LocalDate convertStringToLocalDate(String datetime)
             {
-                DateTimeFormatter dateTimeFormatter= DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                DateTimeFormatter dateTimeFormatter= DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 LocalDate localDateTime=LocalDate.parse(datetime,dateTimeFormatter);
                 return localDateTime;
             }
