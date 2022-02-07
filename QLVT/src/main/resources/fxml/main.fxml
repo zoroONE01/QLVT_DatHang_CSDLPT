@@ -94,9 +94,16 @@
                             </children>
                         </AnchorPane>
 
+<<<<<<< HEAD
 
                               <VBox layoutX="15.0" layoutY="110.0" prefWidth="120.0" spacing="10.0" AnchorPane.topAnchor="110.0">
 
+=======
+<!--<<<<<<< HEAD
+                              <VBox layoutX="15.0" layoutY="110.0" prefWidth="120.0" spacing="10.0" AnchorPane.topAnchor="110.0">
+=======-->
+                        <VBox layoutX="15.0" layoutY="110.0" prefWidth="120.0" spacing="10.0" AnchorPane.topAnchor="150.0">
+>>>>>>> ba05e9b3d5a8d89a20302c6653e5e17ddb6ebe17
                             <children>
                         <RadioButton fx:id="btDashboard" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Dashboard" textFill="#bbbbbb">
                            <font>

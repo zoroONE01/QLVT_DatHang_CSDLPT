@@ -1,4 +1,4 @@
-    /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -31,26 +31,31 @@ public class DBConnectUtil {
 //    private static String username = propertiesUtil.getValue("username", ConfigReader.getAdminUserDataBase());
 //    private static String password = propertiesUtil.getValue("password", ConfigReader.getPassWordDataBase());
 //
+
     
     public static String url = "jdbc:sqlserver://MINHTO-PC\\MINHTOENU;databaseName=QLVT";
     public static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     public static String usernameHTKN = "HTKN";
-    public static String passwordHTKN = "sa";
-    public static String url1 = "jdbc:sqlserver://MINHTO-PC\\MTSITE1;databaseName=QLVT";
+    public static String passwordHTKN = "123456";
+    public static String url1 = "jdbc:sqlserver://DESKTOP-HFPR9E7\\SITE1;databaseName=QLVT";
     public static String driver1 = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    public static String url2 = "jdbc:sqlserver://MINHTO-PC\\MTSITE2;databaseName=QLVT";
+    public static String url2 = "jdbc:sqlserver://DESKTOP-HFPR9E7\\SITE2;databaseName=QLVT";
     public static String driver2 = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+
 //  public static String url3 = "jdbc:sqlserver://MINHTO-PC\\MTSITE3;databaseName=QLVT";
 //  public static String driver3 = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+
     public static String urlCurrent;
     public static String myGroup;
     public static String myName;
     public static String myUserDB;
     public static String username = "";
     public static String password = "";
+
     public static String chiNhanhMain="";
 //  public static String subcriberServer1 = "MINHTO-PC\\MTSITE1";
 //  public static String subcriberServer2 = "MINHTO-PC\\MTSITE2";
+
 
     public static List<PhanManh> listPhanManh;
     public static Connection ConnectionMain;
@@ -143,4 +148,5 @@ public class DBConnectUtil {
     }
 
 
+  
 }
