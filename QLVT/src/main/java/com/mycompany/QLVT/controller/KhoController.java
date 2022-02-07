@@ -355,7 +355,7 @@ public class KhoController implements Initializable {
         btSave.setDisable(true);
         btUndo.setDisable(true);
         btRedo.setDisable(true);
-//        initTableKhoFromDatabase();
+        initTableKhoFromDatabase();
 //        icLoading = new ImageView(new Image(getClass().getResourceAsStream("../../../../img/loading.gif"), 40, 40, false, true));
     }
 

@@ -1,17 +1,8 @@
 com\mycompany\QLVT\controller\NhanVienViewControllerTest.class
 com\mycompany\QLVT\Command\KhoInsert.class
 com\mycompany\QLVT\controller\NhanVienViewControllerTest$8.class
-<<<<<<< HEAD
 com\mycompany\QLVT\Command\ActionAddPhieuNhap.class
-=======
-com\mycompany\QLVT\model\NhanVienTableModel.class
-com\mycompany\QLVT\controller\DDHController.class
-com\mycompany\QLVT\controller\KhoController$1.class
-FXMLController.class
-com\mycompany\QLVT\controller\NhanVienViewControllerTest$5.class
-com\mycompany\QLVT\controller\NhanVienController$6.class
 com\mycompany\QLVT\Entity\ItemVatTu.class
->>>>>>> 32d4b2604d5ec18010049764f393248558173104
 com\mycompany\QLVT\dao\GenericDAO.class
 com\mycompany\QLVT\controller\MainController$2.class
 com\mycompany\QLVT\service\VatTuService.class
@@ -19,11 +10,6 @@ com\mycompany\QLVT\NewFXPreloader.class
 com\mycompany\QLVT\dao\KhoDAO.class
 com\mycompany\QLVT\model\KhoTableModel.class
 com\mycompany\QLVT\controller\MainController.class
-<<<<<<< HEAD
-=======
-com\mycompany\QLVT\Command\KhoCommandHistory.class
-com\mycompany\QLVT\Mapper\CTDDHMapper.class
->>>>>>> 32d4b2604d5ec18010049764f393248558173104
 com\mycompany\QLVT\Entity\ChiNhanh.class
 com\mycompany\QLVT\controller\DDHDetailController.class
 com\mycompany\QLVT\service\NhanVienServiceTest.class
@@ -41,46 +27,24 @@ com\mycompany\QLVT\controller\KhoController.class
 com\mycompany\QLVT\controller\LoginController$1.class
 com\mycompany\QLVT\Mapper\KhoMapper.class
 com\mycompany\QLVT\App.class
-com\mycompany\QLVT\Utils\FXMLUtils.class
 com\mycompany\QLVT\controller\NhanVienController$4.class
 com\mycompany\QLVT\controller\KhoController$3.class
 com\mycompany\QLVT\controller\NhanVienViewControllerTest$10.class
 com\mycompany\QLVT\model\NhanVienTableModelTest.class
 com\mycompany\QLVT\controller\NhanVienViewControllerTest$9.class
 com\mycompany\QLVT\controller\NhanVienController$9.class
-<<<<<<< HEAD
 com\mycompany\QLVT\Entity\PhieuNhap.class
-com\mycompany\QLVT\controller\BaoCaoController$2.class
 com\mycompany\QLVT\Command\DDHDelete.class
-=======
-com\mycompany\QLVT\Report\JasReportGenerator.class
-com\mycompany\QLVT\Command\DDHUpdate.class
-com\mycompany\QLVT\dao\CTDDHDAO.class
-com\mycompany\QLVT\Entity\NhanVienTest.class
-com\mycompany\QLVT\model\DDHTableModel.class
-com\mycompany\QLVT\Command\DDHDelete.class
-com\mycompany\QLVT\controller\ItemVatTuDDHController.class
-com\mycompany\QLVT\controller\KhoController$2.class
->>>>>>> 32d4b2604d5ec18010049764f393248558173104
 com\mycompany\QLVT\Utils\DBConnectUtil.class
 com\mycompany\QLVT\Command\KhoDelete.class
 com\mycompany\QLVT\controller\NhanVienController$3.class
 com\mycompany\QLVT\controller\NhanVienViewControllerTest$2.class
 com\mycompany\QLVT\Command\VatTuInsert.class
-<<<<<<< HEAD
-=======
-com\mycompany\QLVT\Entity\PhanManh.class
-com\mycompany\QLVT\Entity\CTDDH.class
-com\mycompany\QLVT\Utils\FomaterDate.class
-com\mycompany\QLVT\Command\ActionAdd.class
->>>>>>> 32d4b2604d5ec18010049764f393248558173104
 com\mycompany\QLVT\Command\VatTuCommand.class
 com\mycompany\QLVT\controller\LoginController.class
 com\mycompany\QLVT\Command\VatTuUpdate.class
 com\mycompany\QLVT\dao\NhanVienDaoTest.class
-com\mycompany\QLVT\controller\BaoCaoController$1.class
 com\mycompany\QLVT\model\VatTuCommandModel.class
-com\mycompany\QLVT\Report\TestReport.class
 com\mycompany\QLVT\dao\AbstractDAO.class
 com\mycompany\QLVT\model\ChiNhanhModel.class
 com\mycompany\QLVT\controller\DDHController$1.class
@@ -88,16 +52,9 @@ com\mycompany\QLVT\Command\DDHInsert.class
 com\mycompany\QLVT\controller\NhanVienController$2.class
 com\mycompany\QLVT\model\ChiTietDDHModel.class
 com\mycompany\QLVT\controller\NhanVienViewControllerTest$4.class
-<<<<<<< HEAD
-=======
-com\mycompany\QLVT\service\CTDDHService.class
-com\mycompany\QLVT\controller\KhoDetailController.class
-com\mycompany\QLVT\controller\NhanVienController$5.class
->>>>>>> 32d4b2604d5ec18010049764f393248558173104
 com\mycompany\QLVT\Entity\Login.class
 com\mycompany\QLVT\controller\NhanVienViewControllerTest$7.class
 com\mycompany\QLVT\controller\VatTuController$2.class
-com\mycompany\QLVT\controller\BaoCaoController.class
 com\mycompany\QLVT\controller\NhanVienController$1.class
 com\mycompany\QLVT\dao\DDHDAO.class
 com\mycompany\QLVT\controller\NhapHangController$1$1.class
@@ -106,12 +63,9 @@ com\mycompany\QLVT\Utils\ValidationRegEx.class
 com\mycompany\QLVT\service\NumberService.class
 com\mycompany\QLVT\Entity\Clock.class
 com\mycompany\QLVT\Mapper\VatTuMapper.class
-<<<<<<< HEAD
 com\mycompany\QLVT\model\PhieuNhapModel.class
-com\mycompany\QLVT\Command\ActionAddNhanVien.class
-=======
 com\mycompany\QLVT\controller\ItemVatTuDDHController$1.class
->>>>>>> 32d4b2604d5ec18010049764f393248558173104
+com\mycompany\QLVT\Command\ActionAddNhanVien.class
 com\mycompany\QLVT\controller\VatTuController$1.class
 com\mycompany\QLVT\Command\ActionHistory.class
 com\mycompany\QLVT\Mapper\LoginMapper.class
@@ -120,6 +74,7 @@ com\mycompany\QLVT\Command\ActionEdit.class
 com\mycompany\QLVT\Mapper\RowMapper.class
 com\mycompany\QLVT\Command\DDHCommandHistory.class
 com\mycompany\QLVT\controller\MainController$1.class
+com\mycompany\QLVT\controller\ItemVatTuDDHController$2.class
 com\mycompany\QLVT\model\NhanVienTableModel.class
 com\mycompany\QLVT\controller\DDHController.class
 com\mycompany\QLVT\controller\KhoController$1.class
@@ -133,22 +88,25 @@ com\mycompany\QLVT\controller\VatTuController$3.class
 com\mycompany\QLVT\model\KhoCommandModel.class
 com\mycompany\QLVT\Entity\VatTu.class
 com\mycompany\QLVT\Command\KhoCommandHistory.class
+com\mycompany\QLVT\Mapper\CTDDHMapper.class
 com\mycompany\QLVT\controller\VatTuController.class
 com\mycompany\QLVT\controller\DDHController$2.class
-com\mycompany\QLVT\controller\DDHController$3.class
 com\mycompany\QLVT\controller\VatTuDetailController.class
+com\mycompany\QLVT\Utils\FXMLUtils.class
 com\mycompany\QLVT\controller\NhapHangController$1.class
-com\mycompany\QLVT\Report\JasReportGenerator.class
 com\mycompany\QLVT\service\ChiTietPhieuNhapService.class
 com\mycompany\QLVT\Command\DDHUpdate.class
+com\mycompany\QLVT\dao\CTDDHDAO.class
 com\mycompany\QLVT\Entity\NhanVienTest.class
 com\mycompany\QLVT\service\PhieuNhapService.class
 com\mycompany\QLVT\model\DDHTableModel.class
+com\mycompany\QLVT\controller\ItemVatTuDDHController.class
 com\mycompany\QLVT\controller\KhoController$2.class
 com\mycompany\QLVT\Command\ActionAddCTPN.class
 com\mycompany\QLVT\Entity\HDNV.class
 com\mycompany\QLVT\controller\NhapHangController$2.class
 com\mycompany\QLVT\Entity\PhanManh.class
+com\mycompany\QLVT\Entity\CTDDH.class
 com\mycompany\QLVT\Utils\FomaterDate.class
 com\mycompany\QLVT\Command\ActionAdd.class
 com\mycompany\QLVT\Command\ActionListenerCommand.class
@@ -160,6 +118,7 @@ com\mycompany\QLVT\Entity\ChiTietPhieuNhap.class
 com\mycompany\QLVT\Entity\DDH.class
 com\mycompany\QLVT\Entity\ChiTietDDH.class
 com\mycompany\QLVT\Mapper\PhanManhMapper.class
+com\mycompany\QLVT\service\CTDDHService.class
 com\mycompany\QLVT\controller\KhoDetailController.class
 com\mycompany\QLVT\controller\NhanVienController$5.class
 com\mycompany\QLVT\dao\PhieuNhapDAO.class

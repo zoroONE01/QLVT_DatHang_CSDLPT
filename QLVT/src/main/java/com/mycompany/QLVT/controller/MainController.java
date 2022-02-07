@@ -3,6 +3,7 @@ package com.mycompany.QLVT.controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
+import com.mycompany.QLVT.App;
 import com.mycompany.QLVT.Command.DDHCommandHistory;
 import com.mycompany.QLVT.Command.KhoCommandHistory;
 import com.mycompany.QLVT.Command.VatTuCommandHistory;
@@ -206,9 +207,9 @@ public class MainController {
                 if (btNhanVien.isSelected()) {
                     try {
                         initWorkspace("NhanVienTableView");
-//                pnWorkspace.getChildren().clear();
-//               Parent parrent= App.loadFXML("NhanVienTableView");
-//               pnWorkspace.getChildren().add(parrent);
+//                        pnWorkspace.getChildren().clear();
+//                        Parent parrent = App.loadFXML("NhanVienTableView");
+//                        pnWorkspace.getChildren().add(parrent);
                     } catch (IOException ex) {
                         Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
                     }
