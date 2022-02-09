@@ -15,6 +15,7 @@ public class CTDDH {
     private String maVT;
     private int soLuong;
     private float donGia;
+    private String tenVT;
 
     public CTDDH(String maSoDDH, String maVT, int soLuong, float donGia) {
         this.maSoDDH = maSoDDH;
@@ -24,6 +25,14 @@ public class CTDDH {
     }
 
     public CTDDH() {
+    }
+
+    public String getTenVT() {
+        return tenVT;
+    }
+
+    public void setTenVT(String tenVT) {
+        this.tenVT = tenVT;
     }
 
     public String getMaSoDDH() {

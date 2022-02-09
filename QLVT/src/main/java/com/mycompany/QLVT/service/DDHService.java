@@ -33,7 +33,9 @@ public class DDHService {
     public int checkExist(String value, String type) {
         return ddhDAO.checkExist(value, type);
     }
-
+    public List<DDH> findAllForPhieuNhap(){
+        return ddhDAO.findAllForPhieuNhap();
+    }
     public void insert(DDH ddh, List<ItemVatTu> listItemVatTu) {
         CTDDHService ctdddhService = new CTDDHService();
         ddhDAO.insert(ddh);

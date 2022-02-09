@@ -51,8 +51,8 @@ com\mycompany\QLVT\controller\LoginController.class
 com\mycompany\QLVT\Command\VatTuUpdate.class
 com\mycompany\QLVT\dao\NhanVienDaoTest.class
 com\mycompany\QLVT\controller\BaoCaoController$1.class
+com\mycompany\QLVT\Mapper\ChiTietDatHangMapper.class
 com\mycompany\QLVT\model\VatTuCommandModel.class
-com\mycompany\QLVT\Report\TestReport.class
 com\mycompany\QLVT\dao\AbstractDAO.class
 com\mycompany\QLVT\model\ChiNhanhModel.class
 com\mycompany\QLVT\controller\DDHController$1.class
@@ -137,6 +137,7 @@ com\mycompany\QLVT\Mapper\PhanManhMapper.class
 com\mycompany\QLVT\service\CTDDHService.class
 com\mycompany\QLVT\controller\KhoDetailController.class
 com\mycompany\QLVT\controller\NhanVienController$5.class
+com\mycompany\QLVT\Mapper\DonDatHangMapper.class
 com\mycompany\QLVT\dao\PhieuNhapDAO.class
 com\mycompany\QLVT\Entity\NhanVien.class
 com\mycompany\QLVT\Command\ActionListenerCommandTest.class
