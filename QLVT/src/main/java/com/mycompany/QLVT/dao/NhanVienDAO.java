@@ -6,6 +6,7 @@
 package com.mycompany.QLVT.dao;
 
 import com.mycompany.QLVT.Entity.NhanVien;
+import com.mycompany.QLVT.Entity.TaiKhoan;
 import com.mycompany.QLVT.Mapper.NhanVienMapper;
 import com.mycompany.QLVT.Mapper.RowMapper;
 import java.sql.ResultSet;
@@ -68,6 +69,10 @@ public class NhanVienDAO extends AbstractDAO<NhanVien> {
     public int chuyenChiNhanh(int id, String maChiNhanhNew) {
         return updateProcedure("{call SP_ChuyenChiNhanh(?,?)}", id, maChiNhanhNew);
     }
+    public int createAccount(TaiKhoan tk)
+            {
+                 return executeStamentAndGetReturn("{call SP_TAO_LOGIN(?,?,?,?,?)}", tk.getTenDangNhap(),tk.getMatKhau(),tk.getMaNhanVien(),tk.getNhom(),"");
+            }
     
 //    public int testSP(int i)
 //            {

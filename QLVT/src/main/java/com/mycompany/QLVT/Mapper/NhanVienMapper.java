@@ -27,7 +27,7 @@ public class NhanVienMapper implements RowMapper<NhanVien>{
             nhanVien.setTen(rs.getString(3));
             nhanVien.setNgaySinh(FomaterDate.convertDateToString(rs.getDate(4)));
             nhanVien.setDiaChi(rs.getString(5));
-            nhanVien.setLuong(rs.getFloat(6));
+            nhanVien.setLuong(((Float)rs.getFloat(6)).floatValue());
             nhanVien.setMaCN(rs.getString(7));
             return nhanVien;
         } catch (SQLException ex) {

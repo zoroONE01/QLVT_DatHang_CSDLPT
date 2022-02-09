@@ -5,6 +5,8 @@
  */
 package com.mycompany.QLVT.Entity;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author MinhTo
@@ -16,14 +18,14 @@ public class NhanVien {
     private String ten;
     private String diaChi;
     private String ngaySinh;
-    private float luong;
+    private Float luong;
     private String maCN;
     private int trangThai=0;
 
     public NhanVien() {
     }
 
-    public NhanVien(int maNhanVien, String ho, String ten, String diaChi, String ngaySinh, float luong, String maCN) {
+    public NhanVien(int maNhanVien, String ho, String ten, String diaChi, String ngaySinh, Float luong, String maCN) {
         this.maNhanVien = maNhanVien;
         this.ho = ho;
         this.ten = ten;
@@ -75,11 +77,11 @@ public class NhanVien {
         this.ngaySinh = ngaySinh;
     }
 
-    public float getLuong() {
+    public Float getLuong() {
         return luong;
     }
 
-    public void setLuong(float luong) {
+    public void setLuong(Float luong) {
         this.luong = luong;
     }
 

@@ -26,6 +26,7 @@ public class ActionEdit extends ActionListenerCommand{
     @Override
     public boolean execute() {
         NhanVien nv=nhanVienService.findOne(nhanVien.getMaNhanVien());
+        
         nhanVienService.update(nhanVien);
         if(nhanVienService.findOne(nhanVien.getMaNhanVien())!=null)
             {

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="715.0" style="-fx-background-color: #fff;" stylesheets="@../css/text-input.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label fx:id="lbTitle" alignment="CENTER" layoutX="15.0" layoutY="-1.0" prefHeight="30.0" prefWidth="535.0" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #7819A5, #C767E6); -fx-background-radius: 20; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );" text="Chi Tiết Phiếu Xuất" textFill="WHITE" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="0.0">
+            <font>
+                <Font name="Calibri Bold" size="20.0" />
+            </font>
+            <padding>
+                <Insets left="20.0" />
+            </padding>
+        </Label>
+        <HBox alignment="CENTER" layoutX="15.0" layoutY="50.0" prefWidth="700.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+            <children>
+                <VBox alignment="CENTER" prefWidth="150.0" spacing="30.0">
+                    <children>
+                        <JFXTextField fx:id="tfNgay" focusColor="#c767e6" labelFloat="true" layoutX="10.0" layoutY="103.0" promptText="Ngày" />
+                        <JFXTextField fx:id="tfMaPhieuXuat" focusColor="#c767e6" labelFloat="true" promptText="Mã Phiếu Xuất" />
+                        <JFXTextField fx:id="tfKhachHang" focusColor="#c767e6" labelFloat="true" layoutX="10.0" layoutY="120.0" promptText="Khách Hàng" />
+                        <JFXTextField fx:id="tfKho" focusColor="#c767e6" labelFloat="true" layoutX="10.0" layoutY="120.0" promptText="Kho" />
+                    </children>
+                    <HBox.margin>
+                        <Insets right="10.0" />
+                    </HBox.margin>
+                </VBox>
+                <Separator orientation="VERTICAL" prefHeight="200.0" />
+                <ScrollPane hbarPolicy="NEVER" style="-fx-background-color: #fff;">
+                    <content>
+                        <VBox fx:id="vbListVT" prefHeight="248.0" prefWidth="559.0" spacing="10.0" style="-fx-background-color: #fff;">
+<!--                            <fx:include fx:id="ItemVatTuDDH" source="ItemVatTuDDH.fxml" />-->
+                            <padding>
+                                <Insets bottom="10.0" left="5.0" right="30.0" top="5.0" />
+                            </padding>
+                        </VBox>
+                    </content>
+                    <HBox.margin>
+                        <Insets />
+                    </HBox.margin>
+                </ScrollPane>
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>

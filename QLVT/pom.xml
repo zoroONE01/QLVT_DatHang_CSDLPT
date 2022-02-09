@@ -15,12 +15,14 @@
             <groupId>org.controlsfx</groupId>
             <artifactId>controlsfx</artifactId>
             <version>8.40.18</version>
+            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>com.jfoenix</groupId>
             <artifactId>jfoenix</artifactId>
             <version>8.0.10</version>
         </dependency>
+   
         <!-- sql server-->
         <dependency>
             <groupId>com.microsoft.sqlserver</groupId>
@@ -44,7 +46,7 @@
                     <groupId>org.olap4j</groupId>
                     <artifactId>olap4j</artifactId>
                 </exclusion>
-              <!-- <exclusion>
+                <!-- <exclusion>
                     <groupId>com.lowagie</groupId>
                     <artifactId>itext</artifactId>
                 </exclusion> -->
@@ -112,22 +114,25 @@
                     <excludes>
                         <exclude>module-info.java</exclude>
                     </excludes>
+                   
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.4</version>
-               
-                <executions>
+                <configuration>
+                    <mainClass>com.mycompany.QLVT.App</mainClass>
+                </configuration>
+                <!--                <executions>
                     <execution>
-                        <!-- Default configuration for running -->
-                        <!-- Usage: mvn clean javafx:run -->
+                         Default configuration for running 
+                         Usage: mvn clean javafx:run 
                         <id>default-cli</id>
                     </execution>
                     <execution>
-                        <!-- Configuration for manual attach debugging -->
-                        <!-- Usage: mvn clean javafx:run@debug -->
+                         Configuration for manual attach debugging 
+                         Usage: mvn clean javafx:run@debug 
                         <id>debug</id>
                         <configuration>
                             <options>
@@ -136,7 +141,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <!-- Configuration for automatic IDE debugging -->
+                         Configuration for automatic IDE debugging 
                         <id>ide-debug</id>
                         <configuration>
                             <options>
@@ -145,7 +150,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <!-- Configuration for automatic IDE profiling -->
+                         Configuration for automatic IDE profiling 
                         <id>ide-profile</id>
                         <configuration>
                             <options>
@@ -157,7 +162,7 @@
                             </options>
                         </configuration>
                     </execution>
-                </executions>
+                </executions>-->
             </plugin>
         </plugins>
     </build>
@@ -169,10 +174,11 @@
             </activation>
             <dependencies>
                 <dependency>
-                    <groupId>org.openjfx</groupId>
-                    <artifactId>javafx-controls</artifactId>
-                    <version>11</version>
+                    <groupId>org.controlsfx</groupId>
+                    <artifactId>controlsfx</artifactId>
+                    <version>8.40.11</version>
                 </dependency>
+
                 <dependency>
                     <groupId>org.openjfx</groupId>
                     <artifactId>javafx-fxml</artifactId>

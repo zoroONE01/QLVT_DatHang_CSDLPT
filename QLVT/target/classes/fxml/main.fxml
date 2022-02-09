@@ -94,136 +94,134 @@
                             </children>
                         </AnchorPane>
 
-<!--<<<<<<< HEAD
-                              <VBox layoutX="15.0" layoutY="110.0" prefWidth="120.0" spacing="10.0" AnchorPane.topAnchor="110.0">
-=======-->
-                        <VBox layoutX="15.0" layoutY="110.0" prefWidth="120.0" spacing="10.0" AnchorPane.topAnchor="150.0">
+
+                        <VBox layoutX="15.0" layoutY="110.0" prefWidth="120.0" spacing="10.0" AnchorPane.topAnchor="110.0">
                             <children>
-                        <RadioButton fx:id="btDashboard" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Dashboard" textFill="#bbbbbb">
-                           <font>
-                              <Font name="Calibri Bold" size="14.0" />
-                           </font>
-                           <graphic>
+                                <RadioButton fx:id="btDashboard" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Dashboard" textFill="#bbbbbb">
+                                    <font>
+                                        <Font name="Calibri Bold" size="14.0" />
+                                    </font>
+                                    <graphic>
                                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
                                                 <Image url="@../img/icons8_dashboard_layout_20px_2.png" />
                                             </image>
                                         </ImageView>
-                           </graphic>
-                           <padding>
-                              <Insets left="15.0" top="7.0" />
-                           </padding>
-                        </RadioButton>
-                        <RadioButton fx:id="btNhanVien" alignment="TOP_LEFT" layoutX="10.0" layoutY="235.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Nhân Viên" textFill="#bbbbbb">
-                           <font>
-                              <Font name="Calibri Bold" size="14.0" />
-                           </font>
-                           <graphic>
+                                    </graphic>
+                                    <padding>
+                                        <Insets left="15.0" top="7.0" />
+                                    </padding>
+                                </RadioButton>
+                                <RadioButton fx:id="btNhanVien" alignment="TOP_LEFT" layoutX="10.0" layoutY="235.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Nhân Viên" textFill="#bbbbbb">
+                                    <font>
+                                        <Font name="Calibri Bold" size="14.0" />
+                                    </font>
+                                    <graphic>
                                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
                                                 <Image url="@../img/icons8_member_20px.png" />
                                             </image>
                                         </ImageView>
-                           </graphic>
-                           <padding>
-                              <Insets left="15.0" top="7.0" />
-                           </padding>
-                        </RadioButton>
-                        <RadioButton fx:id="btKho" alignment="TOP_LEFT" layoutX="10.0" layoutY="280.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Kho" textFill="#bbbbbb">
-                           <font>
-                              <Font name="Calibri Bold" size="14.0" />
-                           </font>
-                           <graphic>
+                                    </graphic>
+                                    <padding>
+                                        <Insets left="15.0" top="7.0" />
+                                    </padding>
+                                </RadioButton>
+                                <RadioButton fx:id="btKho" alignment="TOP_LEFT" layoutX="10.0" layoutY="280.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Kho" textFill="#bbbbbb">
+                                    <font>
+                                        <Font name="Calibri Bold" size="14.0" />
+                                    </font>
+                                    <graphic>
                                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
                                                 <Image url="@../img/icons8_warehouse_20px.png" />
                                             </image>
                                         </ImageView>
-                           </graphic>
-                           <padding>
-                              <Insets left="15.0" top="7.0" />
-                           </padding>
-                        </RadioButton>
-                        <RadioButton fx:id="btVatTu" alignment="TOP_LEFT" layoutX="10.0" layoutY="325.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Vật Tư" textFill="#bbbbbb">
-                           <font>
-                              <Font name="Calibri Bold" size="14.0" />
-                           </font>
-                           <graphic>
+                                    </graphic>
+                                    <padding>
+                                        <Insets left="15.0" top="7.0" />
+                                    </padding>
+                                </RadioButton>
+                                <RadioButton fx:id="btVatTu" alignment="TOP_LEFT" layoutX="10.0" layoutY="325.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Vật Tư" textFill="#bbbbbb">
+                                    <font>
+                                        <Font name="Calibri Bold" size="14.0" />
+                                    </font>
+                                    <graphic>
                                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
                                                 <Image url="@../img/icons8_layers_20px.png" />
                                             </image>
                                         </ImageView>
-                           </graphic>
-                           <padding>
-                              <Insets left="15.0" top="7.0" />
-                           </padding>
-                        </RadioButton>
-                        <RadioButton fx:id="btDatHang" alignment="TOP_LEFT" layoutX="10.0" layoutY="370.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Đặt Hàng" textFill="#bbbbbb">
-                           <font>
-                              <Font name="Calibri Bold" size="14.0" />
-                           </font>
-                           <graphic>
+                                    </graphic>
+                                    <padding>
+                                        <Insets left="15.0" top="7.0" />
+                                    </padding>
+                                </RadioButton>
+                                <RadioButton fx:id="btDatHang" alignment="TOP_LEFT" layoutX="10.0" layoutY="370.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Đặt Hàng" textFill="#bbbbbb">
+                                    <font>
+                                        <Font name="Calibri Bold" size="14.0" />
+                                    </font>
+                                    <graphic>
                                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
                                                 <Image url="@../img/icons8_purchase_order_20px_1.png" />
                                             </image>
                                         </ImageView>
-                           </graphic>
-                           <padding>
-                              <Insets left="15.0" top="7.0" />
-                           </padding>
-                        </RadioButton>
-                        <RadioButton fx:id="btXuatHang" alignment="TOP_LEFT" layoutX="10.0" layoutY="190.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Xuất Hàng" textFill="#bbbbbb">
-                           <font>
-                              <Font name="Calibri Bold" size="14.0" />
-                           </font>
-                           <graphic>
-                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../img/document_delivery_20px.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <padding>
-                              <Insets left="15.0" top="7.0" />
-                           </padding>
-                        </RadioButton>
-                        <RadioButton fx:id="btPhieuNhap" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="35.0" prefWidth="124.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Phiếu Nhập" textFill="#bbbbbb">
-                           <font>
-                              <Font name="Calibri Bold" size="14.0" />
-                           </font>
-                           <graphic>
-                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../img/icons8_purchase_order_20px_1.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <padding>
-                              <Insets left="6.0" top="7.0" />
-                           </padding>
-                        </RadioButton>
-                        <RadioButton fx:id="btBaoCao" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="35.0" prefWidth="124.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Báo cáo" textFill="#bbbbbb">
-                           <font>
-                              <Font name="Calibri Bold" size="14.0" />
-                           </font>
-                           <graphic>
-                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../img/icons8_purchase_order_20px_1.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <padding>
-                              <Insets left="6.0" top="7.0" />
-                           </padding>
-                        </RadioButton>
+                                    </graphic>
+                                    <padding>
+                                        <Insets left="15.0" top="7.0" />
+                                    </padding>
+                                </RadioButton>
+                                <RadioButton fx:id="btXuatHang" alignment="TOP_LEFT" layoutX="10.0" layoutY="190.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Xuất Hàng" textFill="#bbbbbb">
+                                    <font>
+                                        <Font name="Calibri Bold" size="14.0" />
+                                    </font>
+                                    <graphic>
+                                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../img/document_delivery_20px.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                    <padding>
+                                        <Insets left="15.0" top="7.0" />
+                                    </padding>
+                                </RadioButton>
+                                <RadioButton fx:id="btPhieuNhap" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="35.0" prefWidth="124.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Phiếu Nhập" textFill="#bbbbbb">
+                                    <font>
+                                        <Font name="Calibri Bold" size="14.0" />
+                                    </font>
+                                    <graphic>
+                                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../img/icons8_purchase_order_20px_1.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                    <padding>
+                                        <Insets left="6.0" top="7.0" />
+                                    </padding>
+                                </RadioButton>
+                                <RadioButton fx:id="btBaoCao" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="35.0" prefWidth="124.0" styleClass="btn-slidebar" stylesheets="@../css/main.css" text="Báo cáo" textFill="#bbbbbb">
+                                    <font>
+                                        <Font name="Calibri Bold" size="14.0" />
+                                    </font>
+                                    <graphic>
+                                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../img/icons8_purchase_order_20px_1.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                    <padding>
+                                        <Insets left="6.0" top="7.0" />
+                                    </padding>
+                                </RadioButton>
                             </children>
                         </VBox>
                     </children>
                 </AnchorPane>
-            <AnchorPane fx:id="pnWorkspace" layoutX="165.0" layoutY="100.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="165.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="100.0" />
+                <AnchorPane fx:id="pnWorkspace" layoutX="165.0" layoutY="100.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="165.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="100.0" />
             </children>
         </AnchorPane>
     </children>

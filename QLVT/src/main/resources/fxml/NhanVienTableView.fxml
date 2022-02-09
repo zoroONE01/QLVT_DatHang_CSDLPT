@@ -8,13 +8,18 @@
 <?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -226,5 +231,59 @@
       </Label>
       <JFXComboBox fx:id="cbbChangeLocation" layoutX="42.0" layoutY="379.0" prefHeight="30.0" prefWidth="162.0" AnchorPane.bottomAnchor="127.0" AnchorPane.leftAnchor="42.0" />
       <JFXButton fx:id="btnReportDSNV" layoutX="36.0" layoutY="8.0" onAction="#actionReportDSNV" text="ReportDSNV" />
+      <StackPane fx:id="stackPaneCreateAccount" layoutX="116.0" layoutY="51.0" prefHeight="333.0" prefWidth="455.0">
+         <children>
+            <AnchorPane prefHeight="356.0" prefWidth="455.0">
+               <children>
+                  <JFXTextField fx:id="tfTenDangNhap_TaiKhoan" focusColor="#c767e6" labelFloat="true" layoutX="97.0" layoutY="159.0" prefHeight="25.0" prefWidth="281.0" promptText="Tên đăng nhập">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></JFXTextField>
+                  <JFXTextField fx:id="tfMatKhau_TaiKhoan" focusColor="#c767e6" labelFloat="true" layoutX="97.0" layoutY="207.0" prefHeight="25.0" prefWidth="281.0" promptText="Mật khẩu">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></JFXTextField>
+                  <JFXComboBox fx:id="cbChiNhanh_TaiKhoan" disable="true" layoutX="97.0" layoutY="58.0" prefHeight="38.0" prefWidth="281.0" promptText="133132131" style="-fx-background-color: white; -fx-opacity: 0.6;" styleClass="text-red" unFocusColor="BLACK">
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect></JFXComboBox>
+                  <JFXComboBox fx:id="cbNhanVien" layoutX="97.0" layoutY="101.0" prefHeight="38.0" prefWidth="281.0" style="-fx-background-color: white; -fx-opacity: 1;" unFocusColor="#2f2a2a">
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets></JFXComboBox>
+                  <Label fx:id="lbTaiKhoan" alignment="CENTER" layoutX="110.0" prefHeight="47.0" prefWidth="239.0" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #7819A5, #C767E6); -fx-background-radius: 20; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );" text="Tài Khoản" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Bold" size="20.0" />
+                     </font>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </Label>
+                  <RadioButton fx:id="radioButton2" layoutX="202.0" layoutY="253.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="95.0" text="RadioButton" />
+                  <RadioButton fx:id="radioButton1" layoutX="97.0" layoutY="252.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="105.0" text="RadioButton">
+                     <font>
+                        <Font size="13.0" />
+                     </font></RadioButton>
+               </children>
+            </AnchorPane>
+         </children>
+      </StackPane>
    </children>
 </AnchorPane>

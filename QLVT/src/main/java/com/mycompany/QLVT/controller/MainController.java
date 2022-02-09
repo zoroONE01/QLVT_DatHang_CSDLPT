@@ -157,6 +157,8 @@ public class MainController {
 
         btDatHang.setToggleGroup(group);
         btXuatHang.setToggleGroup(group);
+        btPhieuNhap.setToggleGroup(group);
+        btBaoCao.setToggleGroup(group);
 
         group.selectedToggleProperty().addListener((ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) -> {
             if (newValue != null) {
@@ -240,11 +242,11 @@ public class MainController {
                     lbTitle.setText("Đặt Hàng");
                 }
                 if (btXuatHang.isSelected()) {
-//                    try {
-//                        initWorkspace("DDH");
-//                    } catch (IOException ex) {
-//                        Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
-//                    }
+                    try {
+                        initWorkspace("PhieuXuat");
+                    } catch (IOException ex) {
+                        Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     lbTitle.setText("Xuất Hàng");
                 }
                 if (btPhieuNhap.isSelected()) {
@@ -253,7 +255,7 @@ public class MainController {
                     } catch (IOException ex) {
                         Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    lbTitle.setText("PhieuNhap");
+                    lbTitle.setText("Nhập Hàng");
                 }
                  if (btBaoCao.isSelected()) {
                     try {
@@ -333,6 +335,12 @@ public class MainController {
         btDatHang.getStyleClass().add("toggle-button");
         btXuatHang.getStyleClass().remove("radio-button");
         btXuatHang.getStyleClass().add("toggle-button");
+        
+        btBaoCao.getStyleClass().remove("radio-button");
+        btBaoCao.getStyleClass().add("toggle-button");
+        
+        btPhieuNhap.getStyleClass().remove("radio-button");
+        btPhieuNhap.getStyleClass().add("toggle-button");
 
     }
 }

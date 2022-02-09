@@ -53,7 +53,8 @@ public class AbstractDAO<T> implements GenericDAO<T> {
 
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                results.add(rowMapper.mapRow(resultSet));
+              
+               results.add(rowMapper.mapRow(resultSet));
             }
             return results;
 
@@ -183,7 +184,76 @@ public class AbstractDAO<T> implements GenericDAO<T> {
             e.printStackTrace();
         }
     }
+    
+    private void setParameterRegisterOutParameter(PreparedStatement statement, Object... parameters) {
+        try {
 
+            for (int i = 0; i < parameters.length-1; i++) {
+                Object parameter = parameters[i];
+                int index = i + 1;
+                if (parameter instanceof String) {
+                    statement.setString(index, (String) parameter);
+                } else if (parameter instanceof Integer) {
+                    statement.setInt(index, (Integer) parameter);
+                } else if (parameter instanceof Float) {
+                    statement.setFloat(index, (Float) parameter);
+                } else if (parameter instanceof Long) {
+                    statement.setLong(index, (Long) parameter);
+
+                } else if (parameter instanceof Timestamp) {
+                    statement.setTimestamp(index, (Timestamp) parameter);
+                } else if (parameter instanceof java.sql.Date) {
+
+                    statement.setDate(index, (java.sql.Date) parameter);
+                } else if (parameter instanceof Double) {
+                    statement.setDouble(index, (Double) parameter);
+                } else {
+                    statement.setNull(index, Types.NULL);
+                }
+                // đừng để dữ liệu null ==>xử lí đầu vào trước khi truy vấn                           
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public int executeStamentAndGetReturn(String sql, Object... parameters)
+    {   
+         Connection connection = null;
+         CallableStatement st=null;
+         int result=-1;
+        try {
+            connection = getConnection();
+            connection.setAutoCommit(false);
+            st = connection.prepareCall(sql);
+            setParameterRegisterOutParameter(st, parameters);
+            st.registerOutParameter(parameters.length,Types.INTEGER);     
+            st.execute();
+            result=st.getInt(parameters.length);
+            return result;
+        } catch (SQLException ex) {
+            if (connection != null) {
+                try {
+                    System.out.println(ex.getMessage());
+                    connection.rollback();
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        }
+        finally {
+            try {
+                if (connection != null) {
+                    DBConnectUtil.close();
+                }
+                if (st!= null) {
+                    st.close();
+                }
+            } catch (SQLException e2) {
+                e2.printStackTrace();
+            }
+        }
+        return result;
+    }
     @Override
     public int update(String sql, Object... parameters) {
         Connection connection = null;
