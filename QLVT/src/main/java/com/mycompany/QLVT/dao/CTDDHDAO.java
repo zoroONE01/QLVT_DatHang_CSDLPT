@@ -9,6 +9,7 @@ import com.mycompany.QLVT.Entity.CTDDH;
 import com.mycompany.QLVT.Entity.DDH;
 import com.mycompany.QLVT.Entity.ItemVatTu;
 import com.mycompany.QLVT.Mapper.CTDDHMapper;
+import com.mycompany.QLVT.Mapper.ChiTietDatHangMapper;
 import java.util.List;
 
 /**
@@ -29,7 +30,11 @@ public class CTDDHDAO extends AbstractDAO<CTDDH> {
         List<CTDDH> list = queryProcedure("{call spShowDSVatTuDatHang(?)}", new CTDDHMapper(), id);
         return list.isEmpty() ? null : list;
     }
-
+    public List<CTDDH> findAllByMaDon(String id)
+    {
+        List<CTDDH> list = queryProcedure("{call SP_DS_CTDDH_BY_MADON(?)}", new ChiTietDatHangMapper(), id);
+        return list.isEmpty() ? null : list;
+    }
 //    public int checkExist(String value, String type) {
 //        return queryReturnOfProcedure("{call spCheckID(?,?)}", value, type);
 //    }

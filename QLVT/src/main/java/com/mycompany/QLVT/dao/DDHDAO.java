@@ -7,6 +7,7 @@ package com.mycompany.QLVT.dao;
 
 import com.mycompany.QLVT.Entity.DDH;
 import com.mycompany.QLVT.Mapper.DDHMapper;
+import com.mycompany.QLVT.Mapper.DonDatHangMapper;
 import java.util.List;
 
 /**
@@ -16,9 +17,9 @@ import java.util.List;
 public class DDHDAO extends AbstractDAO<DDH> {
 
 
-//    public List<DonDatHang> findAll() {
-//        return queryProcedure("{call SP_DS_DHH}", new DonDatHangMapper());
-//            }
+  public List<DDH> findAllForPhieuNhap() {
+       return queryProcedure("{call SP_DS_DHH}", new DonDatHangMapper());
+           }
     public List<DDH> findAll() {
         return queryProcedure("{call SP_DS_DHH}", new DDHMapper());
 

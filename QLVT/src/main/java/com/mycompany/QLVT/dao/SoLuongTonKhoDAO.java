@@ -7,7 +7,6 @@ package com.mycompany.QLVT.dao;
 
 import com.mycompany.QLVT.Entity.DDH;
 import com.mycompany.QLVT.Entity.SoLuongTonKho;
-import com.mycompany.QLVT.Mapper.DDHMapper;
 import com.mycompany.QLVT.Mapper.SoLuongTonKhoMapper;
 import java.util.List;
 

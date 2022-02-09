@@ -186,8 +186,8 @@
             <TableView fx:id="tbCTPN" layoutX="506.0" layoutY="35.0" prefHeight="206.0" prefWidth="337.0" stylesheets="@../css/table-view.css" AnchorPane.rightAnchor="20.0">
                <columns>
                   <TableColumn fx:id="clMaPNCT" minWidth="0.0" prefWidth="58.0" text="Mã Phiếu Nhập" />
-                  <TableColumn fx:id="clMaVT" minWidth="0.0" prefWidth="73.0" text="Mã Vật Tư" />
-                  <TableColumn fx:id="clSoLuong" minWidth="55.0" prefWidth="94.0" text="Số Lượng" />
+                  <TableColumn fx:id="clMaVT" minWidth="0.0" prefWidth="21.0" text="Vật Tư" />
+                  <TableColumn fx:id="clSoLuong" minWidth="42.0" prefWidth="140.0" text="Số Lượng" />
                   <TableColumn fx:id="clDonGia" minWidth="67.0" prefWidth="67.0" text="Đơn giá" />
                </columns>
                <columnResizePolicy>
@@ -272,8 +272,8 @@
                         </VBox>
                         <TableView fx:id="tbCTDDH" prefHeight="239.0" prefWidth="458.0" stylesheets="@../css/table-view.css">
                            <columns>
-                              <TableColumn fx:id="clMaDDH_CTDDH" minWidth="92.0" prefWidth="92.0" text="Mã Đơn Đặt" />
-                              <TableColumn fx:id="clMaVT_CTDDH" minWidth="0.0" prefWidth="126.0" text="Mã Vật Tư" />
+                              <TableColumn fx:id="clMaDDH_CTDDH" minWidth="88.0" prefWidth="134.0" text="Mã Đơn Đặt" />
+                              <TableColumn fx:id="clMaVT_CTDDH" minWidth="0.0" prefWidth="108.0" text="Vật Tư" />
                               <TableColumn fx:id="clSL_CTDDH" minWidth="31.0" prefWidth="53.0" text="Số Lượng" />
                               <TableColumn fx:id="clDonGia_CTDDH" minWidth="0.0" prefWidth="104.0" text="Đơn Giá" />
                            </columns>

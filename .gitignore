@@ -1,7 +1,3 @@
 *.class
-<<<<<<< HEAD
 DBConnectUtil.java
-=======
-DBConnectUtil.java
-*.DBConnectUtil.java
->>>>>>> 49315200d4389259fc40f356766f8df2e95f9cf6
+

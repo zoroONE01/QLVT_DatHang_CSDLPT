@@ -14,18 +14,22 @@ import com.mycompany.QLVT.Command.ActionAddCTPN;
 import com.mycompany.QLVT.Command.ActionAddPhieuNhap;
 import com.mycompany.QLVT.Command.ActionHistory;
 import com.mycompany.QLVT.Command.ActionListenerCommand;
+import com.mycompany.QLVT.Entity.CTDDH;
 import com.mycompany.QLVT.Entity.ChiTietDDH;
 import com.mycompany.QLVT.Entity.ChiTietPhieuNhap;
 import com.mycompany.QLVT.Entity.DDH;
 import com.mycompany.QLVT.Entity.NhanVien;
 import com.mycompany.QLVT.Entity.PhieuNhap;
+import com.mycompany.QLVT.Mapper.DonDatHangMapper;
 import com.mycompany.QLVT.Utils.FomaterDate;
 import com.mycompany.QLVT.Utils.ValidationRegEx;
 import com.mycompany.QLVT.model.ChiTietDDHModel;
 import com.mycompany.QLVT.model.ChiTietPhieuNhapModel;
 import com.mycompany.QLVT.model.DDHTableModel;
 import com.mycompany.QLVT.model.PhieuNhapModel;
+import com.mycompany.QLVT.service.CTDDHService;
 import com.mycompany.QLVT.service.ChiTietPhieuNhapService;
+import com.mycompany.QLVT.service.DDHService;
 import com.mycompany.QLVT.service.PhieuNhapService;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -179,19 +183,19 @@ public class NhapHangController {
     private JFXTextField tfDonGia_CTPN;
 
     @FXML
-    private TableView<ChiTietDDH> tbCTDDH;
+    private TableView<CTDDH> tbCTDDH;
 
     @FXML
-    private TableColumn<ChiTietDDH, String> clMaDDH_CTDDH;
+    private TableColumn<CTDDH, String> clMaDDH_CTDDH;
 
     @FXML
-    private TableColumn<ChiTietDDH, String> clMaVT_CTDDH;
+    private TableColumn<CTDDH, String> clMaVT_CTDDH;
 
     @FXML
-    private TableColumn<ChiTietDDH, Integer> clSL_CTDDH;
+    private TableColumn<CTDDH, Integer> clSL_CTDDH;
 
     @FXML
-    private TableColumn<ChiTietDDH, Float> clDonGia_CTDDH;
+    private TableColumn<CTDDH, Float> clDonGia_CTDDH;
 
     @FXML
     private ContextMenu contextMenuPN;
@@ -212,6 +216,8 @@ public class NhapHangController {
     private ChiTietDDHModel chiTietDDHModel;
     private ChiTietPhieuNhapService chiTietPhieuNhapService = new ChiTietPhieuNhapService();
     private ActionHistory history = new ActionHistory();
+    private DDHService donDatHangService=new DDHService();
+    private CTDDHService chiTietDatHangService=new CTDDHService();
 
     @FXML
     void redoCommand(ActionEvent event) {
@@ -254,11 +260,13 @@ public class NhapHangController {
     @FXML
     void initialize() {
         
-
         DDHTableModel ddhModel = new DDHTableModel();
         PhieuNhapModel pnModel = new PhieuNhapModel();
         ChiTietPhieuNhapModel ctpnm = new ChiTietPhieuNhapModel();
         ChiTietDDHModel ctddhm = new ChiTietDDHModel();
+        List<DDH> donDatHangs=new ArrayList();
+        donDatHangs=donDatHangService.findAllForPhieuNhap();
+        ddhModel.setDDHList(donDatHangs);
         initTableDHFromDatabase(ddhModel, pnModel, ctpnm, ctddhm);
     }
 
@@ -297,7 +305,7 @@ public class NhapHangController {
         clSoLuong.setCellValueFactory(new PropertyValueFactory<>("soLuong"));
         clDonGia.setCellValueFactory(new PropertyValueFactory<>("donGia"));
         //CT DDH
-        clMaDDH_CTDDH.setCellValueFactory(new PropertyValueFactory<>("maDDH"));
+        clMaDDH_CTDDH.setCellValueFactory(new PropertyValueFactory<>("maSoDDH"));
         clMaVT_CTDDH.setCellValueFactory(new PropertyValueFactory<>("tenVT"));
         clSL_CTDDH.setCellValueFactory(new PropertyValueFactory<>("soLuong"));
         clDonGia_CTDDH.setCellValueFactory(new PropertyValueFactory<>("donGia"));
@@ -307,7 +315,7 @@ public class NhapHangController {
 //            list = MainController.DDHCommandHistory.getCommandStack().peek().getList();
 //        }
         // ddhModel.setDDHList2(list);
-        tbDSDDH.setItems(ddhModel.getDDHList2());
+        tbDSDDH.setItems(ddhModel.getDDHList());
 //        tbDSDDH.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
 //            if (newSelection != null) {
 //                btEdit.setDisable(false);
@@ -338,13 +346,15 @@ public class NhapHangController {
         //set items for TABLE PHIEUNHAP
         tbPN.setItems(phieuNhapModel.getPhieuNhapList());
         tbCTPN.setItems(chiTietPhieuNhapModel.getChiTietPhieuNhapList());
-        tbCTDDH.setItems(chiTietDDHModel.getChiTietDDHList2());
+        tbCTDDH.setItems(chiTietDDHModel.getChiTietDDHList());
 
         tbCTDDH.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             chiTietDDHModel.setCurrentChiTietDDH(newValue);
+            if(newValue!=null){
             tfMaVT_CTPN.setText(newValue.getMaVT());
             tfSoLuong_CTPN.setText(String.valueOf(newValue.getSoLuong()));
             tfDonGia_CTPN.setText(String.valueOf(newValue.getDonGia()));
+            }
         });
         tbPN.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             phieuNhapModel.setCurrentPhieuNhap(newValue);
@@ -482,7 +492,9 @@ public class NhapHangController {
                     ButtonType buttonTypeOk = new ButtonType("Okay", ButtonBar.ButtonData.OK_DONE);
                     dialog.getDialogPane().getButtonTypes().add(buttonTypeOk);
                     Button btn = (Button) dialog.getDialogPane().lookupButton(buttonTypeOk);
-
+                    
+                    String maDonDat=phieuNhapModel.getCurrentPhieuNhap().getMaDDH();
+                    initTableCTDDH(maDonDat);
                     btn.addEventFilter(ActionEvent.ACTION, evt -> {
                         boolean isValidForm = true;
                         try {
@@ -592,10 +604,11 @@ public class NhapHangController {
         }
     }
 
-    public void initTableCTDDH() {
+    public void initTableCTDDH(String id) {
         tbCTDDH.getItems().clear();
-        List<ChiTietDDH> listPN = new ArrayList();
-
+        List<CTDDH> listDDH = new ArrayList();
+        listDDH=chiTietDatHangService.findAllByMaDon(id);
+        chiTietDDHModel.setChiTietDDHList(listDDH);
     }
 
     public void initTableChiTietPhieuNhap(String maPN) {

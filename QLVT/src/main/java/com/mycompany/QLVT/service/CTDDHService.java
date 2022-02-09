@@ -30,6 +30,10 @@ public class CTDDHService {
     public int delete(String id) {
         return ctDonDatHangDAO.delete(id);
     }
+    public List<CTDDH> findAllByMaDon(String id)
+    {
+        return ctDonDatHangDAO.findAllByMaDon(id);
+    }
 
 //    public int checkExist(String value, String type) {
 //        return ctDonDatHangDAO.checkExist(value, type);

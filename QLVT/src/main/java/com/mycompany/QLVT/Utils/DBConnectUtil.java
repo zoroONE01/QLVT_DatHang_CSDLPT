@@ -36,7 +36,7 @@ public class DBConnectUtil {
     public static String url = "jdbc:sqlserver://DESKTOP-HFPR9E7\\SITE0;databaseName=QLVT";
     public static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     public static String usernameHTKN = "HTKN";
-    public static String passwordHTKN = "123456";
+    public static String passwordHTKN = "sa";
     public static String url1 = "jdbc:sqlserver://DESKTOP-HFPR9E7\\SITE1;databaseName=QLVT";
     public static String driver1 = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     public static String url2 = "jdbc:sqlserver://DESKTOP-HFPR9E7\\SITE2;databaseName=QLVT";
