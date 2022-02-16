@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="680" pageHeight="842" columnWidth="640" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0bd59de8-24ce-41fb-931a-926689ec7d7b">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="257"/>
-	<property name="ireport.y" value="324"/>
+	<property name="ireport.x" value="307"/>
+	<property name="ireport.y" value="240"/>
 	<style name="Title" isBlankWhenNull="false" fontName="DejaVu Sans" fontSize="12" isBold="false" isItalic="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 	<style name="SubTitle" forecolor="#666666" isBlankWhenNull="true" fontName="DejaVu Sans" fontSize="12" isBold="true" isItalic="true" isUnderline="true" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 	<style name="Column header" mode="Opaque" forecolor="#000000" fontName="DejaVu Sans" fontSize="12" isBold="true" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252"/>
@@ -66,7 +66,7 @@
 		</groupHeader>
 		<groupFooter>
 			<band height="56" splitType="Stretch">
-				<textField pattern="#,##0.00">
+				<textField pattern="#,##0.000">
 					<reportElement x="540" y="0" width="100" height="56" uuid="7de520a2-402e-4cf7-be8d-75b7cb74267f"/>
 					<textElement verticalAlignment="Middle">
 						<font size="12"/>
@@ -284,7 +284,7 @@
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{SOLUONG}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="#,##0.000;-#,##0.000">
 				<reportElement style="Detail" x="540" y="0" width="100" height="50" uuid="6c4124f8-2100-4614-86b8-f96d09a34015"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{ThanhTien}]]></textFieldExpression>

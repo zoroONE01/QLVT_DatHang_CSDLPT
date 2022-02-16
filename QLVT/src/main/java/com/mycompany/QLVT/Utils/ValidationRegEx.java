@@ -229,7 +229,7 @@ public class ValidationRegEx {
 //        System.out.println("so " + so);
 //        System.out.println("vung " + vung);
 
-        String ten = "minhto123";
+        String ten = "minhto123    ";
         System.out.println(validationTextAndNumRegex(ten));
 //         
 //          Pattern pattern = Pattern.compile(tiengVietRegex);

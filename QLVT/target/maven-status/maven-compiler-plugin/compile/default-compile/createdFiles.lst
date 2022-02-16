@@ -2,6 +2,7 @@ com\mycompany\QLVT\controller\NhanVienViewControllerTest.class
 com\mycompany\QLVT\Command\KhoInsert.class
 com\mycompany\QLVT\controller\NhanVienViewControllerTest$8.class
 com\mycompany\QLVT\Command\ActionAddPhieuNhap.class
+com\mycompany\QLVT\controller\NhapHangController$2$1.class
 com\mycompany\QLVT\Entity\ItemVatTu.class
 com\mycompany\QLVT\dao\GenericDAO.class
 com\mycompany\QLVT\controller\MainController$2.class
@@ -29,6 +30,7 @@ com\mycompany\QLVT\controller\KhoController.class
 com\mycompany\QLVT\controller\LoginController$1.class
 com\mycompany\QLVT\Mapper\KhoMapper.class
 com\mycompany\QLVT\App.class
+com\mycompany\QLVT\controller\BaoCaoController$3.class
 com\mycompany\QLVT\controller\NhanVienController$4.class
 com\mycompany\QLVT\controller\KhoController$3.class
 com\mycompany\QLVT\controller\NhanVienController$12.class
@@ -69,7 +71,6 @@ com\mycompany\QLVT\controller\NhanVienController$1.class
 com\mycompany\QLVT\Utils\EnumChiNhanh.class
 com\mycompany\QLVT\controller\NhanVienController$10$1.class
 com\mycompany\QLVT\dao\DDHDAO.class
-com\mycompany\QLVT\controller\NhapHangController$1$1.class
 com\mycompany\QLVT\controller\NhanVienViewControllerTest$6.class
 com\mycompany\QLVT\Utils\ValidationRegEx.class
 com\mycompany\QLVT\service\NumberService.class
@@ -119,6 +120,7 @@ com\mycompany\QLVT\controller\KhoController$2.class
 com\mycompany\QLVT\Command\ActionAddCTPN.class
 com\mycompany\QLVT\Entity\HDNV.class
 com\mycompany\QLVT\controller\NhapHangController$2.class
+com\mycompany\QLVT\controller\NhapHangController$3.class
 com\mycompany\QLVT\Entity\PhanManh.class
 com\mycompany\QLVT\Entity\CTDDH.class
 com\mycompany\QLVT\Utils\FomaterDate.class

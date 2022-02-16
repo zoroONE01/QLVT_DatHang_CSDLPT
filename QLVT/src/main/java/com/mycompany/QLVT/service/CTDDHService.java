@@ -34,7 +34,9 @@ public class CTDDHService {
     {
         return ctDonDatHangDAO.findAllByMaDon(id);
     }
-
+     public List<CTDDH> findAllByMaDonNotCTPN(String id){
+     return ctDonDatHangDAO.findAllByMaDonNotCTPN(id);
+     }
 //    public int checkExist(String value, String type) {
 //        return ctDonDatHangDAO.checkExist(value, type);
 //    }

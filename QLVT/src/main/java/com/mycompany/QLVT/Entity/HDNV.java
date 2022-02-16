@@ -17,6 +17,9 @@ public class HDNV {
     String type;
     int maNV;
 
+    public HDNV() {
+    }
+
     public HDNV(String dateFrom, String dateTo, int maNV) {
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;

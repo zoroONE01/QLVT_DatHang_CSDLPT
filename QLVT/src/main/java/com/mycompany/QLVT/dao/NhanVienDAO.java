@@ -25,9 +25,9 @@ public class NhanVienDAO extends AbstractDAO<NhanVien> {
         return queryProcedure("exec SP_DSNhanVien", new NhanVienMapper());
     }
 
-    public List<NhanVien> findAllOtherSite() {
-        return queryProcedure("exec LINK1.QLVT.DBO.SP_DSNhanVien", new NhanVienMapper());
-    }
+//    public List<NhanVien> findAllOtherSite() {
+//        return queryProcedure("exec LINK1.QLVT.DBO.SP_DSNhanVien", new NhanVienMapper());
+//    }
 
     public NhanVien findOne(int id) {
         List<NhanVien> listNV = queryProcedure("{call SP_LayNhanVien(?)}", new NhanVienMapper(), id);

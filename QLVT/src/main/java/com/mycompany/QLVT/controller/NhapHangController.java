@@ -21,6 +21,7 @@ import com.mycompany.QLVT.Entity.DDH;
 import com.mycompany.QLVT.Entity.NhanVien;
 import com.mycompany.QLVT.Entity.PhieuNhap;
 import com.mycompany.QLVT.Mapper.DonDatHangMapper;
+import com.mycompany.QLVT.Utils.DBConnectUtil;
 import com.mycompany.QLVT.Utils.FomaterDate;
 import com.mycompany.QLVT.Utils.ValidationRegEx;
 import com.mycompany.QLVT.model.ChiTietDDHModel;
@@ -41,6 +42,7 @@ import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
@@ -50,13 +52,16 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.InputMethodEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
+import jdk.nashorn.internal.runtime.options.Option;
 
 /**
  * FXML Controller class
@@ -82,7 +87,7 @@ public class NhapHangController {
 
     @FXML
     private TableColumn<DDH, Integer> clNhanVien;
-
+    
     @FXML
     private JFXButton btAdd;
 
@@ -199,7 +204,10 @@ public class NhapHangController {
 
     @FXML
     private ContextMenu contextMenuPN;
-
+    
+       @FXML
+    private ContextMenu menuContextDDH;
+       
     @FXML
     private ContextMenu contextMenuCTPN;
 
@@ -208,7 +216,18 @@ public class NhapHangController {
 
     @FXML
     private MenuItem miAddPN;
+      @FXML
+    private TextField tf_timKiemPhieuNhap;
+  
+      
+ 
 
+    @FXML
+    private MenuItem miDeletePN;
+
+    @FXML
+    private MenuItem miUpdatePN;
+    
     private PhieuNhapService phieuNhapService = new PhieuNhapService();
     private PhieuNhapModel phieuNhapModel;
     private ChiTietPhieuNhapModel chiTietPhieuNhapModel;
@@ -216,8 +235,8 @@ public class NhapHangController {
     private ChiTietDDHModel chiTietDDHModel;
     private ChiTietPhieuNhapService chiTietPhieuNhapService = new ChiTietPhieuNhapService();
     private ActionHistory history = new ActionHistory();
-    private DDHService donDatHangService=new DDHService();
-    private CTDDHService chiTietDatHangService=new CTDDHService();
+    private DDHService donDatHangService = new DDHService();
+    private CTDDHService chiTietDatHangService = new CTDDHService();
 
     @FXML
     void redoCommand(ActionEvent event) {
@@ -254,20 +273,211 @@ public class NhapHangController {
 
     }
 
+    @FXML
+    void handleActionXoaPhieuNhap(ActionEvent event) {
+        //kiem tra phieu nhap da co chi tiet phieu nhap chua
+        System.out.println("Kiem tra chi tiet phieu nhap " + phieuNhapModel.getCurrentPhieuNhap().getMaPN());
+        List<ChiTietPhieuNhap> chiTietPhieuNhaps = new ArrayList<>();
+        if (phieuNhapModel.getCurrentPhieuNhap() != null) {
+
+            chiTietPhieuNhaps = phieuNhapService.findChiTietPhieuNhapByMAPN(phieuNhapModel.getCurrentPhieuNhap().getMaPN());
+            if (chiTietPhieuNhaps.isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Xoá phiếu nhập");
+                alert.setHeaderText("Bạn có muốn xoá phiếu nhập: " + phieuNhapModel.getCurrentPhieuNhap().getMaPN());
+                Optional<ButtonType> option = alert.showAndWait();
+
+                if (option.get() == ButtonType.OK) {
+                    //Xoá phiếu nhập
+                    System.out.println("Call Sp xoá phiếu nhập");
+                }
+                if (option.get() == ButtonType.CANCEL) {
+                    //Xoá phiếu nhập
+                    System.out.println("Cancel");
+                }
+
+            } else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Xoá phiếu nhập");
+                alert.setHeaderText("Phiếu nhập: " + phieuNhapModel.getCurrentPhieuNhap().getMaPN() + "đã nhập hàng");
+                Optional<ButtonType> option = alert.showAndWait();
+            }
+
+        } else {
+            System.out.println("Vui lòng chọn phiếu nhập");
+        }
+
+    }
+
+    @FXML
+    void handleActionCapNhatPhieuNhap(ActionEvent event) {
+        {
+            //kiểm tra Đơn đặt hàng đã có phiếu nhập chưa
+            if (phieuNhapModel.getCurrentPhieuNhap()!= null) {
+                tfMaNV_Dialog.setEditable(false);
+                tfMaDHH_Dialog.setEditable(false);
+                tfNgay_Dialog.setEditable(false);
+                tfMaPN_Dialog.setEditable(false);
+                String maDon = phieuNhapModel.getCurrentPhieuNhap().getMaDDH();
+                PhieuNhap pn = phieuNhapService.findOneByMaDon(maDon);
+                if (pn != null) {
+                    System.out.println("show dialog cap nhat");
+                    Dialog<PhieuNhap> dialog = new Dialog<>();
+                    dialog.setTitle("Cap nhat phiếu nhập");
+
+                    dialog.setResizable(true);
+                    dialog.getDialogPane().setContent(stackPanePhieuNhap_Dialog);
+                    stackPanePhieuNhap_Dialog.setVisible(true);
+                    tfMaPN_Dialog.setText(phieuNhapModel.getCurrentPhieuNhap().getMaPN());
+                    tfMaKho_Dialog.setText(phieuNhapModel.getCurrentPhieuNhap().getMaKhoa());
+                    tfMaDHH_Dialog.setText(phieuNhapModel.getCurrentPhieuNhap().getMaDDH());
+                    tfMaNV_Dialog.setText(DBConnectUtil.myUserDB);
+                    tfNgay_Dialog.setText(FomaterDate.convertUtilDateToString(new Date()));
+
+                    ButtonType buttonTypeOk = new ButtonType("Okay", ButtonBar.ButtonData.OK_DONE);
+                    dialog.getDialogPane().getButtonTypes().add(buttonTypeOk);
+                    Button btn = (Button) dialog.getDialogPane().lookupButton(buttonTypeOk);
+                    // btn.addEventFilter(EventType., this);
+                    btn.addEventFilter(ActionEvent.ACTION, ev -> {
+                        boolean isValidForm = true;
+                        try {
+                            String maPn = tfMaPN_Dialog.getText().trim();
+                            String ngay = tfNgay_Dialog.getText().trim();
+                            String madhh = tfMaDHH_Dialog.getText().trim();
+                            int maNV = Integer.parseInt(tfMaNV_Dialog.getText());
+                            String maKho = tfMaKho_Dialog.getText().trim();
+                            //check rỗng
+                            if (maPn.isEmpty() || maKho.isEmpty()) {
+                                //isValidForm = false;
+                                // messageDialog("Infomation is empty");
+                                throw new Exception("Infomation is empty");
+                            }
+
+                            //check ràng buộc 
+                            if (maKho.length() > 4 || !ValidationRegEx.validationTextAndNumRegex(maKho)) {
+                                isValidForm = false;
+                                // messageDialog("Mã kho quá dài hoac sai dinh dang");
+                                throw new Exception("Mã kho quá dài hoac sai dinh dang");
+                            }
+                            if (maPn.length() > 8 || !ValidationRegEx.validationTextAndNumRegex(maPn)) {
+                                isValidForm = false;
+                                // messageDialog("Mã phiếu nhập quá dài hoac sai dinh dang");
+                                throw new Exception("Mã phiếu nhập quá dài hoac sai dinh dang");
+                            }
+                            if (isValidForm) {
+                                System.out.println("Xu li du lieu xuong table");
+                                PhieuNhap phieuNhapNew = new PhieuNhap(maPn, ngay, madhh, maNV, maKho);
+
+                                int rs = phieuNhapService.update(phieuNhapNew);
+                                if (rs > 0) {
+                                    System.out.println("Cập nhật thành công");
+                                    messageDialog("Cập nhật thành công", stackPanePhieuNhap_Dialog);
+                                } else {
+                                    throw new Exception("Cập nhật thất bại");
+                                }
+
+                                ev.consume();
+                            }
+                            //  return new PhieuNhap(tfMaPN_Dialog.getText(), new Date().toString(), tfMaDHH_Dialog.getText(), Integer.parseInt(tfMaNV_Dialog.getText()), tfMaKho_Dialog.getText());
+                        } catch (Exception e) {
+                            if (e.getMessage().equals("Infomation is empty")) {
+                                messageDialog("Infomation is empty", stackPanePhieuNhap_Dialog);
+                            }
+                            if (e.getMessage().equals("Mã kho quá dài hoac sai dinh dang")) {
+                                messageDialog("Mã kho quá dài hoặc  sai định dạng", stackPanePhieuNhap_Dialog);
+                            }
+                            if (e.getMessage().equals("Mã phiếu nhập quá dài hoac sai dinh dang")) {
+                                messageDialog("Mã phiếu nhập quá dài hoặc sai định dạng", stackPanePhieuNhap_Dialog);
+                            }
+                            if (e.getMessage().equals("Phiếu nhập tồn tại")) {
+                                messageDialog("Phiếu nhập đã tồn tại", stackPanePhieuNhap_Dialog);
+                            }
+                            else{
+                             messageDialog("Cập nhật thất bại", stackPanePhieuNhap_Dialog);
+                            }
+                            ev.consume();
+                        }
+
+                    });
+
+                    dialog.setResultConverter(new Callback<ButtonType, PhieuNhap>() {
+                        @Override
+                        public PhieuNhap call(ButtonType b) {
+                            //  boolean isValidForm = true;
+                            if (b == buttonTypeOk) {
+                                //kiểm tra dữ liệ
+                                System.out.println(tfMaPN_Dialog.getText());
+                                System.out.println(new Date().toString());
+                                System.out.println(tfMaDHH_Dialog.getText());
+                                System.out.println(Integer.parseInt(tfMaNV_Dialog.getText()));
+                                System.out.println(tfMaKho_Dialog.getText());
+                            }
+                            return null;
+                        }
+                    });
+                    Optional<PhieuNhap> result = dialog.showAndWait();
+
+                    if (result.isPresent()) {
+                        System.out.println("result");
+                        System.out.println(tfMaPN_Dialog.getText());
+                        System.out.println(new Date().toString());
+                        System.out.println(tfMaDHH_Dialog.getText());
+                        System.out.println(Integer.parseInt(tfMaNV_Dialog.getText()));
+                        System.out.println(tfMaKho_Dialog.getText());
+                    }
+                } else {
+                    System.out.println("Không được thêm");
+                }
+
+            } else {
+                System.out.println("Không được thêm");
+            }
+
+        }
+    }
+
     /**
      * Initializes the controller class.
      */
     @FXML
     void initialize() {
-        
         DDHTableModel ddhModel = new DDHTableModel();
         PhieuNhapModel pnModel = new PhieuNhapModel();
         ChiTietPhieuNhapModel ctpnm = new ChiTietPhieuNhapModel();
         ChiTietDDHModel ctddhm = new ChiTietDDHModel();
-        List<DDH> donDatHangs=new ArrayList();
-        donDatHangs=donDatHangService.findAllForPhieuNhap();
+        List<DDH> donDatHangs = new ArrayList();
+        donDatHangs = donDatHangService.findAllForPhieuNhap();
         ddhModel.setDDHList(donDatHangs);
         initTableDHFromDatabase(ddhModel, pnModel, ctpnm, ctddhm);
+        //Kiểm tra quyền
+        if (DBConnectUtil.myGroup.equals("ChiNhanh")) {
+            
+        }
+        if (DBConnectUtil.myGroup.equals("User")) {
+                 
+        }
+        if (DBConnectUtil.myGroup.equals("CongTy")) {
+          miAddPN.setDisable(true);
+          
+          miAddCTPN.setDisable(true);
+          miDeletePN.setDisable(true);
+          miUpdatePN.setDisable(true);
+ 
+        }
+        
+        //Khoi tao sự kiện tìm kiếm phiếu nhập
+        
+        tf_timKiemPhieuNhap.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(ValidationRegEx.validationTextAndNumRegex(newValue))
+                {
+                    System.out.println("Dữ liệu nhập vào hợp lệ");
+                    initTablePhieuNhapFromInput(newValue);
+                }
+            else{
+             System.out.println("Dữ liệu nhập vào KHÔNG hợp lệ");
+            }
+        
+        });
     }
 
     public void initTableDHFromDatabase(DDHTableModel ddhModelTable, PhieuNhapModel pnModel, ChiTietPhieuNhapModel ctpnModel, ChiTietDDHModel ctddhModel) {
@@ -324,6 +534,11 @@ public class NhapHangController {
 //                ddh = tbDSDDH.getItems().get(index);
 //            }
 //        });
+        
+     tbPN.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+           pnModel.setCurrentPhieuNhap(newValue);
+           initTableChiTietPhieuNhap(newValue.getMaPN());
+        });
 
         tbDSDDH.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             ddhModel.setCurrentDDH(newValue);
@@ -350,10 +565,10 @@ public class NhapHangController {
 
         tbCTDDH.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             chiTietDDHModel.setCurrentChiTietDDH(newValue);
-            if(newValue!=null){
-            tfMaVT_CTPN.setText(newValue.getMaVT());
-            tfSoLuong_CTPN.setText(String.valueOf(newValue.getSoLuong()));
-            tfDonGia_CTPN.setText(String.valueOf(newValue.getDonGia()));
+            if (newValue != null) {
+                tfMaVT_CTPN.setText(newValue.getMaVT());
+                tfSoLuong_CTPN.setText(String.valueOf(newValue.getSoLuong()));
+                tfDonGia_CTPN.setText(String.valueOf(newValue.getDonGia()));
             }
         });
         tbPN.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -364,19 +579,24 @@ public class NhapHangController {
             public void handle(ActionEvent event) {
                 //kiểm tra Đơn đặt hàng đã có phiếu nhập chưa
                 if (ddhModel.getCurrentDDH() != null) {
+                    tfMaNV_Dialog.setEditable(false);
+                    tfMaDHH_Dialog.setEditable(false);
+                    tfNgay_Dialog.setEditable(false);
+                       tfMaPN_Dialog.setEditable(true);
                     String maDon = ddhModel.getCurrentDDH().getMaDDH();
                     PhieuNhap pn = phieuNhapService.findOneByMaDon(maDon);
                     if (pn == null) {
                         System.out.println("show dialog them");
                         Dialog<PhieuNhap> dialog = new Dialog<>();
                         dialog.setTitle("Thêm phiếu nhập");
+
                         dialog.setResizable(true);
                         dialog.getDialogPane().setContent(stackPanePhieuNhap_Dialog);
                         stackPanePhieuNhap_Dialog.setVisible(true);
 
                         tfMaKho_Dialog.setText(ddhModel.getCurrentDDH().getMaKho());
                         tfMaDHH_Dialog.setText(ddhModel.getCurrentDDH().getMaDDH());
-                        tfMaNV_Dialog.setText(String.valueOf(ddhModel.getCurrentDDH().getMaNV()));
+                        tfMaNV_Dialog.setText(DBConnectUtil.myUserDB);
                         tfNgay_Dialog.setText(FomaterDate.convertUtilDateToString(new Date()));
 
                         ButtonType buttonTypeOk = new ButtonType("Okay", ButtonBar.ButtonData.OK_DONE);
@@ -386,11 +606,11 @@ public class NhapHangController {
                         btn.addEventFilter(ActionEvent.ACTION, ev -> {
                             boolean isValidForm = true;
                             try {
-                                String maPn = tfMaPN_Dialog.getText();
-                                String ngay = tfNgay_Dialog.getText();
-                                String madhh = tfMaDHH_Dialog.getText();
+                                String maPn = tfMaPN_Dialog.getText().trim();
+                                String ngay = tfNgay_Dialog.getText().trim();
+                                String madhh = tfMaDHH_Dialog.getText().trim();
                                 int maNV = Integer.parseInt(tfMaNV_Dialog.getText());
-                                String maKho = tfMaKho_Dialog.getText();
+                                String maKho = tfMaKho_Dialog.getText().trim();
                                 //check rỗng
                                 if (maPn.isEmpty() || maKho.isEmpty()) {
                                     //isValidForm = false;
@@ -399,7 +619,7 @@ public class NhapHangController {
                                 }
 
                                 //check ràng buộc 
-                                if (maKho.length() > 4 || !ValidationRegEx.validationTextAndNumRegex(maPn)) {
+                                if (maKho.length() > 4 || !ValidationRegEx.validationTextAndNumRegex(maKho)) {
                                     isValidForm = false;
                                     // messageDialog("Mã kho quá dài hoac sai dinh dang");
                                     throw new Exception("Mã kho quá dài hoac sai dinh dang");
@@ -415,25 +635,28 @@ public class NhapHangController {
                                     //kiểm tra mã phiếu nhập
                                     Boolean rs = executeCommand(new ActionAddPhieuNhap(phieuNhapNew, phieuNhapService, "PhieuNhap"));
                                     if (rs == true) {
-                                        messageDialog("Thêm thành công");
+                                        initTablePhieuNhap(maDon);
+                                        messageDialog("Thêm thành công", stackPanePhieuNhap_Dialog);
+
                                     } else {
                                         throw new Exception("Phiếu nhập tồn tại");
                                         //messageDialog("Phiếu nhập đã tồn tại");
                                     }
+                                  ev.consume();
                                 }
                                 //  return new PhieuNhap(tfMaPN_Dialog.getText(), new Date().toString(), tfMaDHH_Dialog.getText(), Integer.parseInt(tfMaNV_Dialog.getText()), tfMaKho_Dialog.getText());
                             } catch (Exception e) {
                                 if (e.getMessage().equals("Infomation is empty")) {
-                                    messageDialog("Infomation is empty");
+                                    messageDialog("Infomation is empty", stackPanePhieuNhap_Dialog);
                                 }
                                 if (e.getMessage().equals("Mã kho quá dài hoac sai dinh dang")) {
-                                    messageDialog("Mã kho quá dài hoặc  sai định dạng");
+                                    messageDialog("Mã kho quá dài hoặc  sai định dạng", stackPanePhieuNhap_Dialog);
                                 }
                                 if (e.getMessage().equals("Mã phiếu nhập quá dài hoac sai dinh dang")) {
-                                    messageDialog("Mã phiếu nhập quá dài hoặc sai định dạng");
+                                    messageDialog("Mã phiếu nhập quá dài hoặc sai định dạng", stackPanePhieuNhap_Dialog);
                                 }
                                 if (e.getMessage().equals("Phiếu nhập tồn tại")) {
-                                    messageDialog("Phiếu nhập đã tồn tại");
+                                    messageDialog("Phiếu nhập đã tồn tại", stackPanePhieuNhap_Dialog);
                                 }
                                 ev.consume();
                             }
@@ -486,80 +709,100 @@ public class NhapHangController {
                     dialog.setResizable(true);
                     dialog.getDialogPane().setContent(stackPaneCTPhieuNhap_Dialog);
                     //set value text field CTDDH
+                    tfMaPN_CTPN.setEditable(false);
+                    tfMaVT_CTPN.setEditable(false);
                     tfMaPN_CTPN.setText(phieuNhapModel.getCurrentPhieuNhap().getMaPN());
-
+                    
                     stackPaneCTPhieuNhap_Dialog.setVisible(true);
                     ButtonType buttonTypeOk = new ButtonType("Okay", ButtonBar.ButtonData.OK_DONE);
                     dialog.getDialogPane().getButtonTypes().add(buttonTypeOk);
                     Button btn = (Button) dialog.getDialogPane().lookupButton(buttonTypeOk);
-                    
-                    String maDonDat=phieuNhapModel.getCurrentPhieuNhap().getMaDDH();
+
+                    String maDonDat = phieuNhapModel.getCurrentPhieuNhap().getMaDDH();
                     initTableCTDDH(maDonDat);
                     btn.addEventFilter(ActionEvent.ACTION, evt -> {
                         boolean isValidForm = true;
                         try {
-                            String maVT = tfMaVT_CTPN.getText();
-                            int soLuong = Integer.parseInt(tfSoLuong_CTPN.getText());
-                            float donGia = Float.parseFloat(tfDonGia_CTPN.getText());
-                            String maPN = tfMaPN_CTPN.getText();
-                            //check rỗng
-                            if (maVT.isEmpty()) {
-                                //isValidForm = false;
-                                // messageDialog("Infomation is empty");
-                                throw new Exception("Infomation is empty");
-                            }
-                            //check ràng buộc 
-                            if (maVT.length() > 4 || !ValidationRegEx.validationTextAndNumRegex(maVT)) {
-                                isValidForm = false;
-                                // messageDialog("Mã kho quá dài hoac sai dinh dang");
-                                throw new Exception("Mã vật tư quá dài hoac sai dinh dang");
-                            } else if (soLuong < 0 || soLuong > chiTietDDHModel.getCurrentChiTietDDH().getSoLuong()) {
-                                isValidForm = false;
-                                // messageDialog("Mã kho quá dài hoac sai dinh dang");
-                                throw new Exception("Số lượng không hợp lệ");
-                            } else if (donGia < 0 || donGia > chiTietDDHModel.getCurrentChiTietDDH().getDonGia()) {
-                                isValidForm = false;
-                                // messageDialog("Mã kho quá dài hoac sai dinh dang");
-                                throw new Exception("Đơn giá không hợp lệ");
-                            }
+                            if (chiTietDDHModel.getCurrentChiTietDDH() != null) {
 
-                            if (isValidForm) {
-                                System.out.println("Xu li du lieu xuong table");
-                                ChiTietPhieuNhap chiTietPhieuNhap = new ChiTietPhieuNhap(maPN, maVT, soLuong, donGia);
-                                // kiểm tra mã phiếu nhập 
-                                Boolean rs = executeCommand(new ActionAddCTPN(chiTietPhieuNhap, chiTietPhieuNhapService, "PhieuNhap"));
-                                if (rs == true) {
-                                    messageDialog("Thêm thành công");
-                                } else {
-                                    System.out.println("Vui lòng kiểm tra Mã vật tư và Mã phiếu nhập");
-                                    throw new Exception("Vui lòng kiểm tra Mã vật tư và Mã phiếu nhập");
-                                    //messageDialog("Phiếu nhập đã tồn tại");
+                                String maVT = tfMaVT_CTPN.getText().trim();
+                                int soLuong = Integer.parseInt(tfSoLuong_CTPN.getText());
+                                float donGia = Float.parseFloat(tfDonGia_CTPN.getText());
+                                String maPN = tfMaPN_CTPN.getText().trim();
+                                //check rỗng
+                                if (maVT.isEmpty()) {
+                                    //isValidForm = false;
+                                    // messageDialog("Infomation is empty");
+                                    throw new Exception("Infomation is empty");
+                                }
+                                //check ràng buộc 
+                                if (maVT.length() > 4 || !ValidationRegEx.validationTextAndNumRegex(maVT)) {
+                                    isValidForm = false;
+                                    // messageDialog("Mã kho quá dài hoac sai dinh dang");
+                                    throw new Exception("Mã vật tư quá dài hoac sai dinh dang");
+                                } else if (soLuong < 0 || soLuong > chiTietDDHModel.getCurrentChiTietDDH().getSoLuong()) {
+                                    isValidForm = false;
+                                    // messageDialog("Mã kho quá dài hoac sai dinh dang");
+                                    throw new Exception("Số lượng không hợp lệ");
+                                } else if (donGia < 0 || donGia > chiTietDDHModel.getCurrentChiTietDDH().getDonGia()) {
+                                    isValidForm = false;
+                                    // messageDialog("Mã kho quá dài hoac sai dinh dang");
+                                    throw new Exception("Đơn giá không hợp lệ");
                                 }
 
+                                if (isValidForm) {
+                                    System.out.println("Xu li du lieu xuong table");
+                                    ChiTietPhieuNhap chiTietPhieuNhap = new ChiTietPhieuNhap(maPN, maVT, soLuong, donGia);
+                                    //Kiểm tra số lượng vật tư ở 2 site
+                                    if(phieuNhapService.kiemTraSoLuongVatTu(maVT)>0)
+                                        {
+                                            //Dữ liêu 2 site bằng nhau
+                                        }
+                                    else{
+                                          throw new Exception("Dữ liệu đang được đồng bộ, vui lòng chờ");
+                                    }
+                                    
+                                    // kiểm tra mã phiếu nhập 
+                                    Boolean rs = executeCommand(new ActionAddCTPN(chiTietPhieuNhap, chiTietPhieuNhapService, "PhieuNhap"));
+                                    if (rs == true) {
+                                        phieuNhapService.capNhatSoLuongVatTu(maVT, soLuong);
+                                        messageDialogForChiTietPhieuNhap("Thêm thành công");
+                                        initTableChiTietPhieuNhap(maPN);
+                                        initTableCTDDH(maDonDat);
+                                        
+                                        
+
+                                    } else {
+                                        System.out.println("Vui lòng kiểm tra Mã vật tư và Mã phiếu nhập");
+                                        throw new Exception("Vui lòng kiểm tra Mã vật tư và Mã phiếu nhập");
+                                        //messageDialog("Phiếu nhập đã tồn tại");
+                                    }
+
+                                }
+                                evt.consume();
                             }
-                            evt.consume();
                             //  return new PhieuNhap(tfMaPN_Dialog.getText(), new Date().toString(), tfMaDHH_Dialog.getText(), Integer.parseInt(tfMaNV_Dialog.getText()), tfMaKho_Dialog.getText());
                         } catch (NumberFormatException formatE) {
-                            messageDialog("Thông tin sai định dạng");
+                            messageDialogForChiTietPhieuNhap("Thông tin sai định dạng");
                             evt.consume();
                         } catch (Exception e) {
 
                             if (e.getMessage().equals("Infomation is empty")) {
-                                messageDialog("Infomation is empty");
-                            }
-                            else if  (e.getMessage().equals("Mã vật tư quá dài hoặc sai định dạng")) {
-                                messageDialog("Mã vật tư quá dài hoặc sai định dạng");
-                            }
-                            else if (e.getMessage().equals("Số lượng không hợp lệ")) {
-                                messageDialog("Số lượng không hợp lệ");
-                            }
-                            else if (e.getMessage().equals("Vui lòng kiểm tra Mã vật tư và Mã phiếu nhập")) {
-                                messageDialog("Vui lòng kiểm tra Mã vật tư và Mã phiếu nhập");
-                            }
-                            else if (e.getMessage().equals("Đơn giá không hợp lệ")) {
-                                messageDialog("Đơn giá không hợp lệ");
-                            } else {
-                                messageDialog("Vui lòng kiểm tra thông tin");
+                                messageDialogForChiTietPhieuNhap("Infomation is empty");
+                            } else if (e.getMessage().equals("Mã vật tư quá dài hoặc sai định dạng")) {
+                                messageDialogForChiTietPhieuNhap("Mã vật tư quá dài hoặc sai định dạng");
+                            } else if (e.getMessage().equals("Số lượng không hợp lệ")) {
+                                messageDialogForChiTietPhieuNhap("Số lượng không hợp lệ");
+                            } else if (e.getMessage().equals("Vui lòng kiểm tra Mã vật tư và Mã phiếu nhập")) {
+                                messageDialogForChiTietPhieuNhap("Vui lòng kiểm tra Mã vật tư và Mã phiếu nhập");
+                            } else if (e.getMessage().equals("Đơn giá không hợp lệ")) {
+                                messageDialogForChiTietPhieuNhap("Đơn giá không hợp lệ");
+                            } 
+                            else if (e.getMessage().equals("Dữ liệu đang được đồng bộ, vui lòng chờ")) {
+                                messageDialogForChiTietPhieuNhap("Dữ liệu đang được đồng bộ, vui lòng chờ");
+                            } 
+                            else {
+                                messageDialogForChiTietPhieuNhap("Vui lòng kiểm tra thông tin");
                             }
                             evt.consume();
                         }
@@ -576,8 +819,44 @@ public class NhapHangController {
 
     }
 
+    public void messageDialog(String body, StackPane parrent) {
+        // StackPane st = (StackPane) pnPhieuNhap.getParent().getParent().getParent().getParent();
+        StackPane st = (StackPane) parrent;
+        JFXDialogLayout content = new JFXDialogLayout();
+        content.setHeading(new Text("Thong bao"));
+        content.setBody(new Text(body));
+        JFXDialog noti = new JFXDialog(st, content, JFXDialog.DialogTransition.CENTER, true);
+        Image image = new Image(getClass().getResourceAsStream("../../../../img/icons8_checkmark_20px.png"));
+        JFXButton button = new JFXButton(null, new ImageView(image));
+        button.setCursor(Cursor.HAND);
+        button.setButtonType(JFXButton.ButtonType.RAISED);
+        button.setOnAction((ActionEvent event1) -> {
+            noti.close();
+        });
+        content.setActions(button);
+        noti.show();
+    }
+
     public void messageDialog(String body) {
         // StackPane st = (StackPane) pnPhieuNhap.getParent().getParent().getParent().getParent();
+        StackPane st = (StackPane) stackPaneCTPhieuNhap_Dialog;
+        JFXDialogLayout content = new JFXDialogLayout();
+        content.setHeading(new Text("Thong bao"));
+        content.setBody(new Text(body));
+        JFXDialog noti = new JFXDialog(st, content, JFXDialog.DialogTransition.CENTER, true);
+        Image image = new Image(getClass().getResourceAsStream("../../../../img/icons8_checkmark_20px.png"));
+        JFXButton button = new JFXButton(null, new ImageView(image));
+        button.setCursor(Cursor.HAND);
+        button.setButtonType(JFXButton.ButtonType.RAISED);
+        button.setOnAction((ActionEvent event1) -> {
+            noti.close();
+        });
+        content.setActions(button);
+        noti.show();
+    }
+
+    public void messageDialogForChiTietPhieuNhap(String body) {
+        //StackPane st = (StackPane) pnPhieuNhap.getParent().getParent().getParent().getParent();
         StackPane st = (StackPane) stackPaneCTPhieuNhap_Dialog;
         JFXDialogLayout content = new JFXDialogLayout();
         content.setHeading(new Text("Thong bao"));
@@ -600,15 +879,36 @@ public class NhapHangController {
         listPN.add(phieuNhapService.findOneByMaDon(maDon));
         phieuNhapModel.setPhieuNhapList(listPN);
         if (listPN.get(0) != null) {
+            phieuNhapModel.setCurrentPhieuNhap(listPN.get(0));
             initTableChiTietPhieuNhap(listPN.get(0).getMaPN());
+        } else {
+            phieuNhapModel.setCurrentPhieuNhap(null);
+        }
+    }
+    
+     public void initTablePhieuNhapFromInput(String input) {
+        tbPN.getItems().clear();
+        List<PhieuNhap> listPN = new ArrayList();
+        listPN=phieuNhapService.findByMaPhieuNhapStartingWith(input);
+        
+        if (listPN!=null) {
+            phieuNhapModel.setPhieuNhapList(listPN);
+            phieuNhapModel.setCurrentPhieuNhap(listPN.get(0));
+            initTableChiTietPhieuNhap(listPN.get(0).getMaPN());
+        } else {
+            phieuNhapModel.setCurrentPhieuNhap(null);
         }
     }
 
     public void initTableCTDDH(String id) {
         tbCTDDH.getItems().clear();
         List<CTDDH> listDDH = new ArrayList();
-        listDDH=chiTietDatHangService.findAllByMaDon(id);
+        listDDH = chiTietDatHangService.findAllByMaDonNotCTPN(id);
         chiTietDDHModel.setChiTietDDHList(listDDH);
+        if (!chiTietDDHModel.getChiTietDDHList().isEmpty()) {
+            chiTietDDHModel.setCurrentChiTietDDH(chiTietDDHModel.getChiTietDDHList().get(0));
+        }
+
     }
 
     public void initTableChiTietPhieuNhap(String maPN) {
@@ -616,7 +916,10 @@ public class NhapHangController {
         List<ChiTietPhieuNhap> listPN = new ArrayList();
         listPN = chiTietPhieuNhapService.findByMAPN(maPN);
         chiTietPhieuNhapModel.setChiTietPhieuNhapList(listPN);
-
+//        if(chiTietPhieuNhapModel.getChiTietPhieuNhapList())
+//            {
+//                chiTietPhieuNhapModel.set
+//            }
     }
 
     private boolean executeCommand(ActionListenerCommand command) {

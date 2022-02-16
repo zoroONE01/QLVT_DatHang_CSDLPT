@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" language="java" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="680" pageHeight="842" columnWidth="640" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0bd59de8-24ce-41fb-931a-926689ec7d7b">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="209"/>
+	<style name="Title" isBlankWhenNull="false" fontName="DejaVu Sans" fontSize="12" isBold="false" isItalic="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+	<style name="SubTitle" forecolor="#666666" isBlankWhenNull="true" fontName="DejaVu Sans" fontSize="12" isBold="true" isItalic="true" isUnderline="true" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+	<style name="Column header" mode="Opaque" forecolor="#000000" fontName="DejaVu Sans" fontSize="12" isBold="true" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252"/>
+	<style name="Detail" fontName="DejaVu Sans" fontSize="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+	<parameter name="idNhanVien" class="java.lang.String"/>
+	<parameter name="id" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[7]]></defaultValueExpression>
+	</parameter>
+	<parameter name="dateFrom" class="java.lang.String">
+		<defaultValueExpression><![CDATA["2017-04-15"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="dateTo" class="java.lang.String">
+		<defaultValueExpression><![CDATA["2022-04-15"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[exec SP_REPORT_TONG_NHAP_XUAT $P{dateFrom},$P{dateTo}]]>
+	</queryString>
+	<field name="NGAY" class="java.sql.Date"/>
+	<field name="NHAP" class="java.lang.Double"/>
+	<field name="TILENHAP" class="java.lang.Double"/>
+	<field name="XUAT" class="java.lang.Double"/>
+	<field name="TILEXUAT" class="java.lang.Double"/>
+	<field name="TONGNHAP" class="java.lang.Double"/>
+	<field name="TONGXUAT" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="162">
+			<staticText>
+				<reportElement x="0" y="0" width="640" height="72" uuid="94991201-c1b6-4f18-9ff3-e631d8316992"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="15" isBold="true" isItalic="true" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[TỔNG HỢP NHẬP XUẤT]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="37" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" x="107" y="0" width="113" height="36" uuid="780315d1-0e0b-497a-94f5-2e10f2a03e9b"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nhập	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="220" y="1" width="66" height="36" uuid="840409be-723f-45e4-9db0-378982dfef0d"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tỉ lệ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="286" y="1" width="105" height="36" uuid="b91f7d7c-613d-47ba-a48e-ba442721ee92"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Xuất]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="107" height="36" uuid="9dc9ab8e-a8f4-401f-a708-d602e5fca4b8">
+					<property name="net.sf.jasperreports.export.xls.pattern" value="yyyy-MM-dd"/>
+				</reportElement>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ngày]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="391" y="1" width="70" height="36" uuid="1b84d197-3e5b-47b7-aac3-5d1d184ca4a7"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tỉ lệ]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="50" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="0" y="0" width="107" height="50" uuid="7c58542b-6166-4c0d-a9d1-fedce1e2a498"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NGAY}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.0;-#,##0.0">
+				<reportElement x="107" y="0" width="113" height="50" uuid="0e1ad9d8-fe76-457d-ac5a-25577fde8e77"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NHAP}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00 %">
+				<reportElement x="220" y="0" width="66" height="50" uuid="2415124c-d7c0-4dff-89e8-bfd7cb04be6f"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TILENHAP}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.0;-#,##0.0">
+				<reportElement x="286" y="0" width="105" height="50" uuid="046a53ba-51a1-4649-8c0f-b255ac46eeb9"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{XUAT}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00 %" isBlankWhenNull="false">
+				<reportElement x="391" y="0" width="70" height="50" uuid="3f247a4d-2ab5-47df-a564-bd2bbbe549cd"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TILEXUAT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="640" height="1" uuid="c0a2ea67-fc5a-4025-b73a-891c5c5a1180"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="1" width="107" height="35" uuid="23461c97-434e-4c2e-bb8c-f61fd3d82b80">
+					<property name="net.sf.jasperreports.export.xls.pattern" value="yyyy-MM-dd"/>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tổng cộng:]]></text>
+			</staticText>
+			<textField pattern="#,##0.0;-#,##0.0" isBlankWhenNull="false">
+				<reportElement x="107" y="1" width="113" height="35" uuid="1d784a81-38d4-490c-803a-78f73fffac28"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TONGNHAP}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.0;-#,##0.0" isBlankWhenNull="false">
+				<reportElement x="286" y="1" width="105" height="35" uuid="db5bf6ad-98d5-4696-a55c-e59ea95d4396"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TONGXUAT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="07ae1c43-e7be-460d-a143-8fa956311a75"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="b1472d11-cdee-4755-8d11-2de2ac9664f7"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MM-yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="a22b159b-dc38-46cd-a089-49349a877c85">
+					<property name="net.sf.jasperreports.export.xls.pattern" value="yyyy-MM-dd"/>
+				</reportElement>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -28,6 +28,7 @@ import com.mycompany.QLVT.Utils.DBConnectUtil;
 import com.mycompany.QLVT.Utils.EnumGroup;
 import com.mycompany.QLVT.Utils.FomaterDate;
 import com.mycompany.QLVT.Utils.ValidationRegEx;
+import static com.mycompany.QLVT.controller.BaoCaoController.runReport;
 import com.mycompany.QLVT.dao.NhanVienDAO;
 import com.mycompany.QLVT.dao.PhanManhDAO;
 import com.mycompany.QLVT.model.ChiNhanhModel;
@@ -50,6 +51,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
@@ -384,7 +386,6 @@ public class NhanVienController {
 //            }
 //
 //        });
-
         tbvListNV.setOnMouseClicked((event) -> {
             if (event.getClickCount() > 0) {
                 nhanVienBeforeSave = tbvListNV.getSelectionModel().getSelectedItem();
@@ -564,16 +565,14 @@ public class NhanVienController {
 
     @FXML
     void createAccountAction(ActionEvent event) {
-     cbChiNhanh_TaiKhoan.setDisable(true);
-     cbChiNhanh_TaiKhoan.getSelectionModel().select(cbbChiNhanh.getSelectionModel().getSelectedItem().getName());
-     if(nhanVienTableModel.getCurrentNhanVien()!=null&&nhanVienCbbModel.getNhanVienList().contains(nhanVienTableModel.getCurrentNhanVien()))
-     {
-      cbNhanVien.getSelectionModel().select(nhanVienTableModel.getCurrentNhanVien());
-     }
-     else{
-       cbNhanVien.getSelectionModel().select(0);
-     }
-    
+        cbChiNhanh_TaiKhoan.setDisable(true);
+        cbChiNhanh_TaiKhoan.getSelectionModel().select(cbbChiNhanh.getSelectionModel().getSelectedItem().getName());
+        if (nhanVienTableModel.getCurrentNhanVien() != null && nhanVienCbbModel.getNhanVienList().contains(nhanVienTableModel.getCurrentNhanVien())) {
+            cbNhanVien.getSelectionModel().select(nhanVienTableModel.getCurrentNhanVien());
+        } else {
+            cbNhanVien.getSelectionModel().select(0);
+        }
+
         if (DBConnectUtil.myGroup.equals(EnumGroup.ChiNhanh.name())) {
             radioButton1.setUserData(EnumGroup.ChiNhanh.name());
             radioButton2.setUserData(EnumGroup.User.name());
@@ -817,6 +816,21 @@ public class NhanVienController {
                 nhanVienTableModel.setNhanVienList(nhanVienService.findAll());
                 tbvListNV.refresh();
 
+            } else {
+
+                JFXDialogLayout content = new JFXDialogLayout();
+                content.setHeading(new Text("Thông Báo"));
+                content.setBody(new Text("Chuyển chi nhánh thất bại"));
+                JFXDialog noti = new JFXDialog(st, content, JFXDialog.DialogTransition.CENTER);
+                Image image = new Image(getClass().getResourceAsStream("../../../../img/icons8_checkmark_20px.png"));
+                JFXButton button = new JFXButton(null, new ImageView(image));
+                button.setCursor(Cursor.HAND);
+                button.setButtonType(JFXButton.ButtonType.RAISED);
+                button.setOnAction((ActionEvent event1) -> {
+                    noti.close();
+                });
+                content.setActions(button);
+                noti.show();
             }
 
         }
@@ -958,10 +972,9 @@ public class NhanVienController {
 
         nhanVienTableModel.setNhanVienList(listNhanVien);
         nhanVienTableModel.setCurrentNhanVien(null);
-        
+
         nhanVienCbbModel.setNhanVienList(listNhanVien);
-        
-        
+
         cbNhanVien.getItems().setAll(this.nhanVienCbbModel.getNhanVienList());
 
         tbvListNV.refresh();
@@ -970,12 +983,42 @@ public class NhanVienController {
 
     @FXML
     void deleteAction(ActionEvent event) {
-        NhanVien nv = nhanVienTableModel.getCurrentNhanVien();
-        boolean rs = executeCommand(new ActionDelete(nhanVienService, nv, "delete"));
-        if (rs == true) {
-            refresh();
-            System.out.println("Xoas thanh cong");
+
+        ButtonType OKButton = new ButtonType("Đồng ý");
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText("Danh mục vật tư");
+        alert.getButtonTypes().clear();
+        alert.getButtonTypes().add(ButtonType.CANCEL);
+        alert.getButtonTypes().addAll(OKButton);
+
+        Optional<ButtonType> optional = alert.showAndWait();
+
+        if (optional.get() == OKButton) {
+            System.out.println("Xoá nhân viên");
+            NhanVien nv = nhanVienTableModel.getCurrentNhanVien();
+            StackPane st = (StackPane) pnNhanVien.getParent().getParent().getParent();
+            boolean rs = executeCommand(new ActionDelete(nhanVienService, nv, "delete"));
+            if (rs == true) {
+                refresh();
+                JFXDialogLayout content = new JFXDialogLayout();
+                content.setHeading(new Text("Thông Báo"));
+                content.setBody(new Text("Xoá nhân viên thành công"));
+                JFXDialog noti = new JFXDialog(st, content, JFXDialog.DialogTransition.CENTER);
+                Image image = new Image(getClass().getResourceAsStream("../../../../img/icons8_checkmark_20px.png"));
+                JFXButton button = new JFXButton(null, new ImageView(image));
+                button.setCursor(Cursor.HAND);
+                button.setButtonType(JFXButton.ButtonType.RAISED);
+                button.setOnAction((ActionEvent event1) -> {
+                    noti.close();
+                });
+                content.setActions(button);
+                noti.show();
+            }
+        } else {
+            alert.close();
         }
+
     }
 
     private boolean executeCommand(ActionListenerCommand command) {
@@ -990,6 +1033,10 @@ public class NhanVienController {
     private int undo() {
 
         if (history.getHistory().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Danh sách undo trống");
+            Optional<ButtonType> optional = alert.showAndWait();
             return -1;
         }
 
@@ -1008,10 +1055,16 @@ public class NhanVienController {
                 if (nhanVienService.findOne(nv.getMaNhanVien()) != null) {
                     nhanVienService.update(nv); //cap nhat trang thai
                     history.pop();
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setHeaderText("Undo hành động xoá thành công");
+                    Optional<ButtonType> optional = alert.showAndWait();
                     return 1;
                 } else {
                     if (nhanVienService.save(nv) > 0) {
                         history.pop();
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setHeaderText("Undo hành động xoá thành công");
+                        Optional<ButtonType> optional = alert.showAndWait();
                         return 1;
                     } //thêm mới
                     return 0;
@@ -1022,6 +1075,9 @@ public class NhanVienController {
             if (nv != null) {
                 nhanVienService.delete(nv.getMaNhanVien());
                 history.pop();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText("Undo hành động thêm thành công");
+                Optional<ButtonType> optional = alert.showAndWait();
                 return 1;
             }
         } else if (command != null && command.getType().equals("edit")) {
@@ -1029,6 +1085,9 @@ public class NhanVienController {
             if (nv != null) {
                 nhanVienService.update(nv);
                 history.pop();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText("Undo hành động sửa thành công");
+                Optional<ButtonType> optional = alert.showAndWait();
                 return 1;
             }
         }

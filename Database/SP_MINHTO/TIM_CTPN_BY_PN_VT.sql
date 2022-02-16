@@ -1,0 +1,19 @@
+USE [QLVT]
+GO
+
+/****** Object:  StoredProcedure [dbo].[SP_TIM_CTPN_BY_PN_VT]    Script Date: 15/02/2022 12:39:11 SA ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+create  PROCEDURE [dbo].[SP_TIM_CTPN_BY_PN_VT]
+@MaPN nchar(8), @MAVT nchar(4) 
+AS 
+BEGIN 
+	SELECT MAPN,MAVT FROM CTPN WHERE MAPN=@MaPN and MAVT=@MAVT
+end
+
+GO
+
