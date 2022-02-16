@@ -10,6 +10,7 @@ import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
 import com.mycompany.QLVT.Entity.CTPhieuXuat;
 import com.mycompany.QLVT.Entity.PhieuXuat;
+import com.mycompany.QLVT.Utils.DBConnectUtil;
 import com.mycompany.QLVT.model.PhieuXuatTableModel;
 import com.mycompany.QLVT.service.CTPhieuXuatService;
 import com.mycompany.QLVT.service.PhieuXuatService;
@@ -29,13 +30,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -71,14 +76,16 @@ public class PhieuXuatController implements Initializable {
     private JFXButton btAdd;
 
     @FXML
-    private JFXButton btEdit;
+    private ContextMenu cmDSPhieuXuat;
 
     @FXML
-    private JFXButton btDelete;
+    private MenuItem miView;
+
+    @FXML
+    private VBox vbOption;
 
     @FXML
     private JFXButton btReload;
-
 
     private ObservableList<PhieuXuat> listPhieuXuat;
 
@@ -89,7 +96,6 @@ public class PhieuXuatController implements Initializable {
     public static List<CTPhieuXuat> listCTPhieuXuat = new ArrayList<>();
 
     public PhieuXuatTableModel PhieuXuatTableModel;
-
 
     @FXML
     void showAddFrom(ActionEvent event) {
@@ -180,48 +186,36 @@ public class PhieuXuatController implements Initializable {
     }
 
     @FXML
-    void showEditForm(ActionEvent event) {
+    void showCTPhieuXuat(ActionEvent event) {
         CTPhieuXuatService service = new CTPhieuXuatService();
         listCTPhieuXuat = (List<CTPhieuXuat>) service.findOne(phieuXuat.getMaPhieuXuat());
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                StackPane parentStackPane = (StackPane) ((Node) event.getTarget()).getScene().getRoot();
+                Stage owner = (Stage) miView.getParentPopup().getOwnerWindow();
+                StackPane parentStackPane = (StackPane) owner.getScene().getRoot();
+//                StackPane parentStackPane = (StackPane) ((Node) event.getTarget()).getScene().getRoot();
                 JFXDialogLayout content = new JFXDialogLayout();
                 Parent root = null;
-                PhieuXuatDetailController PhieuXuatDetailController = new PhieuXuatDetailController();
+                PhieuXuatDetailController phieuXuatDetailController = new PhieuXuatDetailController();
                 try {
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../../../fxml/PhieuXuatDetail.fxml"));
-                    fxmlLoader.setController(PhieuXuatDetailController);
+                    fxmlLoader.setController(phieuXuatDetailController);
                     root = (Parent) fxmlLoader.load();
-                    PhieuXuatDetailController.initUpdate(phieuXuat);
+                    phieuXuatDetailController.initView(phieuXuat);
                 } catch (IOException ex) {
                     Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 content.setHeading(root);
                 JFXDialog noti = new JFXDialog(parentStackPane, content, JFXDialog.DialogTransition.CENTER);
                 Image image1 = new Image(getClass().getResourceAsStream("../../../../img/delete_20px.png"));
-                Image image2 = new Image(getClass().getResourceAsStream("../../../../img/icons8_checkmark_20px.png"));
                 JFXButton btClose = new JFXButton(null, new ImageView(image1));
-                JFXButton btAccept = new JFXButton(null, new ImageView(image2));
                 btClose.setButtonType(JFXButton.ButtonType.FLAT);
-                btAccept.setButtonType(JFXButton.ButtonType.FLAT);
                 btClose.setCursor(Cursor.HAND);
-                btAccept.setCursor(Cursor.HAND);
                 btClose.setOnAction((ActionEvent event1) -> {
                     noti.close();
                 });
-                btAccept.setOnAction((ActionEvent event1) -> {
-                    String error = PhieuXuatDetailController.updatePhieuXuat();
-                    if (error == "") {
-                        noti.close();
-                        initTable();
-//                        initListCommandHistory();
-                    } else {
-                        content.setBody(new Text(error));
-                    }
-                });
-                content.setActions(btAccept, btClose);
+                content.setActions(btClose);
                 noti.show();
             }
         });
@@ -262,11 +256,6 @@ public class PhieuXuatController implements Initializable {
 //        initTableFromDatabase();
     }
 
-
-
-
-
-
     public void initTableFromDatabase() {
         clMaPhieuXuat.setCellValueFactory(new PropertyValueFactory<>("maPhieuXuat"));
         clNgay.setCellValueFactory(new PropertyValueFactory<>("ngay"));
@@ -285,17 +274,13 @@ public class PhieuXuatController implements Initializable {
         PhieuXuatTableModel.setPhieuXuatList(list);
         tbDSPhieuXuat.setItems(PhieuXuatTableModel.getPhieuXuatList());
         tbDSPhieuXuat.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-//            if (newSelection != null && newSelection.getTrangThai().equals("Chưa nhập hàng")) {
-////                System.out.println(newSelection.getTrangThai());
-//                btEdit.setDisable(false);
-//                btDelete.setDisable(false);
-//                int index = tbDSPhieuXuat.getSelectionModel().getSelectedIndex();
-//                phieuXuat = tbDSPhieuXuat.getItems().get(index);
-//                return;
-//            }
-//            btImport.setDisable(true);
-            btEdit.setDisable(true);
-            btDelete.setDisable(true);
+            if (newSelection != null) {
+//                btView.setDisable(false);
+                int index = tbDSPhieuXuat.getSelectionModel().getSelectedIndex();
+                phieuXuat = tbDSPhieuXuat.getItems().get(index);
+                return;
+            }
+//            btView.setDisable(true);
         });
 //        initListCommandHistory();
     }
@@ -323,12 +308,15 @@ public class PhieuXuatController implements Initializable {
 ////            btOutput.setDisable(true);
 ////        }
 //    }
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 //        lvHistoryCommand.setDisable(true);
-        btEdit.setDisable(true);
-        btDelete.setDisable(true);
+        if (DBConnectUtil.myGroup.equals("CONGTY")) {
+            vbOption.disableProperty().set(true);
+        } else {
+            vbOption.disableProperty().set(false);
+        }
+//        btView.setDisable(true);
 
 //        btSave.setDisable(true);
 //        btImport.setDisable(true);

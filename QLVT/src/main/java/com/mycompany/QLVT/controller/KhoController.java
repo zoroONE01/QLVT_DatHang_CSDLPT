@@ -80,6 +80,9 @@ public class KhoController implements Initializable {
     private JFXButton btReload;
 
     @FXML
+    private VBox vbOption;
+
+    @FXML
     private TableView<Kho> tbDSKho;
 
     @FXML
@@ -349,6 +352,11 @@ public class KhoController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        if (DBConnectUtil.myGroup.equals("CONGTY")) {
+            vbOption.disableProperty().set(true);
+        } else {
+            vbOption.disableProperty().set(false);
+        }
         lvHistoryCommand.setDisable(true);
         btEdit.setDisable(true);
         btDelete.setDisable(true);

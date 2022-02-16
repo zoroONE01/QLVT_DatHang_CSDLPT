@@ -7,12 +7,15 @@ package com.mycompany.QLVT.controller;
 
 import com.jfoenix.controls.JFXTextField;
 import com.mycompany.QLVT.Entity.CTDDH;
+import com.mycompany.QLVT.Entity.CTPhieuXuat;
 import com.mycompany.QLVT.Entity.DDH;
 import com.mycompany.QLVT.Entity.ItemVatTu;
 import com.mycompany.QLVT.Entity.Kho;
+import com.mycompany.QLVT.Entity.PhieuXuat;
 import com.mycompany.QLVT.Entity.VatTu;
 import com.mycompany.QLVT.Utils.DBConnectUtil;
 import com.mycompany.QLVT.Utils.ValidationRegEx;
+import static com.mycompany.QLVT.controller.PhieuXuatDetailController.listItemVatTu;
 import com.mycompany.QLVT.service.DDHService;
 import com.mycompany.QLVT.service.KhoService;
 import com.mycompany.QLVT.service.VatTuService;
@@ -189,6 +192,27 @@ public class DDHDetailController implements Initializable {
         tfMaDDH.setEditable(false);
         tfNCC.setEditable(false);
         tfKho.setEditable(false);
+    }
+
+    public void initView(DDH ddh) {
+        tfNgay.setText(ddh.getNgay());
+        tfMaDDH.setText(ddh.getMaDDH());
+        tfKho.setText(ddh.getMaKhoTenKho());
+        tfNCC.setText(ddh.getNCC());
+        
+        listItemVatTu.clear();
+        vbListVT.getChildren().clear();
+        for (CTDDH ctddh : DDHController.listCTDDH) {
+            itemVatTuDDH = new ItemVatTuDDHController();
+            itemVatTuDDH.setParentController(this);
+            itemVatTuDDH.setItemView(ctddh);
+            vbListVT.getChildren().add(itemVatTuDDH);
+            listItemVatTu.add(itemVatTuDDH.getItem());
+        }
+        this.tfNgay.editableProperty().set(false);
+        this.tfNCC.editableProperty().set(false);
+        this.tfMaDDH.editableProperty().set(false);
+        this.tfKho.editableProperty().set(false);
     }
 
     public String addDDH() {

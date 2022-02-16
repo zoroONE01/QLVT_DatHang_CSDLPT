@@ -10,19 +10,18 @@ com\mycompany\QLVT\controller\KhoController.class
 com\mycompany\QLVT\controller\KhoController$3.class
 com\mycompany\QLVT\model\NhanVienTableModelTest.class
 com\mycompany\QLVT\controller\NhanVienViewControllerTest$9.class
+com\mycompany\QLVT\controller\BaoCaoController$2.class
 com\mycompany\QLVT\controller\NhanVienViewControllerTest$2.class
 com\mycompany\QLVT\dao\NhanVienDaoTest.class
-<<<<<<< HEAD
-=======
 com\mycompany\QLVT\controller\BaoCaoController$1.class
 com\mycompany\QLVT\Mapper\ChiTietDatHangMapper.class
 com\mycompany\QLVT\model\VatTuCommandModel.class
->>>>>>> b6f5c3ec14ab45ddcb437e4ab33b7bef5215fb68
 com\mycompany\QLVT\dao\AbstractDAO.class
 com\mycompany\QLVT\model\ChiTietDDHModel.class
 com\mycompany\QLVT\controller\NhanVienViewControllerTest$4.class
 com\mycompany\QLVT\Entity\Login.class
 com\mycompany\QLVT\controller\NhanVienViewControllerTest$7.class
+com\mycompany\QLVT\controller\BaoCaoController.class
 com\mycompany\QLVT\controller\NhanVienViewControllerTest$6.class
 com\mycompany\QLVT\Command\ActionAddNhanVien.class
 com\mycompany\QLVT\Command\ActionHistory.class
@@ -37,15 +36,12 @@ com\mycompany\QLVT\controller\NhanVienController$11$1.class
 com\mycompany\QLVT\dao\NhanVienDAO.class
 com\mycompany\QLVT\controller\NhanVienViewControllerTest$1.class
 com\mycompany\QLVT\Entity\ChiTietDDH.class
-<<<<<<< HEAD
-=======
 com\mycompany\QLVT\Mapper\PhanManhMapper.class
 com\mycompany\QLVT\service\CTDDHService.class
 com\mycompany\QLVT\controller\KhoDetailController.class
 com\mycompany\QLVT\controller\NhanVienController$5.class
 com\mycompany\QLVT\Mapper\DonDatHangMapper.class
 com\mycompany\QLVT\dao\PhieuNhapDAO.class
->>>>>>> b6f5c3ec14ab45ddcb437e4ab33b7bef5215fb68
 com\mycompany\QLVT\Entity\NhanVien.class
 com\mycompany\QLVT\Command\KhoCommand.class
 com\mycompany\QLVT\dao\LoginDAO.class

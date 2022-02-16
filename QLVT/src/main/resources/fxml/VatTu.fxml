@@ -80,7 +80,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <VBox alignment="CENTER" fillWidth="false" layoutX="883.0" layoutY="17.0" prefWidth="50.0" spacing="10.0" style="-fx-background-color: #fff; -fx-background-radius: 10; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );;" AnchorPane.bottomAnchor="110.0" AnchorPane.rightAnchor="0.0">
+      <VBox fx:id="vbOption" alignment="CENTER" fillWidth="false" layoutX="883.0" layoutY="17.0" prefWidth="50.0" spacing="10.0" style="-fx-background-color: #fff; -fx-background-radius: 10; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );;" AnchorPane.bottomAnchor="110.0" AnchorPane.rightAnchor="0.0">
          <children>
             <JFXButton fx:id="btAdd" layoutX="16.0" layoutY="20.0" onAction="#showAddFrom" prefHeight="30.0" prefWidth="30.0" text=" ">
                <graphic>

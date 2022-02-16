@@ -35,6 +35,10 @@ public class VatTuService {
     public List<SoLuongTonKho> findSoLuongTonKho(String maVT) {
         return sltkDAO.findSoLuongTonKho(maVT);
     }
+    
+    public int findSoLuongTonKhoVT(String maVT, String maKho) {
+        return sltkDAO.findSoLuongTonKhoVT(maVT, maKho);
+    }
 
     public int checkExist(String value, String type) {
         return vatTuDAO.checkExist(value, type);

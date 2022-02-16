@@ -9,11 +9,15 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
 import com.mycompany.QLVT.Entity.CTDDH;
+import com.mycompany.QLVT.Entity.CTPhieuXuat;
 import com.mycompany.QLVT.Entity.DDH;
 import com.mycompany.QLVT.Entity.ItemVatTu;
+import com.mycompany.QLVT.Utils.DBConnectUtil;
+import static com.mycompany.QLVT.controller.PhieuXuatController.listCTPhieuXuat;
 import com.mycompany.QLVT.model.DDHCommandModel;
 import com.mycompany.QLVT.model.DDHTableModel;
 import com.mycompany.QLVT.service.CTDDHService;
+import com.mycompany.QLVT.service.CTPhieuXuatService;
 import com.mycompany.QLVT.service.DDHService;
 import java.io.IOException;
 import java.net.URL;
@@ -31,13 +35,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -76,6 +84,9 @@ public class DDHController implements Initializable {
     private JFXButton btAdd;
 
     @FXML
+    private VBox vbOption;
+
+    @FXML
     private JFXButton btEdit;
 
     @FXML
@@ -90,6 +101,12 @@ public class DDHController implements Initializable {
 //    private JFXButton btOutput;
     @FXML
     private JFXButton btReload;
+
+    @FXML
+    private ContextMenu cmDSDDH;
+
+    @FXML
+    private MenuItem miView;
 
     private ObservableList<DDH> listDDH;
 
@@ -243,6 +260,40 @@ public class DDHController implements Initializable {
     }
 
     @FXML
+    void showCTDDH(ActionEvent event) {
+        CTDDHService service = new CTDDHService();
+        listCTDDH = (List<CTDDH>) service.findOne(ddh.getMaDDH());
+        Platform.runLater(() -> {
+            Stage owner = (Stage) miView.getParentPopup().getOwnerWindow();
+            StackPane parentStackPane = (StackPane) owner.getScene().getRoot();
+
+//            StackPane parentStackPane = (StackPane) ((Node) event.getTarget()).getScene().getRoot();
+            JFXDialogLayout content = new JFXDialogLayout();
+            Parent root = null;
+            DDHDetailController DDHDetailController = new DDHDetailController();
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(DDHController.this.getClass().getResource("../../../../fxml/DDHDetail.fxml"));
+                fxmlLoader.setController(DDHDetailController);
+                root = (Parent) fxmlLoader.load();
+                DDHDetailController.initView(ddh);
+            } catch (IOException ex) {
+                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            content.setHeading(root);
+            JFXDialog noti = new JFXDialog(parentStackPane, content, JFXDialog.DialogTransition.CENTER);
+            Image image1 = new Image(DDHController.this.getClass().getResourceAsStream("../../../../img/delete_20px.png"));
+            JFXButton btClose = new JFXButton(null, new ImageView(image1));
+            btClose.setButtonType(JFXButton.ButtonType.FLAT);
+            btClose.setCursor(Cursor.HAND);
+            btClose.setOnAction((ActionEvent event1) -> {
+                noti.close();
+            });
+            content.setActions(btClose);
+            noti.show();
+        });
+    }
+
+    @FXML
     void reloadTable(ActionEvent event) {
 //        if (!MainController.DDHCommandHistory.isCommandStackEmpty()) {
 ////            Platform.runLater(() -> {
@@ -363,6 +414,11 @@ public class DDHController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 //        lvHistoryCommand.setDisable(true);
+        if (DBConnectUtil.myGroup.equals("CONGTY")) {
+            vbOption.disableProperty().set(true);
+        } else {
+            vbOption.disableProperty().set(false);
+        }
         btEdit.setDisable(true);
         btDelete.setDisable(true);
 
@@ -372,7 +428,6 @@ public class DDHController implements Initializable {
         initTableFromDatabase();
 
 //        icLoading = new ImageView(new Image(getClass().getResourceAsStream("../../../../img/loading.gif"), 40, 40, false, true));
-
     }
 
 }

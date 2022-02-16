@@ -27,6 +27,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextFormatter;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import org.controlsfx.control.textfield.TextFields;
 
@@ -54,16 +55,22 @@ public class PhieuXuatDetailController implements Initializable {
 
     @FXML
     private JFXTextField tfKho;
-    
+
     @FXML
     private VBox vbListVT;
+
+    @FXML
+    private VBox vbPhieuXuatInfo;
 
     public static List<ItemVatTu> listItemVatTu = new ArrayList<>();
 
     private ItemVatTuPhieuXuatController itemVatTuPhieuXuat;
 
-    HashMap<String, String> mapKho;
+    private HashMap<String, String> mapKho;
 
+    private String khoSelected;
+
+//    public static String khoSelected = null;
     public static String itemError = "";
 //    public static BooleanBinding bbValCheck = new BooleanBinding() {
 ////        {
@@ -93,6 +100,7 @@ public class PhieuXuatDetailController implements Initializable {
     public void initAdd() {
 //        ràng buột ký tự cho textfeil
         listItemVatTu.clear();
+        vbListVT.getChildren().clear();
         DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate currentDate = LocalDate.now();
         tfNgay.setText(currentDate.format(df));
@@ -130,23 +138,23 @@ public class PhieuXuatDetailController implements Initializable {
         addItemVatTu();
     }
 
-    public void initUpdate(PhieuXuat phieuXuast) {
+    public void initView(PhieuXuat phieuXuast) {
         tfMaPhieuXuat.setText(phieuXuast.getMaPhieuXuat());
         tfKhachHang.setText(phieuXuast.getKhachHang());
         tfKho.setText(phieuXuast.getMaKhoTenKho());
         tfNgay.setText(phieuXuast.getNgay());
-        tfMaPhieuXuat.setEditable(false);
 
+//        tfMaPhieuXuat.setEditable(false);
         //kiểm tra xem có phiếu nhập hay chưa
 //        tfKho.setDisable(true);
-        tfKhachHang.setTextFormatter(new TextFormatter<>(change -> {
-            if (ValidationRegEx.removeAscent(change.getText()).matches("[\\sa-zA-Z0-9_.,-/]")) {
-                return change; //if change is a number
-            } else {
-                change.setText(""); //else make no change
-                return change;
-            }
-        }));
+//        tfKhachHang.setTextFormatter(new TextFormatter<>(change -> {
+//            if (ValidationRegEx.removeAscent(change.getText()).matches("[\\sa-zA-Z0-9_.,-/]")) {
+//                return change; //if change is a number
+//            } else {
+//                change.setText(""); //else make no change
+//                return change;
+//            }
+//        }));
 //        tfKho.setTextFormatter(new TextFormatter<>(change -> {
 //            if (ValidationRegEx.removeAscent(change.getText()).matches("[a-zA-Z0-9]")) {
 //                return change; //if change is a number
@@ -156,17 +164,17 @@ public class PhieuXuatDetailController implements Initializable {
 //            }
 //        }));
         listItemVatTu.clear();
+        vbListVT.getChildren().clear();
         for (CTPhieuXuat ctPhieuXuat : PhieuXuatController.listCTPhieuXuat) {
             itemVatTuPhieuXuat = new ItemVatTuPhieuXuatController(ctPhieuXuat);
-//            itemVatTuPhieuXuat.setItem();
             itemVatTuPhieuXuat.setParentController(this);
             vbListVT.getChildren().add(itemVatTuPhieuXuat);
             listItemVatTu.add(itemVatTuPhieuXuat.getItem());
         }
-//        itemVatTuPhieuXuat = new ItemVatTuPhieuXuatController();
-//        itemVatTuPhieuXuat.setParentController(this);
-//        vbListVT.getChildren().add(itemVatTuPhieuXuat);
-//        listItemVatTu.add(itemVatTuPhieuXuat.getItem());
+        this.tfNgay.editableProperty().set(false);
+        this.tfKhachHang.editableProperty().set(false);
+        this.tfMaPhieuXuat.editableProperty().set(false);
+        this.tfKho.editableProperty().set(false);
     }
 
     public void initDelele(PhieuXuat phieuXuat) {
@@ -357,11 +365,16 @@ public class PhieuXuatDetailController implements Initializable {
         tfKho.textProperty().addListener((observable, oldValue, newValue) -> {
             if (listKhoSnippet.contains(newValue)) {
                 tfKho.setText(newValue);
+                listItemVatTu.clear();
+                vbListVT.getChildren().clear();
+                vbListVT.disableProperty().set(false);
+                this.khoSelected = mapKho.get(newValue).trim();
+                addItemVatTu(khoSelected);
             } else {
-//                if (listKhoSnippet.contains(tfKho.getText())) {
-//                    tfKho.setText(oldValue);
-//                }
-//                tfKho.setText(oldValue);
+                listItemVatTu.clear();
+                vbListVT.getChildren().clear();
+                addItemVatTu();
+                vbListVT.disableProperty().set(true);
                 Platform.runLater(() -> {
                     tfKho.pseudoClassStateChanged(
                             PseudoClass.getPseudoClass("error"), true);
@@ -369,6 +382,19 @@ public class PhieuXuatDetailController implements Initializable {
             }
         });
         tfNgay.setEditable(false);
+    }
+
+    public void addItemVatTu(String khoSelected) {
+        itemVatTuPhieuXuat = new ItemVatTuPhieuXuatController();
+        itemVatTuPhieuXuat.setParentController(this);
+        vbListVT.getChildren().add(itemVatTuPhieuXuat);
+        listItemVatTu.add(itemVatTuPhieuXuat.getItem());
+        itemVatTuPhieuXuat.setKhoSelected(khoSelected);
+        itemVatTuPhieuXuat.initTfInput();
+//        System.out.println("========================================================");
+//        for (ItemVatTu itemVatTu : listItemVatTu) {
+//            System.out.println(itemVatTu.toString());
+//        }
     }
 
     public void addItemVatTu() {
@@ -383,6 +409,19 @@ public class PhieuXuatDetailController implements Initializable {
 //        }
     }
 
+//    public void addItemVatTu_S() {
+//        itemVatTuPhieuXuat = new ItemVatTuPhieuXuatController();
+//        itemVatTuPhieuXuat.setKhoSelected(this.khoSelected);
+//        itemVatTuPhieuXuat.setParentController(this);
+//        vbListVT.getChildren().add(itemVatTuPhieuXuat);
+//        listItemVatTu.add(itemVatTuPhieuXuat.getItem());
+//        itemVatTuPhieuXuat.initTfInput();
+//        System.out.println("========================================================");
+//        for (ItemVatTu itemVatTu : listItemVatTu) {
+//            System.out.println(itemVatTu.toString());
+//        }
+//    }
+
     public void removeItemVatTu(ItemVatTuPhieuXuatController item) {
         if (vbListVT.getChildren().size() != 1) {
             vbListVT.getChildren().remove(item);
@@ -392,6 +431,7 @@ public class PhieuXuatDetailController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         initTfInput();
+        vbListVT.disableProperty().set(true);
 //        addItemVatTu();
         vbListVT.setSpacing(10);
     }

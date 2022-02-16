@@ -216,8 +216,8 @@ public class NhapHangController {
     private ChiTietDDHModel chiTietDDHModel;
     private ChiTietPhieuNhapService chiTietPhieuNhapService = new ChiTietPhieuNhapService();
     private ActionHistory history = new ActionHistory();
-    private DDHService donDatHangService=new DDHService();
-    private CTDDHService chiTietDatHangService=new CTDDHService();
+    private DDHService donDatHangService = new DDHService();
+    private CTDDHService chiTietDatHangService = new CTDDHService();
 
     @FXML
     void redoCommand(ActionEvent event) {
@@ -259,13 +259,13 @@ public class NhapHangController {
      */
     @FXML
     void initialize() {
-        
+
         DDHTableModel ddhModel = new DDHTableModel();
         PhieuNhapModel pnModel = new PhieuNhapModel();
         ChiTietPhieuNhapModel ctpnm = new ChiTietPhieuNhapModel();
         ChiTietDDHModel ctddhm = new ChiTietDDHModel();
-        List<DDH> donDatHangs=new ArrayList();
-        donDatHangs=donDatHangService.findAllForPhieuNhap();
+        List<DDH> donDatHangs = new ArrayList();
+        donDatHangs = donDatHangService.findAllForPhieuNhap();
         ddhModel.setDDHList(donDatHangs);
         initTableDHFromDatabase(ddhModel, pnModel, ctpnm, ctddhm);
     }
@@ -350,10 +350,10 @@ public class NhapHangController {
 
         tbCTDDH.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             chiTietDDHModel.setCurrentChiTietDDH(newValue);
-            if(newValue!=null){
-            tfMaVT_CTPN.setText(newValue.getMaVT());
-            tfSoLuong_CTPN.setText(String.valueOf(newValue.getSoLuong()));
-            tfDonGia_CTPN.setText(String.valueOf(newValue.getDonGia()));
+            if (newValue != null) {
+                tfMaVT_CTPN.setText(newValue.getMaVT());
+                tfSoLuong_CTPN.setText(String.valueOf(newValue.getSoLuong()));
+                tfDonGia_CTPN.setText(String.valueOf(newValue.getDonGia()));
             }
         });
         tbPN.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -492,8 +492,8 @@ public class NhapHangController {
                     ButtonType buttonTypeOk = new ButtonType("Okay", ButtonBar.ButtonData.OK_DONE);
                     dialog.getDialogPane().getButtonTypes().add(buttonTypeOk);
                     Button btn = (Button) dialog.getDialogPane().lookupButton(buttonTypeOk);
-                    
-                    String maDonDat=phieuNhapModel.getCurrentPhieuNhap().getMaDDH();
+
+                    String maDonDat = phieuNhapModel.getCurrentPhieuNhap().getMaDDH();
                     initTableCTDDH(maDonDat);
                     btn.addEventFilter(ActionEvent.ACTION, evt -> {
                         boolean isValidForm = true;
@@ -546,17 +546,13 @@ public class NhapHangController {
 
                             if (e.getMessage().equals("Infomation is empty")) {
                                 messageDialog("Infomation is empty");
-                            }
-                            else if  (e.getMessage().equals("Mã vật tư quá dài hoặc sai định dạng")) {
+                            } else if (e.getMessage().equals("Mã vật tư quá dài hoặc sai định dạng")) {
                                 messageDialog("Mã vật tư quá dài hoặc sai định dạng");
-                            }
-                            else if (e.getMessage().equals("Số lượng không hợp lệ")) {
+                            } else if (e.getMessage().equals("Số lượng không hợp lệ")) {
                                 messageDialog("Số lượng không hợp lệ");
-                            }
-                            else if (e.getMessage().equals("Vui lòng kiểm tra Mã vật tư và Mã phiếu nhập")) {
+                            } else if (e.getMessage().equals("Vui lòng kiểm tra Mã vật tư và Mã phiếu nhập")) {
                                 messageDialog("Vui lòng kiểm tra Mã vật tư và Mã phiếu nhập");
-                            }
-                            else if (e.getMessage().equals("Đơn giá không hợp lệ")) {
+                            } else if (e.getMessage().equals("Đơn giá không hợp lệ")) {
                                 messageDialog("Đơn giá không hợp lệ");
                             } else {
                                 messageDialog("Vui lòng kiểm tra thông tin");
@@ -607,7 +603,7 @@ public class NhapHangController {
     public void initTableCTDDH(String id) {
         tbCTDDH.getItems().clear();
         List<CTDDH> listDDH = new ArrayList();
-        listDDH=chiTietDatHangService.findAllByMaDon(id);
+        listDDH = chiTietDatHangService.findAllByMaDon(id);
         chiTietDDHModel.setChiTietDDHList(listDDH);
     }
 

@@ -22,7 +22,7 @@
         </Label>
         <HBox alignment="CENTER" layoutX="15.0" layoutY="50.0" prefWidth="700.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
             <children>
-                <VBox alignment="CENTER" prefWidth="150.0" spacing="30.0">
+                <VBox fx:id="vbPhieuXuatInfo" alignment="CENTER" prefWidth="150.0" spacing="30.0">
                     <children>
                         <JFXTextField fx:id="tfNgay" focusColor="#c767e6" labelFloat="true" layoutX="10.0" layoutY="103.0" promptText="Ngày" />
                         <JFXTextField fx:id="tfMaPhieuXuat" focusColor="#c767e6" labelFloat="true" promptText="Mã Phiếu Xuất" />

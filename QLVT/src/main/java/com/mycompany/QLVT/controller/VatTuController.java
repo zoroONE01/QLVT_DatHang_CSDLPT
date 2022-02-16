@@ -11,6 +11,7 @@ import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXListView;
 import com.mycompany.QLVT.Entity.SoLuongTonKho;
 import com.mycompany.QLVT.Entity.VatTu;
+import com.mycompany.QLVT.Utils.DBConnectUtil;
 import com.mycompany.QLVT.model.VatTuCommandModel;
 import com.mycompany.QLVT.model.VatTuTableModel;
 import com.mycompany.QLVT.model.VatTuTonKhoTableModel;
@@ -36,6 +37,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 /**
@@ -92,6 +94,9 @@ public class VatTuController implements Initializable {
 
     @FXML
     private JFXButton btRedo;
+
+    @FXML
+    private VBox vbOption;
 
     @FXML
     private JFXButton btReload;
@@ -370,6 +375,11 @@ public class VatTuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        if (DBConnectUtil.myGroup.equals("CONGTY")) {
+            vbOption.disableProperty().set(true);
+        } else{
+            vbOption.disableProperty().set(false);
+        }
         lvHistoryCommand.setDisable(true);
         btEdit.setDisable(true);
         btDelete.setDisable(true);

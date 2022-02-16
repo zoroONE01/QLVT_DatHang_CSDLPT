@@ -35,6 +35,17 @@ public class SoLuongTonKhoDAO extends AbstractDAO<SoLuongTonKho> {
         return list.isEmpty() ? null : list;
     }
 
+    public int findSoLuongTonKhoVT(String maVT, String maKho) {
+        int sl = queryReturnOfProcedure("{call spFindSoLuongTonKhoVT(?,?)}", maVT, maKho);
+        return sl;
+//        if (list == null) {
+//            return 0;
+//        }
+//        System.out.println("listDAO" + list.toString());
+//        return list.isEmpty() ? 0 : list.get(0).getSoLuongTon();
+
+    }
+
     public int checkExist(String value, String type) {
         System.out.println(queryReturnOfProcedure("{call spCheckID(?,?)}", value, type));
         return queryReturnOfProcedure("{call spCheckID(?,?)}", value, type);
