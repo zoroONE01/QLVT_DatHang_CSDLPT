@@ -5,8 +5,10 @@
  */
 package com.mycompany.QLVT.dao;
 
+import com.mycompany.QLVT.Entity.ChiTietPhieuNhap;
 import com.mycompany.QLVT.Entity.PhieuNhap;
 import com.mycompany.QLVT.Entity.PhieuNhap;
+import com.mycompany.QLVT.Mapper.ChiTietPhieuNhapMapper;
 import com.mycompany.QLVT.Mapper.PhieuNhapMapper;
 import java.util.List;
 
@@ -33,7 +35,10 @@ public class PhieuNhapDAO extends AbstractDAO<PhieuNhap> {
         List<PhieuNhap> listPn = queryProcedure("{CALL SP_TIM_PN_BY_MADON(?)}", new PhieuNhapMapper(), maDon);
         return listPn.isEmpty() ? null : listPn.get(0);
     }
-
+     public List<ChiTietPhieuNhap> findChiTietPhieuNhapByMAPN(String maPN) {
+        List<ChiTietPhieuNhap> listPn = queryProcedure("{CALL SP_TIM_CTPN_BY_MAPN(?)}", new ChiTietPhieuNhapMapper(), maPN);
+        return listPn;
+    }
     public int isExist(String id) {
 //        List<Integer> listNV = (List<Integer>) queryProcedure("{call SP_CHECK_TRACUU(?,?)}", new RowMapper<Integer>() {
 //            @Override
@@ -61,8 +66,21 @@ public class PhieuNhapDAO extends AbstractDAO<PhieuNhap> {
             
     }
 
-    public int update(PhieuNhap nv) {
-        return 0;
+    public int update(PhieuNhap pn) {
+        return update("{call SP_CAPNHAT_PN(?,?,?,?,?)}",pn.getMaPN(),pn.getNgay(),pn.getMaDDH(),pn.getMaNhanVien(),pn.getMaKhoa());
     }
-
+   public int kiemTraSoLuongVatTu(String maVatTu)
+   {    
+       return executeStamentAndGetReturn("{call SP_KIEMTRA_SOLUONG_VATTU(?,?)}",maVatTu,"");
+      
+   }
+   public int capNhatSoLuongVatTu(String maVT,int soLuong)
+   { 
+       return update("{call  SP_CAPNHAT_SOLUONG_VATTU(?,?)}",maVT,soLuong );
+   }
+   public List<PhieuNhap> findByMaPhieuNhapStartingWith(String maVT)
+   { 
+       List<PhieuNhap> phieuNhaps=queryProcedure("{call SP_LayPhieuNhapStartingWith(?)}",new PhieuNhapMapper(), maVT);
+       return phieuNhaps;
+   }
 }

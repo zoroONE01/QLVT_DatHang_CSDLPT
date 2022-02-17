@@ -16,6 +16,10 @@ public class ThoiGian {
     int namFrom;
     int namTo;
     String type;
+
+    public ThoiGian() {
+    }
+    
     public ThoiGian(int thangFrom, int thangTo, int namFrom, int namTo) {
         this.thangFrom = thangFrom;
         this.thangTo = thangTo;

@@ -35,6 +35,11 @@ public class CTDDHDAO extends AbstractDAO<CTDDH> {
         List<CTDDH> list = queryProcedure("{call SP_DS_CTDDH_BY_MADON(?)}", new ChiTietDatHangMapper(), id);
         return list.isEmpty() ? null : list;
     }
+     public List<CTDDH> findAllByMaDonNotCTPN(String id)
+    {
+        List<CTDDH> list = queryProcedure("{call SP_DS_CTDDH_PN_BY_MADON(?)}", new ChiTietDatHangMapper(), id);
+        return list.isEmpty() ? null : list;
+    }
 //    public int checkExist(String value, String type) {
 //        return queryReturnOfProcedure("{call spCheckID(?,?)}", value, type);
 //    }

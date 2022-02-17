@@ -7,6 +7,7 @@ package com.mycompany.QLVT.model;
 
 import com.mycompany.QLVT.Entity.CTDDH;
 import com.mycompany.QLVT.Entity.ChiTietDDH;
+import java.util.ArrayList;
 import java.util.List;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -39,7 +40,13 @@ public class ChiTietDDHModel {
     }
 
     public void setChiTietDDHList(List<CTDDH> list) {
+        if(list==null)
+        {
+             ChiTietDDHList.addAll(new ArrayList<>());
+        }
+        else{
         ChiTietDDHList.addAll(list);
+        }
     }
 
 //    public void setChiTietDDHList2(List<ChiTietDDH> l) {

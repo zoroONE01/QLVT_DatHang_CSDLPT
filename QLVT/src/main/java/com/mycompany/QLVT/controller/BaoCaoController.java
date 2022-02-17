@@ -15,6 +15,7 @@ import com.mycompany.QLVT.Entity.ThoiGian;
 import com.mycompany.QLVT.Utils.DBConnectUtil;
 import com.mycompany.QLVT.dao.PhanManhDAO;
 import com.mycompany.QLVT.model.ChiNhanhModel;
+import com.mycompany.QLVT.model.NhanVienCbbModel;
 import com.mycompany.QLVT.service.NhanVienService;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -27,6 +28,7 @@ import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -35,6 +37,8 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 import net.sf.jasperreports.engine.JRException;
@@ -82,7 +86,7 @@ public class BaoCaoController {
     private JFXButton btnReportNhapXuat;
 
     @FXML
-    private JFXButton btnReportNhapHang;
+    private JFXButton btnReportDHKhongPN;
 
     @FXML
     private JFXButton btnReportHDNV;
@@ -109,14 +113,123 @@ public class BaoCaoController {
     private DatePicker datePickerFrom_HDNV;
 
     @FXML
-    private JFXTextField tfMaNV_HDNV;
+    private JFXComboBox<Integer> cbMaNV_HDNV;
 
     @FXML
+    private ToggleGroup groupRadioNhapXuat;
+    @FXML
+    private RadioButton radioXuat;
+    @FXML
+    private RadioButton radioNhap;
+    @FXML
     private DatePicker datePickerTo_HDNV;
+
+    @FXML
+    private RadioButton radioCTNHAP;
+    @FXML
+    private ToggleGroup groupRadioCTNX;
+
+    @FXML
+    private RadioButton radioCTXUAT;
+
+    @FXML
+    private AnchorPane pnThongKeTongNhapXuat;
+
+    @FXML
+    private DatePicker datePickerFromTongNhapXuat;
+
+    @FXML
+    private DatePicker datePickerToTongNhapXuat;
+
+    @FXML
+    private JFXButton btnReportTongHopNhapXuat;
+
     private ChiNhanhModel chiNhanhModel = new ChiNhanhModel();
     private PhanManhDAO phanManhDAO = new PhanManhDAO();
     HashMap<Integer, NhanVien> hashNhanViens;
     private NhanVienService nhanVienService = new NhanVienService();
+    private NhanVienCbbModel nhanVienModel = new NhanVienCbbModel();
+
+    @FXML
+    void actionReportTongHopNhapXuat(ActionEvent event) {
+
+        ButtonType previewButton = new ButtonType("Preview");
+        ButtonType exportButton = new ButtonType("Export");
+        ButtonType exitButton = new ButtonType("Exit");
+        Dialog<HDNV> dialog = new Dialog<>();
+        dialog.setTitle("Tổng hợp nhập xuất");
+        dialog.setResizable(true);
+        dialog.getDialogPane().setContent(pnThongKeTongNhapXuat);
+        pnThongKeTongNhapXuat.setVisible(true);
+        // tfMaNV_HDNV.setText(DBConnectUtil.myUserDB);
+
+        dialog.getDialogPane().getButtonTypes().add(previewButton);
+        dialog.getDialogPane().getButtonTypes().add(exportButton);
+        dialog.getDialogPane().getButtonTypes().add(exitButton);
+        Button btnPrv = (Button) dialog.getDialogPane().lookupButton(previewButton);
+        Button exitPrv = (Button) dialog.getDialogPane().lookupButton(exitButton);
+
+//        btnPrv.addEventFilter(ActionEvent.ACTION, (evt) -> {
+//            LocalDate dateFrom = datePickerFromTongNhapXuat.getValue();
+//            LocalDate dateTo = datePickerToTongNhapXuat.getValue();
+//            if (dateFrom.isAfter(dateTo)) {
+//                evt.consume();
+//            }
+//        });
+        dialog.setResultConverter(new Callback<ButtonType, HDNV>() {
+            @Override
+            public HDNV call(ButtonType param) {
+                if (param == exitButton) {
+                    HDNV hdnv = new HDNV();
+                    hdnv.setType("exit");
+                    return hdnv;
+                }
+                try {
+                    LocalDate dateFrom = datePickerFromTongNhapXuat.getValue();
+                    LocalDate dateTo = datePickerToTongNhapXuat.getValue();
+                    String to = dateTo.format(DateTimeFormatter.ISO_DATE);
+                    String from = dateFrom.format(DateTimeFormatter.ISO_DATE);
+                    System.out.println(dateFrom.getMonthValue() + "  " + dateFrom.getYear());
+                    System.out.println(dateTo.getMonthValue() + "  " + dateTo.getYear());
+                    HDNV hdnv = new HDNV(from, to, '1');
+
+                    if (param == previewButton) {
+                        hdnv.setType("preview");
+                        return hdnv;
+                    } else if (param == exportButton) {
+                        hdnv.setType("export");
+                        return hdnv;
+                    }
+                } catch (Exception e) {
+                    System.out.println(e.getCause());
+
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setHeaderText("Kiểm tra lại ngày tháng");
+                    alert.showAndWait();
+                }
+                return null;
+
+            }
+        });
+        Optional<HDNV> result = dialog.showAndWait();
+
+        if (result.isPresent()) {
+
+            if (result.get().getType().equals("preview")) {
+
+                runReport("reportTongNhapXuat", result.get().getMaNV(), result.get().getDateFrom(), result.get().getDateTo(), false);
+
+            } else if (result.get().getType().equals("export")) {
+
+                runReport("reportTongNhapXuat", result.get().getMaNV(), result.get().getDateFrom(), result.get().getDateTo(), true);
+
+            } else {
+
+            }
+
+        }
+
+    }
 
     @FXML
     void actionReportDMVT(ActionEvent event) {
@@ -124,7 +237,7 @@ public class BaoCaoController {
         ButtonType exportButton = new ButtonType("Export");
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-
+        alert.setHeaderText("Danh mục vật tư");
         alert.getButtonTypes().clear();
         alert.getButtonTypes().add(ButtonType.CANCEL);
 
@@ -149,7 +262,7 @@ public class BaoCaoController {
         ButtonType exportButton = new ButtonType("Export");
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-
+        alert.setHeaderText("Danh sách nhân viên");
         alert.getButtonTypes().clear();
         alert.getButtonTypes().add(ButtonType.CANCEL);
 
@@ -171,70 +284,129 @@ public class BaoCaoController {
 
     @FXML
     void actionReportHDNV(ActionEvent event) {
+        initModelNhanVien();
         ButtonType previewButton = new ButtonType("Preview");
         ButtonType exportButton = new ButtonType("Export");
-
+        ButtonType exitButton = new ButtonType("Exit");
         Dialog<HDNV> dialog = new Dialog<>();
         dialog.setTitle("Hoạt động nhân viên");
         dialog.setResizable(true);
         dialog.getDialogPane().setContent(pnHDNV);
         pnHDNV.setVisible(true);
-        tfMaNV_HDNV.setText(DBConnectUtil.myUserDB);
+        // tfMaNV_HDNV.setText(DBConnectUtil.myUserDB);
 
         dialog.getDialogPane().getButtonTypes().add(previewButton);
         dialog.getDialogPane().getButtonTypes().add(exportButton);
-        dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+        dialog.getDialogPane().getButtonTypes().add(exitButton);
         Button btnPrv = (Button) dialog.getDialogPane().lookupButton(previewButton);
-        btnPrv.addEventFilter(ActionEvent.ACTION, (evt) -> {
-            LocalDate dateFrom = datePickerFrom_HDNV.getValue();
-            LocalDate dateTo = datePickerTo_HDNV.getValue();
-            if (dateFrom.isAfter(dateTo)) {
-                evt.consume();
-            }
-        });
+        Button btnExit = (Button) dialog.getDialogPane().lookupButton(exitButton);
+//        btnExit.addEventFilter(ActionEvent.ACTION, (evt) -> {
+//            evt.consume();
+//            pnHDNV.setVisible(false);
+//
+//        });
+//        btnPrv.addEventFilter(ActionEvent.ACTION, (evt) -> {
+//            LocalDate dateFrom = datePickerFrom_HDNV.getValue();
+//            LocalDate dateTo = datePickerTo_HDNV.getValue();
+//            if (dateFrom.isAfter(dateTo)) {
+//                evt.consume();
+//            }
+//        });
+
         dialog.setResultConverter(new Callback<ButtonType, HDNV>() {
             @Override
             public HDNV call(ButtonType param) {
-                LocalDate dateFrom = datePickerFrom_HDNV.getValue();
-                LocalDate dateTo = datePickerTo_HDNV.getValue();
-                String to=dateTo.format(DateTimeFormatter.ISO_DATE);
-                String from=dateFrom.format(DateTimeFormatter.ISO_DATE);
-                System.out.println(dateFrom.getMonthValue() + "  " + dateFrom.getYear());
-                System.out.println(dateTo.getMonthValue() + "  " + dateTo.getYear());
-                HDNV hdnv = new HDNV(from, to, Integer.parseInt(tfMaNV_HDNV.getText()));
 
-                if (param == previewButton) {
-                    hdnv.setType("preview");
+                if (param == exitButton) {
+                    HDNV hdnv = new HDNV();
+                    hdnv.setType("exit");
+
                     return hdnv;
-                } else if (param == exportButton) {
-                    hdnv.setType("export");
-                    return hdnv;
+                }
+                try {
+                    LocalDate dateFrom = datePickerFrom_HDNV.getValue();
+                    LocalDate dateTo = datePickerTo_HDNV.getValue();
+                    String to = dateTo.format(DateTimeFormatter.ISO_DATE);
+                    String from = dateFrom.format(DateTimeFormatter.ISO_DATE);
+                    System.out.println(dateFrom.getMonthValue() + "  " + dateFrom.getYear());
+                    System.out.println(dateTo.getMonthValue() + "  " + dateTo.getYear());
+                    HDNV hdnv = new HDNV(from, to, Integer.parseInt(String.valueOf(cbMaNV_HDNV.getValue())));
+
+                    if (param == previewButton) {
+                        hdnv.setType("preview");
+                        return hdnv;
+                    } else if (param == exportButton) {
+                        hdnv.setType("export");
+                        return hdnv;
+                    }
+                } catch (Exception e) {
+                    System.out.println(e.getCause());
+
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setHeaderText("Kiểm tra lại thông tin");
+                    alert.showAndWait();
+
                 }
                 return null;
             }
         });
         Optional<HDNV> result = dialog.showAndWait();
+
         if (result.isPresent()) {
 
             if (result.get().getType().equals("preview")) {
-                runReport("reportHDNV", result.get().getMaNV(), result.get().getDateFrom(), result.get().getDateTo(), false);
+                if (radioNhap.isSelected()) {
+                    runReport("reportHDNV", result.get().getMaNV(), result.get().getDateFrom(), result.get().getDateTo(), false);
+                } else {
+                    runReport("reportHDNV_Xuat", result.get().getMaNV(), result.get().getDateFrom(), result.get().getDateTo(), false);
+                }
             } else if (result.get().getType().equals("export")) {
-                runReport("reportHDNV", result.get().getMaNV(), result.get().getDateFrom(), result.get().getDateTo(), true);
+                if (radioNhap.isSelected()) {
+                    runReport("reportHDNV", result.get().getMaNV(), result.get().getDateFrom(), result.get().getDateTo(), true);
+                } else {
+                    runReport("reportHDNV_Xuat", result.get().getMaNV(), result.get().getDateFrom(), result.get().getDateTo(), true);
+                }
+
+            } else if (result.get().getType().equals("exit")) {
+                System.out.println("Thoat");
+            } else {
+
             }
 
         }
+
     }
 
     @FXML
-    void actionReportNhapHang(ActionEvent event) {
+    void actionDHKhongPN(ActionEvent event) {
+        ButtonType previewButton = new ButtonType("Preview");
+        ButtonType exportButton = new ButtonType("Export");
 
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText("Danh sách đơn đặt hàng không có phiếu nhập");
+        alert.getButtonTypes().clear();
+        alert.getButtonTypes().add(ButtonType.CANCEL);
+
+        alert.getButtonTypes().addAll(previewButton, exportButton);
+
+        Optional<ButtonType> optional = alert.showAndWait();
+
+        if (optional.get() == previewButton) {
+            //show report;
+            runReport("DHKHONGPN", false);
+        } else if (optional.get() == exportButton) {
+            //export
+            runReport("DHKHONGPN", true);
+        } else {
+            alert.close();
+        }
     }
 
     @FXML
     void actionReportNhapXuat(ActionEvent event) {
         ButtonType previewButton = new ButtonType("Preview");
         ButtonType exportButton = new ButtonType("Export");
-
+        ButtonType exitButton = new ButtonType("Exit");
         Dialog<ThoiGian> dialog = new Dialog<>();
         dialog.setTitle("Thống kế chi tiết-giá trị nhập xuất");
         dialog.setResizable(true);
@@ -243,36 +415,56 @@ public class BaoCaoController {
 
         dialog.getDialogPane().getButtonTypes().add(previewButton);
         dialog.getDialogPane().getButtonTypes().add(exportButton);
-        dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+        dialog.getDialogPane().getButtonTypes().add(exitButton);
+
         Button btnPrv = (Button) dialog.getDialogPane().lookupButton(previewButton);
-        btnPrv.addEventFilter(ActionEvent.ACTION, (evt) -> {
-            LocalDate dateFrom = datePickerFrom.getValue();
-            LocalDate dateTo = datePickerTo.getValue();
-            if (dateFrom.isAfter(dateTo)) {
-                evt.consume();
-            }
-        });
+
+//        btnPrv.addEventFilter(ActionEvent.ACTION, (evt) -> {
+//            LocalDate dateFrom = datePickerFrom.getValue();
+//            LocalDate dateTo = datePickerTo.getValue();
+//            if (dateFrom.isAfter(dateTo)) {
+//                evt.consume();
+//            }
+//        });
         dialog.setResultConverter(new Callback<ButtonType, ThoiGian>() {
             @Override
             public ThoiGian call(ButtonType param) {
-                LocalDate dateFrom = datePickerFrom.getValue();
-                LocalDate dateTo = datePickerTo.getValue();
-                System.out.println(dateFrom.getMonthValue() + "  " + dateFrom.getYear());
-                System.out.println(dateTo.getMonthValue() + "  " + dateTo.getYear());
-                ThoiGian thoiGian = new ThoiGian(dateFrom.getMonthValue(), dateTo.getMonthValue(), dateFrom.getYear(), dateTo.getYear());
+                if (param == exitButton) {
+                    ThoiGian tg = new ThoiGian();
+                    tg.setType("exit");
+                    return tg;
+                }
+                try {
+                    LocalDate dateFrom = datePickerFrom.getValue();
+                    LocalDate dateTo = datePickerTo.getValue();
+                    System.out.println(dateFrom.getMonthValue() + "  " + dateFrom.getYear());
+                    System.out.println(dateTo.getMonthValue() + "  " + dateTo.getYear());
+                    if (dateFrom.isAfter(dateTo)) {
+                        ThoiGian tg = new ThoiGian();
+                        tg.setType("other");
+                        return tg;
+                    }
+                    ThoiGian thoiGian = new ThoiGian(dateFrom.getMonthValue(), dateTo.getMonthValue(), dateFrom.getYear(), dateTo.getYear());
+                    if (param == previewButton) {
+                        thoiGian.setType("preview");
+                        return thoiGian;
+                    } else if (param == exportButton) {
+                        thoiGian.setType("export");
+                        return thoiGian;
+                    }
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setHeaderText("Kiểm tra lại ngày tháng");
+                    alert.showAndWait();
 
-                if (param == previewButton) {
-                    thoiGian.setType("preview");
-                    return thoiGian;
-                } else if (param == exportButton) {
-                    thoiGian.setType("export");
-                    return thoiGian;
                 }
                 return null;
             }
         });
         Optional<ThoiGian> result = dialog.showAndWait();
         if (result.isPresent()) {
+            System.out.println("Result");
             System.out.println(result.get().getThangFrom());
             System.out.println(result.get().getThangTo());
             System.out.println(result.get().getNamFrom());
@@ -282,12 +474,23 @@ public class BaoCaoController {
             int k = result.get().getNamFrom();
             int l = result.get().getNamTo();
             if (result.get().getType().equals("preview")) {
-
-                runReport("CTGTNX", i, j, k, l, false);
+                if (radioCTNHAP.isSelected()) {
+                    runReportChiTietNhapXuat("CTGTNX", DBConnectUtil.myGroup, "NHAP", i, j, k, l, false);
+                } else {
+                    runReportChiTietNhapXuat("CTGTNX", DBConnectUtil.myGroup, "XUAT", i, j, k, l, false);
+                }
             } else if (result.get().getType().equals("export")) {
-                runReport("CTGTNX", i, j, k, l, true);
-            }
+                // runReport("CTGTNX", i, j, k, l, true);
+                if (radioCTNHAP.isSelected()) {
+                    runReportChiTietNhapXuat("CTGTNX", DBConnectUtil.myGroup, "NHAP", i, j, k, l, true);
+                } else {
+                    runReportChiTietNhapXuat("CTGTNX", DBConnectUtil.myGroup, "XUAT", i, j, k, l, true);
+                }
+            } else if (result.get().getType().equals("exit")) {
+                System.out.println("Thoat");
+            } else {
 
+            }
         }
     }
 
@@ -404,7 +607,7 @@ public class BaoCaoController {
         }
     }
 
-    public static void runReport(String reportFile, int thangFrom, int thangTo, int namFrom, int namTo, boolean export) {
+    public static void runReportChiTietNhapXuat(String reportFile, String nhom, String loai, int thangFrom, int thangTo, int namFrom, int namTo, boolean export) {
         String file = "src\\main\\java\\com\\mycompany\\QLVT\\Report\\" + reportFile + ".jrxml";
         try {
 
@@ -431,6 +634,8 @@ public class BaoCaoController {
             int j = thangTo;
             int k = namFrom;
             int l = namTo;
+            jasperParameter.put("Nhom", nhom);
+            jasperParameter.put("Loai", loai);
             jasperParameter.put("thangFrom", i);
             jasperParameter.put("thangTo", j);
             jasperParameter.put("namFrom", k);
@@ -601,19 +806,39 @@ public class BaoCaoController {
     @FXML
     void initialize() {
         initModelChiNhanh();
-
+        
+        if (DBConnectUtil.myGroup.equals("ChiNhanh")) {
+            cbbChiNhanh.setDisable(true);
+        }
+        if (DBConnectUtil.myGroup.equals("User")) {
+            cbbChiNhanh.setDisable(true);           
+        }
+        if (DBConnectUtil.myGroup.equals("CongTy")) {
+            cbbChiNhanh.setDisable(false);
+        }
         //Hoạt động nhân viên initModel
+        initModelNhanVien();
+//        tfMaNV_HDNV.textProperty().addListener((observable, oldValue, newValue) -> {
+//            if (!newValue.matches("\\d*")) {
+//                tfMaNV_HDNV.setText(newValue.replaceAll("[^\\d]", ""));
+//            }else{
+//               // tfTenNV_HDNV.setText(hashNhanViens.get(newValue).getTen());
+//            }
+//        });
+    }
+
+    public void initModelNhanVien() {
         List<NhanVien> nhanVienList = nhanVienService.findAll();
         hashNhanViens = (HashMap<Integer, NhanVien>) nhanVienList.stream().collect(Collectors.toMap(NhanVien::getMaNhanVien, nv -> nv));
-     
+        nhanVienModel.setNhanVienList(nhanVienList);
         tfTenNV_HDNV.setEditable(false);
-       
-        tfMaNV_HDNV.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("\\d*")) {
-                tfMaNV_HDNV.setText(newValue.replaceAll("[^\\d]", ""));
-            }else{
-               // tfTenNV_HDNV.setText(hashNhanViens.get(newValue).getTen());
-            }
+         cbMaNV_HDNV.getItems().clear();
+        for (NhanVien nhanVien : nhanVienList) {
+            cbMaNV_HDNV.getItems().addAll(nhanVien.getMaNhanVien());
+        }
+        cbMaNV_HDNV.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            nhanVienModel.setCurrentNhanVien(hashNhanViens.get(newValue));
+            tfTenNV_HDNV.setText(nhanVienModel.getCurrentNhanVien().getTen());
         });
 
     }

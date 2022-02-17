@@ -301,10 +301,14 @@ public class AbstractDAO<T> implements GenericDAO<T> {
             connection = getConnection();
             statement = connection.prepareCall(sql);
             setParameter(statement, parameters);
-            boolean rs = statement.execute();
+            boolean rs = statement.execute(); //true if the first result is a ResultSet object; false if the first result is an update count or there is no result
             if (rs == false) {
                 //  connection.commit();
-                return statement.getUpdateCount();
+                if(statement.getUpdateCount()==-1)//-1 if the current result is a ResultSet object or there are no more results
+                {
+                    return 2;
+                }
+                return statement.getUpdateCount(); //the current result as an update count;
             }
 
         } catch (SQLException e) {

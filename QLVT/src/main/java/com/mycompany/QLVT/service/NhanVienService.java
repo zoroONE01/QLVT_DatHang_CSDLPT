@@ -25,10 +25,10 @@ public class NhanVienService {
     public List<NhanVien> findAll() {
         return nhanVienDAO.findAll();
     }
-
-    public List<NhanVien> findAllOthersite() {
-        return nhanVienDAO.findAllOtherSite();
-    }
+//
+//    public List<NhanVien> findAllOthersite() {
+//        return nhanVienDAO.findAllOtherSite();
+//    }
 
     public NhanVien findOne(int id) {
         return nhanVienDAO.findOne(id);

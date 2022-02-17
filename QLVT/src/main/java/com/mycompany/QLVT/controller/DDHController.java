@@ -263,6 +263,11 @@ public class DDHController implements Initializable {
     void showCTDDH(ActionEvent event) {
         CTDDHService service = new CTDDHService();
         listCTDDH = (List<CTDDH>) service.findOne(ddh.getMaDDH());
+        if (listCTDDH == null) {
+            System.out.println("list null");
+            return;
+        }
+//        listCTDDH = (List<CTDDH>) service.findOne(ddh.getMaDDH());
         Platform.runLater(() -> {
             Stage owner = (Stage) miView.getParentPopup().getOwnerWindow();
             StackPane parentStackPane = (StackPane) owner.getScene().getRoot();
@@ -371,18 +376,25 @@ public class DDHController implements Initializable {
         DDHTableModel.setDDHList(list);
         tbDSDDH.setItems(DDHTableModel.getDDHList());
         tbDSDDH.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            if (newSelection != null && newSelection.getTrangThai().equals("Chưa nhập hàng")) {
+            if (newSelection != null) {
 //                System.out.println(newSelection.getTrangThai());
                 btEdit.setDisable(false);
                 btDelete.setDisable(false);
                 btImport.setDisable(false);
                 int index = tbDSDDH.getSelectionModel().getSelectedIndex();
                 ddh = tbDSDDH.getItems().get(index);
-                return;
             }
-            btImport.setDisable(true);
-            btEdit.setDisable(true);
-            btDelete.setDisable(true);
+            if (newSelection.getTrangThai().equals("Chưa nhập hàng")) {
+                btEdit.setDisable(false);
+                btDelete.setDisable(false);
+                btImport.setDisable(false);
+
+            } else {
+                btImport.setDisable(true);
+                btEdit.setDisable(true);
+                btDelete.setDisable(true);
+            }
+
         });
 //        initListCommandHistory();
     }

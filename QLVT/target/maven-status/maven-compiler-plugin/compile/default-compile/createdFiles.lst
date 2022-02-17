@@ -1,5 +1,11 @@
 com\mycompany\QLVT\controller\NhanVienViewControllerTest.class
 com\mycompany\QLVT\controller\NhanVienViewControllerTest$8.class
+<<<<<<< HEAD
+=======
+com\mycompany\QLVT\Command\ActionAddPhieuNhap.class
+com\mycompany\QLVT\controller\NhapHangController$2$1.class
+com\mycompany\QLVT\Entity\ItemVatTu.class
+>>>>>>> ce34dd2cefa843bfd5880c28c389b64f1f393478
 com\mycompany\QLVT\dao\GenericDAO.class
 com\mycompany\QLVT\Entity\TaiKhoan.class
 com\mycompany\QLVT\model\KhoTableModel.class
@@ -7,6 +13,14 @@ com\mycompany\QLVT\service\NhanVienServiceTest.class
 com\mycompany\QLVT\controller\NhanVienViewControllerTest$3.class
 com\mycompany\QLVT\Entity\Kho.class
 com\mycompany\QLVT\controller\KhoController.class
+<<<<<<< HEAD
+=======
+com\mycompany\QLVT\controller\LoginController$1.class
+com\mycompany\QLVT\Mapper\KhoMapper.class
+com\mycompany\QLVT\App.class
+com\mycompany\QLVT\controller\BaoCaoController$3.class
+com\mycompany\QLVT\controller\NhanVienController$4.class
+>>>>>>> ce34dd2cefa843bfd5880c28c389b64f1f393478
 com\mycompany\QLVT\controller\KhoController$3.class
 com\mycompany\QLVT\model\NhanVienTableModelTest.class
 com\mycompany\QLVT\controller\NhanVienViewControllerTest$9.class
@@ -22,6 +36,13 @@ com\mycompany\QLVT\controller\NhanVienViewControllerTest$4.class
 com\mycompany\QLVT\Entity\Login.class
 com\mycompany\QLVT\controller\NhanVienViewControllerTest$7.class
 com\mycompany\QLVT\controller\BaoCaoController.class
+<<<<<<< HEAD
+=======
+com\mycompany\QLVT\controller\NhanVienController$1.class
+com\mycompany\QLVT\Utils\EnumChiNhanh.class
+com\mycompany\QLVT\controller\NhanVienController$10$1.class
+com\mycompany\QLVT\dao\DDHDAO.class
+>>>>>>> ce34dd2cefa843bfd5880c28c389b64f1f393478
 com\mycompany\QLVT\controller\NhanVienViewControllerTest$6.class
 com\mycompany\QLVT\Command\ActionAddNhanVien.class
 com\mycompany\QLVT\Command\ActionHistory.class
@@ -30,6 +51,14 @@ com\mycompany\QLVT\controller\KhoController$1.class
 com\mycompany\QLVT\controller\NhanVienViewControllerTest$5.class
 com\mycompany\QLVT\model\KhoCommandModel.class
 com\mycompany\QLVT\controller\KhoController$2.class
+<<<<<<< HEAD
+=======
+com\mycompany\QLVT\Command\ActionAddCTPN.class
+com\mycompany\QLVT\Entity\HDNV.class
+com\mycompany\QLVT\controller\NhapHangController$2.class
+com\mycompany\QLVT\controller\NhapHangController$3.class
+com\mycompany\QLVT\Entity\PhanManh.class
+>>>>>>> ce34dd2cefa843bfd5880c28c389b64f1f393478
 com\mycompany\QLVT\Entity\CTDDH.class
 com\mycompany\QLVT\Command\ActionListenerCommand.class
 com\mycompany\QLVT\controller\NhanVienController$11$1.class

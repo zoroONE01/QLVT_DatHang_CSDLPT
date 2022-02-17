@@ -68,7 +68,7 @@ ORDER BY VT.TENVT ASC]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{TENVT}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="###0">
 				<reportElement style="Detail" x="291" y="0" width="141" height="20" uuid="89ddba45-875b-4b92-a7e5-5b2d6ba743ab"/>
 				<textElement>
 					<font fontName="DejaVu Sans"/>

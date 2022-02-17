@@ -9,6 +9,7 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -179,6 +180,8 @@
                   <ContextMenu fx:id="contextMenuPN">
                     <items>
                       <MenuItem fx:id="miAddCTPN" mnemonicParsing="false" text="Thêm chi tiết phiếu nhập" />
+                        <MenuItem fx:id="miDeletePN" mnemonicParsing="false" onAction="#handleActionXoaPhieuNhap" text="Xoá phiếu nhập" />
+                        <MenuItem fx:id="miUpdatePN" mnemonicParsing="false" onAction="#handleActionCapNhatPhieuNhap" text="Cập nhật phiếu nhập" />
                     </items>
                   </ContextMenu>
                </contextMenu>
@@ -197,6 +200,8 @@
                   <ContextMenu fx:id="contextMenuCTPN" />
                </contextMenu>
             </TableView>
+            <TextField fx:id="tf_timKiemPhieuNhap" layoutX="82.0" layoutY="2.0" prefHeight="25.0" prefWidth="112.0" promptText="Mã phiếu nhập" />
+            <Label layoutX="25.0" layoutY="6.0" text="Tìm kiếm" textFill="WHITE" />
          </children>
       </AnchorPane>
       <StackPane fx:id="stackPanePhieuNhap_Dialog" layoutX="5.0" layoutY="6.0" visible="false">
