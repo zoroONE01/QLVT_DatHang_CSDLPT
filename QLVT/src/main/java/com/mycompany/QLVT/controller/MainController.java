@@ -3,6 +3,7 @@ package com.mycompany.QLVT.controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
+import com.mycompany.QLVT.App;
 import com.mycompany.QLVT.Command.DDHCommandHistory;
 import com.mycompany.QLVT.Command.KhoCommandHistory;
 import com.mycompany.QLVT.Command.VatTuCommandHistory;
@@ -47,8 +48,7 @@ public class MainController {
     @FXML
     private RadioButton btNhanVien;
 
-    @FXML
-    private RadioButton btDashboard;
+
 
     @FXML
     private RadioButton btBaoCao;
@@ -154,7 +154,7 @@ public class MainController {
 
     private void initButtonMenuBar() {
         final ToggleGroup group = new ToggleGroup();
-        btDashboard.setToggleGroup(group);
+//        btDashboard.setToggleGroup(group);
         btNhanVien.setToggleGroup(group);
         btKho.setToggleGroup(group);
         btVatTu.setToggleGroup(group);
@@ -202,20 +202,20 @@ public class MainController {
                         noti.show();
                     });
                 }
-                if (btDashboard.isSelected()) {
-                    //             try {
-//                initWorkspace("Dashboard");
-//            } catch (IOException ex) {
-//                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-                    lbTitle.setText("Dashboard");
-                }
+//                if (btDashboard.isSelected()) {
+//                    //             try {
+////                initWorkspace("Dashboard");
+////            } catch (IOException ex) {
+////                Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+////            }
+//                    lbTitle.setText("Dashboard");
+//                }
                 if (btNhanVien.isSelected()) {
                     try {
                         initWorkspace("NhanVienTableView");
-//                pnWorkspace.getChildren().clear();
-//               Parent parrent= App.loadFXML("NhanVienTableView");
-//               pnWorkspace.getChildren().add(parrent);
+//                        pnWorkspace.getChildren().clear();
+//                        Parent parrent = App.loadFXML("NhanVienTableView");
+//                        pnWorkspace.getChildren().add(parrent);
                     } catch (IOException ex) {
                         Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -246,11 +246,11 @@ public class MainController {
                     lbTitle.setText("Đặt Hàng");
                 }
                 if (btXuatHang.isSelected()) {
-//                    try {
-//                        initWorkspace("DDH");
-//                    } catch (IOException ex) {
-//                        Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
-//                    }
+                    try {
+                        initWorkspace("PhieuXuat");
+                    } catch (IOException ex) {
+                        Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     lbTitle.setText("Xuất Hàng");
                 }
                 if (btPhieuNhap.isSelected()) {
@@ -259,7 +259,7 @@ public class MainController {
                     } catch (IOException ex) {
                         Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    lbTitle.setText("PhieuNhap");
+                    lbTitle.setText("Nhập Hàng");
                 }
                 if (btBaoCao.isSelected()) {
                     try {
@@ -270,10 +270,7 @@ public class MainController {
                     lbTitle.setText("Báo Cáo");
                 }
             }
-        });
-
-        btDashboard.setSelected(true);
-//       
+        });//       
     }
 
     public boolean saveCheck(RadioButton button) {
@@ -326,8 +323,8 @@ public class MainController {
         btUserInfo.setText(DBConnectUtil.username);
         initClock();
         initButtonMenuBar();
-        btDashboard.getStyleClass().remove("radio-button");
-        btDashboard.getStyleClass().add("toggle-button");
+//        btDashboard.getStyleClass().remove("radio-button");
+//        btDashboard.getStyleClass().add("toggle-button");
         btNhanVien.getStyleClass().remove("radio-button");
         btNhanVien.getStyleClass().add("toggle-button");
         btKho.getStyleClass().remove("radio-button");
@@ -345,6 +342,7 @@ public class MainController {
 
         btPhieuNhap.getStyleClass().remove("radio-button");
         btPhieuNhap.getStyleClass().add("toggle-button");
+//        btBaoCao.setSelected(true);
 
         //Thread timer to check timeout 
         final Timer timer = new Timer();

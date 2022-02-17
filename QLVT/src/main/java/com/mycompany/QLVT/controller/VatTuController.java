@@ -9,9 +9,12 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXListView;
+import com.mycompany.QLVT.Entity.SoLuongTonKho;
 import com.mycompany.QLVT.Entity.VatTu;
+import com.mycompany.QLVT.Utils.DBConnectUtil;
 import com.mycompany.QLVT.model.VatTuCommandModel;
 import com.mycompany.QLVT.model.VatTuTableModel;
+import com.mycompany.QLVT.model.VatTuTonKhoTableModel;
 import com.mycompany.QLVT.service.VatTuService;
 import java.io.IOException;
 import java.net.URL;
@@ -34,6 +37,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 /**
@@ -53,6 +57,15 @@ public class VatTuController implements Initializable {
     private TableView<VatTu> tbDSVT;
 
     @FXML
+    private TableView<SoLuongTonKho> tbPhanBoVT;
+
+    @FXML
+    private TableColumn<SoLuongTonKho, String> clKho;
+
+    @FXML
+    private TableColumn<SoLuongTonKho, String> clSoLuongTonKho;
+
+    @FXML
     private TableColumn<VatTu, String> clMaVT;
 
     @FXML
@@ -60,10 +73,10 @@ public class VatTuController implements Initializable {
 
     @FXML
     private TableColumn<VatTu, String> clDVT;
-    
+
     @FXML
     private TableColumn<VatTu, String> clSoLuongTon;
-    
+
     @FXML
     private JFXButton btAdd;
 
@@ -83,17 +96,24 @@ public class VatTuController implements Initializable {
     private JFXButton btRedo;
 
     @FXML
+    private VBox vbOption;
+
+    @FXML
     private JFXButton btReload;
 
     private ObservableList<VatTu> listVatTu;
 
     public static List<VatTu> list;
 
+    public List<SoLuongTonKho> soLuongTonKho;
+
     private ImageView icLoading;
 
     public VatTu vatTu;
 
     public VatTuTableModel vatTuTableModel;
+
+    public VatTuTonKhoTableModel vatTuTonKhoTableModel;
 
     public VatTuCommandModel vatTuCommandModel;
 
@@ -298,6 +318,8 @@ public class VatTuController implements Initializable {
         clTenVT.setCellValueFactory(new PropertyValueFactory<>("tenVT"));
         clDVT.setCellValueFactory(new PropertyValueFactory<>("DVT"));
         clSoLuongTon.setCellValueFactory(new PropertyValueFactory<>("soLuongTon"));
+        clSoLuongTonKho.setCellValueFactory(new PropertyValueFactory<>("soLuongTon"));
+        clKho.setCellValueFactory(new PropertyValueFactory<>("kho"));
         vatTuTableModel = new VatTuTableModel();
         if (MainController.vatTuCommandHistory.isCommandStackEmpty()) {
             list = new VatTuService().findAll();
@@ -305,6 +327,7 @@ public class VatTuController implements Initializable {
             list = MainController.vatTuCommandHistory.getCommandStack().peek().getList();
         }
         vatTuTableModel.setVatTuList(list);
+        tbPhanBoVT.visibleProperty().set(false);
         tbDSVT.setItems(vatTuTableModel.getVatTuList());
         tbDSVT.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
@@ -312,6 +335,16 @@ public class VatTuController implements Initializable {
                 btDelete.setDisable(false);
                 int index = tbDSVT.getSelectionModel().getSelectedIndex();
                 vatTu = tbDSVT.getItems().get(index);
+                soLuongTonKho = new VatTuService().findSoLuongTonKho(vatTu.getMaVT());
+                if (soLuongTonKho != null) {
+                    tbPhanBoVT.visibleProperty().set(true);
+                    vatTuTonKhoTableModel = new VatTuTonKhoTableModel(soLuongTonKho);
+                    tbPhanBoVT.setItems(vatTuTonKhoTableModel.getVatTuList());
+                    tbPhanBoVT.setSelectionModel(null);
+                } else {
+                    tbPhanBoVT.visibleProperty().set(false);
+                    tbPhanBoVT.getItems().clear();
+                }
             }
         });
         initListCommandHistory();
@@ -342,6 +375,11 @@ public class VatTuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        if (DBConnectUtil.myGroup.equals("CONGTY")) {
+            vbOption.disableProperty().set(true);
+        } else{
+            vbOption.disableProperty().set(false);
+        }
         lvHistoryCommand.setDisable(true);
         btEdit.setDisable(true);
         btDelete.setDisable(true);

@@ -16,10 +16,10 @@ import java.util.List;
  */
 public class DDHDAO extends AbstractDAO<DDH> {
 
+    public List<DDH> findAllForPhieuNhap() {
+        return queryProcedure("{call SP_DS_DHH}", new DonDatHangMapper());
+    }
 
-  public List<DDH> findAllForPhieuNhap() {
-       return queryProcedure("{call SP_DS_DHH}", new DonDatHangMapper());
-           }
     public List<DDH> findAll() {
         return queryProcedure("{call SP_DS_DHH}", new DDHMapper());
 
@@ -27,7 +27,6 @@ public class DDHDAO extends AbstractDAO<DDH> {
 
 //    public List<DDH> findAllOtherSite() {
 //       // return queryProcedure("exec LINK1.QLVT.DBO.SP_DSNhanVien", new NhanVienMapper());
-   
 //
     public DDH findOne(String id) {
         List<DDH> list = queryProcedure("{call SP_Tim_DHH(?)}", new DDHMapper(), id);
@@ -43,7 +42,6 @@ public class DDHDAO extends AbstractDAO<DDH> {
         return updateProcedure("{call SP_Xoa_DHH(?)}", id);
     }
 
-    
     public int insert(DDH ddh) {
         System.out.println(ddh.toString());
         return insert("{call spInsertDDH(?,?,?,?,?)}", ddh.getMaDDH(), ddh.getNgay(), ddh.getNCC(), ddh.getMaNV(), ddh.getMaKho());

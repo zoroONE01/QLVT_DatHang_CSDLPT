@@ -5,7 +5,9 @@
  */
 package com.mycompany.QLVT.service;
 
+import com.mycompany.QLVT.Entity.SoLuongTonKho;
 import com.mycompany.QLVT.Entity.VatTu;
+import com.mycompany.QLVT.dao.SoLuongTonKhoDAO;
 import com.mycompany.QLVT.dao.VatTuDAO;
 import java.util.List;
 
@@ -17,6 +19,8 @@ public class VatTuService {
 
     VatTuDAO vatTuDAO = new VatTuDAO();
 
+    SoLuongTonKhoDAO sltkDAO = new SoLuongTonKhoDAO();
+
     public VatTuService() {
     }
 
@@ -26,6 +30,14 @@ public class VatTuService {
 
     public VatTu findOne(String id) {
         return vatTuDAO.findOne(id);
+    }
+
+    public List<SoLuongTonKho> findSoLuongTonKho(String maVT) {
+        return sltkDAO.findSoLuongTonKho(maVT);
+    }
+    
+    public int findSoLuongTonKhoVT(String maVT, String maKho) {
+        return sltkDAO.findSoLuongTonKhoVT(maVT, maKho);
     }
 
     public int checkExist(String value, String type) {

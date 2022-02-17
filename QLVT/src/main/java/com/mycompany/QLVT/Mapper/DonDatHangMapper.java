@@ -16,12 +16,12 @@ import java.util.logging.Logger;
  *
  * @author MinhTo
  */
-public class DonDatHangMapper implements RowMapper<DDH>{
+public class DonDatHangMapper implements RowMapper<DDH> {
 
     @Override
     public DDH mapRow(ResultSet rs) {
         try {
-            DDH ddh=new DDH();
+            DDH ddh = new DDH();
             ddh.setMaDDH(rs.getString(1));
             ddh.setNgay(FomaterDate.convertDateToString(rs.getDate(2)));
             ddh.setNCC(rs.getString(3));
@@ -33,5 +33,5 @@ public class DonDatHangMapper implements RowMapper<DDH>{
         }
         return null;
     }
-    
+
 }

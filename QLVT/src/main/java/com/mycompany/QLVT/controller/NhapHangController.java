@@ -230,8 +230,10 @@ public class NhapHangController {
 
     @FXML
     private MenuItem miUpdatePN;
+
     @FXML
     private JFXComboBox<String> cbbKho;
+
 
     private PhieuNhapService phieuNhapService = new PhieuNhapService();
     private PhieuNhapModel phieuNhapModel;
@@ -449,6 +451,7 @@ public class NhapHangController {
      */
     @FXML
     void initialize() {
+
         DDHTableModel ddhModel = new DDHTableModel();
         PhieuNhapModel pnModel = new PhieuNhapModel();
         ChiTietPhieuNhapModel ctpnm = new ChiTietPhieuNhapModel();
@@ -905,6 +908,7 @@ public class NhapHangController {
     public void initTableCTDDH(String id) {
         tbCTDDH.getItems().clear();
         List<CTDDH> listDDH = new ArrayList();
+
         listDDH = chiTietDatHangService.findAllByMaDonNotCTPN(id);
         chiTietDDHModel.setChiTietDDHList(listDDH);
         if (!chiTietDDHModel.getChiTietDDHList().isEmpty()) {

@@ -16,6 +16,7 @@ public class KhoService {
         return khoDAO.findAll();
     }
 
+    
     public Kho findOne(String id) {
         return khoDAO.findOne(id);
     }

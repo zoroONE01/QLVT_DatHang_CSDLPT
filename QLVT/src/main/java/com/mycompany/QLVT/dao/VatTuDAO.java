@@ -27,7 +27,7 @@ public class VatTuDAO extends AbstractDAO<VatTu> {
         List<VatTu> listVatTu = queryProcedure("{call spSearchVatTu(?)}", new VatTuMapper(), id);
         return listVatTu.isEmpty() ? null : listVatTu.get(0);
     }
-
+    
     public void delete(String id) {
         update("{call spDeleteVatTu(?)}", id);
     }

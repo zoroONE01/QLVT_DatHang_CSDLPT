@@ -8,8 +8,10 @@ package com.mycompany.QLVT.controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import com.mycompany.QLVT.Entity.CTDDH;
+import com.mycompany.QLVT.Entity.CTPhieuXuat;
 import com.mycompany.QLVT.Entity.ItemVatTu;
 import com.mycompany.QLVT.Entity.VatTu;
+import com.mycompany.QLVT.Mapper.DonDatHangMapper;
 import com.mycompany.QLVT.Utils.ValidationRegEx;
 import static com.mycompany.QLVT.controller.DDHDetailController.listItemVatTu;
 import com.mycompany.QLVT.service.VatTuService;
@@ -203,7 +205,7 @@ public final class ItemVatTuDDHController extends AnchorPane implements Initiali
         try {
             this.getChildren().add(fxmlLoader.load());
         } catch (IOException exception) {
-            throw new RuntimeException(exception);
+            System.out.println(exception.toString());
         }
         initModel();
         miResetItem.setOnAction((ActionEvent t) -> {
@@ -279,6 +281,29 @@ public final class ItemVatTuDDHController extends AnchorPane implements Initiali
 
     }
 
+    public void setItemView(CTDDH ctddh) {
+        item.setMaVT(ctddh.getMaVT());
+        item.setTenVT(new VatTuService().findOne(ctddh.getMaVT().trim()).getTenVT());
+        item.setSoLuong(ctddh.getSoLuong());
+        item.setDonGia(ctddh.getDonGia());
+        valueFactory.setValue(item.getSoLuong());
+        snSoLuong.setValueFactory(valueFactory);
+        initModel(item);
+        tfMaVT.pseudoClassStateChanged(
+                PseudoClass.getPseudoClass("error"), false);
+        tfTenVT.pseudoClassStateChanged(
+                PseudoClass.getPseudoClass("error"), false);
+        tfDonGia.pseudoClassStateChanged(
+                PseudoClass.getPseudoClass("error"), false);
+
+        this.tfMaVT.editableProperty().set(false);
+        this.tfDonGia.editableProperty().set(false);
+        this.tfTenVT.editableProperty().set(false);
+        this.btAdd.disableProperty().set(true);
+        this.mbMore.disableProperty().set(true);
+        this.snSoLuong.disableProperty().set(true);
+    }
+
     public void initAdd() {
 //        tfDonGia.setTextFormatter(new TextFormatter<>(change -> {
 //            if (ValidationRegEx.removeAscent(change.getText()).matches("^[0-9,]$")) {
@@ -341,8 +366,10 @@ public final class ItemVatTuDDHController extends AnchorPane implements Initiali
             mapMaVTSnippet.put(vatTu.getMaVT(), vatTu.getTenVT());
             mapTenVTSnippet.put(vatTu.getTenVT(), vatTu.getMaVT());
         });
+
         TextFields.bindAutoCompletion(tfMaVT, mapMaVTSnippet.keySet().toArray());
         TextFields.bindAutoCompletion(tfTenVT, mapMaVTSnippet.values().toArray());
+
         tfMaVT.textProperty().addListener((observable, oldValue, newValue) -> {
             if (Arrays.asList(mapMaVTSnippet.keySet().toArray()).contains(newValue)) {
                 tfTenVT.setText(mapMaVTSnippet.get(newValue));

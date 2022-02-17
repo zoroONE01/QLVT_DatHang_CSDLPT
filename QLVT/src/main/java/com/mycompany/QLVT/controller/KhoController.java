@@ -80,6 +80,9 @@ public class KhoController implements Initializable {
     private JFXButton btReload;
 
     @FXML
+    private VBox vbOption;
+
+    @FXML
     private TableView<Kho> tbDSKho;
 
     @FXML
@@ -349,13 +352,18 @@ public class KhoController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        if (DBConnectUtil.myGroup.equals("CONGTY")) {
+            vbOption.disableProperty().set(true);
+        } else {
+            vbOption.disableProperty().set(false);
+        }
         lvHistoryCommand.setDisable(true);
         btEdit.setDisable(true);
         btDelete.setDisable(true);
         btSave.setDisable(true);
         btUndo.setDisable(true);
         btRedo.setDisable(true);
-//        initTableKhoFromDatabase();
+        initTableKhoFromDatabase();
 //        icLoading = new ImageView(new Image(getClass().getResourceAsStream("../../../../img/loading.gif"), 40, 40, false, true));
     }
 
