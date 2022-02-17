@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 import javafx.scene.image.Image;
 
 /**
@@ -27,7 +29,7 @@ public class App extends Application {
 //        stage.getIcons().add(new Image(getClass().getResourceAsStream("../../../img/icons8_states_20px")));
         scene = new Scene(loadFXML("login"));
         stage.setScene(scene);
-        
+
 //        stage.setTitle("Wow!! Stackoverflow Icon");
         stage.show();
 
@@ -45,7 +47,20 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
+
         launch();
+        final Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            int n = 0;
+
+            @Override
+            public void run() {
+                System.out.println(n);
+                if (++n == 5) {
+                    timer.cancel();
+                }
+            }
+        }, 1000, 1000);
     }
 
     /*FXMLLoader.load()

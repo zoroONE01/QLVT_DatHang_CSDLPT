@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ContextMenu?>
@@ -231,7 +232,8 @@
                         <VBox alignment="TOP_CENTER" prefWidth="150.0" spacing="30.0">
                            <children>
                               <JFXTextField fx:id="tfMaNV_Dialog" focusColor="#c767e6" labelFloat="true" promptText="Mã Nhân viên" />
-                              <JFXTextField fx:id="tfMaKho_Dialog" focusColor="#c767e6" labelFloat="true" promptText="Mã kho" />
+                              <JFXTextField fx:id="tfMaKho_Dialog" editable="false" focusColor="#c767e6" labelFloat="true" promptText="Mã kho" />
+                              <JFXComboBox fx:id="cbbKho" prefHeight="25.0" prefWidth="158.0" />
                            </children>
                            <padding>
                               <Insets top="10.0" />

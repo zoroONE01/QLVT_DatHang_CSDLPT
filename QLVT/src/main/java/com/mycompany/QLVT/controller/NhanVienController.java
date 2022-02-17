@@ -40,10 +40,12 @@ import java.sql.SQLException;
 import java.time.DateTimeException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
@@ -247,6 +249,10 @@ public class NhanVienController {
     private NhanVienService nhanVienService = new NhanVienService();
     static int index = 1;
     private NhanVien nhanVienBeforeSave = new NhanVien();
+
+    public NhanVienController() {
+       
+    }
 
     public void initModel(NhanVienTableModel nhanVienTableModel) {// ensure model is only set once:
         if (this.nhanVienTableModel != null) {
@@ -505,23 +511,7 @@ public class NhanVienController {
         } else if (DBConnectUtil.phanManhCurrent.getName().contains("Chi Nhánh 2")) {
             tfChiNhanh.setText("CN2");
         }
-        //kiểm tra quyền
-        if (DBConnectUtil.myGroup.equals("CongTy")) {
-            btAdd.setDisable(true);
-            btDelete.setDisable(true);
-            btSave.setDisable(true);
-            btEdit.setDisable(true);
-            btUndo.setDisable(true);
-            btChangeLocation.setDisable(true);
-        }
-        if (DBConnectUtil.myGroup.equals("ChiNhanh")) {
-            cbbChiNhanh.setDisable(true);
-        }
-        if (DBConnectUtil.myGroup.equals("User")) {
-            cbbChiNhanh.setDisable(true);
-            btChangeLocation.setDisable(true);
-            btCreateAC.setDisable(true);
-        }
+        
         // init model table 
         NhanVienTableModel model = new NhanVienTableModel();
         List<NhanVien> list = new ArrayList<>();
@@ -554,6 +544,27 @@ public class NhanVienController {
         initModelChiNhanh();
         //init model view chi tiết
         initModelChiTiet();
+          //kiểm tra quyền
+        if (DBConnectUtil.myGroup.equals("CongTy")) {
+            btAdd.setDisable(true);
+            btDelete.setDisable(true);
+            btSave.setDisable(true);
+            btEdit.setDisable(true);
+            btUndo.setDisable(true);
+            btChangeLocation.setDisable(true);
+        }
+        if (DBConnectUtil.myGroup.equals("ChiNhanh")) {
+            cbbChiNhanh.setDisable(true);
+        }
+        if (DBConnectUtil.myGroup.equals("User")) {
+            cbbChiNhanh.setDisable(true);
+            btChangeLocation.setDisable(true);
+            btCreateAC.setDisable(true);
+        
+            btDelete.setDisable(true);
+
+        }
+        
 
     }
 
@@ -631,6 +642,7 @@ public class NhanVienController {
                         messageDialogTaiKhoan("Tạo tài khoản thành công");
                     }
                 }
+               ev.consume();
                 //  return new PhieuNhap(tfMaPN_Dialog.getText(), new Date().toString(), tfMaDHH_Dialog.getText(), Integer.parseInt(tfMaNV_Dialog.getText()), tfMaKho_Dialog.getText());
             } catch (LoginNameExistException le) {
                 messageDialogTaiKhoan(le.getMessage());
@@ -686,6 +698,7 @@ public class NhanVienController {
     
     @FXML //để show dư liêu chi nhánh khác
     void changeChiNhanh(ActionEvent event) {
+        checkAndSetBaseOnPermisson();
         System.out.println("đổi chi nhánh khác");
         if (!cbbChiNhanh.getValue().equals(DBConnectUtil.phanManhCurrent.getName())) {
             try {
@@ -708,6 +721,7 @@ public class NhanVienController {
 
     @FXML
     void editAction(ActionEvent event) {
+        disableButtonForEdit(true);
         //valid form
 //        NhanVien nv = nhanVienTableModel.getCurrentNhanVien();// chưa lấy dữ liệu từ form
 //        NhanVien nvNew = new NhanVien(nv.getMaNhanVien(), nv.getHo(), nv.getTen(), nv.getDiaChi(), nv.getNgaySinh(), nv.getLuong(), nv.getMaCN());
@@ -767,6 +781,7 @@ public class NhanVienController {
                 if (rs) {
                     refresh();
                     messageDialog("Cap nhat thành công");
+                    resetTextFieldNhanVien();
                 } else {
                     messageDialog("Cap nhat thất bại");
                 }
@@ -784,13 +799,14 @@ public class NhanVienController {
 
             messageDialog("Please check to infomation");
 
+        } finally {
+            disableButtonForEdit(false);
         }
     }
 
     @FXML
     void changeLocationAction(ActionEvent event) {
         //lấy ra chi nhánh cần chuyển;
-
         StackPane st = (StackPane) pnNhanVien.getParent().getParent().getParent();
         String chiNhanhNew = cbbChangeLocation.getSelectionModel().getSelectedItem();
         if (!chiNhanhNew.equals(DBConnectUtil.phanManhCurrent.getName())) {
@@ -815,6 +831,7 @@ public class NhanVienController {
                 tbvListNV.getItems().clear();
                 nhanVienTableModel.setNhanVienList(nhanVienService.findAll());
                 tbvListNV.refresh();
+                resetTextFieldNhanVien();
 
             } else {
 
@@ -874,6 +891,7 @@ public class NhanVienController {
 
     @FXML
     void addAction(ActionEvent event) {
+        disableButtonForAdd(true);
         boolean isValidForm = true;
         try {
             //Validate dữ liệu trước khí thêm
@@ -918,12 +936,14 @@ public class NhanVienController {
             }
 
             if (isValidForm) {
+
                 System.out.println("Xu li du lieu xuong db");
                 NhanVien newNhanVien = new NhanVien(maNVString, hoString, tenString, diaChi, ngaySinhString, luongFloat, maCNString);
                 boolean rs = executeCommand(new ActionAdd(nhanVienService, newNhanVien, "add"));
 //
                 if (rs) {
                     refresh();
+                    resetTextFieldNhanVien();
                     messageDialog("Lưu thành công");
                 } else {
                     messageDialog("Lưu thất bại");
@@ -942,6 +962,8 @@ public class NhanVienController {
 
             messageDialog("Please check to infomation");
 
+        } finally {
+            disableButtonForAdd(false);
         }
 
         // NhanVien nv=new NhanVien(index, maCN, maCN, maCN, maCN, luong, maCN);
@@ -983,7 +1005,7 @@ public class NhanVienController {
 
     @FXML
     void deleteAction(ActionEvent event) {
-
+        disableButtonForDelete(true);
         ButtonType OKButton = new ButtonType("Đồng ý");
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -993,30 +1015,49 @@ public class NhanVienController {
         alert.getButtonTypes().addAll(OKButton);
 
         Optional<ButtonType> optional = alert.showAndWait();
-
-        if (optional.get() == OKButton) {
-            System.out.println("Xoá nhân viên");
-            NhanVien nv = nhanVienTableModel.getCurrentNhanVien();
-            StackPane st = (StackPane) pnNhanVien.getParent().getParent().getParent();
-            boolean rs = executeCommand(new ActionDelete(nhanVienService, nv, "delete"));
-            if (rs == true) {
-                refresh();
-                JFXDialogLayout content = new JFXDialogLayout();
-                content.setHeading(new Text("Thông Báo"));
-                content.setBody(new Text("Xoá nhân viên thành công"));
-                JFXDialog noti = new JFXDialog(st, content, JFXDialog.DialogTransition.CENTER);
-                Image image = new Image(getClass().getResourceAsStream("../../../../img/icons8_checkmark_20px.png"));
-                JFXButton button = new JFXButton(null, new ImageView(image));
-                button.setCursor(Cursor.HAND);
-                button.setButtonType(JFXButton.ButtonType.RAISED);
-                button.setOnAction((ActionEvent event1) -> {
-                    noti.close();
-                });
-                content.setActions(button);
-                noti.show();
+        try {
+            if (optional.get() == OKButton) {
+                System.out.println("Xoá nhân viên");
+                NhanVien nv = nhanVienTableModel.getCurrentNhanVien();
+                StackPane st = (StackPane) pnNhanVien.getParent().getParent().getParent();
+                boolean rs = executeCommand(new ActionDelete(nhanVienService, nv, "delete"));
+                if (rs == true) {
+                    refresh();
+                    JFXDialogLayout content = new JFXDialogLayout();
+                    content.setHeading(new Text("Thông Báo"));
+                    content.setBody(new Text("Xoá nhân viên thành công"));
+                    JFXDialog noti = new JFXDialog(st, content, JFXDialog.DialogTransition.CENTER);
+                    Image image = new Image(getClass().getResourceAsStream("../../../../img/icons8_checkmark_20px.png"));
+                    JFXButton button = new JFXButton(null, new ImageView(image));
+                    button.setCursor(Cursor.HAND);
+                    button.setButtonType(JFXButton.ButtonType.RAISED);
+                    button.setOnAction((ActionEvent event1) -> {
+                        noti.close();
+                    });
+                    content.setActions(button);
+                    noti.show();
+                    resetTextFieldNhanVien();
+                } else {
+                    JFXDialogLayout content = new JFXDialogLayout();
+                    content.setHeading(new Text("Thông Báo"));
+                    content.setBody(new Text("Xoá nhân viên không thành công"));
+                    JFXDialog noti = new JFXDialog(st, content, JFXDialog.DialogTransition.CENTER);
+                    Image image = new Image(getClass().getResourceAsStream("../../../../img/icons8_checkmark_20px.png"));
+                    JFXButton button = new JFXButton(null, new ImageView(image));
+                    button.setCursor(Cursor.HAND);
+                    button.setButtonType(JFXButton.ButtonType.RAISED);
+                    button.setOnAction((ActionEvent event1) -> {
+                        noti.close();
+                    });
+                    content.setActions(button);
+                    noti.show();
+                }
+            } else {
+                alert.close();
             }
-        } else {
-            alert.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            disableButtonForDelete(false);
         }
 
     }
@@ -1092,6 +1133,90 @@ public class NhanVienController {
             }
         }
         return 0;
+    }
+
+    public void resetTextFieldNhanVien() {
+        tfMaNV.setText("");
+        tfHoVaTenDem.setText("");
+        tfTen.setText("");
+        tfLuong.setText("0");
+        tfChiNhanh.setText("");
+        tfDiaChi.setText("");
+    }
+
+    public void disableButtonForAdd(boolean b) {
+        if (b == true) {
+            btDelete.setDisable(true);
+            btSave.setDisable(true);
+            btEdit.setDisable(true);
+            btUndo.setDisable(true);
+            btChangeLocation.setDisable(true);
+        } else {
+            btDelete.setDisable(!true);
+            btSave.setDisable(!true);
+            btEdit.setDisable(!true);
+            btUndo.setDisable(!true);
+            btChangeLocation.setDisable(!true);
+        }
+        checkAndSetBaseOnPermisson();
+    }
+
+    public void disableButtonForEdit(boolean b) {
+        if (b == true) {
+            btAdd.setDisable(true);
+            btDelete.setDisable(true);
+            btSave.setDisable(true);
+            btUndo.setDisable(true);
+            btChangeLocation.setDisable(true);
+        } else {
+            btAdd.setDisable(!true);
+            btDelete.setDisable(!true);
+            btSave.setDisable(!true);
+            btUndo.setDisable(!true);
+            btChangeLocation.setDisable(!true);
+        }
+        checkAndSetBaseOnPermisson();
+    }
+
+    public void disableButtonForDelete(boolean b) {
+        if (b == true) {
+            btAdd.setDisable(true);
+            btSave.setDisable(true);
+            btEdit.setDisable(true);
+            btUndo.setDisable(true);
+            btChangeLocation.setDisable(true);
+        } else {
+            btAdd.setDisable(!true);
+            btSave.setDisable(!true);
+            btEdit.setDisable(!true);
+            btUndo.setDisable(!true);
+            btChangeLocation.setDisable(!true);
+        }
+        checkAndSetBaseOnPermisson();
+    }
+
+    public void checkAndSetBaseOnPermisson() {
+
+        //kiểm tra quyền
+        if (DBConnectUtil.myGroup.equals("CongTy")) {
+            btAdd.setDisable(true);
+            btDelete.setDisable(true);
+            btSave.setDisable(true);
+            btEdit.setDisable(true);
+            btUndo.setDisable(true);
+            btChangeLocation.setDisable(true);
+        }
+        if (DBConnectUtil.myGroup.equals("ChiNhanh")) {
+            cbbChiNhanh.setDisable(true);
+        }
+        if (DBConnectUtil.myGroup.equals("User")) {
+            cbbChiNhanh.setDisable(true);
+            btChangeLocation.setDisable(true);
+            btCreateAC.setDisable(true);
+            
+            btDelete.setDisable(true);
+
+        }
     }
 
 }
