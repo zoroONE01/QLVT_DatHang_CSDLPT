@@ -21,7 +21,7 @@ public class DDHDAO extends AbstractDAO<DDH> {
     }
 
     public List<DDH> findAll() {
-        return queryProcedure("{call SP_DS_DHH}", new DDHMapper());
+        return queryProcedure("{call SP_DS_DHH_PhieuNhap_NhanVien}", new DDHMapper());
 
     }
 
@@ -29,7 +29,7 @@ public class DDHDAO extends AbstractDAO<DDH> {
 //       // return queryProcedure("exec LINK1.QLVT.DBO.SP_DSNhanVien", new NhanVienMapper());
 //
     public DDH findOne(String id) {
-        List<DDH> list = queryProcedure("{call SP_Tim_DHH(?)}", new DDHMapper(), id);
+        List<DDH> list = queryProcedure("{call SP_Tim_DHH_NhanVien_Kho(?)}", new DDHMapper(), id);
         return list.isEmpty() ? null : list.get(0);
     }
 

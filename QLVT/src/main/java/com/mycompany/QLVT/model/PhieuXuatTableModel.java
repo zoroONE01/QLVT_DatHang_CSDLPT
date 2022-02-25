@@ -6,6 +6,7 @@
 package com.mycompany.QLVT.model;
 
 import com.mycompany.QLVT.Entity.PhieuXuat;
+import java.util.ArrayList;
 import java.util.List;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -24,15 +25,20 @@ public class PhieuXuatTableModel {
     private static ObservableList<PhieuXuat> list = FXCollections.observableArrayList();
 
     static {
-        list.add(new PhieuXuat("MD123   ", "2021-10-14","DIEN MAY XANH" , 4,"TD"));
-         list.add(new PhieuXuat("MD13    ", "2021-10-14","DIEN MAY XANH" , 6,"TD"));
-           list.add(new PhieuXuat("MDTESST    ", "2021-10-14","DIEN MAY XANH" , 6,"TD"));
+        list.add(new PhieuXuat("MD123   ", "2021-10-14", "DIEN MAY XANH", 4, "TD"));
+        list.add(new PhieuXuat("MD13    ", "2021-10-14", "DIEN MAY XANH", 6, "TD"));
+        list.add(new PhieuXuat("MDTESST    ", "2021-10-14", "DIEN MAY XANH", 6, "TD"));
     }
+
     public PhieuXuatTableModel() {
     }
 
     public void setPhieuXuatList(List<PhieuXuat> list) {
-        phieuXuatList.addAll(list);
+        if (list == null) {
+            phieuXuatList.addAll(new ArrayList<>());
+        } else {
+            phieuXuatList.addAll(list);
+        }
     }
 
     public void setPhieuXuatList2(List<PhieuXuat> l) {

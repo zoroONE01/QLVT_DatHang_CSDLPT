@@ -230,7 +230,6 @@
          </padding>
       </Label>
       <JFXComboBox fx:id="cbbChangeLocation" layoutX="42.0" layoutY="379.0" prefHeight="30.0" prefWidth="162.0" AnchorPane.bottomAnchor="127.0" AnchorPane.leftAnchor="42.0" />
-      <JFXButton fx:id="btnReportDSNV" layoutX="36.0" layoutY="8.0" onAction="#actionReportDSNV" text="ReportDSNV" />
       <StackPane fx:id="stackPaneCreateAccount" layoutX="116.0" layoutY="51.0" prefHeight="333.0" prefWidth="455.0" visible="false">
          <children>
             <AnchorPane prefHeight="356.0" prefWidth="455.0">

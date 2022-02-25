@@ -204,9 +204,7 @@ public class NhanVienController {
     @FXML
     private JFXTextField tfDiaChi;
 
-    //REPORT
-    @FXML
-    private JFXButton btnReportDSNV;
+  
 
     @FXML
     private JFXTextField tfTenDangNhap_TaiKhoan;
@@ -1009,7 +1007,7 @@ public class NhanVienController {
         ButtonType OKButton = new ButtonType("Đồng ý");
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText("Danh mục vật tư");
+        alert.setHeaderText("Bạn có muốn xoá nhân viên");
         alert.getButtonTypes().clear();
         alert.getButtonTypes().add(ButtonType.CANCEL);
         alert.getButtonTypes().addAll(OKButton);

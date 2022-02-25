@@ -32,7 +32,6 @@ com\mycompany\QLVT\controller\LoginController$1.class
 com\mycompany\QLVT\Mapper\KhoMapper.class
 com\mycompany\QLVT\App.class
 com\mycompany\QLVT\controller\BaoCaoController$3.class
-com\mycompany\QLVT\controller\MainController$3.class
 com\mycompany\QLVT\controller\NhanVienController$4.class
 com\mycompany\QLVT\controller\KhoController$3.class
 com\mycompany\QLVT\controller\NhanVienController$12.class
@@ -96,7 +95,6 @@ com\mycompany\QLVT\model\DDHCommandModel.class
 com\mycompany\QLVT\Command\ActionEdit.class
 com\mycompany\QLVT\model\KhoCbbModel.class
 com\mycompany\QLVT\Mapper\RowMapper.class
-com\mycompany\QLVT\App$1.class
 com\mycompany\QLVT\Command\DDHCommandHistory.class
 com\mycompany\QLVT\controller\MainController$1.class
 com\mycompany\QLVT\Mapper\SoLuongTonKhoMapper.class

@@ -25,6 +25,7 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
@@ -41,14 +42,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 
 public class MainController {
 
     @FXML
     private RadioButton btNhanVien;
-
-
 
     @FXML
     private RadioButton btBaoCao;
@@ -343,46 +343,53 @@ public class MainController {
         btPhieuNhap.getStyleClass().remove("radio-button");
         btPhieuNhap.getStyleClass().add("toggle-button");
 //        btBaoCao.setSelected(true);
-
-        //Thread timer to check timeout 
-        final Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            int n = 0;
-
-            @Override
-            public void run() {
-                Platform.runLater(() -> {
-                    try {
-                        DBConnectUtil.getConnection();
-                        LoginDAO loginDAO = new LoginDAO();
-                        Login login = loginDAO.findOne(DBConnectUtil.username);
-//            System.out.println(login);
-                     
-                    if (login == null) {
-                        throw new SQLException("user or password invalid");
-                    }
-                    } catch (SQLException e) {
-                        DBConnectUtil.reset();
-                        LoginController loginController = new LoginController();
-                        Parent root = null;
-                        try {
-                            System.out.println(getClass().getResource("../../../../fxml/login.fxml"));
-                            root = FXMLLoader.load(getClass().getResource("../../../../fxml/login.fxml"));
-                        } catch (IOException ex) {
-                            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                        Stage stage = new Stage();
-                        Scene scene = new Scene(root);
-                        stage.setScene(scene);
-                        stage.show();
-                        timer.cancel();
-                        pnMain.getScene().getWindow().hide();
-                    }
-
-                });
-
-            }
-        }, 5000, 20000);
+    
+       
+//        final Timer timer = new Timer();
+//
+//        //Thread timer to check timeout 
+//        timer.schedule(new TimerTask() {
+//            int n = 0;
+//
+//            @Override
+//            public void run() {
+//                Platform.runLater(() -> {
+//
+//                    try {
+//                        DBConnectUtil.getConnection();
+//                        LoginDAO loginDAO = new LoginDAO();
+//                        Login login = loginDAO.findOne(DBConnectUtil.username);
+////            System.out.println(login);
+//
+//                        if (login == null) {
+//                            throw new SQLException("user or password invalid");
+//                        }
+//                    } catch (SQLException e) {
+//                        DBConnectUtil.reset();
+//                        LoginController loginController = new LoginController();
+//                        Parent root = null;
+//                        try {
+//                            System.out.println(getClass().getResource("../../../../fxml/login.fxml"));
+//                            root = FXMLLoader.load(getClass().getResource("../../../../fxml/login.fxml"));
+//                        } catch (IOException ex) {
+//                            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+//                        }
+//                        Stage stage = new Stage();
+//                        Scene scene = new Scene(root);
+//                        stage.setScene(scene);
+//                        stage.show();
+//                        timer.cancel();
+//                        // get a handle to the stage
+//                        Stage st = (Stage) pnMain.getScene().getWindow();
+//
+//                        // do what you have to do
+//                        st.close();
+//
+//                    }
+//                });
+//
+//            }
+//        }, 5000, 1000);
 
     }
 }
