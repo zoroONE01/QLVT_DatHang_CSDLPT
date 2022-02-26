@@ -86,6 +86,7 @@ public class LoginController {
                 DBConnectUtil.myName = login.getTenNhanVien();
                 DBConnectUtil.myUserDB = login.getUsernameDB();
 //                App.setRoot("Main");
+                
                 ((Node) (event.getSource())).getScene().getWindow().hide();
             }
             else{

@@ -40,7 +40,7 @@
             <Insets left="20.0" />
          </padding>
       </Label>
-      <AnchorPane fx:id="pnThongKeCTNX" layoutX="241.0" layoutY="129.0" prefHeight="197.0" prefWidth="318.0">
+      <AnchorPane fx:id="pnThongKeCTNX" layoutX="241.0" layoutY="129.0" prefHeight="197.0" prefWidth="318.0" visible="false">
          <children>
             <DatePicker fx:id="datePickerFrom" layoutX="72.0" layoutY="42.0" prefHeight="25.0" prefWidth="196.0" />
             <DatePicker fx:id="datePickerTo" layoutX="72.0" layoutY="88.0" prefHeight="25.0" prefWidth="196.0" />

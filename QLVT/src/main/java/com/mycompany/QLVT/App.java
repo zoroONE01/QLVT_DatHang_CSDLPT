@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+
 /**
  * JavaFX App
  */
@@ -26,7 +27,7 @@ public class App extends Application {
 //        stage.getIcons().add(new Image(getClass().getResourceAsStream("../../../img/icons8_states_20px")));
         scene = new Scene(loadFXML("login"));
         stage.setScene(scene);
-        
+
 //        stage.setTitle("Wow!! Stackoverflow Icon");
         stage.show();
 
@@ -44,7 +45,9 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
+
         launch();
+   
     }
 
     /*FXMLLoader.load()

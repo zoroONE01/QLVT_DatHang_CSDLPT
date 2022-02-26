@@ -7,11 +7,16 @@ import com.mycompany.QLVT.App;
 import com.mycompany.QLVT.Command.DDHCommandHistory;
 import com.mycompany.QLVT.Command.KhoCommandHistory;
 import com.mycompany.QLVT.Command.VatTuCommandHistory;
+import com.mycompany.QLVT.Entity.Login;
 import com.mycompany.QLVT.Utils.DBConnectUtil;
+import com.mycompany.QLVT.dao.LoginDAO;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.animation.Animation;
@@ -20,6 +25,7 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
@@ -36,18 +42,17 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 
 public class MainController {
-        @FXML
+
+    @FXML
     private RadioButton btNhanVien;
-        
-//    @FXML
-//    private RadioButton btDashboard;
 
     @FXML
     private RadioButton btBaoCao;
-            
+
     @FXML
     private RadioButton btPhieuNhap;
 
@@ -83,7 +88,6 @@ public class MainController {
 
     @FXML
     private AnchorPane pnWorkspace;
-   
 
     public static KhoCommandHistory khoCommandHistory;
     public static VatTuCommandHistory vatTuCommandHistory;
@@ -257,7 +261,7 @@ public class MainController {
                     }
                     lbTitle.setText("Nhập Hàng");
                 }
-                 if (btBaoCao.isSelected()) {
+                if (btBaoCao.isSelected()) {
                     try {
                         initWorkspace("BaoCao");
                     } catch (IOException ex) {
@@ -332,13 +336,60 @@ public class MainController {
         btDatHang.getStyleClass().add("toggle-button");
         btXuatHang.getStyleClass().remove("radio-button");
         btXuatHang.getStyleClass().add("toggle-button");
-        
+
         btBaoCao.getStyleClass().remove("radio-button");
         btBaoCao.getStyleClass().add("toggle-button");
-        
+
         btPhieuNhap.getStyleClass().remove("radio-button");
         btPhieuNhap.getStyleClass().add("toggle-button");
 //        btBaoCao.setSelected(true);
+    
+       
+//        final Timer timer = new Timer();
+//
+//        //Thread timer to check timeout 
+//        timer.schedule(new TimerTask() {
+//            int n = 0;
+//
+//            @Override
+//            public void run() {
+//                Platform.runLater(() -> {
+//
+//                    try {
+//                        DBConnectUtil.getConnection();
+//                        LoginDAO loginDAO = new LoginDAO();
+//                        Login login = loginDAO.findOne(DBConnectUtil.username);
+////            System.out.println(login);
+//
+//                        if (login == null) {
+//                            throw new SQLException("user or password invalid");
+//                        }
+//                    } catch (SQLException e) {
+//                        DBConnectUtil.reset();
+//                        LoginController loginController = new LoginController();
+//                        Parent root = null;
+//                        try {
+//                            System.out.println(getClass().getResource("../../../../fxml/login.fxml"));
+//                            root = FXMLLoader.load(getClass().getResource("../../../../fxml/login.fxml"));
+//                        } catch (IOException ex) {
+//                            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+//                        }
+//                        Stage stage = new Stage();
+//                        Scene scene = new Scene(root);
+//                        stage.setScene(scene);
+//                        stage.show();
+//                        timer.cancel();
+//                        // get a handle to the stage
+//                        Stage st = (Stage) pnMain.getScene().getWindow();
+//
+//                        // do what you have to do
+//                        st.close();
+//
+//                    }
+//                });
+//
+//            }
+//        }, 5000, 1000);
 
     }
 }
